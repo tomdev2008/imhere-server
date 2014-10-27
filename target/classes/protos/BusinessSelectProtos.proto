@@ -1,0 +1,10 @@
+package org.xiaoxiancai.imhere.server.protos;
+
+option java_package = "org.xiaoxiancai.imhere.server.protos";
+option java_outer_classname = "BusinessSelectProtos";
+
+message Business {
+  
+	required string business = 1;
+
+}
