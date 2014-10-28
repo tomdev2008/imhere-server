@@ -1,0 +1,18 @@
+package org.xiaoxiancai.imhere.server.protos;
+
+option java_package = "org.xiaoxiancai.imhere.server.protos";
+option java_outer_classname = "BusinessSelectorProtos";
+
+// 业务选择器
+message BusinessSelector {
+  
+	required BusinessType businessType = 1;
+
+	// 业务类型
+	enum BusinessType {
+		option allow_alias = true;
+		REGISTER = 0; // 注册
+		UPDATE = 1; // 更新
+		LOCATE = 2; // 定位
+	}
+}

@@ -5,6 +5,10 @@
  */
 package org.xiaoxiancai.imhere.server;
 
+import static org.xiaoxiancai.imhere.server.utils.ServerConstant.DECODER_SELECTOR;
+import static org.xiaoxiancai.imhere.server.utils.ServerConstant.ENCODER;
+import static org.xiaoxiancai.imhere.server.utils.ServerConstant.HANDLER_DISPATCHER;
+
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelFutureListener;
@@ -15,12 +19,12 @@ import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
+import io.netty.handler.codec.protobuf.ProtobufDecoder;
+import io.netty.handler.codec.protobuf.ProtobufEncoder;
 
 import org.springframework.stereotype.Component;
-import org.xiaoxiancai.imhere.server.handler.BusinessDecoder;
-import org.xiaoxiancai.imhere.server.handler.BusinessEncoder;
-import org.xiaoxiancai.imhere.server.handler.ImHereServerHandler;
-import org.xiaoxiancai.imhere.server.protos.BusinessSelectProtos.Business;
+import org.xiaoxiancai.imhere.server.handler.DispatcherHandler;
+import org.xiaoxiancai.imhere.server.protos.BusinessSelectorProtos.BusinessSelector;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -90,12 +94,11 @@ public class ImHereServer extends AbstractServer {
 		ChannelInitializer<SocketChannel> initializer = new ChannelInitializer<SocketChannel>() {
 			@Override
 			public void initChannel(SocketChannel ch) throws Exception {
-				// TODO
 				ChannelPipeline pipeline = ch.pipeline();
-				pipeline.addLast(new BusinessEncoder());
-				pipeline.addLast(new BusinessDecoder(Business
-						.getDefaultInstance()));
-				pipeline.addLast(new ImHereServerHandler());
+				pipeline.addLast(ENCODER, new ProtobufEncoder());
+				pipeline.addLast(DECODER_SELECTOR, new ProtobufDecoder(
+						BusinessSelector.getDefaultInstance()));
+				pipeline.addLast(HANDLER_DISPATCHER, new DispatcherHandler());
 			}
 		};
 		bootstrap.group(bossGroup, workerGroup)

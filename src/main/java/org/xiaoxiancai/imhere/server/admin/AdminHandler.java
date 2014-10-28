@@ -15,7 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import org.xiaoxiancai.imhere.server.ImHereServer;
-import org.xiaoxiancai.imhere.server.utils.ImHereConstant;
+import org.xiaoxiancai.imhere.server.utils.ServerConstant;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -72,7 +72,7 @@ public class AdminHandler extends ChannelInboundHandlerAdapter {
 		if (matcher.matches()) {
 			String command = matcher.group(1);
 			if (!StringUtils.isBlank(command)
-					&& command.equals(ImHereConstant.COMMAND_UPDATE)) {
+					&& command.equals(ServerConstant.COMMAND_UPDATE)) {
 				String paramKey = matcher.group(3);
 				String paramValue = matcher.group(4);
 				logger.debug("command = {}, key = {}, value = {}", command,
