@@ -23,8 +23,7 @@ import io.netty.handler.codec.protobuf.ProtobufDecoder;
 import io.netty.handler.codec.protobuf.ProtobufEncoder;
 
 import org.springframework.stereotype.Component;
-import org.xiaoxiancai.imhere.server.handler.DispatcherHandler;
-import org.xiaoxiancai.imhere.server.protos.BusinessSelectorProtos.BusinessSelector;
+import org.xiaoxiancai.imhere.common.protos.BusinessSelectorProtos.BusinessSelector;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -110,11 +109,8 @@ public class ImHereServer extends AbstractServer {
 
 		ChannelFuture channelFuture = bootstrap.bind(SERVER_PORT).sync();
 		ChannelFuture closeFuture = channelFuture.channel().closeFuture();
-		System.out.println("imhere server start 1");
-		closeFuture.sync();
-		System.out.println("imhere server start 2");
 		closeFuture.addListener(ChannelFutureListener.CLOSE);
-		System.out.println("imhere server start success");
+		logger.info("imhere server start success");
 	}
 
 	@Override

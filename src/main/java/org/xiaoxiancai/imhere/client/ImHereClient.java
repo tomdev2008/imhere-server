@@ -24,10 +24,11 @@ import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.codec.protobuf.ProtobufDecoder;
 import io.netty.handler.codec.protobuf.ProtobufEncoder;
 
-import org.xiaoxiancai.imhere.server.protos.BusinessSelectorProtos.BusinessSelector;
-import org.xiaoxiancai.imhere.server.protos.BusinessSelectorProtos.BusinessSelector.BusinessType;
-import org.xiaoxiancai.imhere.server.protos.ConnectionStatusProtos.ConnectionStatus;
-import org.xiaoxiancai.imhere.server.protos.UserProtos.User;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.xiaoxiancai.imhere.common.protos.BusinessSelectorProtos.BusinessSelector;
+import org.xiaoxiancai.imhere.common.protos.BusinessTypeProtos.BusinessType;
+import org.xiaoxiancai.imhere.server.business.register.RegisterProtos.Register;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -39,6 +40,8 @@ import java.util.concurrent.TimeUnit;
  * @author xiannenglin
  */
 public class ImHereClient {
+
+	private Logger logger = LoggerFactory.getLogger(getClass());
 
 	private EventLoopGroup workerGroup;
 
@@ -83,7 +86,7 @@ public class ImHereClient {
 				ChannelPipeline pipeline = ch.pipeline();
 				pipeline.addLast(ENCODER, new ProtobufEncoder());
 				pipeline.addLast(DECODER_CONNECTION, new ProtobufDecoder(
-						ConnectionStatus.getDefaultInstance()));
+						BusinessSelector.getDefaultInstance()));
 				pipeline.addLast(HANDLER_CLIENT, clientHandler);
 			}
 		});
@@ -156,12 +159,13 @@ public class ImHereClient {
 	 * @param user
 	 * @throws InterruptedException
 	 */
-	public void register(User user) throws InterruptedException {
+	public void register(Register user) throws InterruptedException {
 		Channel channel = connect(BusinessType.REGISTER);
 		synchronized (clientHandler) {
 			clientHandler.wait();
 		}
 		if (channel != null && channel.isActive()) {
+			logger.debug("send register user to server");
 			channel.writeAndFlush(user).sync();
 		}
 	}

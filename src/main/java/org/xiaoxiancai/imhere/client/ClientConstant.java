@@ -20,7 +20,7 @@ public class ClientConstant {
 	/**
 	 * 解码器:连接信息
 	 */
-	public static final String DECODER_CONNECTION = "connection-encoder";
+	public static final String DECODER_CONNECTION = "connection-decoder";
 
 	/**
 	 * 处理器:客户端逻辑

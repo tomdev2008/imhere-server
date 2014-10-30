@@ -1,0 +1,16 @@
+package org.xiaoxiancai.imhere.server.business.protos;
+
+option java_package = "org.xiaoxiancai.imhere.server.business.register";
+option java_outer_classname = "RegisterProtos";
+
+message Register {
+  
+	required string mobile = 1;
+
+	optional string email = 2;
+  
+	optional string nickName = 3;
+  
+	optional string avatar = 4;
+
+}
