@@ -12,29 +12,22 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * 新用户注册处理器
+ * 更新处理器
  * 
  * @author xiannenglin
  */
-public class RegisterHandler extends ChannelInboundHandlerAdapter {
+public class UpdateHandler extends ChannelInboundHandlerAdapter {
 
 	private Logger logger = LoggerFactory.getLogger(getClass());
 
 	@Override
-	public void handlerAdded(ChannelHandlerContext ctx) throws Exception {
-		System.out.println("register handler added");
-	}
-
-	@Override
-	public void handlerRemoved(ChannelHandlerContext ctx) throws Exception {
-		System.out.println("register handler removed");
-	}
-
-	@Override
 	public void channelRead(ChannelHandlerContext ctx, Object msg)
 			throws Exception {
-		logger.debug("register user start");
-		logger.debug("channel = {}", ctx.channel());
-		logger.debug("register user success");
+		logger.debug("update user start");
+		System.out.println("update user start");
+		logger.debug("update channel = {}", ctx.channel());
+		System.out.println("update channel = " + ctx.channel());
+		logger.debug("update user success");
+		System.out.println("update user success");
 	}
 }

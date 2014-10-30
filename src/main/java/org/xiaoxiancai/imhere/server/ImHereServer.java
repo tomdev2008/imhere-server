@@ -88,7 +88,7 @@ public class ImHereServer extends AbstractServer {
 
 	@Override
 	public void doStart() throws Exception {
-		EventLoopGroup bossGroup = new NioEventLoopGroup();
+		EventLoopGroup bossGroup = new NioEventLoopGroup(1);
 		EventLoopGroup workerGroup = new NioEventLoopGroup();
 		ServerBootstrap bootstrap = new ServerBootstrap();
 		ChannelInitializer<SocketChannel> initializer = new ChannelInitializer<SocketChannel>() {
@@ -101,16 +101,20 @@ public class ImHereServer extends AbstractServer {
 				pipeline.addLast(HANDLER_DISPATCHER, new DispatcherHandler());
 			}
 		};
+
 		bootstrap.group(bossGroup, workerGroup)
 				.channel(NioServerSocketChannel.class)
 				.childHandler(initializer)
-				.option(ChannelOption.SO_BACKLOG, 128)
+				.option(ChannelOption.SO_BACKLOG, 1000000)
 				.childOption(ChannelOption.SO_KEEPALIVE, true);
 
 		ChannelFuture channelFuture = bootstrap.bind(SERVER_PORT).sync();
 		ChannelFuture closeFuture = channelFuture.channel().closeFuture();
+		System.out.println("imhere server start 1");
+		closeFuture.sync();
+		System.out.println("imhere server start 2");
 		closeFuture.addListener(ChannelFutureListener.CLOSE);
-		logger.info("imhere server start success");
+		System.out.println("imhere server start success");
 	}
 
 	@Override

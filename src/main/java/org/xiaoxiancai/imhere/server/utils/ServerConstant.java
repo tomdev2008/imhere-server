@@ -37,6 +37,8 @@ public class ServerConstant {
 	 */
 	public static final String DECODER_UPDATE = "update-decoder";
 
+	public static final String HANDLER_UPDATE = "update-handler";
+
 	/**
 	 * 解码器:定位
 	 */

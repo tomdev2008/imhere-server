@@ -16,16 +16,32 @@ import org.xiaoxiancai.imhere.server.protos.UserProtos.User;
 public class ClientTest {
 
 	public static void main(String[] args) throws Exception {
-		ImHereClient client = ImHereClient.getInstance();
+		for (int i = 0; i < 30; i++) {
+			Thread t = new Thread(new Task());
+			t.start();
+		}
+	}
+
+}
+
+class Task implements Runnable {
+
+	@Override
+	public void run() {
+		ImHereClient client = new ImHereClient();
 		client.setServer("localhost", 18080);
 		User user = createUser();
-		client.register(user);
+		try {
+			client.register(user);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 
 	/**
 	 * @return
 	 */
-	private static User createUser() {
+	private User createUser() {
 		User.Builder builder = User.newBuilder();
 		builder.setMobile("15658111876");
 		return builder.build();

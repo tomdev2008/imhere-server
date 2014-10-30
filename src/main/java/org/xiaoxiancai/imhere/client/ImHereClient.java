@@ -5,10 +5,15 @@
  */
 package org.xiaoxiancai.imhere.client;
 
+import static org.xiaoxiancai.imhere.client.ClientConstant.DECODER_CONNECTION;
+import static org.xiaoxiancai.imhere.client.ClientConstant.ENCODER;
+import static org.xiaoxiancai.imhere.client.ClientConstant.HANDLER_CLIENT;
+
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelFutureListener;
+import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelOption;
 import io.netty.channel.ChannelPipeline;
@@ -16,13 +21,16 @@ import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
+import io.netty.handler.codec.protobuf.ProtobufDecoder;
 import io.netty.handler.codec.protobuf.ProtobufEncoder;
 
 import org.xiaoxiancai.imhere.server.protos.BusinessSelectorProtos.BusinessSelector;
 import org.xiaoxiancai.imhere.server.protos.BusinessSelectorProtos.BusinessSelector.BusinessType;
+import org.xiaoxiancai.imhere.server.protos.ConnectionStatusProtos.ConnectionStatus;
 import org.xiaoxiancai.imhere.server.protos.UserProtos.User;
 
-import java.util.concurrent.ConcurrentHashMap;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -49,7 +57,7 @@ public class ImHereClient {
 	/**
 	 * Channel Map
 	 */
-	private ConcurrentHashMap<BusinessType, Channel> channelMap = new ConcurrentHashMap<BusinessType, Channel>();
+	private Map<BusinessType, Channel> channelMap = new HashMap<BusinessType, Channel>();
 
 	/**
 	 * 服务器端口
@@ -57,30 +65,28 @@ public class ImHereClient {
 	private int serverPort;
 
 	/**
-	 * 单例
+	 * 客户端处理器
 	 */
-	private ImHereClient() {
+	private ChannelHandler clientHandler;
+
+	public ImHereClient() {
+		clientHandler = new ClientHandler();
 		workerGroup = new NioEventLoopGroup();
 		bootStrap = new Bootstrap();
 		bootStrap.group(workerGroup);
 		bootStrap.channel(NioSocketChannel.class);
 		bootStrap.option(ChannelOption.SO_KEEPALIVE, true);
+		bootStrap.option(ChannelOption.TCP_NODELAY, true);
 		bootStrap.handler(new ChannelInitializer<SocketChannel>() {
 			@Override
 			public void initChannel(SocketChannel ch) throws Exception {
 				ChannelPipeline pipeline = ch.pipeline();
-				pipeline.addLast(new ProtobufEncoder());
-				pipeline.addLast(new ClientHandler());
+				pipeline.addLast(ENCODER, new ProtobufEncoder());
+				pipeline.addLast(DECODER_CONNECTION, new ProtobufDecoder(
+						ConnectionStatus.getDefaultInstance()));
+				pipeline.addLast(HANDLER_CLIENT, clientHandler);
 			}
 		});
-	}
-
-	private static class ClientHolder {
-		private static ImHereClient instance = new ImHereClient();
-	}
-
-	public static ImHereClient getInstance() {
-		return ClientHolder.instance;
 	}
 
 	/**
@@ -102,7 +108,7 @@ public class ImHereClient {
 	 * @return
 	 * @throws InterruptedException
 	 */
-	private synchronized Channel connect(BusinessType businessType)
+	private Channel connect(BusinessType businessType)
 			throws InterruptedException {
 		return connect(this.serverHost, this.serverPort, businessType);
 	}
@@ -116,14 +122,18 @@ public class ImHereClient {
 	 * @return
 	 * @throws InterruptedException
 	 */
-	private synchronized Channel connect(String serverHost, int serverPort,
+	private Channel connect(String serverHost, int serverPort,
 			BusinessType businessType) throws InterruptedException {
 		if (channelMap.containsKey(businessType)) {
-			return channelMap.get(businessType);
+			Channel channel = channelMap.get(businessType);
+			if (channel.isActive()) {
+				return channel;
+			} else {
+				channelMap.remove(businessType);
+			}
 		}
 		ChannelFuture connectFuture = bootStrap.connect(serverHost, serverPort);
 		Channel channel = connectFuture.channel();
-		// TODO
 		if (connectFuture.await(MAX_WAIT_MIN, TimeUnit.MINUTES)) {
 			boolean connected = connectFuture.isSuccess();
 			if (connected) {
@@ -131,7 +141,7 @@ public class ImHereClient {
 						.newBuilder();
 				selBuilder.setBusinessType(businessType);
 				channel.writeAndFlush(selBuilder.build()).sync();
-				channelMap.putIfAbsent(businessType, channel);
+				channelMap.put(businessType, channel);
 			}
 			channel.closeFuture().addListener(ChannelFutureListener.CLOSE);
 			return channel;
@@ -141,15 +151,18 @@ public class ImHereClient {
 	}
 
 	/**
-	 * 注册用户 TODO
+	 * 注册用户
 	 * 
 	 * @param user
 	 * @throws InterruptedException
 	 */
 	public void register(User user) throws InterruptedException {
 		Channel channel = connect(BusinessType.REGISTER);
+		synchronized (clientHandler) {
+			clientHandler.wait();
+		}
 		if (channel != null && channel.isActive()) {
-			channel.writeAndFlush(user);
+			channel.writeAndFlush(user).sync();
 		}
 	}
 }
