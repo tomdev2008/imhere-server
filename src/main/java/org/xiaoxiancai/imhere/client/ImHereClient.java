@@ -13,7 +13,6 @@ import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelFutureListener;
-import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelOption;
 import io.netty.channel.ChannelPipeline;
@@ -70,7 +69,7 @@ public class ImHereClient {
 	/**
 	 * 客户端处理器
 	 */
-	private ChannelHandler clientHandler;
+	private ClientHandler clientHandler;
 
 	public ImHereClient() {
 		clientHandler = new ClientHandler();
@@ -140,10 +139,11 @@ public class ImHereClient {
 		if (connectFuture.await(MAX_WAIT_MIN, TimeUnit.MINUTES)) {
 			boolean connected = connectFuture.isSuccess();
 			if (connected) {
-				BusinessSelector.Builder selBuilder = BusinessSelector
+				BusinessSelector.Builder selectorBuilder = BusinessSelector
 						.newBuilder();
-				selBuilder.setBusinessType(businessType);
-				channel.writeAndFlush(selBuilder.build()).sync();
+				selectorBuilder.setBusinessType(businessType);
+				selectorBuilder.setIsSuccess(false);
+				channel.writeAndFlush(selectorBuilder.build()).sync();
 				channelMap.put(businessType, channel);
 			}
 			channel.closeFuture().addListener(ChannelFutureListener.CLOSE);
@@ -160,13 +160,18 @@ public class ImHereClient {
 	 * @throws InterruptedException
 	 */
 	public void register(Register user) throws InterruptedException {
-		Channel channel = connect(BusinessType.REGISTER);
+		Channel channel = null;
 		synchronized (clientHandler) {
+			channel = connect(BusinessType.REGISTER);
+			logger.debug("client begin to wait");
 			clientHandler.wait();
+			logger.debug("client wakeup");
 		}
 		if (channel != null && channel.isActive()) {
 			logger.debug("send register user to server");
 			channel.writeAndFlush(user).sync();
+		} else {
+			logger.debug("channel is null or inactive");
 		}
 	}
 }

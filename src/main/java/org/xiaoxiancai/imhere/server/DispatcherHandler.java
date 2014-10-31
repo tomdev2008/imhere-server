@@ -49,6 +49,7 @@ public class DispatcherHandler extends ChannelInboundHandlerAdapter {
 		if (!(msg instanceof BusinessSelector)) {
 			return;
 		}
+		logger.debug("receive client connection");
 		BusinessSelector selector = (BusinessSelector) msg;
 		logger.debug("pipeline before select business = {}", pipeline);
 		BusinessType businessType = selector.getBusinessType();
