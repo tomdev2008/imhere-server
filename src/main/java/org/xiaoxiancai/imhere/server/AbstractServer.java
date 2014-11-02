@@ -25,10 +25,10 @@ public abstract class AbstractServer implements Server {
 	/**
 	 * Spring BeanFactory
 	 */
-	protected static ApplicationContext context;
+	protected static ApplicationContext applicationContext;
 
 	static {
-		context = new ClassPathXmlApplicationContext(
+		applicationContext = new ClassPathXmlApplicationContext(
 				"classpath*:spring/applicationContext.xml");
 	}
 
@@ -61,5 +61,14 @@ public abstract class AbstractServer implements Server {
 	 * @throws Exception
 	 */
 	protected abstract void doStop() throws Exception;
+
+	/**
+	 * 获得Spring Bean容器
+	 * 
+	 * @return
+	 */
+	public ApplicationContext getApplicationContext() {
+		return applicationContext;
+	}
 
 }

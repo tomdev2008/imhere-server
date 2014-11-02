@@ -97,7 +97,8 @@ public class ImHereServer extends AbstractServer {
 				pipeline.addLast(ENCODER, new ProtobufEncoder());
 				pipeline.addLast(DECODER_SELECTOR, new ProtobufDecoder(
 						BusinessSelector.getDefaultInstance()));
-				pipeline.addLast(HANDLER_DISPATCHER, new DispatcherHandler());
+				pipeline.addLast(HANDLER_DISPATCHER, new DispatcherHandler(
+						ImHereServer.this));
 			}
 		};
 

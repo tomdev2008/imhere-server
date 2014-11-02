@@ -3,26 +3,17 @@
  * Copyright (c) 2014, xianneng.lin@gmail.com All Rights Reserved. 
  **********************************************************************
  */
-package org.xiaoxiancai.imhere.server.entity;
+package org.xiaoxiancai.imhere.server.manager;
+
+import org.xiaoxiancai.imhere.server.entity.User;
 
 /**
- * 实体基类
+ * 用户注册Manager
  * 
  * @author xiannenglin
  */
-public abstract class Entity {
+public interface RegisterManager {
 
-	/**
-	 * id
-	 */
-	private int id;
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
+	public void register(User user);
 
 }

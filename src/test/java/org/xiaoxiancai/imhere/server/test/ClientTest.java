@@ -43,7 +43,7 @@ class Task implements Runnable {
 	 */
 	private Register createRegister() {
 		Register.Builder builder = Register.newBuilder();
-		builder.setMobile("15658111876");
+		builder.setMobile("156*****876");
 		return builder.build();
 	}
 

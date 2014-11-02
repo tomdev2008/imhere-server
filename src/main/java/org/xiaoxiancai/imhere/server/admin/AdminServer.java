@@ -57,7 +57,7 @@ public class AdminServer extends AbstractServer {
 				pipeline.addLast(new LineBasedFrameDecoder(MAX_COMMAND_LENGTH,
 						true, true));
 				pipeline.addLast(new StringDecoder(CharsetUtil.UTF_8));
-				pipeline.addLast(context.getBean("adminHandler",
+				pipeline.addLast(applicationContext.getBean("adminHandler",
 						AdminHandler.class));
 			}
 		};

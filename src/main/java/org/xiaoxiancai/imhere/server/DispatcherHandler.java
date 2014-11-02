@@ -5,6 +5,9 @@
  */
 package org.xiaoxiancai.imhere.server;
 
+import static org.xiaoxiancai.imhere.server.utils.ServerConstant.DECODER_SELECTOR;
+import static org.xiaoxiancai.imhere.server.utils.ServerConstant.HANDLER_DISPATCHER;
+
 import com.google.protobuf.MessageLite;
 
 import io.netty.channel.ChannelHandlerContext;
@@ -17,7 +20,6 @@ import org.slf4j.LoggerFactory;
 import org.xiaoxiancai.imhere.common.protos.BusinessSelectorProtos.BusinessSelector;
 import org.xiaoxiancai.imhere.common.protos.BusinessTypeProtos.BusinessType;
 import org.xiaoxiancai.imhere.server.business.BusinessHandler;
-import org.xiaoxiancai.imhere.server.utils.ServerConstant;
 
 import java.lang.reflect.Method;
 
@@ -41,6 +43,15 @@ public class DispatcherHandler extends ChannelInboundHandlerAdapter {
 	private static final String BASE_PACKAGE = "org.xiaoxiancai.imhere.server.business";
 
 	private static final String METHOD_GET_DEFAULT_INSTANCE = "getDefaultInstance";
+
+	/**
+	 * 服务类
+	 */
+	private AbstractServer server;
+
+	public DispatcherHandler(AbstractServer server) {
+		this.server = server;
+	}
 
 	@Override
 	public void channelRead(ChannelHandlerContext ctx, Object msg)
@@ -79,8 +90,8 @@ public class DispatcherHandler extends ChannelInboundHandlerAdapter {
 				getBusinessDecoder(businessType));
 		pipeline.addLast(getBusinessHandlerName(businessType),
 				getBusinessHandler(businessType));
-		pipeline.remove(ServerConstant.DECODER_SELECTOR);
-		pipeline.remove(ServerConstant.HANDLER_DISPATCHER);
+		pipeline.remove(DECODER_SELECTOR);
+		pipeline.remove(HANDLER_DISPATCHER);
 		logger.debug("pipeline after select business = {}", pipeline);
 
 		BusinessSelector.Builder statusBuilder = BusinessSelector.newBuilder();
@@ -126,7 +137,10 @@ public class DispatcherHandler extends ChannelInboundHandlerAdapter {
 				.append(".").append(businessCamelName)
 				.append(SUFFIX_HANDLER_QUALIFIED_NAME).toString();
 		Class<?> businessClass = Class.forName(qualifiedName);
-		return (BusinessHandler) businessClass.newInstance();
+		BusinessHandler businessHandler = (BusinessHandler) businessClass
+				.newInstance();
+		businessHandler.setApplicationContext(server.getApplicationContext());
+		return businessHandler;
 	}
 
 	/**

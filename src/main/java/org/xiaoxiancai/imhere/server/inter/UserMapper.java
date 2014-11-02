@@ -8,13 +8,14 @@ package org.xiaoxiancai.imhere.server.inter;
 import org.xiaoxiancai.imhere.server.entity.User;
 
 /**
- * 
+ * 用户操作接口
  * 
  * @author xiannenglin
  */
 public interface UserMapper extends EntityMapper {
 
 	/**
+	 * 根据Mobile获得用户
 	 * 
 	 * @param mobile
 	 * @return
@@ -22,21 +23,17 @@ public interface UserMapper extends EntityMapper {
 	public User getUserByMobile(String mobile);
 
 	/**
+	 * 注册用户
 	 * 
 	 * @param user
 	 */
-	public void addUser(User user);
+	public void registerUser(User user);
 
 	/**
+	 * 更新用户信息
 	 * 
 	 * @param user
 	 */
 	public void updateUser(User user);
-
-	/**
-	 * 
-	 * @param id
-	 */
-	public void deleteUser(int id);
 
 }

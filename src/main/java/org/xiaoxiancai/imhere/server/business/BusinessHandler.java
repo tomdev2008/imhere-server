@@ -7,10 +7,25 @@ package org.xiaoxiancai.imhere.server.business;
 
 import io.netty.channel.ChannelInboundHandlerAdapter;
 
+import org.springframework.context.ApplicationContext;
+
 /**
- *
+ * 
  * @author xiannenglin
  */
 public class BusinessHandler extends ChannelInboundHandlerAdapter {
 
+	/**
+	 * Spring Bean容器
+	 */
+	protected ApplicationContext applicationContext;
+
+	/**
+	 * 设置Spring Bean容器
+	 * 
+	 * @param applicationContext
+	 */
+	public void setApplicationContext(ApplicationContext applicationContext) {
+		this.applicationContext = applicationContext;
+	}
 }

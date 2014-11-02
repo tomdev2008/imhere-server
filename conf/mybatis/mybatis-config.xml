@@ -17,7 +17,7 @@
 	</environments>
 	 -->
 	 <typeAliases>
-		
+		<typeAlias alias="User" type="org.xiaoxiancai.imhere.server.entity.User"/>
 	</typeAliases>
 	<mappers>
 		<!-- <mapper resource="org/mybatis/example/BlogMapper.xml" /> -->

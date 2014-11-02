@@ -43,7 +43,7 @@ public class ServerSelector extends AbstractServer {
 	 * @throws Exception
 	 */
 	private void startImHereServer() throws Exception {
-		ImHereServer imHereServer = context.getBean("imHereServer",
+		ImHereServer imHereServer = applicationContext.getBean("imHereServer",
 				ImHereServer.class);
 		imHereServer.doInit();
 		imHereServer.doStart();
@@ -55,7 +55,7 @@ public class ServerSelector extends AbstractServer {
 	 * @throws Exception
 	 */
 	private void startAdminServer() throws Exception {
-		AdminServer adminServer = context.getBean("adminServer",
+		AdminServer adminServer = applicationContext.getBean("adminServer",
 				AdminServer.class);
 		adminServer.doStart();
 	}

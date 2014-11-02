@@ -3,5 +3,11 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="org.xiaoxiancai.imhere.server.inter.UserMapper">
-
+	
+	<!-- 注册新用户 -->
+	<insert id="registerUser" parameterType="User" keyProperty="id" useGeneratedKeys="true">
+		<!-- TODO 动态insert语句 --> 
+		insert into user(MOBILE, USERAGE, USERADDRESS) 
+			values(#{userName}, #{userAge}, #{userAddress})
+	</insert>
 </mapper>
