@@ -9,7 +9,7 @@ public final class RegisterProtos {
       com.google.protobuf.ExtensionRegistry registry) {
   }
   public interface RegisterOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:org.xiaoxiancai.imhere.server.protos.Register)
+      // @@protoc_insertion_point(interface_extends:org.xiaoxiancai.imhere.server.business.protos.Register)
       com.google.protobuf.MessageOrBuilder {
 
     /**
@@ -69,11 +69,11 @@ public final class RegisterProtos {
         getAvatarBytes();
   }
   /**
-   * Protobuf type {@code org.xiaoxiancai.imhere.server.protos.Register}
+   * Protobuf type {@code org.xiaoxiancai.imhere.server.business.protos.Register}
    */
   public static final class Register extends
       com.google.protobuf.GeneratedMessage implements
-      // @@protoc_insertion_point(message_implements:org.xiaoxiancai.imhere.server.protos.Register)
+      // @@protoc_insertion_point(message_implements:org.xiaoxiancai.imhere.server.business.protos.Register)
       RegisterOrBuilder {
     // Use Register.newBuilder() to construct.
     private Register(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
@@ -158,12 +158,12 @@ public final class RegisterProtos {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return org.xiaoxiancai.imhere.server.business.register.RegisterProtos.internal_static_org_xiaoxiancai_imhere_server_protos_Register_descriptor;
+      return org.xiaoxiancai.imhere.server.business.register.RegisterProtos.internal_static_org_xiaoxiancai_imhere_server_business_protos_Register_descriptor;
     }
 
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return org.xiaoxiancai.imhere.server.business.register.RegisterProtos.internal_static_org_xiaoxiancai_imhere_server_protos_Register_fieldAccessorTable
+      return org.xiaoxiancai.imhere.server.business.register.RegisterProtos.internal_static_org_xiaoxiancai_imhere_server_business_protos_Register_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
               org.xiaoxiancai.imhere.server.business.register.RegisterProtos.Register.class, org.xiaoxiancai.imhere.server.business.register.RegisterProtos.Register.Builder.class);
     }
@@ -491,20 +491,20 @@ public final class RegisterProtos {
       return builder;
     }
     /**
-     * Protobuf type {@code org.xiaoxiancai.imhere.server.protos.Register}
+     * Protobuf type {@code org.xiaoxiancai.imhere.server.business.protos.Register}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessage.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:org.xiaoxiancai.imhere.server.protos.Register)
+        // @@protoc_insertion_point(builder_implements:org.xiaoxiancai.imhere.server.business.protos.Register)
         org.xiaoxiancai.imhere.server.business.register.RegisterProtos.RegisterOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return org.xiaoxiancai.imhere.server.business.register.RegisterProtos.internal_static_org_xiaoxiancai_imhere_server_protos_Register_descriptor;
+        return org.xiaoxiancai.imhere.server.business.register.RegisterProtos.internal_static_org_xiaoxiancai_imhere_server_business_protos_Register_descriptor;
       }
 
       protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return org.xiaoxiancai.imhere.server.business.register.RegisterProtos.internal_static_org_xiaoxiancai_imhere_server_protos_Register_fieldAccessorTable
+        return org.xiaoxiancai.imhere.server.business.register.RegisterProtos.internal_static_org_xiaoxiancai_imhere_server_business_protos_Register_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
                 org.xiaoxiancai.imhere.server.business.register.RegisterProtos.Register.class, org.xiaoxiancai.imhere.server.business.register.RegisterProtos.Register.Builder.class);
       }
@@ -546,7 +546,7 @@ public final class RegisterProtos {
 
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return org.xiaoxiancai.imhere.server.business.register.RegisterProtos.internal_static_org_xiaoxiancai_imhere_server_protos_Register_descriptor;
+        return org.xiaoxiancai.imhere.server.business.register.RegisterProtos.internal_static_org_xiaoxiancai_imhere_server_business_protos_Register_descriptor;
       }
 
       public org.xiaoxiancai.imhere.server.business.register.RegisterProtos.Register getDefaultInstanceForType() {
@@ -952,7 +952,7 @@ public final class RegisterProtos {
         return this;
       }
 
-      // @@protoc_insertion_point(builder_scope:org.xiaoxiancai.imhere.server.protos.Register)
+      // @@protoc_insertion_point(builder_scope:org.xiaoxiancai.imhere.server.business.protos.Register)
     }
 
     static {
@@ -960,14 +960,14 @@ public final class RegisterProtos {
       defaultInstance.initFields();
     }
 
-    // @@protoc_insertion_point(class_scope:org.xiaoxiancai.imhere.server.protos.Register)
+    // @@protoc_insertion_point(class_scope:org.xiaoxiancai.imhere.server.business.protos.Register)
   }
 
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_org_xiaoxiancai_imhere_server_protos_Register_descriptor;
+    internal_static_org_xiaoxiancai_imhere_server_business_protos_Register_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
-      internal_static_org_xiaoxiancai_imhere_server_protos_Register_fieldAccessorTable;
+      internal_static_org_xiaoxiancai_imhere_server_business_protos_Register_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -977,12 +977,12 @@ public final class RegisterProtos {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\024RegisterProtos.proto\022$org.xiaoxiancai." +
-      "imhere.server.protos\"K\n\010Register\022\016\n\006mobi" +
-      "le\030\001 \002(\t\022\r\n\005email\030\002 \001(\t\022\020\n\010nickName\030\003 \001(" +
-      "\t\022\016\n\006avatar\030\004 \001(\tBA\n/org.xiaoxiancai.imh" +
-      "ere.server.business.registerB\016RegisterPr" +
-      "otos"
+      "\n\024RegisterProtos.proto\022-org.xiaoxiancai." +
+      "imhere.server.business.protos\"K\n\010Registe" +
+      "r\022\016\n\006mobile\030\001 \002(\t\022\r\n\005email\030\002 \001(\t\022\020\n\010nick" +
+      "Name\030\003 \001(\t\022\016\n\006avatar\030\004 \001(\tBA\n/org.xiaoxi" +
+      "ancai.imhere.server.business.registerB\016R" +
+      "egisterProtos"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -996,11 +996,11 @@ public final class RegisterProtos {
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
         }, assigner);
-    internal_static_org_xiaoxiancai_imhere_server_protos_Register_descriptor =
+    internal_static_org_xiaoxiancai_imhere_server_business_protos_Register_descriptor =
       getDescriptor().getMessageTypes().get(0);
-    internal_static_org_xiaoxiancai_imhere_server_protos_Register_fieldAccessorTable = new
+    internal_static_org_xiaoxiancai_imhere_server_business_protos_Register_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-        internal_static_org_xiaoxiancai_imhere_server_protos_Register_descriptor,
+        internal_static_org_xiaoxiancai_imhere_server_business_protos_Register_descriptor,
         new java.lang.String[] { "Mobile", "Email", "NickName", "Avatar", });
   }
 

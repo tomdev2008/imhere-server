@@ -12,7 +12,6 @@ import io.netty.channel.ChannelPipeline;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.xiaoxiancai.imhere.common.protos.BusinessSelectorProtos.BusinessSelector;
-import org.xiaoxiancai.imhere.common.protos.BusinessTypeProtos.BusinessType;
 
 /**
  * 客户端处理器
@@ -22,6 +21,7 @@ import org.xiaoxiancai.imhere.common.protos.BusinessTypeProtos.BusinessType;
 public class ClientHandler extends ChannelInboundHandlerAdapter {
 
 	// TODO
+	@SuppressWarnings("unused")
 	private ImHereClient client;
 
 	public ClientHandler() {
@@ -49,17 +49,6 @@ public class ClientHandler extends ChannelInboundHandlerAdapter {
 			logger.debug("client pipeline before connection = {}", pipeline);
 			pipeline.remove(ClientConstant.DECODER_CONNECTION);
 			logger.debug("client pipeline after connection = {}", pipeline);
-		}
-	}
-
-	public void doBusiness(BusinessType businessType) {
-		switch (businessType) {
-		case REGISTER:
-			client.equals("");
-			break;
-
-		default:
-			break;
 		}
 	}
 }

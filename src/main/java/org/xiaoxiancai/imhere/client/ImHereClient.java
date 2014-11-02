@@ -34,17 +34,13 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 /**
- * 客户端 TODO 客户端连接池
+ * 客户端
  * 
  * @author xiannenglin
  */
 public class ImHereClient {
 
 	private Logger logger = LoggerFactory.getLogger(getClass());
-
-	private EventLoopGroup workerGroup;
-
-	private Bootstrap bootStrap;
 
 	/**
 	 * 最长等待时间, 3min
@@ -70,26 +66,6 @@ public class ImHereClient {
 	 * 客户端处理器
 	 */
 	private ClientHandler clientHandler;
-
-	public ImHereClient() {
-		clientHandler = new ClientHandler();
-		workerGroup = new NioEventLoopGroup();
-		bootStrap = new Bootstrap();
-		bootStrap.group(workerGroup);
-		bootStrap.channel(NioSocketChannel.class);
-		bootStrap.option(ChannelOption.SO_KEEPALIVE, true);
-		bootStrap.option(ChannelOption.TCP_NODELAY, true);
-		bootStrap.handler(new ChannelInitializer<SocketChannel>() {
-			@Override
-			public void initChannel(SocketChannel ch) throws Exception {
-				ChannelPipeline pipeline = ch.pipeline();
-				pipeline.addLast(ENCODER, new ProtobufEncoder());
-				pipeline.addLast(DECODER_CONNECTION, new ProtobufDecoder(
-						BusinessSelector.getDefaultInstance()));
-				pipeline.addLast(HANDLER_CLIENT, clientHandler);
-			}
-		});
-	}
 
 	/**
 	 * 设置服务器地址
@@ -134,6 +110,26 @@ public class ImHereClient {
 				channelMap.remove(businessType);
 			}
 		}
+		logger.debug("create new channel for business = {}",
+				businessType.name());
+		clientHandler = new ClientHandler();
+		EventLoopGroup workerGroup = new NioEventLoopGroup();
+		Bootstrap bootStrap = new Bootstrap();
+		bootStrap.group(workerGroup);
+		bootStrap.channel(NioSocketChannel.class);
+		bootStrap.option(ChannelOption.SO_KEEPALIVE, true);
+		bootStrap.option(ChannelOption.TCP_NODELAY, true);
+		bootStrap.handler(new ChannelInitializer<SocketChannel>() {
+			@Override
+			public void initChannel(SocketChannel ch) throws Exception {
+				ChannelPipeline pipeline = ch.pipeline();
+				pipeline.addLast(ENCODER, new ProtobufEncoder());
+				pipeline.addLast(DECODER_CONNECTION, new ProtobufDecoder(
+						BusinessSelector.getDefaultInstance()));
+				pipeline.addLast(HANDLER_CLIENT, clientHandler);
+			}
+		});
+
 		ChannelFuture connectFuture = bootStrap.connect(serverHost, serverPort);
 		Channel channel = connectFuture.channel();
 		if (connectFuture.await(MAX_WAIT_MIN, TimeUnit.MINUTES)) {
@@ -143,7 +139,11 @@ public class ImHereClient {
 						.newBuilder();
 				selectorBuilder.setBusinessType(businessType);
 				selectorBuilder.setIsSuccess(false);
-				channel.writeAndFlush(selectorBuilder.build()).sync();
+
+				synchronized (clientHandler) {
+					channel.writeAndFlush(selectorBuilder.build()).sync();
+					clientHandler.wait();
+				}
 				channelMap.put(businessType, channel);
 			}
 			channel.closeFuture().addListener(ChannelFutureListener.CLOSE);
@@ -160,18 +160,12 @@ public class ImHereClient {
 	 * @throws InterruptedException
 	 */
 	public void register(Register user) throws InterruptedException {
-		Channel channel = null;
-		synchronized (clientHandler) {
-			channel = connect(BusinessType.REGISTER);
-			logger.debug("client begin to wait");
-			clientHandler.wait();
-			logger.debug("client wakeup");
-		}
+		Channel channel = connect(BusinessType.REGISTER);
 		if (channel != null && channel.isActive()) {
 			logger.debug("send register user to server");
 			channel.writeAndFlush(user).sync();
 		} else {
-			logger.debug("channel is null or inactive");
+			logger.error("channel is null or inactive");
 		}
 	}
 }

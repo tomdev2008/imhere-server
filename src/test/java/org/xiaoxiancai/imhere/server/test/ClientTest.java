@@ -16,7 +16,7 @@ import org.xiaoxiancai.imhere.server.business.register.RegisterProtos.Register;
 public class ClientTest {
 
 	public static void main(String[] args) throws Exception {
-		for (int i = 0; i < 400; i++) {
+		for (int i = 0; i < 1; i++) {
 			Thread t = new Thread(new Task());
 			t.start();
 		}
