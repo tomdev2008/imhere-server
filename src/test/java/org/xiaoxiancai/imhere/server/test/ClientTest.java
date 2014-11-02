@@ -42,9 +42,11 @@ class Task implements Runnable {
 	 * @return
 	 */
 	private Register createRegister() {
-		Register.Builder builder = Register.newBuilder();
-		builder.setMobile("156*****876");
-		return builder.build();
+		Register.Builder register = Register.newBuilder();
+		register.setMobile("156*****876");
+		register.setNickName("xiaoxiancai");
+		register.setEmail("xianneng.lin@gmail.com");
+		return register.build();
 	}
 
 }

@@ -15,15 +15,25 @@ import java.util.List;
  */
 public class User extends Entity {
 
+	/**
+	 * 移动电话-required
+	 */
 	private String mobile;
 
-	private String email;
-
+	/**
+	 * 昵称-required
+	 */
 	private String nickName;
 
-	private String signature;
+	/**
+	 * 邮箱-optional
+	 */
+	private String email;
 
-	private String avatar;
+	/**
+	 * 个性签名-optional
+	 */
+	private String signature;
 
 	private List<UserGroup> groups = new ArrayList<UserGroup>();
 
@@ -57,14 +67,6 @@ public class User extends Entity {
 
 	public void setSignature(String signature) {
 		this.signature = signature;
-	}
-
-	public String getAvatar() {
-		return avatar;
-	}
-
-	public void setAvatar(String avatar) {
-		this.avatar = avatar;
 	}
 
 	public List<UserGroup> getGroups() {

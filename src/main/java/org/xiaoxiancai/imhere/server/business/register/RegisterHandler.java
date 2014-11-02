@@ -7,10 +7,12 @@ package org.xiaoxiancai.imhere.server.business.register;
 
 import io.netty.channel.ChannelHandlerContext;
 
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.xiaoxiancai.imhere.server.business.BusinessHandler;
 import org.xiaoxiancai.imhere.server.business.register.RegisterProtos.Register;
+import org.xiaoxiancai.imhere.server.entity.User;
 import org.xiaoxiancai.imhere.server.inter.UserMapper;
 
 /**
@@ -28,12 +30,26 @@ public class RegisterHandler extends BusinessHandler {
 		if (!(msg instanceof Register)) {
 			return;
 		}
+		logger.debug("register user start");
 		UserMapper userMapper = (UserMapper) applicationContext
 				.getBean("userMapper");
-		logger.debug("user mapper = {}", userMapper);
-		logger.debug("register user start");
 		Register register = (Register) msg;
-		logger.debug("register mobile = {}", register.getMobile());
+		userMapper.registerUser(createUser(register));
 		logger.debug("register user success");
+	}
+
+	private User createUser(Register register) {
+		User user = new User();
+		user.setMobile(register.getMobile());
+		user.setNickName(register.getNickName());
+		String email = register.getEmail();
+		if (!StringUtils.isBlank(email)) {
+			user.setEmail(email);
+		}
+		String signature = register.getSignature();
+		if (!StringUtils.isBlank(signature)) {
+			user.setSignature(signature);
+		}
+		return user;
 	}
 }

@@ -6,8 +6,13 @@
 	
 	<!-- 注册新用户 -->
 	<insert id="registerUser" parameterType="User" keyProperty="id" useGeneratedKeys="true">
-		<!-- TODO 动态insert语句 --> 
-		insert into user(MOBILE, USERAGE, USERADDRESS) 
-			values(#{userName}, #{userAge}, #{userAddress})
+		<!-- 动态insert语句 -->
+		insert into user(MOBILE, NICKNAME
+			<if test="email != null">, EMAIL</if>
+			<if test="signature != null">, SIGNATURE</if>)
+		values (#{mobile}, #{nickName}
+			<if test="email != null">, #{email}</if>
+			<if test="signature != null">, #{signature}</if>)
 	</insert>
+	
 </mapper>

@@ -7,10 +7,10 @@ message Register {
   
 	required string mobile = 1;
 
-	optional string email = 2;
+	required string nickName = 2;
   
-	optional string nickName = 3;
+	optional string email = 3;
   
-	optional string avatar = 4;
+	optional string signature = 4;
 
 }

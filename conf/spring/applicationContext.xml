@@ -31,14 +31,14 @@
 		<property name="mapperLocations" value="classpath*:mappers/*.xml" />
 	</bean>
 	
-	<!-- 开启Spring的事务处理, 为事务管理器指定的 DataSource必须和用来创建SqlSessionFactoryBean的是同一个数据源 -->
-	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-		<property name="dataSource" ref="dataSource" />
-	</bean>
-	
 	<!-- MapperScannerConfigurer -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<property name="basePackage" value="org.xiaoxiancai.imhere.server.inter" />
+	</bean>
+	
+	<!-- 开启Spring的事务处理, 为事务管理器指定的 DataSource必须和用来创建SqlSessionFactoryBean的是同一个数据源 -->
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
 	</bean>
 	
 	<!-- 抽象父Mapper -->

@@ -27,46 +27,46 @@ public final class RegisterProtos {
         getMobileBytes();
 
     /**
-     * <code>optional string email = 2;</code>
-     */
-    boolean hasEmail();
-    /**
-     * <code>optional string email = 2;</code>
-     */
-    java.lang.String getEmail();
-    /**
-     * <code>optional string email = 2;</code>
-     */
-    com.google.protobuf.ByteString
-        getEmailBytes();
-
-    /**
-     * <code>optional string nickName = 3;</code>
+     * <code>required string nickName = 2;</code>
      */
     boolean hasNickName();
     /**
-     * <code>optional string nickName = 3;</code>
+     * <code>required string nickName = 2;</code>
      */
     java.lang.String getNickName();
     /**
-     * <code>optional string nickName = 3;</code>
+     * <code>required string nickName = 2;</code>
      */
     com.google.protobuf.ByteString
         getNickNameBytes();
 
     /**
-     * <code>optional string avatar = 4;</code>
+     * <code>optional string email = 3;</code>
      */
-    boolean hasAvatar();
+    boolean hasEmail();
     /**
-     * <code>optional string avatar = 4;</code>
+     * <code>optional string email = 3;</code>
      */
-    java.lang.String getAvatar();
+    java.lang.String getEmail();
     /**
-     * <code>optional string avatar = 4;</code>
+     * <code>optional string email = 3;</code>
      */
     com.google.protobuf.ByteString
-        getAvatarBytes();
+        getEmailBytes();
+
+    /**
+     * <code>optional string signature = 4;</code>
+     */
+    boolean hasSignature();
+    /**
+     * <code>optional string signature = 4;</code>
+     */
+    java.lang.String getSignature();
+    /**
+     * <code>optional string signature = 4;</code>
+     */
+    com.google.protobuf.ByteString
+        getSignatureBytes();
   }
   /**
    * Protobuf type {@code org.xiaoxiancai.imhere.server.business.protos.Register}
@@ -129,19 +129,19 @@ public final class RegisterProtos {
             case 18: {
               com.google.protobuf.ByteString bs = input.readBytes();
               bitField0_ |= 0x00000002;
-              email_ = bs;
+              nickName_ = bs;
               break;
             }
             case 26: {
               com.google.protobuf.ByteString bs = input.readBytes();
               bitField0_ |= 0x00000004;
-              nickName_ = bs;
+              email_ = bs;
               break;
             }
             case 34: {
               com.google.protobuf.ByteString bs = input.readBytes();
               bitField0_ |= 0x00000008;
-              avatar_ = bs;
+              signature_ = bs;
               break;
             }
           }
@@ -226,58 +226,16 @@ public final class RegisterProtos {
       }
     }
 
-    public static final int EMAIL_FIELD_NUMBER = 2;
-    private java.lang.Object email_;
+    public static final int NICKNAME_FIELD_NUMBER = 2;
+    private java.lang.Object nickName_;
     /**
-     * <code>optional string email = 2;</code>
+     * <code>required string nickName = 2;</code>
      */
-    public boolean hasEmail() {
+    public boolean hasNickName() {
       return ((bitField0_ & 0x00000002) == 0x00000002);
     }
     /**
-     * <code>optional string email = 2;</code>
-     */
-    public java.lang.String getEmail() {
-      java.lang.Object ref = email_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        if (bs.isValidUtf8()) {
-          email_ = s;
-        }
-        return s;
-      }
-    }
-    /**
-     * <code>optional string email = 2;</code>
-     */
-    public com.google.protobuf.ByteString
-        getEmailBytes() {
-      java.lang.Object ref = email_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        email_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    public static final int NICKNAME_FIELD_NUMBER = 3;
-    private java.lang.Object nickName_;
-    /**
-     * <code>optional string nickName = 3;</code>
-     */
-    public boolean hasNickName() {
-      return ((bitField0_ & 0x00000004) == 0x00000004);
-    }
-    /**
-     * <code>optional string nickName = 3;</code>
+     * <code>required string nickName = 2;</code>
      */
     public java.lang.String getNickName() {
       java.lang.Object ref = nickName_;
@@ -294,7 +252,7 @@ public final class RegisterProtos {
       }
     }
     /**
-     * <code>optional string nickName = 3;</code>
+     * <code>required string nickName = 2;</code>
      */
     public com.google.protobuf.ByteString
         getNickNameBytes() {
@@ -310,19 +268,19 @@ public final class RegisterProtos {
       }
     }
 
-    public static final int AVATAR_FIELD_NUMBER = 4;
-    private java.lang.Object avatar_;
+    public static final int EMAIL_FIELD_NUMBER = 3;
+    private java.lang.Object email_;
     /**
-     * <code>optional string avatar = 4;</code>
+     * <code>optional string email = 3;</code>
      */
-    public boolean hasAvatar() {
-      return ((bitField0_ & 0x00000008) == 0x00000008);
+    public boolean hasEmail() {
+      return ((bitField0_ & 0x00000004) == 0x00000004);
     }
     /**
-     * <code>optional string avatar = 4;</code>
+     * <code>optional string email = 3;</code>
      */
-    public java.lang.String getAvatar() {
-      java.lang.Object ref = avatar_;
+    public java.lang.String getEmail() {
+      java.lang.Object ref = email_;
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
@@ -330,22 +288,64 @@ public final class RegisterProtos {
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         if (bs.isValidUtf8()) {
-          avatar_ = s;
+          email_ = s;
         }
         return s;
       }
     }
     /**
-     * <code>optional string avatar = 4;</code>
+     * <code>optional string email = 3;</code>
      */
     public com.google.protobuf.ByteString
-        getAvatarBytes() {
-      java.lang.Object ref = avatar_;
+        getEmailBytes() {
+      java.lang.Object ref = email_;
       if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
-        avatar_ = b;
+        email_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int SIGNATURE_FIELD_NUMBER = 4;
+    private java.lang.Object signature_;
+    /**
+     * <code>optional string signature = 4;</code>
+     */
+    public boolean hasSignature() {
+      return ((bitField0_ & 0x00000008) == 0x00000008);
+    }
+    /**
+     * <code>optional string signature = 4;</code>
+     */
+    public java.lang.String getSignature() {
+      java.lang.Object ref = signature_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        if (bs.isValidUtf8()) {
+          signature_ = s;
+        }
+        return s;
+      }
+    }
+    /**
+     * <code>optional string signature = 4;</code>
+     */
+    public com.google.protobuf.ByteString
+        getSignatureBytes() {
+      java.lang.Object ref = signature_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        signature_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
@@ -354,9 +354,9 @@ public final class RegisterProtos {
 
     private void initFields() {
       mobile_ = "";
-      email_ = "";
       nickName_ = "";
-      avatar_ = "";
+      email_ = "";
+      signature_ = "";
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -365,6 +365,10 @@ public final class RegisterProtos {
       if (isInitialized == 0) return false;
 
       if (!hasMobile()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+      if (!hasNickName()) {
         memoizedIsInitialized = 0;
         return false;
       }
@@ -379,13 +383,13 @@ public final class RegisterProtos {
         output.writeBytes(1, getMobileBytes());
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeBytes(2, getEmailBytes());
+        output.writeBytes(2, getNickNameBytes());
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeBytes(3, getNickNameBytes());
+        output.writeBytes(3, getEmailBytes());
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
-        output.writeBytes(4, getAvatarBytes());
+        output.writeBytes(4, getSignatureBytes());
       }
       getUnknownFields().writeTo(output);
     }
@@ -402,15 +406,15 @@ public final class RegisterProtos {
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(2, getEmailBytes());
+          .computeBytesSize(2, getNickNameBytes());
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(3, getNickNameBytes());
+          .computeBytesSize(3, getEmailBytes());
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(4, getAvatarBytes());
+          .computeBytesSize(4, getSignatureBytes());
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -531,11 +535,11 @@ public final class RegisterProtos {
         super.clear();
         mobile_ = "";
         bitField0_ = (bitField0_ & ~0x00000001);
-        email_ = "";
-        bitField0_ = (bitField0_ & ~0x00000002);
         nickName_ = "";
+        bitField0_ = (bitField0_ & ~0x00000002);
+        email_ = "";
         bitField0_ = (bitField0_ & ~0x00000004);
-        avatar_ = "";
+        signature_ = "";
         bitField0_ = (bitField0_ & ~0x00000008);
         return this;
       }
@@ -572,15 +576,15 @@ public final class RegisterProtos {
         if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
           to_bitField0_ |= 0x00000002;
         }
-        result.email_ = email_;
+        result.nickName_ = nickName_;
         if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
           to_bitField0_ |= 0x00000004;
         }
-        result.nickName_ = nickName_;
+        result.email_ = email_;
         if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
           to_bitField0_ |= 0x00000008;
         }
-        result.avatar_ = avatar_;
+        result.signature_ = signature_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -602,19 +606,19 @@ public final class RegisterProtos {
           mobile_ = other.mobile_;
           onChanged();
         }
-        if (other.hasEmail()) {
-          bitField0_ |= 0x00000002;
-          email_ = other.email_;
-          onChanged();
-        }
         if (other.hasNickName()) {
-          bitField0_ |= 0x00000004;
+          bitField0_ |= 0x00000002;
           nickName_ = other.nickName_;
           onChanged();
         }
-        if (other.hasAvatar()) {
+        if (other.hasEmail()) {
+          bitField0_ |= 0x00000004;
+          email_ = other.email_;
+          onChanged();
+        }
+        if (other.hasSignature()) {
           bitField0_ |= 0x00000008;
-          avatar_ = other.avatar_;
+          signature_ = other.signature_;
           onChanged();
         }
         this.mergeUnknownFields(other.getUnknownFields());
@@ -623,6 +627,10 @@ public final class RegisterProtos {
 
       public final boolean isInitialized() {
         if (!hasMobile()) {
+          
+          return false;
+        }
+        if (!hasNickName()) {
           
           return false;
         }
@@ -724,91 +732,15 @@ public final class RegisterProtos {
         return this;
       }
 
-      private java.lang.Object email_ = "";
+      private java.lang.Object nickName_ = "";
       /**
-       * <code>optional string email = 2;</code>
+       * <code>required string nickName = 2;</code>
        */
-      public boolean hasEmail() {
+      public boolean hasNickName() {
         return ((bitField0_ & 0x00000002) == 0x00000002);
       }
       /**
-       * <code>optional string email = 2;</code>
-       */
-      public java.lang.String getEmail() {
-        java.lang.Object ref = email_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          if (bs.isValidUtf8()) {
-            email_ = s;
-          }
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <code>optional string email = 2;</code>
-       */
-      public com.google.protobuf.ByteString
-          getEmailBytes() {
-        java.lang.Object ref = email_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          email_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>optional string email = 2;</code>
-       */
-      public Builder setEmail(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000002;
-        email_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional string email = 2;</code>
-       */
-      public Builder clearEmail() {
-        bitField0_ = (bitField0_ & ~0x00000002);
-        email_ = getDefaultInstance().getEmail();
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional string email = 2;</code>
-       */
-      public Builder setEmailBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000002;
-        email_ = value;
-        onChanged();
-        return this;
-      }
-
-      private java.lang.Object nickName_ = "";
-      /**
-       * <code>optional string nickName = 3;</code>
-       */
-      public boolean hasNickName() {
-        return ((bitField0_ & 0x00000004) == 0x00000004);
-      }
-      /**
-       * <code>optional string nickName = 3;</code>
+       * <code>required string nickName = 2;</code>
        */
       public java.lang.String getNickName() {
         java.lang.Object ref = nickName_;
@@ -825,7 +757,7 @@ public final class RegisterProtos {
         }
       }
       /**
-       * <code>optional string nickName = 3;</code>
+       * <code>required string nickName = 2;</code>
        */
       public com.google.protobuf.ByteString
           getNickNameBytes() {
@@ -841,59 +773,59 @@ public final class RegisterProtos {
         }
       }
       /**
-       * <code>optional string nickName = 3;</code>
+       * <code>required string nickName = 2;</code>
        */
       public Builder setNickName(
           java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000004;
+  bitField0_ |= 0x00000002;
         nickName_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>optional string nickName = 3;</code>
+       * <code>required string nickName = 2;</code>
        */
       public Builder clearNickName() {
-        bitField0_ = (bitField0_ & ~0x00000004);
+        bitField0_ = (bitField0_ & ~0x00000002);
         nickName_ = getDefaultInstance().getNickName();
         onChanged();
         return this;
       }
       /**
-       * <code>optional string nickName = 3;</code>
+       * <code>required string nickName = 2;</code>
        */
       public Builder setNickNameBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000004;
+  bitField0_ |= 0x00000002;
         nickName_ = value;
         onChanged();
         return this;
       }
 
-      private java.lang.Object avatar_ = "";
+      private java.lang.Object email_ = "";
       /**
-       * <code>optional string avatar = 4;</code>
+       * <code>optional string email = 3;</code>
        */
-      public boolean hasAvatar() {
-        return ((bitField0_ & 0x00000008) == 0x00000008);
+      public boolean hasEmail() {
+        return ((bitField0_ & 0x00000004) == 0x00000004);
       }
       /**
-       * <code>optional string avatar = 4;</code>
+       * <code>optional string email = 3;</code>
        */
-      public java.lang.String getAvatar() {
-        java.lang.Object ref = avatar_;
+      public java.lang.String getEmail() {
+        java.lang.Object ref = email_;
         if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
           java.lang.String s = bs.toStringUtf8();
           if (bs.isValidUtf8()) {
-            avatar_ = s;
+            email_ = s;
           }
           return s;
         } else {
@@ -901,53 +833,129 @@ public final class RegisterProtos {
         }
       }
       /**
-       * <code>optional string avatar = 4;</code>
+       * <code>optional string email = 3;</code>
        */
       public com.google.protobuf.ByteString
-          getAvatarBytes() {
-        java.lang.Object ref = avatar_;
+          getEmailBytes() {
+        java.lang.Object ref = email_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
                   (java.lang.String) ref);
-          avatar_ = b;
+          email_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
       /**
-       * <code>optional string avatar = 4;</code>
+       * <code>optional string email = 3;</code>
        */
-      public Builder setAvatar(
+      public Builder setEmail(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000004;
+        email_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string email = 3;</code>
+       */
+      public Builder clearEmail() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        email_ = getDefaultInstance().getEmail();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string email = 3;</code>
+       */
+      public Builder setEmailBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000004;
+        email_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object signature_ = "";
+      /**
+       * <code>optional string signature = 4;</code>
+       */
+      public boolean hasSignature() {
+        return ((bitField0_ & 0x00000008) == 0x00000008);
+      }
+      /**
+       * <code>optional string signature = 4;</code>
+       */
+      public java.lang.String getSignature() {
+        java.lang.Object ref = signature_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          if (bs.isValidUtf8()) {
+            signature_ = s;
+          }
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string signature = 4;</code>
+       */
+      public com.google.protobuf.ByteString
+          getSignatureBytes() {
+        java.lang.Object ref = signature_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          signature_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string signature = 4;</code>
+       */
+      public Builder setSignature(
           java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
   bitField0_ |= 0x00000008;
-        avatar_ = value;
+        signature_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>optional string avatar = 4;</code>
+       * <code>optional string signature = 4;</code>
        */
-      public Builder clearAvatar() {
+      public Builder clearSignature() {
         bitField0_ = (bitField0_ & ~0x00000008);
-        avatar_ = getDefaultInstance().getAvatar();
+        signature_ = getDefaultInstance().getSignature();
         onChanged();
         return this;
       }
       /**
-       * <code>optional string avatar = 4;</code>
+       * <code>optional string signature = 4;</code>
        */
-      public Builder setAvatarBytes(
+      public Builder setSignatureBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) {
     throw new NullPointerException();
   }
   bitField0_ |= 0x00000008;
-        avatar_ = value;
+        signature_ = value;
         onChanged();
         return this;
       }
@@ -978,11 +986,11 @@ public final class RegisterProtos {
   static {
     java.lang.String[] descriptorData = {
       "\n\024RegisterProtos.proto\022-org.xiaoxiancai." +
-      "imhere.server.business.protos\"K\n\010Registe" +
-      "r\022\016\n\006mobile\030\001 \002(\t\022\r\n\005email\030\002 \001(\t\022\020\n\010nick" +
-      "Name\030\003 \001(\t\022\016\n\006avatar\030\004 \001(\tBA\n/org.xiaoxi" +
-      "ancai.imhere.server.business.registerB\016R" +
-      "egisterProtos"
+      "imhere.server.business.protos\"N\n\010Registe" +
+      "r\022\016\n\006mobile\030\001 \002(\t\022\020\n\010nickName\030\002 \002(\t\022\r\n\005e" +
+      "mail\030\003 \001(\t\022\021\n\tsignature\030\004 \001(\tBA\n/org.xia" +
+      "oxiancai.imhere.server.business.register" +
+      "B\016RegisterProtos"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -1001,7 +1009,7 @@ public final class RegisterProtos {
     internal_static_org_xiaoxiancai_imhere_server_business_protos_Register_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_org_xiaoxiancai_imhere_server_business_protos_Register_descriptor,
-        new java.lang.String[] { "Mobile", "Email", "NickName", "Avatar", });
+        new java.lang.String[] { "Mobile", "NickName", "Email", "Signature", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)
