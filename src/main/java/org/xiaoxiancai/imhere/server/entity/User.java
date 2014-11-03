@@ -21,6 +21,11 @@ public class User extends Entity {
 	private String mobile;
 
 	/**
+	 * 登陆密码-required
+	 */
+	private String password;
+
+	/**
 	 * 昵称-required
 	 */
 	private String nickName;
@@ -43,6 +48,14 @@ public class User extends Entity {
 
 	public void setMobile(String mobile) {
 		this.mobile = mobile;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public String getEmail() {

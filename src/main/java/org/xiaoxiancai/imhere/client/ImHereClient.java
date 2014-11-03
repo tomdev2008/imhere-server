@@ -27,7 +27,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.xiaoxiancai.imhere.common.protos.BusinessSelectorProtos.BusinessSelector;
 import org.xiaoxiancai.imhere.common.protos.BusinessTypeProtos.BusinessType;
-import org.xiaoxiancai.imhere.server.business.register.RegisterProtos.Register;
+import org.xiaoxiancai.imhere.server.business.register.RegisterRequestProtos.RegisterRequest;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -156,14 +156,14 @@ public class ImHereClient {
 	/**
 	 * 注册用户
 	 * 
-	 * @param user
+	 * @param request
 	 * @throws InterruptedException
 	 */
-	public void register(Register user) throws InterruptedException {
+	public void register(RegisterRequest request) throws InterruptedException {
 		Channel channel = connect(BusinessType.REGISTER);
 		if (channel != null && channel.isActive()) {
 			logger.debug("send register user to server");
-			channel.writeAndFlush(user).sync();
+			channel.writeAndFlush(request).sync();
 		} else {
 			logger.error("channel is null or inactive");
 		}

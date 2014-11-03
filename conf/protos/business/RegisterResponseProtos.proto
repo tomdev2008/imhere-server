@@ -1,0 +1,14 @@
+package org.xiaoxiancai.imhere.server.business.protos;
+
+option java_package = "org.xiaoxiancai.imhere.server.business.register";
+option java_outer_classname = "RegisterResponseProtos";
+
+message RegisterResponse {
+  
+	required bool isSuccess = 1;
+
+	required int status = 2;
+
+	optional string message = 3;
+
+}

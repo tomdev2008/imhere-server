@@ -6,7 +6,7 @@
 package org.xiaoxiancai.imhere.server.test;
 
 import org.xiaoxiancai.imhere.client.ImHereClient;
-import org.xiaoxiancai.imhere.server.business.register.RegisterProtos.Register;
+import org.xiaoxiancai.imhere.server.business.register.RegisterRequestProtos.RegisterRequest;
 
 /**
  * 客户端测试类
@@ -30,7 +30,7 @@ class Task implements Runnable {
 	public void run() {
 		ImHereClient client = new ImHereClient();
 		client.setServer("localhost", 18080);
-		Register register = createRegister();
+		RegisterRequest register = createRegister();
 		try {
 			client.register(register);
 		} catch (InterruptedException e) {
@@ -41,12 +41,13 @@ class Task implements Runnable {
 	/**
 	 * @return
 	 */
-	private Register createRegister() {
-		Register.Builder register = Register.newBuilder();
-		register.setMobile("156*****876");
-		register.setNickName("xiaoxiancai");
-		register.setEmail("xianneng.lin@gmail.com");
-		return register.build();
+	private RegisterRequest createRegister() {
+		RegisterRequest.Builder request = RegisterRequest.newBuilder();
+		request.setMobile("156*****876");
+		request.setNickName("xiaoxiancai");
+		request.setPassword("pswd");
+		request.setEmail("xianneng.lin@gmail.com");
+		return request.build();
 	}
 
 }

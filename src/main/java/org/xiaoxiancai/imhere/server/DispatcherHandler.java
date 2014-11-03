@@ -40,6 +40,8 @@ public class DispatcherHandler extends ChannelInboundHandlerAdapter {
 
 	private static final String SUFFIX_PROTOS_QUALIFIED_NAME = "Protos$";
 
+	private static final String SUFFIX_BUSINESS_REQUEST_NAME = "Request";
+
 	private static final String BASE_PACKAGE = "org.xiaoxiancai.imhere.server.business";
 
 	private static final String METHOD_GET_DEFAULT_INSTANCE = "getDefaultInstance";
@@ -173,8 +175,9 @@ public class DispatcherHandler extends ChannelInboundHandlerAdapter {
 		StringBuilder builder = new StringBuilder(BASE_PACKAGE);
 		String qualifiedName = builder.append(".").append(businessName)
 				.append(".").append(businessCamelName)
+				.append(SUFFIX_BUSINESS_REQUEST_NAME)
 				.append(SUFFIX_PROTOS_QUALIFIED_NAME).append(businessCamelName)
-				.toString();
+				.append(SUFFIX_BUSINESS_REQUEST_NAME).toString();
 		Class<?> businessClass = Class.forName(qualifiedName);
 		Method getDefaultInstanse = businessClass
 				.getMethod(METHOD_GET_DEFAULT_INSTANCE);

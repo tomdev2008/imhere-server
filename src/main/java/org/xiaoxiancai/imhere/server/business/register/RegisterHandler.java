@@ -11,9 +11,14 @@ import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.xiaoxiancai.imhere.server.business.BusinessHandler;
-import org.xiaoxiancai.imhere.server.business.register.RegisterProtos.Register;
+import org.xiaoxiancai.imhere.server.business.register.RegisterRequestProtos.RegisterRequest;
+import org.xiaoxiancai.imhere.server.business.register.RegisterResponseProtos.RegisterResponse;
 import org.xiaoxiancai.imhere.server.entity.User;
 import org.xiaoxiancai.imhere.server.inter.UserMapper;
+
+import sun.misc.BASE64Encoder;
+
+import java.security.MessageDigest;
 
 /**
  * 新用户注册处理器
@@ -27,29 +32,105 @@ public class RegisterHandler extends BusinessHandler {
 	@Override
 	public void channelRead(ChannelHandlerContext ctx, Object msg)
 			throws Exception {
-		if (!(msg instanceof Register)) {
+		if (!(msg instanceof RegisterRequest)) {
 			return;
 		}
 		logger.debug("register user start");
 		UserMapper userMapper = (UserMapper) applicationContext
 				.getBean("userMapper");
-		Register register = (Register) msg;
-		userMapper.registerUser(createUser(register));
-		logger.debug("register user success");
+		RegisterRequest request = (RegisterRequest) msg;
+
+		// 先查询数据库是否存在相同mobile的记录
+		String mobile = request.getMobile();
+		if (!isMobileRegistered(userMapper, mobile)) {
+			userMapper.registerUser(createUser(request));
+			RegisterResponse successResponse = getResponse(true,
+					"register success");
+			ctx.channel().writeAndFlush(successResponse);
+			logger.debug("register user success, mobile = {}", mobile);
+		} else {
+			RegisterResponse successResponse = getResponse(false,
+					"already registered");
+			ctx.channel().writeAndFlush(successResponse);
+			logger.debug("register user fail, mobile {} already registered",
+					mobile);
+		}
 	}
 
-	private User createUser(Register register) {
+	/**
+	 * 手机号码是否已注册
+	 * 
+	 * @param userMapper
+	 * @param mobile
+	 * @return
+	 */
+	private boolean isMobileRegistered(UserMapper userMapper, String mobile) {
+
+		// TODO 优化(resultMap里面没有配置password, 这里怎么会把password也取出来?)
+		User user = userMapper.getUserByMobile(mobile);
+		if (user != null) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	/**
+	 * 获得返回值
+	 * 
+	 * @param isSuccess
+	 * @param message
+	 * @return
+	 */
+	private RegisterResponse getResponse(boolean isSuccess, String message) {
+		RegisterResponse.Builder builder = RegisterResponse.newBuilder();
+		builder.setIsSuccess(isSuccess);
+		builder.setMessage(message);
+		return builder.build();
+	}
+
+	@Override
+	public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause)
+			throws Exception {
+		super.exceptionCaught(ctx, cause);
+		// RegisterResponse successResponse = getResponse(false,
+		// "server error");
+		// ctx.channel().writeAndFlush(successResponse);
+		// logger.error("register user fail, server error");
+	}
+
+	private User createUser(RegisterRequest request) throws Exception {
 		User user = new User();
-		user.setMobile(register.getMobile());
-		user.setNickName(register.getNickName());
-		String email = register.getEmail();
+		user.setMobile(request.getMobile());
+		user.setPassword(getEncryptedPassword(request.getPassword()));
+		user.setNickName(request.getNickName());
+		String email = request.getEmail();
 		if (!StringUtils.isBlank(email)) {
 			user.setEmail(email);
 		}
-		String signature = register.getSignature();
+		String signature = request.getSignature();
 		if (!StringUtils.isBlank(signature)) {
 			user.setSignature(signature);
 		}
 		return user;
+	}
+
+	/**
+	 * 密码加密
+	 * 
+	 * @param password
+	 * @return
+	 * @throws Exception
+	 */
+	private String getEncryptedPassword(String password) throws Exception {
+		try {
+			MessageDigest md5 = MessageDigest.getInstance("MD5");
+			BASE64Encoder encoder = new BASE64Encoder();
+			String newPassword = encoder.encode(md5.digest(password
+					.getBytes("UTF-8")));
+			return newPassword;
+		} catch (Exception e) {
+			throw new Exception("Encrypt password exception", e);
+		}
 	}
 }

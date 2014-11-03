@@ -4,13 +4,25 @@
 
 <mapper namespace="org.xiaoxiancai.imhere.server.inter.UserMapper">
 	
+	<resultMap type="org.xiaoxiancai.imhere.server.entity.User" id="userResultMap">
+		<id property="id" column="ID" javaType="int" jdbcType="INTEGER" />
+		<result property="mobile" column="MOBILE" javaType="string" jdbcType="VARCHAR" />
+		<result property="nickName" column="NICKNAME" javaType="string" jdbcType="VARCHAR" />
+		<result property="email" column="EMAIL" javaType="string" jdbcType="VARCHAR" />
+		<result property="signature" column="SIGNATURE" javaType="string" jdbcType="VARCHAR" />
+	</resultMap>	
+
+	<select id="getUserByMobile" parameterType="string" resultMap="userResultMap">
+        select * from `user` where mobile = #{mobile}
+    </select>
+    
 	<!-- 注册新用户 -->
 	<insert id="registerUser" parameterType="User" keyProperty="id" useGeneratedKeys="true">
 		<!-- 动态insert语句 -->
-		insert into user(MOBILE, NICKNAME
+		insert into user(MOBILE, PASSWORD, NICKNAME
 			<if test="email != null">, EMAIL</if>
 			<if test="signature != null">, SIGNATURE</if>)
-		values (#{mobile}, #{nickName}
+		values (#{mobile}, #{password}, #{nickName}
 			<if test="email != null">, #{email}</if>
 			<if test="signature != null">, #{signature}</if>)
 	</insert>
