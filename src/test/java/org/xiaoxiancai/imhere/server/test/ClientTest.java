@@ -30,24 +30,26 @@ class Task implements Runnable {
     public void run() {
         ImHereClient client = new ImHereClient();
         client.setServer("localhost", 18080);
-        RegisterRequest register = createRegister();
-        try {
-            client.register(register);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+        for (int i = 0; i < 10; i++) {
+            RegisterRequest register = createRegister(i);
+            try {
+                client.register(register);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
     }
 
     /**
      * @return
      */
-    private RegisterRequest createRegister() {
+    private RegisterRequest createRegister(int index) {
         RegisterRequest.Builder request = RegisterRequest.newBuilder();
-        request.setMobile("137*****758");
-        request.setNickName("xxoo");
-        request.setPassword("xxoo");
-        request.setEmail("xxoo@gmail.com");
-        request.setSignature("xxoo");
+        request.setMobile("1375878175" + index);
+        request.setNickName("nickName-" + index);
+        request.setPassword("pswd-" + index);
+        request.setEmail("email-" + index + "@gmail.com");
+        request.setSignature("signature-" + index);
         return request.build();
     }
 

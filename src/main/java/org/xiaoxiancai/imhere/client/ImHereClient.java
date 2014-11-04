@@ -163,12 +163,20 @@ public class ImHereClient {
         if (channel != null && channel.isActive()) {
             logger.debug("send register user to server");
             ChannelPipeline pipeline = channel.pipeline();
-            logger.debug("client pipeline before register = {}", pipeline);
-            pipeline.addLast(ClientConstant.DECODER_REGISTER,
-                new ProtobufDecoder(RegisterResponse.getDefaultInstance()));
-            RegisterHandler registerHandler = new RegisterHandler();
-            pipeline.addLast(ClientConstant.HANDLER_REGISTER, registerHandler);
-            logger.debug("client pipeline after register = {}", pipeline);
+            logger
+                .debug("client pipeline before adding handler = {}", pipeline);
+            if (pipeline.get(ClientConstant.DECODER_REGISTER) == null) {
+                pipeline.addLast(ClientConstant.DECODER_REGISTER,
+                    new ProtobufDecoder(RegisterResponse.getDefaultInstance()));
+            }
+
+            if (pipeline.get(ClientConstant.HANDLER_REGISTER) == null) {
+                pipeline.addLast(ClientConstant.HANDLER_REGISTER,
+                    new RegisterHandler());
+            }
+            RegisterHandler registerHandler = (RegisterHandler) pipeline
+                .get(ClientConstant.HANDLER_REGISTER);
+            logger.debug("client pipeline after adding handler = {}", pipeline);
             synchronized (registerHandler) {
                 channel.writeAndFlush(request).sync();
                 registerHandler.wait();
