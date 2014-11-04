@@ -15,39 +15,40 @@ import org.xiaoxiancai.imhere.server.business.register.RegisterRequestProtos.Reg
  */
 public class ClientTest {
 
-	public static void main(String[] args) throws Exception {
-		for (int i = 0; i < 1; i++) {
-			Thread t = new Thread(new Task());
-			t.start();
-		}
-	}
+    public static void main(String[] args) throws Exception {
+        for (int i = 0; i < 1; i++) {
+            Thread t = new Thread(new Task());
+            t.start();
+        }
+    }
 
 }
 
 class Task implements Runnable {
 
-	@Override
-	public void run() {
-		ImHereClient client = new ImHereClient();
-		client.setServer("localhost", 18080);
-		RegisterRequest register = createRegister();
-		try {
-			client.register(register);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-	}
+    @Override
+    public void run() {
+        ImHereClient client = new ImHereClient();
+        client.setServer("localhost", 18080);
+        RegisterRequest register = createRegister();
+        try {
+            client.register(register);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 
-	/**
-	 * @return
-	 */
-	private RegisterRequest createRegister() {
-		RegisterRequest.Builder request = RegisterRequest.newBuilder();
-		request.setMobile("156*****876");
-		request.setNickName("xiaoxiancai");
-		request.setPassword("pswd");
-		request.setEmail("xianneng.lin@gmail.com");
-		return request.build();
-	}
+    /**
+     * @return
+     */
+    private RegisterRequest createRegister() {
+        RegisterRequest.Builder request = RegisterRequest.newBuilder();
+        request.setMobile("137*****758");
+        request.setNickName("xxoo");
+        request.setPassword("xxoo");
+        request.setEmail("xxoo@gmail.com");
+        request.setSignature("xxoo");
+        return request.build();
+    }
 
 }
