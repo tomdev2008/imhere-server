@@ -7,7 +7,7 @@ package org.xiaoxiancai.imhere.server;
 
 import static org.xiaoxiancai.imhere.server.utils.ServerConstant.DECODER_SELECTOR;
 import static org.xiaoxiancai.imhere.server.utils.ServerConstant.ENCODER;
-import static org.xiaoxiancai.imhere.server.utils.ServerConstant.HANDLER_DISPATCHER;
+import static org.xiaoxiancai.imhere.server.utils.ServerConstant.HANDLER_SELECTOR;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
@@ -97,7 +97,7 @@ public class ImHereServer extends AbstractServer {
 				pipeline.addLast(ENCODER, new ProtobufEncoder());
 				pipeline.addLast(DECODER_SELECTOR, new ProtobufDecoder(
 						BusinessSelector.getDefaultInstance()));
-				pipeline.addLast(HANDLER_DISPATCHER, new DispatcherHandler(
+				pipeline.addLast(HANDLER_SELECTOR, new BusinessSelectorHandler(
 						ImHereServer.this));
 			}
 		};

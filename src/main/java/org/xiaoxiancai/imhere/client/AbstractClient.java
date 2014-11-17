@@ -5,9 +5,9 @@
  */
 package org.xiaoxiancai.imhere.client;
 
-import static org.xiaoxiancai.imhere.client.ClientConstant.DECODER_CONNECTION;
-import static org.xiaoxiancai.imhere.client.ClientConstant.ENCODER;
-import static org.xiaoxiancai.imhere.client.ClientConstant.HANDLER_CONNECTION;
+import static org.xiaoxiancai.imhere.client.utils.ClientConstant.DECODER_CONNECTION;
+import static org.xiaoxiancai.imhere.client.utils.ClientConstant.ENCODER;
+import static org.xiaoxiancai.imhere.client.utils.ClientConstant.HANDLER_CONNECTION;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelFuture;

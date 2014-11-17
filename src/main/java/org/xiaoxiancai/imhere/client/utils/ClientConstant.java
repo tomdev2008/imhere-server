@@ -3,7 +3,7 @@
  * Copyright (c) 2014, xianneng.lin@gmail.com All Rights Reserved. 
  **********************************************************************
  */
-package org.xiaoxiancai.imhere.client;
+package org.xiaoxiancai.imhere.client.utils;
 
 /**
  * 客户端变量

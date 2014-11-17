@@ -8,6 +8,7 @@ package org.xiaoxiancai.imhere.client;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelPipeline;
 
+import org.xiaoxiancai.imhere.client.utils.ClientConstant;
 import org.xiaoxiancai.imhere.common.protos.BusinessSelectorProtos.BusinessSelector;
 
 /**

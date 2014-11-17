@@ -10,8 +10,8 @@ import io.netty.channel.Channel;
 import io.netty.channel.ChannelPipeline;
 import io.netty.handler.codec.protobuf.ProtobufDecoder;
 
-import org.xiaoxiancai.imhere.client.ClientConstant;
 import org.xiaoxiancai.imhere.client.AbstractClient;
+import org.xiaoxiancai.imhere.client.utils.ClientConstant;
 import org.xiaoxiancai.imhere.common.protos.BusinessTypeProtos.BusinessType;
 import org.xiaoxiancai.imhere.server.business.register.RegisterRequestProtos.RegisterRequest;
 import org.xiaoxiancai.imhere.server.business.register.RegisterResponseProtos.RegisterResponse;
