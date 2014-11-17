@@ -10,8 +10,6 @@ import io.netty.channel.ChannelHandlerContext;
 import java.security.MessageDigest;
 
 import org.apache.commons.lang.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.xiaoxiancai.imhere.common.protos.business.RegisterRequestProtos.RegisterRequest;
 import org.xiaoxiancai.imhere.common.protos.business.RegisterResponseProtos.RegisterResponse;
 import org.xiaoxiancai.imhere.server.entity.User;
@@ -25,8 +23,6 @@ import sun.misc.BASE64Encoder;
  * @author xiannenglin
  */
 public class RegisterHandler extends AbstractBusinessHandler {
-
-	private Logger logger = LoggerFactory.getLogger(getClass());
 
 	@Override
 	public void channelRead(ChannelHandlerContext ctx, Object msg)

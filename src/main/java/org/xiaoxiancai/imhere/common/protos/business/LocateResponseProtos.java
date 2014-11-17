@@ -31,25 +31,39 @@ public final class LocateResponseProtos {
     int getStatus();
 
     /**
-     * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.Location friendLocations = 3;</code>
+     * <code>optional string message = 3;</code>
+     */
+    boolean hasMessage();
+    /**
+     * <code>optional string message = 3;</code>
+     */
+    java.lang.String getMessage();
+    /**
+     * <code>optional string message = 3;</code>
+     */
+    com.google.protobuf.ByteString
+        getMessageBytes();
+
+    /**
+     * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.Location friendLocations = 4;</code>
      */
     java.util.List<org.xiaoxiancai.imhere.common.protos.business.LocationProtos.Location> 
         getFriendLocationsList();
     /**
-     * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.Location friendLocations = 3;</code>
+     * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.Location friendLocations = 4;</code>
      */
     org.xiaoxiancai.imhere.common.protos.business.LocationProtos.Location getFriendLocations(int index);
     /**
-     * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.Location friendLocations = 3;</code>
+     * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.Location friendLocations = 4;</code>
      */
     int getFriendLocationsCount();
     /**
-     * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.Location friendLocations = 3;</code>
+     * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.Location friendLocations = 4;</code>
      */
     java.util.List<? extends org.xiaoxiancai.imhere.common.protos.business.LocationProtos.LocationOrBuilder> 
         getFriendLocationsOrBuilderList();
     /**
-     * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.Location friendLocations = 3;</code>
+     * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.Location friendLocations = 4;</code>
      */
     org.xiaoxiancai.imhere.common.protos.business.LocationProtos.LocationOrBuilder getFriendLocationsOrBuilder(
         int index);
@@ -117,9 +131,15 @@ public final class LocateResponseProtos {
               break;
             }
             case 26: {
-              if (!((mutable_bitField0_ & 0x00000004) == 0x00000004)) {
+              com.google.protobuf.ByteString bs = input.readBytes();
+              bitField0_ |= 0x00000004;
+              message_ = bs;
+              break;
+            }
+            case 34: {
+              if (!((mutable_bitField0_ & 0x00000008) == 0x00000008)) {
                 friendLocations_ = new java.util.ArrayList<org.xiaoxiancai.imhere.common.protos.business.LocationProtos.Location>();
-                mutable_bitField0_ |= 0x00000004;
+                mutable_bitField0_ |= 0x00000008;
               }
               friendLocations_.add(input.readMessage(org.xiaoxiancai.imhere.common.protos.business.LocationProtos.Location.PARSER, extensionRegistry));
               break;
@@ -132,7 +152,7 @@ public final class LocateResponseProtos {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e.getMessage()).setUnfinishedMessage(this);
       } finally {
-        if (((mutable_bitField0_ & 0x00000004) == 0x00000004)) {
+        if (((mutable_bitField0_ & 0x00000008) == 0x00000008)) {
           friendLocations_ = java.util.Collections.unmodifiableList(friendLocations_);
         }
         this.unknownFields = unknownFields.build();
@@ -197,35 +217,77 @@ public final class LocateResponseProtos {
       return status_;
     }
 
-    public static final int FRIENDLOCATIONS_FIELD_NUMBER = 3;
+    public static final int MESSAGE_FIELD_NUMBER = 3;
+    private java.lang.Object message_;
+    /**
+     * <code>optional string message = 3;</code>
+     */
+    public boolean hasMessage() {
+      return ((bitField0_ & 0x00000004) == 0x00000004);
+    }
+    /**
+     * <code>optional string message = 3;</code>
+     */
+    public java.lang.String getMessage() {
+      java.lang.Object ref = message_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        if (bs.isValidUtf8()) {
+          message_ = s;
+        }
+        return s;
+      }
+    }
+    /**
+     * <code>optional string message = 3;</code>
+     */
+    public com.google.protobuf.ByteString
+        getMessageBytes() {
+      java.lang.Object ref = message_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        message_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int FRIENDLOCATIONS_FIELD_NUMBER = 4;
     private java.util.List<org.xiaoxiancai.imhere.common.protos.business.LocationProtos.Location> friendLocations_;
     /**
-     * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.Location friendLocations = 3;</code>
+     * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.Location friendLocations = 4;</code>
      */
     public java.util.List<org.xiaoxiancai.imhere.common.protos.business.LocationProtos.Location> getFriendLocationsList() {
       return friendLocations_;
     }
     /**
-     * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.Location friendLocations = 3;</code>
+     * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.Location friendLocations = 4;</code>
      */
     public java.util.List<? extends org.xiaoxiancai.imhere.common.protos.business.LocationProtos.LocationOrBuilder> 
         getFriendLocationsOrBuilderList() {
       return friendLocations_;
     }
     /**
-     * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.Location friendLocations = 3;</code>
+     * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.Location friendLocations = 4;</code>
      */
     public int getFriendLocationsCount() {
       return friendLocations_.size();
     }
     /**
-     * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.Location friendLocations = 3;</code>
+     * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.Location friendLocations = 4;</code>
      */
     public org.xiaoxiancai.imhere.common.protos.business.LocationProtos.Location getFriendLocations(int index) {
       return friendLocations_.get(index);
     }
     /**
-     * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.Location friendLocations = 3;</code>
+     * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.Location friendLocations = 4;</code>
      */
     public org.xiaoxiancai.imhere.common.protos.business.LocationProtos.LocationOrBuilder getFriendLocationsOrBuilder(
         int index) {
@@ -235,6 +297,7 @@ public final class LocateResponseProtos {
     private void initFields() {
       isSuccess_ = false;
       status_ = 0;
+      message_ = "";
       friendLocations_ = java.util.Collections.emptyList();
     }
     private byte memoizedIsInitialized = -1;
@@ -270,8 +333,11 @@ public final class LocateResponseProtos {
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         output.writeInt32(2, status_);
       }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        output.writeBytes(3, getMessageBytes());
+      }
       for (int i = 0; i < friendLocations_.size(); i++) {
-        output.writeMessage(3, friendLocations_.get(i));
+        output.writeMessage(4, friendLocations_.get(i));
       }
       getUnknownFields().writeTo(output);
     }
@@ -290,9 +356,13 @@ public final class LocateResponseProtos {
         size += com.google.protobuf.CodedOutputStream
           .computeInt32Size(2, status_);
       }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(3, getMessageBytes());
+      }
       for (int i = 0; i < friendLocations_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(3, friendLocations_.get(i));
+          .computeMessageSize(4, friendLocations_.get(i));
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -416,9 +486,11 @@ public final class LocateResponseProtos {
         bitField0_ = (bitField0_ & ~0x00000001);
         status_ = 0;
         bitField0_ = (bitField0_ & ~0x00000002);
+        message_ = "";
+        bitField0_ = (bitField0_ & ~0x00000004);
         if (friendLocationsBuilder_ == null) {
           friendLocations_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000004);
+          bitField0_ = (bitField0_ & ~0x00000008);
         } else {
           friendLocationsBuilder_.clear();
         }
@@ -458,10 +530,14 @@ public final class LocateResponseProtos {
           to_bitField0_ |= 0x00000002;
         }
         result.status_ = status_;
+        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
+          to_bitField0_ |= 0x00000004;
+        }
+        result.message_ = message_;
         if (friendLocationsBuilder_ == null) {
-          if (((bitField0_ & 0x00000004) == 0x00000004)) {
+          if (((bitField0_ & 0x00000008) == 0x00000008)) {
             friendLocations_ = java.util.Collections.unmodifiableList(friendLocations_);
-            bitField0_ = (bitField0_ & ~0x00000004);
+            bitField0_ = (bitField0_ & ~0x00000008);
           }
           result.friendLocations_ = friendLocations_;
         } else {
@@ -489,11 +565,16 @@ public final class LocateResponseProtos {
         if (other.hasStatus()) {
           setStatus(other.getStatus());
         }
+        if (other.hasMessage()) {
+          bitField0_ |= 0x00000004;
+          message_ = other.message_;
+          onChanged();
+        }
         if (friendLocationsBuilder_ == null) {
           if (!other.friendLocations_.isEmpty()) {
             if (friendLocations_.isEmpty()) {
               friendLocations_ = other.friendLocations_;
-              bitField0_ = (bitField0_ & ~0x00000004);
+              bitField0_ = (bitField0_ & ~0x00000008);
             } else {
               ensureFriendLocationsIsMutable();
               friendLocations_.addAll(other.friendLocations_);
@@ -506,7 +587,7 @@ public final class LocateResponseProtos {
               friendLocationsBuilder_.dispose();
               friendLocationsBuilder_ = null;
               friendLocations_ = other.friendLocations_;
-              bitField0_ = (bitField0_ & ~0x00000004);
+              bitField0_ = (bitField0_ & ~0x00000008);
               friendLocationsBuilder_ = 
                 com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders ?
                    getFriendLocationsFieldBuilder() : null;
@@ -620,12 +701,88 @@ public final class LocateResponseProtos {
         return this;
       }
 
+      private java.lang.Object message_ = "";
+      /**
+       * <code>optional string message = 3;</code>
+       */
+      public boolean hasMessage() {
+        return ((bitField0_ & 0x00000004) == 0x00000004);
+      }
+      /**
+       * <code>optional string message = 3;</code>
+       */
+      public java.lang.String getMessage() {
+        java.lang.Object ref = message_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          if (bs.isValidUtf8()) {
+            message_ = s;
+          }
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string message = 3;</code>
+       */
+      public com.google.protobuf.ByteString
+          getMessageBytes() {
+        java.lang.Object ref = message_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          message_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string message = 3;</code>
+       */
+      public Builder setMessage(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000004;
+        message_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string message = 3;</code>
+       */
+      public Builder clearMessage() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        message_ = getDefaultInstance().getMessage();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string message = 3;</code>
+       */
+      public Builder setMessageBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000004;
+        message_ = value;
+        onChanged();
+        return this;
+      }
+
       private java.util.List<org.xiaoxiancai.imhere.common.protos.business.LocationProtos.Location> friendLocations_ =
         java.util.Collections.emptyList();
       private void ensureFriendLocationsIsMutable() {
-        if (!((bitField0_ & 0x00000004) == 0x00000004)) {
+        if (!((bitField0_ & 0x00000008) == 0x00000008)) {
           friendLocations_ = new java.util.ArrayList<org.xiaoxiancai.imhere.common.protos.business.LocationProtos.Location>(friendLocations_);
-          bitField0_ |= 0x00000004;
+          bitField0_ |= 0x00000008;
          }
       }
 
@@ -633,7 +790,7 @@ public final class LocateResponseProtos {
           org.xiaoxiancai.imhere.common.protos.business.LocationProtos.Location, org.xiaoxiancai.imhere.common.protos.business.LocationProtos.Location.Builder, org.xiaoxiancai.imhere.common.protos.business.LocationProtos.LocationOrBuilder> friendLocationsBuilder_;
 
       /**
-       * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.Location friendLocations = 3;</code>
+       * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.Location friendLocations = 4;</code>
        */
       public java.util.List<org.xiaoxiancai.imhere.common.protos.business.LocationProtos.Location> getFriendLocationsList() {
         if (friendLocationsBuilder_ == null) {
@@ -643,7 +800,7 @@ public final class LocateResponseProtos {
         }
       }
       /**
-       * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.Location friendLocations = 3;</code>
+       * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.Location friendLocations = 4;</code>
        */
       public int getFriendLocationsCount() {
         if (friendLocationsBuilder_ == null) {
@@ -653,7 +810,7 @@ public final class LocateResponseProtos {
         }
       }
       /**
-       * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.Location friendLocations = 3;</code>
+       * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.Location friendLocations = 4;</code>
        */
       public org.xiaoxiancai.imhere.common.protos.business.LocationProtos.Location getFriendLocations(int index) {
         if (friendLocationsBuilder_ == null) {
@@ -663,7 +820,7 @@ public final class LocateResponseProtos {
         }
       }
       /**
-       * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.Location friendLocations = 3;</code>
+       * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.Location friendLocations = 4;</code>
        */
       public Builder setFriendLocations(
           int index, org.xiaoxiancai.imhere.common.protos.business.LocationProtos.Location value) {
@@ -680,7 +837,7 @@ public final class LocateResponseProtos {
         return this;
       }
       /**
-       * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.Location friendLocations = 3;</code>
+       * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.Location friendLocations = 4;</code>
        */
       public Builder setFriendLocations(
           int index, org.xiaoxiancai.imhere.common.protos.business.LocationProtos.Location.Builder builderForValue) {
@@ -694,7 +851,7 @@ public final class LocateResponseProtos {
         return this;
       }
       /**
-       * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.Location friendLocations = 3;</code>
+       * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.Location friendLocations = 4;</code>
        */
       public Builder addFriendLocations(org.xiaoxiancai.imhere.common.protos.business.LocationProtos.Location value) {
         if (friendLocationsBuilder_ == null) {
@@ -710,7 +867,7 @@ public final class LocateResponseProtos {
         return this;
       }
       /**
-       * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.Location friendLocations = 3;</code>
+       * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.Location friendLocations = 4;</code>
        */
       public Builder addFriendLocations(
           int index, org.xiaoxiancai.imhere.common.protos.business.LocationProtos.Location value) {
@@ -727,7 +884,7 @@ public final class LocateResponseProtos {
         return this;
       }
       /**
-       * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.Location friendLocations = 3;</code>
+       * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.Location friendLocations = 4;</code>
        */
       public Builder addFriendLocations(
           org.xiaoxiancai.imhere.common.protos.business.LocationProtos.Location.Builder builderForValue) {
@@ -741,7 +898,7 @@ public final class LocateResponseProtos {
         return this;
       }
       /**
-       * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.Location friendLocations = 3;</code>
+       * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.Location friendLocations = 4;</code>
        */
       public Builder addFriendLocations(
           int index, org.xiaoxiancai.imhere.common.protos.business.LocationProtos.Location.Builder builderForValue) {
@@ -755,7 +912,7 @@ public final class LocateResponseProtos {
         return this;
       }
       /**
-       * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.Location friendLocations = 3;</code>
+       * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.Location friendLocations = 4;</code>
        */
       public Builder addAllFriendLocations(
           java.lang.Iterable<? extends org.xiaoxiancai.imhere.common.protos.business.LocationProtos.Location> values) {
@@ -770,12 +927,12 @@ public final class LocateResponseProtos {
         return this;
       }
       /**
-       * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.Location friendLocations = 3;</code>
+       * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.Location friendLocations = 4;</code>
        */
       public Builder clearFriendLocations() {
         if (friendLocationsBuilder_ == null) {
           friendLocations_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000004);
+          bitField0_ = (bitField0_ & ~0x00000008);
           onChanged();
         } else {
           friendLocationsBuilder_.clear();
@@ -783,7 +940,7 @@ public final class LocateResponseProtos {
         return this;
       }
       /**
-       * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.Location friendLocations = 3;</code>
+       * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.Location friendLocations = 4;</code>
        */
       public Builder removeFriendLocations(int index) {
         if (friendLocationsBuilder_ == null) {
@@ -796,14 +953,14 @@ public final class LocateResponseProtos {
         return this;
       }
       /**
-       * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.Location friendLocations = 3;</code>
+       * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.Location friendLocations = 4;</code>
        */
       public org.xiaoxiancai.imhere.common.protos.business.LocationProtos.Location.Builder getFriendLocationsBuilder(
           int index) {
         return getFriendLocationsFieldBuilder().getBuilder(index);
       }
       /**
-       * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.Location friendLocations = 3;</code>
+       * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.Location friendLocations = 4;</code>
        */
       public org.xiaoxiancai.imhere.common.protos.business.LocationProtos.LocationOrBuilder getFriendLocationsOrBuilder(
           int index) {
@@ -813,7 +970,7 @@ public final class LocateResponseProtos {
         }
       }
       /**
-       * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.Location friendLocations = 3;</code>
+       * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.Location friendLocations = 4;</code>
        */
       public java.util.List<? extends org.xiaoxiancai.imhere.common.protos.business.LocationProtos.LocationOrBuilder> 
            getFriendLocationsOrBuilderList() {
@@ -824,14 +981,14 @@ public final class LocateResponseProtos {
         }
       }
       /**
-       * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.Location friendLocations = 3;</code>
+       * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.Location friendLocations = 4;</code>
        */
       public org.xiaoxiancai.imhere.common.protos.business.LocationProtos.Location.Builder addFriendLocationsBuilder() {
         return getFriendLocationsFieldBuilder().addBuilder(
             org.xiaoxiancai.imhere.common.protos.business.LocationProtos.Location.getDefaultInstance());
       }
       /**
-       * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.Location friendLocations = 3;</code>
+       * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.Location friendLocations = 4;</code>
        */
       public org.xiaoxiancai.imhere.common.protos.business.LocationProtos.Location.Builder addFriendLocationsBuilder(
           int index) {
@@ -839,7 +996,7 @@ public final class LocateResponseProtos {
             index, org.xiaoxiancai.imhere.common.protos.business.LocationProtos.Location.getDefaultInstance());
       }
       /**
-       * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.Location friendLocations = 3;</code>
+       * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.Location friendLocations = 4;</code>
        */
       public java.util.List<org.xiaoxiancai.imhere.common.protos.business.LocationProtos.Location.Builder> 
            getFriendLocationsBuilderList() {
@@ -852,7 +1009,7 @@ public final class LocateResponseProtos {
           friendLocationsBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
               org.xiaoxiancai.imhere.common.protos.business.LocationProtos.Location, org.xiaoxiancai.imhere.common.protos.business.LocationProtos.Location.Builder, org.xiaoxiancai.imhere.common.protos.business.LocationProtos.LocationOrBuilder>(
                   friendLocations_,
-                  ((bitField0_ & 0x00000004) == 0x00000004),
+                  ((bitField0_ & 0x00000008) == 0x00000008),
                   getParentForChildren(),
                   isClean());
           friendLocations_ = null;
@@ -887,12 +1044,13 @@ public final class LocateResponseProtos {
     java.lang.String[] descriptorData = {
       "\n\032LocateResponseProtos.proto\022-org.xiaoxi" +
       "ancai.imhere.server.business.protos\032\024Loc" +
-      "ationProtos.proto\"\205\001\n\016LocateResponse\022\021\n\t" +
-      "isSuccess\030\001 \002(\010\022\016\n\006status\030\002 \002(\005\022P\n\017frien" +
-      "dLocations\030\003 \003(\01327.org.xiaoxiancai.imher" +
-      "e.server.business.protos.LocationBE\n-org" +
-      ".xiaoxiancai.imhere.common.protos.busine" +
-      "ssB\024LocateResponseProtos"
+      "ationProtos.proto\"\226\001\n\016LocateResponse\022\021\n\t" +
+      "isSuccess\030\001 \002(\010\022\016\n\006status\030\002 \002(\005\022\017\n\007messa" +
+      "ge\030\003 \001(\t\022P\n\017friendLocations\030\004 \003(\01327.org." +
+      "xiaoxiancai.imhere.server.business.proto" +
+      "s.LocationBE\n-org.xiaoxiancai.imhere.com" +
+      "mon.protos.businessB\024LocateResponseProto" +
+      "s"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -912,7 +1070,7 @@ public final class LocateResponseProtos {
     internal_static_org_xiaoxiancai_imhere_server_business_protos_LocateResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_org_xiaoxiancai_imhere_server_business_protos_LocateResponse_descriptor,
-        new java.lang.String[] { "IsSuccess", "Status", "FriendLocations", });
+        new java.lang.String[] { "IsSuccess", "Status", "Message", "FriendLocations", });
     org.xiaoxiancai.imhere.common.protos.business.LocationProtos.getDescriptor();
   }
 

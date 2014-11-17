@@ -7,6 +7,8 @@ package org.xiaoxiancai.imhere.server.business;
 
 import io.netty.channel.ChannelHandlerContext;
 
+import org.xiaoxiancai.imhere.common.protos.business.LocateRequestProtos.LocateRequest;
+
 /**
  * 定位处理器
  *
@@ -17,7 +19,9 @@ public class LocateHandler extends AbstractBusinessHandler {
 	@Override
 	public void channelRead(ChannelHandlerContext ctx, Object msg)
 			throws Exception {
-		// TODO Auto-generated method stub
-		super.channelRead(ctx, msg);
+		if (msg instanceof LocateRequest) {
+			LocateRequest request = (LocateRequest) msg;
+			logger.debug("receive client locate request = {}", request);
+		}
 	}
 }

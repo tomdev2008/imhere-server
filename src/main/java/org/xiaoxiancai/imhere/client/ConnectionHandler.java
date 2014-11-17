@@ -18,25 +18,46 @@ import org.xiaoxiancai.imhere.common.protos.common.BusinessSelectorProtos.Busine
  */
 public class ConnectionHandler extends AbstractClientHandler {
 
-    @Override
-    public void channelRead(ChannelHandlerContext ctx, Object msg)
-        throws Exception {
-        if (!(msg instanceof BusinessSelector)) {
-            return;
-        }
-        logger.debug("receive connect response from server");
-        BusinessSelector selector = (BusinessSelector) msg;
-        if (selector.getIsSuccess()) {
-            logger.debug("connect to server success");
-            synchronized (this) {
-                logger.debug("begin to notify waiters");
-                this.notify();
-            }
-            ChannelPipeline pipeline = ctx.pipeline();
-            logger.debug("client pipeline before connection = {}", pipeline);
-            pipeline.remove(ClientConstant.DECODER_CONNECTION);
-            pipeline.remove(ClientConstant.HANDLER_CONNECTION);
-            logger.debug("client pipeline after connection = {}", pipeline);
-        }
-    }
+	/**
+	 * 是否连接成功
+	 */
+	private boolean connectSuccess;
+
+	@Override
+	public void channelRead(ChannelHandlerContext ctx, Object msg)
+			throws Exception {
+		if (!(msg instanceof BusinessSelector)) {
+			return;
+		}
+		logger.debug("receive connect response from server");
+		BusinessSelector selector = (BusinessSelector) msg;
+		if (selector.getIsSuccess()) {
+			logger.debug("connect to server success");
+			connectSuccess = true;
+			synchronized (this) {
+				logger.debug("begin to notify waiters");
+				this.notify();
+			}
+			ChannelPipeline pipeline = ctx.pipeline();
+			logger.debug("client pipeline before connection = {}", pipeline);
+			pipeline.remove(ClientConstant.DECODER_CONNECTION);
+			pipeline.remove(ClientConstant.HANDLER_CONNECTION);
+			logger.debug("client pipeline after connection = {}", pipeline);
+		}
+	}
+
+	@Override
+	public boolean isSuccess() {
+		return connectSuccess;
+	}
+
+	@Override
+	public String getMessage() {
+		return connectSuccess ? "CONNECT_OK" : "CONNECT_NOT_OK";
+	}
+
+	@Override
+	public int getStatus() {
+		return connectSuccess ? 1 : -1;
+	}
 }

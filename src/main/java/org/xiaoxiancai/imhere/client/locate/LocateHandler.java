@@ -9,6 +9,7 @@ package org.xiaoxiancai.imhere.client.locate;
 import io.netty.channel.ChannelHandlerContext;
 
 import org.xiaoxiancai.imhere.client.AbstractClientHandler;
+import org.xiaoxiancai.imhere.common.protos.business.LocateResponseProtos.LocateResponse;
 
 /**
  * 定位处理器
@@ -17,10 +18,43 @@ import org.xiaoxiancai.imhere.client.AbstractClientHandler;
  */
 public class LocateHandler extends AbstractClientHandler {
 
+	/**
+     * 定位响应
+     */
+    private LocateResponse response;
+    
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg)
         throws Exception {
-        // TODO Auto-generated method stub
-        super.channelRead(ctx, msg);
+    	if (msg instanceof LocateResponse) {
+            response = (LocateResponse) msg;;
+            logger.debug("locate response from server = {}", response);
+            synchronized (this) {
+                this.notify();
+            }
+        }
     }
+
+	/**
+	 * @return the response
+	 */
+	public LocateResponse getResponse() {
+		return response;
+	}
+
+
+	@Override
+	public boolean isSuccess() {
+		return response.getIsSuccess();
+	}
+
+	@Override
+	public String getMessage() {
+		return response.getMessage();
+	}
+
+	@Override
+	public int getStatus() {
+		return response.getStatus();
+	}
 }

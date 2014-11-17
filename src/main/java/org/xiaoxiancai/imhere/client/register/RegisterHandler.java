@@ -35,21 +35,19 @@ public class RegisterHandler extends AbstractClientHandler {
         }
     }
 
-    /**
-     * 注册成功否
-     * 
-     * @return
-     */
+
+    @Override
     public boolean isSuccess() {
         return response.getIsSuccess();
     }
 
-    /**
-     * 服务端返回的注册信息
-     * 
-     * @return
-     */
+    @Override
     public String getMessage() {
         return response.getMessage();
     }
+
+	@Override
+	public int getStatus() {
+		return response.getStatus();
+	}
 }

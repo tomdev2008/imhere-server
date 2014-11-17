@@ -7,6 +7,8 @@ package org.xiaoxiancai.imhere.server.business;
 
 import io.netty.channel.ChannelInboundHandlerAdapter;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 
 /**
@@ -15,6 +17,8 @@ import org.springframework.context.ApplicationContext;
  */
 public abstract class AbstractBusinessHandler extends ChannelInboundHandlerAdapter {
 
+	protected Logger logger = LoggerFactory.getLogger(getClass());
+	
 	/**
 	 * Spring Bean容器
 	 */
