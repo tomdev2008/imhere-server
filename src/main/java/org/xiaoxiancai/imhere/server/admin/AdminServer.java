@@ -30,51 +30,50 @@ import org.xiaoxiancai.imhere.server.AbstractServer;
 @Component("adminServer")
 public class AdminServer extends AbstractServer {
 
-	/**
-	 * 管理端口
-	 */
-	private final static int ADMIN_PORT = 18081;
+    /**
+     * 管理端口
+     */
+    private final static int ADMIN_PORT = 18082;
 
-	/**
-	 * 管理命令最大长度
-	 */
-	private final static int MAX_COMMAND_LENGTH = 1024;
+    /**
+     * 管理命令最大长度
+     */
+    private final static int MAX_COMMAND_LENGTH = 1024;
 
-	@Override
-	protected void doInit() throws Exception {
-		// TODO
-	}
+    @Override
+    protected void doInit() throws Exception {
+        // TODO
+    }
 
-	@Override
-	public void doStart() throws Exception {
-		EventLoopGroup bossGroup = new NioEventLoopGroup();
-		EventLoopGroup workerGroup = new NioEventLoopGroup();
-		ServerBootstrap bootstrap = new ServerBootstrap();
-		ChannelInitializer<SocketChannel> initializer = new ChannelInitializer<SocketChannel>() {
-			@Override
-			protected void initChannel(SocketChannel ch) throws Exception {
-				ChannelPipeline pipeline = ch.pipeline();
-				pipeline.addLast(new LineBasedFrameDecoder(MAX_COMMAND_LENGTH,
-						true, true));
-				pipeline.addLast(new StringDecoder(CharsetUtil.UTF_8));
-				pipeline.addLast(applicationContext.getBean("adminHandler",
-						AdminHandler.class));
-			}
-		};
-		bootstrap.group(bossGroup, workerGroup)
-				.channel(NioServerSocketChannel.class)
-				.childHandler(initializer)
-				.childOption(ChannelOption.SO_KEEPALIVE, true);
+    @Override
+    public void doStart() throws Exception {
+        EventLoopGroup bossGroup = new NioEventLoopGroup();
+        EventLoopGroup workerGroup = new NioEventLoopGroup();
+        ServerBootstrap bootstrap = new ServerBootstrap();
+        ChannelInitializer<SocketChannel> initializer = new ChannelInitializer<SocketChannel>() {
+            @Override
+            protected void initChannel(SocketChannel ch) throws Exception {
+                ChannelPipeline pipeline = ch.pipeline();
+                pipeline.addLast(new LineBasedFrameDecoder(MAX_COMMAND_LENGTH,
+                    true, true));
+                pipeline.addLast(new StringDecoder(CharsetUtil.UTF_8));
+                pipeline.addLast(applicationContext.getBean("adminHandler",
+                    AdminHandler.class));
+            }
+        };
+        bootstrap.group(bossGroup, workerGroup)
+            .channel(NioServerSocketChannel.class).childHandler(initializer)
+            .childOption(ChannelOption.SO_KEEPALIVE, true);
 
-		ChannelFuture channelFuture = bootstrap.bind(ADMIN_PORT).sync();
-		ChannelFuture closeFuture = channelFuture.channel().closeFuture();
-		closeFuture.addListener(ChannelFutureListener.CLOSE);
-		logger.info("admin server start success");
-	}
+        ChannelFuture channelFuture = bootstrap.bind(ADMIN_PORT).sync();
+        ChannelFuture closeFuture = channelFuture.channel().closeFuture();
+        closeFuture.addListener(ChannelFutureListener.CLOSE);
+        logger.info("admin server start success");
+    }
 
-	@Override
-	public void doStop() throws Exception {
-		// TODO
-	}
+    @Override
+    public void doStop() throws Exception {
+        // TODO
+    }
 
 }
