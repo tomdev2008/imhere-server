@@ -54,8 +54,8 @@ class LoginTask implements Runnable {
 	 */
 	private LoginRequest createLoginRequest() {
 		LoginRequest.Builder builder = LoginRequest.newBuilder();
-		builder.setMobile("134****1133");
-		builder.setPassword("ps");
+		builder.setMobile("13758781751");
+		builder.setPassword("pswd-2");
 		return builder.build();
 	}
 }
