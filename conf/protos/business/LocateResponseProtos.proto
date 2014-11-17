@@ -1,14 +1,15 @@
 package org.xiaoxiancai.imhere.server.business.protos;
 
-option java_package = "org.xiaoxiancai.imhere.common.protos.business";
-option java_outer_classname = "RegisterResponseProtos";
+import "LocationProtos.proto";
 
-message RegisterResponse {
-  
+option java_package = "org.xiaoxiancai.imhere.common.protos.business";
+option java_outer_classname = "LocateResponseProtos";
+
+message LocateResponse {
+	
 	required bool isSuccess = 1;
 
 	required int32 status = 2;
 
-	optional string message = 3;
-
+	repeated Location friendLocations = 3;
 }

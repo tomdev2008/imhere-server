@@ -1,34 +1,12 @@
 package org.xiaoxiancai.imhere.server.business.protos;
 
-option java_package = "org.xiaoxiancai.imhere.server.business.locate";
+import "LocationProtos.proto";
+
+option java_package = "org.xiaoxiancai.imhere.common.protos.business";
 option java_outer_classname = "LocateRequestProtos";
 
 message LocateRequest {
   
-  	// 61 ： GPS定位结果
-	// 62 ： 扫描整合定位依据失败。此时定位结果无效。
-	// 63 ： 网络异常，没有成功向服务器发起请求。此时定位结果无效。
-	// 65 ： 定位缓存的结果。
-	// 66 ： 离线定位结果。通过requestOfflineLocaiton调用时对应的返回结果
-	// 67 ： 离线定位失败。通过requestOfflineLocaiton调用时对应的返回结果
-	// 68 ： 网络连接失败时，查找本地离线定位时对应的返回结果
-	// 161： 表示网络定位结果
-	// 162~167： 服务端定位失败。
-	required int32 locType = 1; // error code
-	
-	required double latitude = 2; // 维度
-
-	required double Longitude = 3; // 经度
-	
-	optional float speed = 4; // 速度
-	
-	optional double altitude = 5; // 海拔
-
-	optional bool hasRadius = 6; // 是否有定位精度半径
-	
-	optional float radius = 7; // 定位精度半径
-	
-	optional string addrStr = 8; // 位置的文字描述信息
-  
+	required Location currentLocation = 1; // 当前位置  
 
 }

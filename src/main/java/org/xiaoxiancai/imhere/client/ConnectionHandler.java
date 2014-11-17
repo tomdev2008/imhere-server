@@ -9,7 +9,7 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelPipeline;
 
 import org.xiaoxiancai.imhere.client.utils.ClientConstant;
-import org.xiaoxiancai.imhere.common.protos.BusinessSelectorProtos.BusinessSelector;
+import org.xiaoxiancai.imhere.common.protos.common.BusinessSelectorProtos.BusinessSelector;
 
 /**
  * 客户端处理器

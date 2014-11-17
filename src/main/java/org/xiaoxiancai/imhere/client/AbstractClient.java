@@ -28,8 +28,8 @@ import java.util.concurrent.TimeUnit;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.xiaoxiancai.imhere.common.protos.BusinessSelectorProtos.BusinessSelector;
-import org.xiaoxiancai.imhere.common.protos.BusinessTypeProtos.BusinessType;
+import org.xiaoxiancai.imhere.common.protos.common.BusinessSelectorProtos.BusinessSelector;
+import org.xiaoxiancai.imhere.common.protos.common.BusinessTypeProtos.BusinessType;
 
 /**
  * 客户端基类

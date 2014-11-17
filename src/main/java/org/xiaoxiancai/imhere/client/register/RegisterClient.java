@@ -12,9 +12,9 @@ import io.netty.handler.codec.protobuf.ProtobufDecoder;
 
 import org.xiaoxiancai.imhere.client.AbstractClient;
 import org.xiaoxiancai.imhere.client.utils.ClientConstant;
-import org.xiaoxiancai.imhere.common.protos.BusinessTypeProtos.BusinessType;
-import org.xiaoxiancai.imhere.server.business.register.RegisterRequestProtos.RegisterRequest;
-import org.xiaoxiancai.imhere.server.business.register.RegisterResponseProtos.RegisterResponse;
+import org.xiaoxiancai.imhere.common.protos.business.RegisterRequestProtos.RegisterRequest;
+import org.xiaoxiancai.imhere.common.protos.business.RegisterResponseProtos.RegisterResponse;
+import org.xiaoxiancai.imhere.common.protos.common.BusinessTypeProtos.BusinessType;
 
 /**
  * 用户注册客户端
@@ -35,7 +35,7 @@ public class RegisterClient extends AbstractClient {
             logger.debug("send register user to server");
             ChannelPipeline pipeline = channel.pipeline();
             logger
-                .debug("client pipeline before adding handler = {}", pipeline);
+                .debug("register client pipeline before adding handler = {}", pipeline);
             if (pipeline.get(ClientConstant.DECODER_REGISTER) == null) {
                 pipeline.addLast(ClientConstant.DECODER_REGISTER,
                     new ProtobufDecoder(RegisterResponse.getDefaultInstance()));
@@ -47,7 +47,7 @@ public class RegisterClient extends AbstractClient {
             }
             RegisterHandler registerHandler = (RegisterHandler) pipeline
                 .get(ClientConstant.HANDLER_REGISTER);
-            logger.debug("client pipeline after adding handler = {}", pipeline);
+            logger.debug("register client pipeline after adding handler = {}", pipeline);
             synchronized (registerHandler) {
                 channel.writeAndFlush(request).sync();
                 registerHandler.wait();

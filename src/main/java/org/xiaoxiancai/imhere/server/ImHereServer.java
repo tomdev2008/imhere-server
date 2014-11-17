@@ -8,7 +8,6 @@ package org.xiaoxiancai.imhere.server;
 import static org.xiaoxiancai.imhere.server.utils.ServerConstant.DECODER_SELECTOR;
 import static org.xiaoxiancai.imhere.server.utils.ServerConstant.ENCODER;
 import static org.xiaoxiancai.imhere.server.utils.ServerConstant.HANDLER_SELECTOR;
-
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelFutureListener;
@@ -22,9 +21,6 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.codec.protobuf.ProtobufDecoder;
 import io.netty.handler.codec.protobuf.ProtobufEncoder;
 
-import org.springframework.stereotype.Component;
-import org.xiaoxiancai.imhere.common.protos.BusinessSelectorProtos.BusinessSelector;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -34,6 +30,10 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Properties;
 import java.util.Set;
+
+import org.springframework.stereotype.Component;
+import org.xiaoxiancai.imhere.common.protos.common.BusinessSelectorProtos.BusinessSelector;
+import org.xiaoxiancai.imhere.server.business.BusinessSelectorHandler;
 
 /**
  * 应用服务启动类

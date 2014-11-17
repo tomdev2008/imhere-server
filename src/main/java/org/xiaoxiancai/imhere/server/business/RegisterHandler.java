@@ -3,29 +3,28 @@
  * Copyright (c) 2014, xianneng.lin@gmail.com All Rights Reserved. 
  **********************************************************************
  */
-package org.xiaoxiancai.imhere.server.business.register;
+package org.xiaoxiancai.imhere.server.business;
 
 import io.netty.channel.ChannelHandlerContext;
+
+import java.security.MessageDigest;
 
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.xiaoxiancai.imhere.server.business.BusinessHandler;
-import org.xiaoxiancai.imhere.server.business.register.RegisterRequestProtos.RegisterRequest;
-import org.xiaoxiancai.imhere.server.business.register.RegisterResponseProtos.RegisterResponse;
+import org.xiaoxiancai.imhere.common.protos.business.RegisterRequestProtos.RegisterRequest;
+import org.xiaoxiancai.imhere.common.protos.business.RegisterResponseProtos.RegisterResponse;
 import org.xiaoxiancai.imhere.server.entity.User;
 import org.xiaoxiancai.imhere.server.inter.UserMapper;
 
 import sun.misc.BASE64Encoder;
-
-import java.security.MessageDigest;
 
 /**
  * 新用户注册处理器
  * 
  * @author xiannenglin
  */
-public class RegisterHandler extends BusinessHandler {
+public class RegisterHandler extends AbstractBusinessHandler {
 
 	private Logger logger = LoggerFactory.getLogger(getClass());
 
@@ -85,6 +84,7 @@ public class RegisterHandler extends BusinessHandler {
 	private RegisterResponse getResponse(boolean isSuccess, String message) {
 		RegisterResponse.Builder builder = RegisterResponse.newBuilder();
 		builder.setIsSuccess(isSuccess);
+		builder.setStatus(1);
 		builder.setMessage(message);
 		return builder.build();
 	}

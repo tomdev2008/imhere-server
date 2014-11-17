@@ -9,7 +9,7 @@ package org.xiaoxiancai.imhere.client.register;
 import io.netty.channel.ChannelHandlerContext;
 
 import org.xiaoxiancai.imhere.client.AbstractClientHandler;
-import org.xiaoxiancai.imhere.server.business.register.RegisterResponseProtos.RegisterResponse;
+import org.xiaoxiancai.imhere.common.protos.business.RegisterResponseProtos.RegisterResponse;
 
 /**
  * 用户注册处理器

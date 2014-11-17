@@ -13,7 +13,7 @@ import org.springframework.context.ApplicationContext;
  * 
  * @author xiannenglin
  */
-public class BusinessHandler extends ChannelInboundHandlerAdapter {
+public abstract class AbstractBusinessHandler extends ChannelInboundHandlerAdapter {
 
 	/**
 	 * Spring Bean容器

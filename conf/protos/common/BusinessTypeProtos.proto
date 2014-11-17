@@ -1,6 +1,6 @@
 package org.xiaoxiancai.imhere.common.protos;
 
-option java_package = "org.xiaoxiancai.imhere.common.protos";
+option java_package = "org.xiaoxiancai.imhere.common.protos.common";
 option java_outer_classname = "BusinessTypeProtos";
 
 // 业务类型
