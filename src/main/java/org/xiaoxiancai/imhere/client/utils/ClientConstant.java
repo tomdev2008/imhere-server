@@ -46,4 +46,14 @@ public class ClientConstant {
 	 * 处理器:定位
 	 */
 	public static final String HANDLER_LOCATE = "locate-handler";
+	
+	/**
+	 * 解码器:登录
+	 */
+	public static final String DECODER_LOGIN = "login-decoder";
+	
+	/**
+	 * 处理器:登录
+	 */
+	public static final String HANDLER_LOGIN = "login-handler";
 }

@@ -112,7 +112,7 @@ public class RegisterHandler extends AbstractBusinessHandler {
 	}
 
 	/**
-	 * 密码加密
+	 * 密码加密// TODO
 	 * 
 	 * @param password
 	 * @return

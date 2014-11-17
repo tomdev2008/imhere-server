@@ -5,12 +5,14 @@
  */
 package org.xiaoxiancai.imhere.server.test;
 
-import java.util.List;
-
 import org.xiaoxiancai.imhere.client.locate.LocateClient;
+import org.xiaoxiancai.imhere.client.login.LoginClient;
 import org.xiaoxiancai.imhere.client.register.RegisterClient;
 import org.xiaoxiancai.imhere.common.protos.business.LocateRequestProtos.LocateRequest;
+import org.xiaoxiancai.imhere.common.protos.business.LocateResponseProtos.LocateResponse;
 import org.xiaoxiancai.imhere.common.protos.business.LocationProtos.Location;
+import org.xiaoxiancai.imhere.common.protos.business.LoginRequestProtos.LoginRequest;
+import org.xiaoxiancai.imhere.common.protos.business.LoginResponseProtos.LoginResponse;
 import org.xiaoxiancai.imhere.common.protos.business.RegisterRequestProtos.RegisterRequest;
 
 /**
@@ -23,11 +25,39 @@ public class ClientTest {
 	public static void main(String[] args) throws Exception {
 		for (int i = 0; i < 1; i++) {
 //			Thread t = new Thread(new RegisterTask());
-			Thread t = new Thread(new LocateTask());
+//			Thread t = new Thread(new LocateTask());
+			Thread t = new Thread(new LoginTask());
 			t.start();
 		}
 	}
 
+}
+
+class LoginTask implements Runnable {
+
+	@Override
+	public void run() {
+		LoginClient client = new LoginClient();
+		client.setServer("localhost", 18080);
+		LoginRequest request = createLoginRequest();
+		try {
+			LoginResponse response = client.login(request);
+			System.out.println(response.getIsSuccess());
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * @return
+	 */
+	private LoginRequest createLoginRequest() {
+		LoginRequest.Builder builder = LoginRequest.newBuilder();
+		builder.setMobile("134****1133");
+		builder.setPassword("ps");
+		return builder.build();
+	}
 }
 
 class LocateTask implements Runnable {
@@ -38,12 +68,8 @@ class LocateTask implements Runnable {
 		client.setServer("localhost", 18080);
 		LocateRequest request = createLocateRequest();
 		try {
-			List<Location> locationList = client.locate(request);
-			if (locationList != null && !locationList.isEmpty()) {
-				System.out.println("--------------");
-			} else {
-				System.out.println("locationList is null or empty");
-			}
+			LocateResponse response = client.locate(request);
+			System.out.println(response.getIsSuccess());
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

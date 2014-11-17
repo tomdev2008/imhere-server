@@ -13,4 +13,6 @@ enum BusinessType {
 	UPDATE = 1; // 更新
 	
 	LOCATE = 2; // 定位
+	
+	LOGIN = 3; // 登录
 }

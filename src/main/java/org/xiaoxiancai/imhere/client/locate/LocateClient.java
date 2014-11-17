@@ -10,13 +10,10 @@ import io.netty.channel.Channel;
 import io.netty.channel.ChannelPipeline;
 import io.netty.handler.codec.protobuf.ProtobufDecoder;
 
-import java.util.List;
-
 import org.xiaoxiancai.imhere.client.AbstractClient;
 import org.xiaoxiancai.imhere.client.utils.ClientConstant;
 import org.xiaoxiancai.imhere.common.protos.business.LocateRequestProtos.LocateRequest;
 import org.xiaoxiancai.imhere.common.protos.business.LocateResponseProtos.LocateResponse;
-import org.xiaoxiancai.imhere.common.protos.business.LocationProtos.Location;
 import org.xiaoxiancai.imhere.common.protos.common.BusinessTypeProtos.BusinessType;
 
 
@@ -35,7 +32,7 @@ public class LocateClient extends AbstractClient {
 	 * @param request
 	 * @throws InterruptedException
 	 */
-	public List<Location> locate(LocateRequest request) throws InterruptedException {
+	public LocateResponse locate(LocateRequest request) throws InterruptedException {
 		Channel channel = connect(BusinessType.LOCATE);
 		if (channel != null && channel.isActive()) {
 			logger.debug("send location to server");
@@ -66,8 +63,7 @@ public class LocateClient extends AbstractClient {
 			logger.info("locate success = {}, status = {}, message = {}",
 					isSuccess, status, message);
 			
-			LocateResponse response = locateHandler.getResponse();
-			return response.getFriendLocationsList();
+			return locateHandler.getResponse();
 		} else {
 			logger.error("channel is null or inactive");
 			return null;

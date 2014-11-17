@@ -6,17 +6,24 @@
 package org.xiaoxiancai.imhere.server.business;
 
 import io.netty.channel.ChannelHandlerContext;
+import io.netty.channel.ChannelPipeline;
+
+import org.xiaoxiancai.imhere.common.protos.business.LoginRequestProtos.LoginRequest;
 
 /**
- * 更新处理器
- * 
+ * 登录处理器
+ *
  * @author xiannenglin
  */
-public class UpdateHandler extends AbstractBusinessHandler {
+public class LoginHandler extends AbstractBusinessHandler {
 
 	@Override
 	public void channelRead(ChannelHandlerContext ctx, Object msg)
 			throws Exception {
-		// TODO
+		if (msg instanceof LoginRequest) {
+			LoginRequest request = (LoginRequest) msg;
+			logger.debug("receive client login request = {}", request);
+			ChannelPipeline pipeline = ctx.pipeline();
+		}
 	}
 }

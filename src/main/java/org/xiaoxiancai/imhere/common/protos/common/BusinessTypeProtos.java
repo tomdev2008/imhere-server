@@ -41,6 +41,14 @@ public final class BusinessTypeProtos {
      * </pre>
      */
     LOCATE(2, 2),
+    /**
+     * <code>LOGIN = 3;</code>
+     *
+     * <pre>
+     * 登录
+     * </pre>
+     */
+    LOGIN(3, 3),
     ;
 
     /**
@@ -67,6 +75,14 @@ public final class BusinessTypeProtos {
      * </pre>
      */
     public static final int LOCATE_VALUE = 2;
+    /**
+     * <code>LOGIN = 3;</code>
+     *
+     * <pre>
+     * 登录
+     * </pre>
+     */
+    public static final int LOGIN_VALUE = 3;
 
 
     public final int getNumber() { return value; }
@@ -76,6 +92,7 @@ public final class BusinessTypeProtos {
         case 0: return REGISTER;
         case 1: return UPDATE;
         case 2: return LOCATE;
+        case 3: return LOGIN;
         default: return null;
       }
     }
@@ -137,10 +154,10 @@ public final class BusinessTypeProtos {
   static {
     java.lang.String[] descriptorData = {
       "\n\030BusinessTypeProtos.proto\022$org.xiaoxian" +
-      "cai.imhere.common.protos*8\n\014BusinessType" +
-      "\022\014\n\010REGISTER\020\000\022\n\n\006UPDATE\020\001\022\n\n\006LOCATE\020\002\032\002" +
-      "\020\001BA\n+org.xiaoxiancai.imhere.common.prot" +
-      "os.commonB\022BusinessTypeProtos"
+      "cai.imhere.common.protos*C\n\014BusinessType" +
+      "\022\014\n\010REGISTER\020\000\022\n\n\006UPDATE\020\001\022\n\n\006LOCATE\020\002\022\t" +
+      "\n\005LOGIN\020\003\032\002\020\001BA\n+org.xiaoxiancai.imhere." +
+      "common.protos.commonB\022BusinessTypeProtos"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {

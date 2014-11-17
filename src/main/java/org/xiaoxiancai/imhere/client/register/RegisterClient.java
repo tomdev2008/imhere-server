@@ -29,7 +29,7 @@ public class RegisterClient extends AbstractClient {
 	 * @param request
 	 * @throws InterruptedException
 	 */
-	public boolean register(RegisterRequest request) throws InterruptedException {
+	public RegisterResponse register(RegisterRequest request) throws InterruptedException {
 		Channel channel = connect(BusinessType.REGISTER);
 		if (channel != null && channel.isActive()) {
 			logger.debug("send register user to server");
@@ -61,10 +61,10 @@ public class RegisterClient extends AbstractClient {
 			logger.info(
 					"register user is success = {}, status = {}, message = {}",
 					isSuccess, status, message);
-			return isSuccess;
+			return registerHandler.getResponse();
 		} else {
 			logger.error("channel is null or inactive");
-			return false;
+			return null;
 		}
 	}
 }

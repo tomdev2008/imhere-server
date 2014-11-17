@@ -1,0 +1,11 @@
+package org.xiaoxiancai.imhere.server.business.protos;
+
+option java_package = "org.xiaoxiancai.imhere.common.protos.business";
+option java_outer_classname = "LoginRequestProtos";
+
+message LoginRequest {
+  
+	required string mobile = 1;
+	
+	required string password = 2;
+}

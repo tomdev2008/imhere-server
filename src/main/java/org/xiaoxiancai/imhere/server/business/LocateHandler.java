@@ -6,6 +6,7 @@
 package org.xiaoxiancai.imhere.server.business;
 
 import io.netty.channel.ChannelHandlerContext;
+import io.netty.channel.ChannelPipeline;
 
 import org.xiaoxiancai.imhere.common.protos.business.LocateRequestProtos.LocateRequest;
 
@@ -22,6 +23,7 @@ public class LocateHandler extends AbstractBusinessHandler {
 		if (msg instanceof LocateRequest) {
 			LocateRequest request = (LocateRequest) msg;
 			logger.debug("receive client locate request = {}", request);
+			ChannelPipeline pipeline = ctx.pipeline();
 		}
 	}
 }
