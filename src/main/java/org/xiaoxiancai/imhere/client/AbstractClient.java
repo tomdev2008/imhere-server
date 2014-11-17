@@ -5,9 +5,9 @@
  */
 package org.xiaoxiancai.imhere.client;
 
-import static org.xiaoxiancai.imhere.client.ClientConstant.DECODER_CONNECTION;
-import static org.xiaoxiancai.imhere.client.ClientConstant.ENCODER;
-import static org.xiaoxiancai.imhere.client.ClientConstant.HANDLER_CONNECTION;
+import static org.xiaoxiancai.imhere.client.utils.ClientConstant.DECODER_CONNECTION;
+import static org.xiaoxiancai.imhere.client.utils.ClientConstant.ENCODER;
+import static org.xiaoxiancai.imhere.client.utils.ClientConstant.HANDLER_CONNECTION;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelFuture;
@@ -30,17 +30,17 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.xiaoxiancai.imhere.common.protos.BusinessSelectorProtos.BusinessSelector;
 import org.xiaoxiancai.imhere.common.protos.BusinessTypeProtos.BusinessType;
-import org.xiaoxiancai.imhere.server.business.register.RegisterRequestProtos.RegisterRequest;
-import org.xiaoxiancai.imhere.server.business.register.RegisterResponseProtos.RegisterResponse;
 
 /**
- * 客户端
+ * 客户端基类
+ * <p>
+ * 提供与服务器端连接
  * 
  * @author xiannenglin
  */
-public class ImHereClient {
+public abstract class AbstractClient {
 
-    private Logger logger = LoggerFactory.getLogger(getClass());
+    protected Logger logger = LoggerFactory.getLogger(getClass());
 
     /**
      * 最长等待时间, 3min
@@ -85,7 +85,7 @@ public class ImHereClient {
      * @return
      * @throws InterruptedException
      */
-    private Channel connect(BusinessType businessType)
+    protected Channel connect(BusinessType businessType)
         throws InterruptedException {
         return connect(this.serverHost, this.serverPort, businessType);
     }
@@ -99,7 +99,7 @@ public class ImHereClient {
      * @return
      * @throws InterruptedException
      */
-    private Channel connect(String serverHost, int serverPort,
+    protected Channel connect(String serverHost, int serverPort,
         BusinessType businessType) throws InterruptedException {
         if (channelMap.containsKey(businessType)) {
             Channel channel = channelMap.get(businessType);
@@ -149,44 +149,6 @@ public class ImHereClient {
             return channel;
         } else {
             return null;
-        }
-    }
-
-    /**
-     * 注册用户
-     * 
-     * @param request
-     * @throws InterruptedException
-     */
-    public void register(RegisterRequest request) throws InterruptedException {
-        Channel channel = connect(BusinessType.REGISTER);
-        if (channel != null && channel.isActive()) {
-            logger.debug("send register user to server");
-            ChannelPipeline pipeline = channel.pipeline();
-            logger
-                .debug("client pipeline before adding handler = {}", pipeline);
-            if (pipeline.get(ClientConstant.DECODER_REGISTER) == null) {
-                pipeline.addLast(ClientConstant.DECODER_REGISTER,
-                    new ProtobufDecoder(RegisterResponse.getDefaultInstance()));
-            }
-
-            if (pipeline.get(ClientConstant.HANDLER_REGISTER) == null) {
-                pipeline.addLast(ClientConstant.HANDLER_REGISTER,
-                    new RegisterHandler());
-            }
-            RegisterHandler registerHandler = (RegisterHandler) pipeline
-                .get(ClientConstant.HANDLER_REGISTER);
-            logger.debug("client pipeline after adding handler = {}", pipeline);
-            synchronized (registerHandler) {
-                channel.writeAndFlush(request).sync();
-                registerHandler.wait();
-            }
-            boolean isSuccess = registerHandler.isSuccess();
-            String message = registerHandler.getMessage();
-            logger.info("register user is success = {}, message = {}",
-                isSuccess, message);
-        } else {
-            logger.error("channel is null or inactive");
         }
     }
 }

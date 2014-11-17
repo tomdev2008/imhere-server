@@ -12,45 +12,54 @@ package org.xiaoxiancai.imhere.server.utils;
  */
 public class ServerConstant {
 
-	/**
-	 * 更新命令
-	 */
-	public static final String COMMAND_UPDATE = "update";
+    /**
+     * 更新命令
+     */
+    public static final String COMMAND_UPDATE = "update";
 
-	/**
-	 * 解码器:业务选择器
-	 */
-	public static final String DECODER_SELECTOR = "business-selector-decoder";
+    /**
+     * protobuf编码器
+     */
+    public static final String ENCODER = "encoder";
 
-	/**
-	 * 解码器:注册
-	 */
-	public static final String DECODER_REGISTER = "register-decoder";
+    /**
+     * 解码器:业务选择器
+     */
+    public static final String DECODER_SELECTOR = "selector-decoder";
 
-	/**
-	 * 处理器:注册
-	 */
-	public static final String HANDLER_REGISTER = "register-handler";
+    /**
+     * 处理器:业务选择器
+     */
+    public static final String HANDLER_SELECTOR = "selector-handler";
 
-	/**
-	 * 解码器:更新
-	 */
-	public static final String DECODER_UPDATE = "update-decoder";
+    /**
+     * 解码器:注册
+     */
+    public static final String DECODER_REGISTER = "register-decoder";
 
-	public static final String HANDLER_UPDATE = "update-handler";
+    /**
+     * 处理器:注册
+     */
+    public static final String HANDLER_REGISTER = "register-handler";
 
-	/**
-	 * 解码器:定位
-	 */
-	public static final String DECODER_LOCATE = "locate-decoder";
+    /**
+     * 解码器:更新
+     */
+    public static final String DECODER_UPDATE = "update-decoder";
 
-	/**
-	 * protobuf编码器
-	 */
-	public static final String ENCODER = "encoder";
+    /**
+     * 处理器:更新
+     */
+    public static final String HANDLER_UPDATE = "update-handler";
 
-	/**
-	 * 处理器:业务逻辑分发
-	 */
-	public static final String HANDLER_DISPATCHER = "dispatcher-handler";
+    /**
+     * 解码器:定位
+     */
+    public static final String DECODER_LOCATE = "locate-decoder";
+
+    /**
+     * 处理器:定位
+     */
+    public static final String HANDLER_LOCATE = "locate-handler";
+
 }

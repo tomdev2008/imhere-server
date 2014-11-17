@@ -5,7 +5,7 @@
  */
 package org.xiaoxiancai.imhere.server.test;
 
-import org.xiaoxiancai.imhere.client.ImHereClient;
+import org.xiaoxiancai.imhere.client.register.RegisterClient;
 import org.xiaoxiancai.imhere.server.business.register.RegisterRequestProtos.RegisterRequest;
 
 /**
@@ -28,7 +28,7 @@ class Task implements Runnable {
 
     @Override
     public void run() {
-        ImHereClient client = new ImHereClient();
+        RegisterClient client = new RegisterClient();
         client.setServer("localhost", 18080);
         for (int i = 0; i < 10; i++) {
             RegisterRequest register = createRegister(i);

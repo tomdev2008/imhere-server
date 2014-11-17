@@ -22,7 +22,7 @@ public abstract class AbstractClientHandler extends
     /**
      * 客户端
      */
-    protected ImHereClient client;
+    protected AbstractClient client;
 
     /**
      * Logger
@@ -31,15 +31,15 @@ public abstract class AbstractClientHandler extends
 
     public AbstractClientHandler() {}
 
-    public AbstractClientHandler(ImHereClient client) {
+    public AbstractClientHandler(AbstractClient client) {
         this.client = client;
     }
 
-    public ImHereClient getClient() {
+    public AbstractClient getClient() {
         return client;
     }
 
-    public void setClient(ImHereClient client) {
+    public void setClient(AbstractClient client) {
         this.client = client;
     }
 
