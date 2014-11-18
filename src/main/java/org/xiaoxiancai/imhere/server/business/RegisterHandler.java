@@ -39,12 +39,12 @@ public class RegisterHandler extends AbstractBusinessHandler {
 		String mobile = request.getMobile();
 		if (!isMobileRegistered(userMapper, mobile)) {
 			userMapper.registerUser(createUser(request));
-			RegisterResponse successResponse = getResponse(true,
+			RegisterResponse successResponse = getResponse(true, 1,
 					"register success");
 			ctx.channel().writeAndFlush(successResponse);
 			logger.debug("register user success, mobile = {}", mobile);
 		} else {
-			RegisterResponse successResponse = getResponse(false,
+			RegisterResponse successResponse = getResponse(false, -1,
 					"already registered");
 			ctx.channel().writeAndFlush(successResponse);
 			logger.debug("register user fail, mobile {} already registered",
@@ -74,13 +74,15 @@ public class RegisterHandler extends AbstractBusinessHandler {
 	 * 获得返回值
 	 * 
 	 * @param isSuccess
+	 * @param status
 	 * @param message
 	 * @return
 	 */
-	private RegisterResponse getResponse(boolean isSuccess, String message) {
+	private RegisterResponse getResponse(boolean isSuccess, int status,
+			String message) {
 		RegisterResponse.Builder builder = RegisterResponse.newBuilder();
 		builder.setIsSuccess(isSuccess);
-		builder.setStatus(1);
+		builder.setStatus(status);
 		builder.setMessage(message);
 		return builder.build();
 	}
@@ -89,10 +91,10 @@ public class RegisterHandler extends AbstractBusinessHandler {
 	public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause)
 			throws Exception {
 		super.exceptionCaught(ctx, cause);
-		// RegisterResponse successResponse = getResponse(false,
-		// "server error");
-		// ctx.channel().writeAndFlush(successResponse);
-		// logger.error("register user fail, server error");
+		RegisterResponse response = getResponse(false, -1,
+				"server error");
+		ctx.channel().writeAndFlush(response);
+		logger.error("register user fail, server error");
 	}
 
 	private User createUser(RegisterRequest request) throws Exception {
