@@ -13,13 +13,13 @@
 	</resultMap>	
 
 	<select id="getUserByMobile" parameterType="string" resultMap="userResultMap">
-        select * from `user` where mobile = #{mobile}
+        select * from `tb_user` where mobile = #{mobile}
     </select>
     
 	<!-- 注册新用户 -->
 	<insert id="registerUser" parameterType="User" keyProperty="id" useGeneratedKeys="true">
 		<!-- 动态insert语句 -->
-		insert into user(MOBILE, PASSWORD, NICKNAME
+		insert into `tb_user`(MOBILE, PASSWORD, NICKNAME
 			<if test="email != null">, EMAIL</if>
 			<if test="signature != null">, SIGNATURE</if>)
 		values (#{mobile}, #{password}, #{nickName}

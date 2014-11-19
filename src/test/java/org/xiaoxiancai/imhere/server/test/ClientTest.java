@@ -24,9 +24,9 @@ public class ClientTest {
 
 	public static void main(String[] args) throws Exception {
 		for (int i = 0; i < 1; i++) {
-//			Thread t = new Thread(new RegisterTask());
+			Thread t = new Thread(new RegisterTask());
 //			Thread t = new Thread(new LocateTask());
-			Thread t = new Thread(new LoginTask());
+//			Thread t = new Thread(new LoginTask());
 			t.start();
 		}
 	}
@@ -55,7 +55,7 @@ class LoginTask implements Runnable {
 	private LoginRequest createLoginRequest() {
 		LoginRequest.Builder builder = LoginRequest.newBuilder();
 		builder.setMobile("13758781751");
-		builder.setPassword("pswd-2");
+		builder.setPassword("pswd-1");
 		return builder.build();
 	}
 }
@@ -96,7 +96,7 @@ class RegisterTask implements Runnable {
 	public void run() {
 		RegisterClient client = new RegisterClient();
 		client.setServer("localhost", 18080);
-		for (int i = 11; i < 12; i++) {
+		for (int i = 12; i < 13; i++) {
 			RegisterRequest register = createRegister(i);
 			try {
 				client.register(register);

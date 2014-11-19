@@ -5,6 +5,8 @@
  */
 package org.xiaoxiancai.imhere.server.inter;
 
+import java.util.List;
+
 import org.xiaoxiancai.imhere.server.entity.User;
 
 /**
@@ -35,5 +37,7 @@ public interface UserMapper extends EntityMapper {
 	 * @param user
 	 */
 	public void updateUser(User user);
+	
+	public List<String> getFriends(String mobile);
 
 }

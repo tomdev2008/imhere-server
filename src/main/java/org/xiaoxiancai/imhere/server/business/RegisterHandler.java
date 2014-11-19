@@ -6,6 +6,7 @@
 package org.xiaoxiancai.imhere.server.business;
 
 import io.netty.channel.ChannelHandlerContext;
+import io.netty.channel.ChannelPipeline;
 
 import java.security.MessageDigest;
 
@@ -14,6 +15,7 @@ import org.xiaoxiancai.imhere.common.protos.business.RegisterRequestProtos.Regis
 import org.xiaoxiancai.imhere.common.protos.business.RegisterResponseProtos.RegisterResponse;
 import org.xiaoxiancai.imhere.server.entity.User;
 import org.xiaoxiancai.imhere.server.inter.UserMapper;
+import org.xiaoxiancai.imhere.server.utils.ServerConstant;
 
 import sun.misc.BASE64Encoder;
 
@@ -50,6 +52,14 @@ public class RegisterHandler extends AbstractBusinessHandler {
 			logger.debug("register user fail, mobile {} already registered",
 					mobile);
 		}
+		ChannelPipeline pipeline = ctx.pipeline();
+		if (pipeline.get(ServerConstant.DECODER_REGISTER) != null) {
+			pipeline.remove(ServerConstant.DECODER_REGISTER);
+		}
+		if (pipeline.get(ServerConstant.HANDLER_REGISTER) != null) {
+			pipeline.remove(ServerConstant.HANDLER_REGISTER);
+		}
+		logger.debug("pipeline after register = {}", pipeline);
 	}
 
 	/**

@@ -1,0 +1,9 @@
+CREATE TABLE `tb_user_group` (
+	`id` INT(11) NOT NULL AUTO_INCREMENT,
+	`group_name` VARCHAR(128) NULL DEFAULT NULL,
+	`labels` VARCHAR(256) NULL DEFAULT NULL,
+	PRIMARY KEY (`id`)
+)
+COMMENT='用户组信息表'
+COLLATE='utf8_general_ci'
+ENGINE=InnoDB;

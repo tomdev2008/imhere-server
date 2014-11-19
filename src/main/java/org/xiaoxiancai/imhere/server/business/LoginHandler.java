@@ -6,12 +6,15 @@
 package org.xiaoxiancai.imhere.server.business;
 
 import io.netty.channel.ChannelHandlerContext;
+import io.netty.channel.ChannelPipeline;
 
 import java.security.MessageDigest;
 
 import org.xiaoxiancai.imhere.common.protos.business.LoginRequestProtos.LoginRequest;
+import org.xiaoxiancai.imhere.common.protos.business.LoginResponseProtos.LoginResponse;
 import org.xiaoxiancai.imhere.server.entity.User;
 import org.xiaoxiancai.imhere.server.inter.UserMapper;
+import org.xiaoxiancai.imhere.server.utils.ServerConstant;
 
 import sun.misc.BASE64Encoder;
 
@@ -37,11 +40,41 @@ public class LoginHandler extends AbstractBusinessHandler {
 
 		User user = userMapper.getUserByMobile(mobile);
 
+		ChannelPipeline pipeline = ctx.pipeline();
 		if (checkPassword(password, user.getPassword())) {
 			logger.debug("user login success, mobile = {}", mobile);
+			if (pipeline.get(ServerConstant.DECODER_LOGIN) != null) {
+				pipeline.remove(ServerConstant.DECODER_LOGIN);
+			}
+			if (pipeline.get(ServerConstant.HANDLER_LOGIN) != null) {
+				pipeline.remove(ServerConstant.HANDLER_LOGIN);
+			}
+			logger.debug("pipeline after login success = {}", pipeline);
+			LoginResponse successResponse = getResponse(true, 1,
+					"login success");
+			ctx.channel().writeAndFlush(successResponse);
 		} else {
 			logger.debug("user login failed, mobile = {}", mobile);
+			LoginResponse failResponse = getResponse(false, -1, "login fail");
+			ctx.channel().writeAndFlush(failResponse);
 		}
+	}
+
+	/**
+	 * 获得Response
+	 * 
+	 * @param isSuccess
+	 * @param status
+	 * @param message
+	 * @return
+	 */
+	private LoginResponse getResponse(boolean isSuccess, int status,
+			String message) {
+		LoginResponse.Builder builder = LoginResponse.newBuilder();
+		builder.setIsSuccess(isSuccess);
+		builder.setStatus(status);
+		builder.setMessage(message);
+		return builder.build();
 	}
 
 	/**
