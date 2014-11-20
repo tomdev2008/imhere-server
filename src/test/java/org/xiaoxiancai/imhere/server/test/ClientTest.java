@@ -81,10 +81,10 @@ class LocateTask implements Runnable {
      */
     private LocateRequest createLocateRequest() {
         Location.Builder locBuilder = Location.newBuilder();
-        locBuilder.setUserId(16);
+        locBuilder.setUserId(14);
         locBuilder.setLocType(62);
-        locBuilder.setLatitude(35.7723d);
-        locBuilder.setLongitude(124.7713d);
+        locBuilder.setLatitude(31.7723d);
+        locBuilder.setLongitude(144.7713d);
         LocateRequest.Builder builder = LocateRequest.newBuilder();
         builder.setCurrentLocation(locBuilder.build());
         return builder.build();

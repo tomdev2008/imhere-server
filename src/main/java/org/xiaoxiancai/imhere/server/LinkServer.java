@@ -8,6 +8,7 @@ package org.xiaoxiancai.imhere.server;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import org.springframework.stereotype.Component;
 import org.xiaoxiancai.imhere.common.protos.business.LocationProtos.Location;
@@ -29,6 +30,11 @@ public class LinkServer extends AbstractServer {
      * 用户当前定位位置
      */
     private Map<Integer, Location> currentLocation = new HashMap<Integer, Location>();
+
+    /**
+     * 用户位置更新时间
+     */
+    private Map<Integer, Long> locationUpdateTime = new HashMap<Integer, Long>();
 
     @Override
     protected void doInit() throws Exception {
@@ -53,4 +59,14 @@ public class LinkServer extends AbstractServer {
         return currentLocation;
     }
 
+    class ExpireOnlineTask implements Runnable {
+
+        @Override
+        public void run() {
+            for (Entry<Integer, Long> entry: locationUpdateTime.entrySet()) {
+                int userId = entry.getKey();
+                long updateTime = entry.getValue();
+            }
+        }
+    }
 }
