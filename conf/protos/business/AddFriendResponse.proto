@@ -1,0 +1,17 @@
+package org.xiaoxiancai.imhere.server.business.protos;
+
+option java_package = "org.xiaoxiancai.imhere.common.protos.business";
+option java_outer_classname = "AddFriendRequestProtos";
+
+message AddFriendRequest {
+  
+	required int32 fromUserId = 1; // 发起用户Id
+
+	required string fromUserMobile = 2; // 发起用户电话
+	
+	required string fromUserNickname = 3; // 发起用户昵称
+	
+	optional int32 toUserId = 4; // 被发起用户Id
+	
+	required string toUserMobile = 5; // 被发起用户电话
+}

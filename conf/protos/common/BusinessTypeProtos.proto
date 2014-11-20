@@ -15,4 +15,6 @@ enum BusinessType {
 	LOCATE = 2; // 定位
 	
 	LOGIN = 3; // 登录
+	
+	ADD_FRIEND = 4; // 添加朋友
 }

@@ -49,6 +49,14 @@ public final class BusinessTypeProtos {
      * </pre>
      */
     LOGIN(3, 3),
+    /**
+     * <code>ADD_FRIEND = 4;</code>
+     *
+     * <pre>
+     * 添加朋友
+     * </pre>
+     */
+    ADD_FRIEND(4, 4),
     ;
 
     /**
@@ -83,6 +91,14 @@ public final class BusinessTypeProtos {
      * </pre>
      */
     public static final int LOGIN_VALUE = 3;
+    /**
+     * <code>ADD_FRIEND = 4;</code>
+     *
+     * <pre>
+     * 添加朋友
+     * </pre>
+     */
+    public static final int ADD_FRIEND_VALUE = 4;
 
 
     public final int getNumber() { return value; }
@@ -93,6 +109,7 @@ public final class BusinessTypeProtos {
         case 1: return UPDATE;
         case 2: return LOCATE;
         case 3: return LOGIN;
+        case 4: return ADD_FRIEND;
         default: return null;
       }
     }
@@ -154,10 +171,11 @@ public final class BusinessTypeProtos {
   static {
     java.lang.String[] descriptorData = {
       "\n\030BusinessTypeProtos.proto\022$org.xiaoxian" +
-      "cai.imhere.common.protos*C\n\014BusinessType" +
+      "cai.imhere.common.protos*S\n\014BusinessType" +
       "\022\014\n\010REGISTER\020\000\022\n\n\006UPDATE\020\001\022\n\n\006LOCATE\020\002\022\t" +
-      "\n\005LOGIN\020\003\032\002\020\001BA\n+org.xiaoxiancai.imhere." +
-      "common.protos.commonB\022BusinessTypeProtos"
+      "\n\005LOGIN\020\003\022\016\n\nADD_FRIEND\020\004\032\002\020\001BA\n+org.xia" +
+      "oxiancai.imhere.common.protos.commonB\022Bu" +
+      "sinessTypeProtos"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
