@@ -6,7 +6,6 @@
 package org.xiaoxiancai.imhere.server.business;
 
 import io.netty.channel.ChannelHandlerContext;
-import io.netty.channel.ChannelPipeline;
 
 import java.security.MessageDigest;
 
@@ -15,7 +14,6 @@ import org.xiaoxiancai.imhere.common.protos.business.RegisterRequestProtos.Regis
 import org.xiaoxiancai.imhere.common.protos.business.RegisterResponseProtos.RegisterResponse;
 import org.xiaoxiancai.imhere.server.entity.User;
 import org.xiaoxiancai.imhere.server.inter.UserMapper;
-import org.xiaoxiancai.imhere.server.utils.ServerConstant;
 
 import sun.misc.BASE64Encoder;
 
@@ -26,119 +24,110 @@ import sun.misc.BASE64Encoder;
  */
 public class RegisterHandler extends AbstractBusinessHandler {
 
-	@Override
-	public void channelRead(ChannelHandlerContext ctx, Object msg)
-			throws Exception {
-		if (!(msg instanceof RegisterRequest)) {
-			return;
-		}
-		logger.debug("register user start");
-		UserMapper userMapper = (UserMapper) applicationContext
-				.getBean("userMapper");
-		RegisterRequest request = (RegisterRequest) msg;
+    @Override
+    public void channelRead(ChannelHandlerContext ctx, Object msg)
+        throws Exception {
+        if (!(msg instanceof RegisterRequest)) {
+            return;
+        }
+        logger.debug("register user start");
+        UserMapper userMapper = (UserMapper) applicationContext
+            .getBean("userMapper");
+        RegisterRequest request = (RegisterRequest) msg;
 
-		// 先查询数据库是否存在相同mobile的记录
-		String mobile = request.getMobile();
-		if (!isMobileRegistered(userMapper, mobile)) {
-			userMapper.registerUser(createUser(request));
-			RegisterResponse successResponse = getResponse(true, 1,
-					"register success");
-			ctx.channel().writeAndFlush(successResponse);
-			logger.debug("register user success, mobile = {}", mobile);
-		} else {
-			RegisterResponse successResponse = getResponse(false, -1,
-					"already registered");
-			ctx.channel().writeAndFlush(successResponse);
-			logger.debug("register user fail, mobile {} already registered",
-					mobile);
-		}
-		ChannelPipeline pipeline = ctx.pipeline();
-		if (pipeline.get(ServerConstant.DECODER_REGISTER) != null) {
-			pipeline.remove(ServerConstant.DECODER_REGISTER);
-		}
-		if (pipeline.get(ServerConstant.HANDLER_REGISTER) != null) {
-			pipeline.remove(ServerConstant.HANDLER_REGISTER);
-		}
-		logger.debug("pipeline after register = {}", pipeline);
-	}
+        // 先查询数据库是否存在相同mobile的记录
+        String mobile = request.getMobile();
+        if (!isMobileRegistered(userMapper, mobile)) {
+            userMapper.registerUser(createUser(request));
+            RegisterResponse successResponse = getResponse(true, 1,
+                "register success");
+            ctx.channel().writeAndFlush(successResponse);
+            logger.debug("register user success, mobile = {}", mobile);
+        } else {
+            RegisterResponse successResponse = getResponse(false, -1,
+                "already registered");
+            ctx.channel().writeAndFlush(successResponse);
+            logger.debug("register user fail, mobile {} already registered",
+                mobile);
+        }
+    }
 
-	/**
-	 * 手机号码是否已注册
-	 * 
-	 * @param userMapper
-	 * @param mobile
-	 * @return
-	 */
-	private boolean isMobileRegistered(UserMapper userMapper, String mobile) {
+    /**
+     * 手机号码是否已注册
+     * 
+     * @param userMapper
+     * @param mobile
+     * @return
+     */
+    private boolean isMobileRegistered(UserMapper userMapper, String mobile) {
 
-		// TODO 优化(resultMap里面没有配置password, 这里怎么会把password也取出来?)
-		User user = userMapper.getUserByMobile(mobile);
-		if (user != null) {
-			return true;
-		} else {
-			return false;
-		}
-	}
+        // TODO 优化(resultMap里面没有配置password, 这里怎么会把password也取出来?)
+        User user = userMapper.getUserByMobile(mobile);
+        if (user != null) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
-	/**
-	 * 获得返回值
-	 * 
-	 * @param isSuccess
-	 * @param status
-	 * @param message
-	 * @return
-	 */
-	private RegisterResponse getResponse(boolean isSuccess, int status,
-			String message) {
-		RegisterResponse.Builder builder = RegisterResponse.newBuilder();
-		builder.setIsSuccess(isSuccess);
-		builder.setStatus(status);
-		builder.setMessage(message);
-		return builder.build();
-	}
+    /**
+     * 获得返回值
+     * 
+     * @param isSuccess
+     * @param status
+     * @param message
+     * @return
+     */
+    private RegisterResponse getResponse(boolean isSuccess, int status,
+        String message) {
+        RegisterResponse.Builder builder = RegisterResponse.newBuilder();
+        builder.setIsSuccess(isSuccess);
+        builder.setStatus(status);
+        builder.setMessage(message);
+        return builder.build();
+    }
 
-	@Override
-	public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause)
-			throws Exception {
-		super.exceptionCaught(ctx, cause);
-		RegisterResponse response = getResponse(false, -1,
-				"server error");
-		ctx.channel().writeAndFlush(response);
-		logger.error("register user fail, server error");
-	}
+    @Override
+    public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause)
+        throws Exception {
+        super.exceptionCaught(ctx, cause);
+        RegisterResponse response = getResponse(false, -1, "server error");
+        ctx.channel().writeAndFlush(response);
+        logger.error("register user fail, server error");
+    }
 
-	private User createUser(RegisterRequest request) throws Exception {
-		User user = new User();
-		user.setMobile(request.getMobile());
-		user.setPassword(getEncryptedPassword(request.getPassword()));
-		user.setNickName(request.getNickName());
-		String email = request.getEmail();
-		if (!StringUtils.isBlank(email)) {
-			user.setEmail(email);
-		}
-		String signature = request.getSignature();
-		if (!StringUtils.isBlank(signature)) {
-			user.setSignature(signature);
-		}
-		return user;
-	}
+    private User createUser(RegisterRequest request) throws Exception {
+        User user = new User();
+        user.setMobile(request.getMobile());
+        user.setPassword(getEncryptedPassword(request.getPassword()));
+        user.setNickName(request.getNickName());
+        String email = request.getEmail();
+        if (!StringUtils.isBlank(email)) {
+            user.setEmail(email);
+        }
+        String signature = request.getSignature();
+        if (!StringUtils.isBlank(signature)) {
+            user.setSignature(signature);
+        }
+        return user;
+    }
 
-	/**
-	 * 密码加密// TODO
-	 * 
-	 * @param password
-	 * @return
-	 * @throws Exception
-	 */
-	private String getEncryptedPassword(String password) throws Exception {
-		try {
-			MessageDigest md5 = MessageDigest.getInstance("MD5");
-			BASE64Encoder encoder = new BASE64Encoder();
-			String newPassword = encoder.encode(md5.digest(password
-					.getBytes("UTF-8")));
-			return newPassword;
-		} catch (Exception e) {
-			throw new Exception("Encrypt password exception", e);
-		}
-	}
+    /**
+     * 密码加密// TODO
+     * 
+     * @param password
+     * @return
+     * @throws Exception
+     */
+    private String getEncryptedPassword(String password) throws Exception {
+        try {
+            MessageDigest md5 = MessageDigest.getInstance("MD5");
+            BASE64Encoder encoder = new BASE64Encoder();
+            String newPassword = encoder.encode(md5.digest(password
+                .getBytes("UTF-8")));
+            return newPassword;
+        } catch (Exception e) {
+            throw new Exception("Encrypt password exception", e);
+        }
+    }
 }

@@ -2,32 +2,36 @@
 	xmlns="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.2"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.2 http://maven.apache.org/xsd/assembly-1.1.2.xsd">
+	
 	<id>package</id>
+	
 	<formats>
 		<format>jar</format>
 	</formats>
-	<dependencySets>
-		<dependencySet>
-			<useProjectArtifact>true</useProjectArtifact>
-			<outputDirectory>lib</outputDirectory>
-		</dependencySet>
-	</dependencySets>
+	
+	<!-- 默认是ture的，一定要是false，不然最后jar包里最上层会多一层文件夹嵌套 --> 
+	<includeBaseDirectory>false</includeBaseDirectory>
+	
 	<fileSets>
-	    <!-- 
-		<fileSet>
-			<outputDirectory>target/jar</outputDirectory>
-			<includes>
-				<include>README.txt</include>
-			</includes>
-		</fileSet> -->
 		<fileSet>
 			<directory>src/main/java/org/xiaoxiancai/imhere</directory>
+			<outputDirectory>/</outputDirectory>
 			<includes>
 			    <include>client/**/*</include>
 			    <include>common/**/*</include>
 			</includes>
-			<outputDirectory>target/jar</outputDirectory>
 		</fileSet>
 	</fileSets>
+
+	<dependencySets>
+		<dependencySet>
+			<useProjectArtifact>true</useProjectArtifact>
+			<outputDirectory>/lib</outputDirectory>
+			<!-- 注意这个要true, 不然maven就直接把jar包整个放进目标jar中 --> 
+			<unpack>true</unpack>
+			<scope>runtime</scope>
+		</dependencySet>
+	</dependencySets>
+	
 </assembly>
 

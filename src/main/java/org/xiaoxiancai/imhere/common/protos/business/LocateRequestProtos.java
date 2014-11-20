@@ -16,7 +16,7 @@ public final class LocateRequestProtos {
      * <code>required .org.xiaoxiancai.imhere.server.business.protos.Location currentLocation = 1;</code>
      *
      * <pre>
-     * 当前位置  
+     * 当前位置
      * </pre>
      */
     boolean hasCurrentLocation();
@@ -24,7 +24,7 @@ public final class LocateRequestProtos {
      * <code>required .org.xiaoxiancai.imhere.server.business.protos.Location currentLocation = 1;</code>
      *
      * <pre>
-     * 当前位置  
+     * 当前位置
      * </pre>
      */
     org.xiaoxiancai.imhere.common.protos.business.LocationProtos.Location getCurrentLocation();
@@ -32,7 +32,7 @@ public final class LocateRequestProtos {
      * <code>required .org.xiaoxiancai.imhere.server.business.protos.Location currentLocation = 1;</code>
      *
      * <pre>
-     * 当前位置  
+     * 当前位置
      * </pre>
      */
     org.xiaoxiancai.imhere.common.protos.business.LocationProtos.LocationOrBuilder getCurrentLocationOrBuilder();
@@ -148,7 +148,7 @@ public final class LocateRequestProtos {
      * <code>required .org.xiaoxiancai.imhere.server.business.protos.Location currentLocation = 1;</code>
      *
      * <pre>
-     * 当前位置  
+     * 当前位置
      * </pre>
      */
     public boolean hasCurrentLocation() {
@@ -158,7 +158,7 @@ public final class LocateRequestProtos {
      * <code>required .org.xiaoxiancai.imhere.server.business.protos.Location currentLocation = 1;</code>
      *
      * <pre>
-     * 当前位置  
+     * 当前位置
      * </pre>
      */
     public org.xiaoxiancai.imhere.common.protos.business.LocationProtos.Location getCurrentLocation() {
@@ -168,7 +168,7 @@ public final class LocateRequestProtos {
      * <code>required .org.xiaoxiancai.imhere.server.business.protos.Location currentLocation = 1;</code>
      *
      * <pre>
-     * 当前位置  
+     * 当前位置
      * </pre>
      */
     public org.xiaoxiancai.imhere.common.protos.business.LocationProtos.LocationOrBuilder getCurrentLocationOrBuilder() {
@@ -436,7 +436,7 @@ public final class LocateRequestProtos {
        * <code>required .org.xiaoxiancai.imhere.server.business.protos.Location currentLocation = 1;</code>
        *
        * <pre>
-       * 当前位置  
+       * 当前位置
        * </pre>
        */
       public boolean hasCurrentLocation() {
@@ -446,7 +446,7 @@ public final class LocateRequestProtos {
        * <code>required .org.xiaoxiancai.imhere.server.business.protos.Location currentLocation = 1;</code>
        *
        * <pre>
-       * 当前位置  
+       * 当前位置
        * </pre>
        */
       public org.xiaoxiancai.imhere.common.protos.business.LocationProtos.Location getCurrentLocation() {
@@ -460,7 +460,7 @@ public final class LocateRequestProtos {
        * <code>required .org.xiaoxiancai.imhere.server.business.protos.Location currentLocation = 1;</code>
        *
        * <pre>
-       * 当前位置  
+       * 当前位置
        * </pre>
        */
       public Builder setCurrentLocation(org.xiaoxiancai.imhere.common.protos.business.LocationProtos.Location value) {
@@ -480,7 +480,7 @@ public final class LocateRequestProtos {
        * <code>required .org.xiaoxiancai.imhere.server.business.protos.Location currentLocation = 1;</code>
        *
        * <pre>
-       * 当前位置  
+       * 当前位置
        * </pre>
        */
       public Builder setCurrentLocation(
@@ -498,7 +498,7 @@ public final class LocateRequestProtos {
        * <code>required .org.xiaoxiancai.imhere.server.business.protos.Location currentLocation = 1;</code>
        *
        * <pre>
-       * 当前位置  
+       * 当前位置
        * </pre>
        */
       public Builder mergeCurrentLocation(org.xiaoxiancai.imhere.common.protos.business.LocationProtos.Location value) {
@@ -521,7 +521,7 @@ public final class LocateRequestProtos {
        * <code>required .org.xiaoxiancai.imhere.server.business.protos.Location currentLocation = 1;</code>
        *
        * <pre>
-       * 当前位置  
+       * 当前位置
        * </pre>
        */
       public Builder clearCurrentLocation() {
@@ -538,7 +538,7 @@ public final class LocateRequestProtos {
        * <code>required .org.xiaoxiancai.imhere.server.business.protos.Location currentLocation = 1;</code>
        *
        * <pre>
-       * 当前位置  
+       * 当前位置
        * </pre>
        */
       public org.xiaoxiancai.imhere.common.protos.business.LocationProtos.Location.Builder getCurrentLocationBuilder() {
@@ -550,7 +550,7 @@ public final class LocateRequestProtos {
        * <code>required .org.xiaoxiancai.imhere.server.business.protos.Location currentLocation = 1;</code>
        *
        * <pre>
-       * 当前位置  
+       * 当前位置
        * </pre>
        */
       public org.xiaoxiancai.imhere.common.protos.business.LocationProtos.LocationOrBuilder getCurrentLocationOrBuilder() {
@@ -564,7 +564,7 @@ public final class LocateRequestProtos {
        * <code>required .org.xiaoxiancai.imhere.server.business.protos.Location currentLocation = 1;</code>
        *
        * <pre>
-       * 当前位置  
+       * 当前位置
        * </pre>
        */
       private com.google.protobuf.SingleFieldBuilder<

@@ -27,4 +27,8 @@
 			<if test="signature != null">, #{signature}</if>)
 	</insert>
 	
+	<!-- 查找好友昵称 -->
+	<select id="getFriends" parameterType="int" resultType="string">
+		select friends from `tb_friendship` where USER_ID = #{userId}
+	</select>
 </mapper>

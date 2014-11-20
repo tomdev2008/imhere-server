@@ -41,7 +41,7 @@ public class AdminServer extends AbstractServer {
     private final static int MAX_COMMAND_LENGTH = 1024;
 
     @Override
-    protected void doInit() throws Exception {
+    public void doInit() throws Exception {
         // TODO
     }
 

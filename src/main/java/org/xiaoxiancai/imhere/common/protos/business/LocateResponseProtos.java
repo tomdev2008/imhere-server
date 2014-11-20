@@ -14,56 +14,104 @@ public final class LocateResponseProtos {
 
     /**
      * <code>required bool isSuccess = 1;</code>
+     *
+     * <pre>
+     * 定位成功否
+     * </pre>
      */
     boolean hasIsSuccess();
     /**
      * <code>required bool isSuccess = 1;</code>
+     *
+     * <pre>
+     * 定位成功否
+     * </pre>
      */
     boolean getIsSuccess();
 
     /**
      * <code>required int32 status = 2;</code>
+     *
+     * <pre>
+     * 状态码
+     * </pre>
      */
     boolean hasStatus();
     /**
      * <code>required int32 status = 2;</code>
+     *
+     * <pre>
+     * 状态码
+     * </pre>
      */
     int getStatus();
 
     /**
      * <code>optional string message = 3;</code>
+     *
+     * <pre>
+     * 附件信息
+     * </pre>
      */
     boolean hasMessage();
     /**
      * <code>optional string message = 3;</code>
+     *
+     * <pre>
+     * 附件信息
+     * </pre>
      */
     java.lang.String getMessage();
     /**
      * <code>optional string message = 3;</code>
+     *
+     * <pre>
+     * 附件信息
+     * </pre>
      */
     com.google.protobuf.ByteString
         getMessageBytes();
 
     /**
      * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.Location friendLocations = 4;</code>
+     *
+     * <pre>
+     * 朋友位置信息
+     * </pre>
      */
     java.util.List<org.xiaoxiancai.imhere.common.protos.business.LocationProtos.Location> 
         getFriendLocationsList();
     /**
      * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.Location friendLocations = 4;</code>
+     *
+     * <pre>
+     * 朋友位置信息
+     * </pre>
      */
     org.xiaoxiancai.imhere.common.protos.business.LocationProtos.Location getFriendLocations(int index);
     /**
      * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.Location friendLocations = 4;</code>
+     *
+     * <pre>
+     * 朋友位置信息
+     * </pre>
      */
     int getFriendLocationsCount();
     /**
      * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.Location friendLocations = 4;</code>
+     *
+     * <pre>
+     * 朋友位置信息
+     * </pre>
      */
     java.util.List<? extends org.xiaoxiancai.imhere.common.protos.business.LocationProtos.LocationOrBuilder> 
         getFriendLocationsOrBuilderList();
     /**
      * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.Location friendLocations = 4;</code>
+     *
+     * <pre>
+     * 朋友位置信息
+     * </pre>
      */
     org.xiaoxiancai.imhere.common.protos.business.LocationProtos.LocationOrBuilder getFriendLocationsOrBuilder(
         int index);
@@ -191,12 +239,20 @@ public final class LocateResponseProtos {
     private boolean isSuccess_;
     /**
      * <code>required bool isSuccess = 1;</code>
+     *
+     * <pre>
+     * 定位成功否
+     * </pre>
      */
     public boolean hasIsSuccess() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
     /**
      * <code>required bool isSuccess = 1;</code>
+     *
+     * <pre>
+     * 定位成功否
+     * </pre>
      */
     public boolean getIsSuccess() {
       return isSuccess_;
@@ -206,12 +262,20 @@ public final class LocateResponseProtos {
     private int status_;
     /**
      * <code>required int32 status = 2;</code>
+     *
+     * <pre>
+     * 状态码
+     * </pre>
      */
     public boolean hasStatus() {
       return ((bitField0_ & 0x00000002) == 0x00000002);
     }
     /**
      * <code>required int32 status = 2;</code>
+     *
+     * <pre>
+     * 状态码
+     * </pre>
      */
     public int getStatus() {
       return status_;
@@ -221,12 +285,20 @@ public final class LocateResponseProtos {
     private java.lang.Object message_;
     /**
      * <code>optional string message = 3;</code>
+     *
+     * <pre>
+     * 附件信息
+     * </pre>
      */
     public boolean hasMessage() {
       return ((bitField0_ & 0x00000004) == 0x00000004);
     }
     /**
      * <code>optional string message = 3;</code>
+     *
+     * <pre>
+     * 附件信息
+     * </pre>
      */
     public java.lang.String getMessage() {
       java.lang.Object ref = message_;
@@ -244,6 +316,10 @@ public final class LocateResponseProtos {
     }
     /**
      * <code>optional string message = 3;</code>
+     *
+     * <pre>
+     * 附件信息
+     * </pre>
      */
     public com.google.protobuf.ByteString
         getMessageBytes() {
@@ -263,12 +339,20 @@ public final class LocateResponseProtos {
     private java.util.List<org.xiaoxiancai.imhere.common.protos.business.LocationProtos.Location> friendLocations_;
     /**
      * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.Location friendLocations = 4;</code>
+     *
+     * <pre>
+     * 朋友位置信息
+     * </pre>
      */
     public java.util.List<org.xiaoxiancai.imhere.common.protos.business.LocationProtos.Location> getFriendLocationsList() {
       return friendLocations_;
     }
     /**
      * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.Location friendLocations = 4;</code>
+     *
+     * <pre>
+     * 朋友位置信息
+     * </pre>
      */
     public java.util.List<? extends org.xiaoxiancai.imhere.common.protos.business.LocationProtos.LocationOrBuilder> 
         getFriendLocationsOrBuilderList() {
@@ -276,18 +360,30 @@ public final class LocateResponseProtos {
     }
     /**
      * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.Location friendLocations = 4;</code>
+     *
+     * <pre>
+     * 朋友位置信息
+     * </pre>
      */
     public int getFriendLocationsCount() {
       return friendLocations_.size();
     }
     /**
      * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.Location friendLocations = 4;</code>
+     *
+     * <pre>
+     * 朋友位置信息
+     * </pre>
      */
     public org.xiaoxiancai.imhere.common.protos.business.LocationProtos.Location getFriendLocations(int index) {
       return friendLocations_.get(index);
     }
     /**
      * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.Location friendLocations = 4;</code>
+     *
+     * <pre>
+     * 朋友位置信息
+     * </pre>
      */
     public org.xiaoxiancai.imhere.common.protos.business.LocationProtos.LocationOrBuilder getFriendLocationsOrBuilder(
         int index) {
@@ -640,18 +736,30 @@ public final class LocateResponseProtos {
       private boolean isSuccess_ ;
       /**
        * <code>required bool isSuccess = 1;</code>
+       *
+       * <pre>
+       * 定位成功否
+       * </pre>
        */
       public boolean hasIsSuccess() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
       /**
        * <code>required bool isSuccess = 1;</code>
+       *
+       * <pre>
+       * 定位成功否
+       * </pre>
        */
       public boolean getIsSuccess() {
         return isSuccess_;
       }
       /**
        * <code>required bool isSuccess = 1;</code>
+       *
+       * <pre>
+       * 定位成功否
+       * </pre>
        */
       public Builder setIsSuccess(boolean value) {
         bitField0_ |= 0x00000001;
@@ -661,6 +769,10 @@ public final class LocateResponseProtos {
       }
       /**
        * <code>required bool isSuccess = 1;</code>
+       *
+       * <pre>
+       * 定位成功否
+       * </pre>
        */
       public Builder clearIsSuccess() {
         bitField0_ = (bitField0_ & ~0x00000001);
@@ -672,18 +784,30 @@ public final class LocateResponseProtos {
       private int status_ ;
       /**
        * <code>required int32 status = 2;</code>
+       *
+       * <pre>
+       * 状态码
+       * </pre>
        */
       public boolean hasStatus() {
         return ((bitField0_ & 0x00000002) == 0x00000002);
       }
       /**
        * <code>required int32 status = 2;</code>
+       *
+       * <pre>
+       * 状态码
+       * </pre>
        */
       public int getStatus() {
         return status_;
       }
       /**
        * <code>required int32 status = 2;</code>
+       *
+       * <pre>
+       * 状态码
+       * </pre>
        */
       public Builder setStatus(int value) {
         bitField0_ |= 0x00000002;
@@ -693,6 +817,10 @@ public final class LocateResponseProtos {
       }
       /**
        * <code>required int32 status = 2;</code>
+       *
+       * <pre>
+       * 状态码
+       * </pre>
        */
       public Builder clearStatus() {
         bitField0_ = (bitField0_ & ~0x00000002);
@@ -704,12 +832,20 @@ public final class LocateResponseProtos {
       private java.lang.Object message_ = "";
       /**
        * <code>optional string message = 3;</code>
+       *
+       * <pre>
+       * 附件信息
+       * </pre>
        */
       public boolean hasMessage() {
         return ((bitField0_ & 0x00000004) == 0x00000004);
       }
       /**
        * <code>optional string message = 3;</code>
+       *
+       * <pre>
+       * 附件信息
+       * </pre>
        */
       public java.lang.String getMessage() {
         java.lang.Object ref = message_;
@@ -727,6 +863,10 @@ public final class LocateResponseProtos {
       }
       /**
        * <code>optional string message = 3;</code>
+       *
+       * <pre>
+       * 附件信息
+       * </pre>
        */
       public com.google.protobuf.ByteString
           getMessageBytes() {
@@ -743,6 +883,10 @@ public final class LocateResponseProtos {
       }
       /**
        * <code>optional string message = 3;</code>
+       *
+       * <pre>
+       * 附件信息
+       * </pre>
        */
       public Builder setMessage(
           java.lang.String value) {
@@ -756,6 +900,10 @@ public final class LocateResponseProtos {
       }
       /**
        * <code>optional string message = 3;</code>
+       *
+       * <pre>
+       * 附件信息
+       * </pre>
        */
       public Builder clearMessage() {
         bitField0_ = (bitField0_ & ~0x00000004);
@@ -765,6 +913,10 @@ public final class LocateResponseProtos {
       }
       /**
        * <code>optional string message = 3;</code>
+       *
+       * <pre>
+       * 附件信息
+       * </pre>
        */
       public Builder setMessageBytes(
           com.google.protobuf.ByteString value) {
@@ -791,6 +943,10 @@ public final class LocateResponseProtos {
 
       /**
        * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.Location friendLocations = 4;</code>
+       *
+       * <pre>
+       * 朋友位置信息
+       * </pre>
        */
       public java.util.List<org.xiaoxiancai.imhere.common.protos.business.LocationProtos.Location> getFriendLocationsList() {
         if (friendLocationsBuilder_ == null) {
@@ -801,6 +957,10 @@ public final class LocateResponseProtos {
       }
       /**
        * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.Location friendLocations = 4;</code>
+       *
+       * <pre>
+       * 朋友位置信息
+       * </pre>
        */
       public int getFriendLocationsCount() {
         if (friendLocationsBuilder_ == null) {
@@ -811,6 +971,10 @@ public final class LocateResponseProtos {
       }
       /**
        * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.Location friendLocations = 4;</code>
+       *
+       * <pre>
+       * 朋友位置信息
+       * </pre>
        */
       public org.xiaoxiancai.imhere.common.protos.business.LocationProtos.Location getFriendLocations(int index) {
         if (friendLocationsBuilder_ == null) {
@@ -821,6 +985,10 @@ public final class LocateResponseProtos {
       }
       /**
        * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.Location friendLocations = 4;</code>
+       *
+       * <pre>
+       * 朋友位置信息
+       * </pre>
        */
       public Builder setFriendLocations(
           int index, org.xiaoxiancai.imhere.common.protos.business.LocationProtos.Location value) {
@@ -838,6 +1006,10 @@ public final class LocateResponseProtos {
       }
       /**
        * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.Location friendLocations = 4;</code>
+       *
+       * <pre>
+       * 朋友位置信息
+       * </pre>
        */
       public Builder setFriendLocations(
           int index, org.xiaoxiancai.imhere.common.protos.business.LocationProtos.Location.Builder builderForValue) {
@@ -852,6 +1024,10 @@ public final class LocateResponseProtos {
       }
       /**
        * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.Location friendLocations = 4;</code>
+       *
+       * <pre>
+       * 朋友位置信息
+       * </pre>
        */
       public Builder addFriendLocations(org.xiaoxiancai.imhere.common.protos.business.LocationProtos.Location value) {
         if (friendLocationsBuilder_ == null) {
@@ -868,6 +1044,10 @@ public final class LocateResponseProtos {
       }
       /**
        * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.Location friendLocations = 4;</code>
+       *
+       * <pre>
+       * 朋友位置信息
+       * </pre>
        */
       public Builder addFriendLocations(
           int index, org.xiaoxiancai.imhere.common.protos.business.LocationProtos.Location value) {
@@ -885,6 +1065,10 @@ public final class LocateResponseProtos {
       }
       /**
        * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.Location friendLocations = 4;</code>
+       *
+       * <pre>
+       * 朋友位置信息
+       * </pre>
        */
       public Builder addFriendLocations(
           org.xiaoxiancai.imhere.common.protos.business.LocationProtos.Location.Builder builderForValue) {
@@ -899,6 +1083,10 @@ public final class LocateResponseProtos {
       }
       /**
        * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.Location friendLocations = 4;</code>
+       *
+       * <pre>
+       * 朋友位置信息
+       * </pre>
        */
       public Builder addFriendLocations(
           int index, org.xiaoxiancai.imhere.common.protos.business.LocationProtos.Location.Builder builderForValue) {
@@ -913,6 +1101,10 @@ public final class LocateResponseProtos {
       }
       /**
        * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.Location friendLocations = 4;</code>
+       *
+       * <pre>
+       * 朋友位置信息
+       * </pre>
        */
       public Builder addAllFriendLocations(
           java.lang.Iterable<? extends org.xiaoxiancai.imhere.common.protos.business.LocationProtos.Location> values) {
@@ -928,6 +1120,10 @@ public final class LocateResponseProtos {
       }
       /**
        * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.Location friendLocations = 4;</code>
+       *
+       * <pre>
+       * 朋友位置信息
+       * </pre>
        */
       public Builder clearFriendLocations() {
         if (friendLocationsBuilder_ == null) {
@@ -941,6 +1137,10 @@ public final class LocateResponseProtos {
       }
       /**
        * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.Location friendLocations = 4;</code>
+       *
+       * <pre>
+       * 朋友位置信息
+       * </pre>
        */
       public Builder removeFriendLocations(int index) {
         if (friendLocationsBuilder_ == null) {
@@ -954,6 +1154,10 @@ public final class LocateResponseProtos {
       }
       /**
        * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.Location friendLocations = 4;</code>
+       *
+       * <pre>
+       * 朋友位置信息
+       * </pre>
        */
       public org.xiaoxiancai.imhere.common.protos.business.LocationProtos.Location.Builder getFriendLocationsBuilder(
           int index) {
@@ -961,6 +1165,10 @@ public final class LocateResponseProtos {
       }
       /**
        * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.Location friendLocations = 4;</code>
+       *
+       * <pre>
+       * 朋友位置信息
+       * </pre>
        */
       public org.xiaoxiancai.imhere.common.protos.business.LocationProtos.LocationOrBuilder getFriendLocationsOrBuilder(
           int index) {
@@ -971,6 +1179,10 @@ public final class LocateResponseProtos {
       }
       /**
        * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.Location friendLocations = 4;</code>
+       *
+       * <pre>
+       * 朋友位置信息
+       * </pre>
        */
       public java.util.List<? extends org.xiaoxiancai.imhere.common.protos.business.LocationProtos.LocationOrBuilder> 
            getFriendLocationsOrBuilderList() {
@@ -982,6 +1194,10 @@ public final class LocateResponseProtos {
       }
       /**
        * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.Location friendLocations = 4;</code>
+       *
+       * <pre>
+       * 朋友位置信息
+       * </pre>
        */
       public org.xiaoxiancai.imhere.common.protos.business.LocationProtos.Location.Builder addFriendLocationsBuilder() {
         return getFriendLocationsFieldBuilder().addBuilder(
@@ -989,6 +1205,10 @@ public final class LocateResponseProtos {
       }
       /**
        * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.Location friendLocations = 4;</code>
+       *
+       * <pre>
+       * 朋友位置信息
+       * </pre>
        */
       public org.xiaoxiancai.imhere.common.protos.business.LocationProtos.Location.Builder addFriendLocationsBuilder(
           int index) {
@@ -997,6 +1217,10 @@ public final class LocateResponseProtos {
       }
       /**
        * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.Location friendLocations = 4;</code>
+       *
+       * <pre>
+       * 朋友位置信息
+       * </pre>
        */
       public java.util.List<org.xiaoxiancai.imhere.common.protos.business.LocationProtos.Location.Builder> 
            getFriendLocationsBuilderList() {

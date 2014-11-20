@@ -7,6 +7,6 @@ option java_outer_classname = "LocateRequestProtos";
 
 message LocateRequest {
   
-	required Location currentLocation = 1; // 当前位置  
+	required Location currentLocation = 1; // 当前位置
 
 }

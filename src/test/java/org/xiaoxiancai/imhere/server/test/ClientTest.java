@@ -22,101 +22,103 @@ import org.xiaoxiancai.imhere.common.protos.business.RegisterRequestProtos.Regis
  */
 public class ClientTest {
 
-	public static void main(String[] args) throws Exception {
-		for (int i = 0; i < 1; i++) {
-			Thread t = new Thread(new RegisterTask());
-//			Thread t = new Thread(new LocateTask());
-//			Thread t = new Thread(new LoginTask());
-			t.start();
-		}
-	}
+    public static void main(String[] args) throws Exception {
+        for (int i = 0; i < 1; i++) {
+            //            Thread t = new Thread(new RegisterTask());
+            //			Thread t = new Thread(new LoginTask());
+            Thread t = new Thread(new LocateTask());
+            t.start();
+        }
+    }
 
 }
 
 class LoginTask implements Runnable {
 
-	@Override
-	public void run() {
-		LoginClient client = new LoginClient();
-		client.setServer("localhost", 18080);
-		LoginRequest request = createLoginRequest();
-		try {
-			LoginResponse response = client.login(request);
-			System.out.println(response.getIsSuccess());
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
+    @Override
+    public void run() {
+        LoginClient client = new LoginClient();
+        client.setServer("localhost", 18080);
+        LoginRequest request = createLoginRequest();
+        try {
+            LoginResponse response = client.login(request);
+            System.out.println(response.getIsSuccess());
+        } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
 
-	/**
-	 * @return
-	 */
-	private LoginRequest createLoginRequest() {
-		LoginRequest.Builder builder = LoginRequest.newBuilder();
-		builder.setMobile("13758781751");
-		builder.setPassword("pswd-1");
-		return builder.build();
-	}
+    /**
+     * @return
+     */
+    private LoginRequest createLoginRequest() {
+        LoginRequest.Builder builder = LoginRequest.newBuilder();
+        builder.setMobile("13758781751");
+        builder.setPassword("pswd-1");
+        return builder.build();
+    }
 }
 
 class LocateTask implements Runnable {
 
-	@Override
-	public void run() {
-		LocateClient client = new LocateClient();
-		client.setServer("localhost", 18080);
-		LocateRequest request = createLocateRequest();
-		try {
-			LocateResponse response = client.locate(request);
-			System.out.println(response.getIsSuccess());
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
+    @Override
+    public void run() {
+        LocateClient client = new LocateClient();
+        client.setServer("localhost", 18080);
+        LocateRequest request = createLocateRequest();
+        try {
+            LocateResponse response = client.locate(request);
+            System.out.println(response.getIsSuccess());
+        } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
 
-	/**
-	 * @return
-	 */
-	private LocateRequest createLocateRequest() {
-		Location.Builder locBuilder = Location.newBuilder();
-		locBuilder.setLocType(61);
-		locBuilder.setLatitude(30.7783d);
-		locBuilder.setLongitude(120.7783d);
-		LocateRequest.Builder builder = LocateRequest.newBuilder();
-		builder.setCurrentLocation(locBuilder.build());
-		return builder.build();
-	}
+    /**
+     * @return
+     */
+    private LocateRequest createLocateRequest() {
+        Location.Builder locBuilder = Location.newBuilder();
+        locBuilder.setUserId(16);
+        locBuilder.setLocType(62);
+        locBuilder.setLatitude(35.7723d);
+        locBuilder.setLongitude(124.7713d);
+        LocateRequest.Builder builder = LocateRequest.newBuilder();
+        builder.setCurrentLocation(locBuilder.build());
+        return builder.build();
+    }
 }
 
 class RegisterTask implements Runnable {
 
-	@Override
-	public void run() {
-		RegisterClient client = new RegisterClient();
-		client.setServer("localhost", 18080);
-		for (int i = 12; i < 13; i++) {
-			RegisterRequest register = createRegister(i);
-			try {
-				client.register(register);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-		}
-	}
+    @Override
+    public void run() {
+        RegisterClient client = new RegisterClient();
+        client.setServer("localhost", 18080);
+        for (int i = 1; i < 10; i++) {
+            RegisterRequest register = createRegister(i);
+            try {
+                client.register(register);
+                System.out.println("register index = " + i + " success.");
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
-	/**
-	 * @return
-	 */
-	private RegisterRequest createRegister(int index) {
-		RegisterRequest.Builder request = RegisterRequest.newBuilder();
-		request.setMobile("1375878175" + index);
-		request.setNickName("nickName-" + index);
-		request.setPassword("pswd-" + index);
-		request.setEmail("email-" + index + "@gmail.com");
-		request.setSignature("signature-" + index);
-		return request.build();
-	}
+    /**
+     * @return
+     */
+    private RegisterRequest createRegister(int index) {
+        RegisterRequest.Builder request = RegisterRequest.newBuilder();
+        request.setMobile("1375878175" + index);
+        request.setNickName("nickName-" + index);
+        request.setPassword("pswd-" + index);
+        request.setEmail("email-" + index + "@gmail.com");
+        request.setSignature("signature-" + index);
+        return request.build();
+    }
 
 }

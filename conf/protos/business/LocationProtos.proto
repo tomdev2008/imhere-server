@@ -5,6 +5,8 @@ option java_outer_classname = "LocationProtos";
 
 message Location {
 
+	required int32 userId = 1;
+
 	// 61 ： GPS定位结果
 	// 62 ： 扫描整合定位依据失败。此时定位结果无效。
 	// 63 ： 网络异常，没有成功向服务器发起请求。此时定位结果无效。
@@ -14,19 +16,19 @@ message Location {
 	// 68 ： 网络连接失败时，查找本地离线定位时对应的返回结果
 	// 161： 表示网络定位结果
 	// 162~167： 服务端定位失败。
-	required int32 locType = 1; // error code
+	required int32 locType = 2; // error code
 	
-	required double latitude = 2; // 维度
+	required double latitude = 3; // 维度
 
-	required double Longitude = 3; // 经度
+	required double Longitude = 4; // 经度
 	
-	optional float speed = 4; // 速度
+	optional float speed = 5; // 速度
 	
-	optional double altitude = 5; // 海拔
+	optional double altitude = 6; // 海拔
 
-	optional bool hasRadius = 6; // 是否有定位精度半径
+	optional bool hasRadius = 7; // 是否有定位精度半径
 	
-	optional float radius = 7; // 定位精度半径
+	optional float radius = 8; // 定位精度半径
 	
-	optional string addrStr = 8; // 位置的文字描述信息
+	optional string addrStr = 9; // 位置的文字描述信息
 }

@@ -17,58 +17,58 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  */
 public abstract class AbstractServer implements Server {
 
-	/**
-	 * Logger
-	 */
-	protected Logger logger = LoggerFactory.getLogger(getClass());
+    /**
+     * Logger
+     */
+    protected Logger logger = LoggerFactory.getLogger(getClass());
 
-	/**
-	 * Spring BeanFactory
-	 */
-	protected static ApplicationContext applicationContext;
+    /**
+     * Spring BeanFactory
+     */
+    protected static ApplicationContext applicationContext;
 
-	static {
-		applicationContext = new ClassPathXmlApplicationContext(
-				"classpath*:spring/applicationContext.xml");
-	}
+    static {
+        applicationContext = new ClassPathXmlApplicationContext(
+            "classpath*:spring/applicationContext.xml");
+    }
 
-	public void start() throws Exception {
-		doInit();
-		doStart();
-	}
+    public void start() throws Exception {
+        doInit();
+        doStart();
+    }
 
-	public void stop() throws Exception {
-		doStop();
-	}
+    public void stop() throws Exception {
+        doStop();
+    }
 
-	/**
-	 * 执行初始化服务
-	 * 
-	 * @throws Exception
-	 */
-	protected abstract void doInit() throws Exception;
+    /**
+     * 执行初始化服务
+     * 
+     * @throws Exception
+     */
+    protected abstract void doInit() throws Exception;
 
-	/**
-	 * 执行启动服务
-	 * 
-	 * @throws Exception
-	 */
-	protected abstract void doStart() throws Exception;
+    /**
+     * 执行启动服务
+     * 
+     * @throws Exception
+     */
+    protected abstract void doStart() throws Exception;
 
-	/**
-	 * 执行停止服务
-	 * 
-	 * @throws Exception
-	 */
-	protected abstract void doStop() throws Exception;
+    /**
+     * 执行停止服务
+     * 
+     * @throws Exception
+     */
+    protected abstract void doStop() throws Exception;
 
-	/**
-	 * 获得Spring Bean容器
-	 * 
-	 * @return
-	 */
-	public ApplicationContext getApplicationContext() {
-		return applicationContext;
-	}
+    /**
+     * 获得Spring Bean容器
+     * 
+     * @return
+     */
+    public ApplicationContext getApplicationContext() {
+        return applicationContext;
+    }
 
 }

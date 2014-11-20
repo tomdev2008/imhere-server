@@ -13,7 +13,16 @@ public final class LocationProtos {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>required int32 locType = 1;</code>
+     * <code>required int32 userId = 1;</code>
+     */
+    boolean hasUserId();
+    /**
+     * <code>required int32 userId = 1;</code>
+     */
+    int getUserId();
+
+    /**
+     * <code>required int32 locType = 2;</code>
      *
      * <pre>
      * 61 ： GPS定位结果
@@ -29,7 +38,7 @@ public final class LocationProtos {
      */
     boolean hasLocType();
     /**
-     * <code>required int32 locType = 1;</code>
+     * <code>required int32 locType = 2;</code>
      *
      * <pre>
      * 61 ： GPS定位结果
@@ -46,7 +55,7 @@ public final class LocationProtos {
     int getLocType();
 
     /**
-     * <code>required double latitude = 2;</code>
+     * <code>required double latitude = 3;</code>
      *
      * <pre>
      * 维度
@@ -54,7 +63,7 @@ public final class LocationProtos {
      */
     boolean hasLatitude();
     /**
-     * <code>required double latitude = 2;</code>
+     * <code>required double latitude = 3;</code>
      *
      * <pre>
      * 维度
@@ -63,7 +72,7 @@ public final class LocationProtos {
     double getLatitude();
 
     /**
-     * <code>required double Longitude = 3;</code>
+     * <code>required double Longitude = 4;</code>
      *
      * <pre>
      * 经度
@@ -71,7 +80,7 @@ public final class LocationProtos {
      */
     boolean hasLongitude();
     /**
-     * <code>required double Longitude = 3;</code>
+     * <code>required double Longitude = 4;</code>
      *
      * <pre>
      * 经度
@@ -80,7 +89,7 @@ public final class LocationProtos {
     double getLongitude();
 
     /**
-     * <code>optional float speed = 4;</code>
+     * <code>optional float speed = 5;</code>
      *
      * <pre>
      * 速度
@@ -88,7 +97,7 @@ public final class LocationProtos {
      */
     boolean hasSpeed();
     /**
-     * <code>optional float speed = 4;</code>
+     * <code>optional float speed = 5;</code>
      *
      * <pre>
      * 速度
@@ -97,7 +106,7 @@ public final class LocationProtos {
     float getSpeed();
 
     /**
-     * <code>optional double altitude = 5;</code>
+     * <code>optional double altitude = 6;</code>
      *
      * <pre>
      * 海拔
@@ -105,7 +114,7 @@ public final class LocationProtos {
      */
     boolean hasAltitude();
     /**
-     * <code>optional double altitude = 5;</code>
+     * <code>optional double altitude = 6;</code>
      *
      * <pre>
      * 海拔
@@ -114,7 +123,7 @@ public final class LocationProtos {
     double getAltitude();
 
     /**
-     * <code>optional bool hasRadius = 6;</code>
+     * <code>optional bool hasRadius = 7;</code>
      *
      * <pre>
      * 是否有定位精度半径
@@ -122,7 +131,7 @@ public final class LocationProtos {
      */
     boolean hasHasRadius();
     /**
-     * <code>optional bool hasRadius = 6;</code>
+     * <code>optional bool hasRadius = 7;</code>
      *
      * <pre>
      * 是否有定位精度半径
@@ -131,7 +140,7 @@ public final class LocationProtos {
     boolean getHasRadius();
 
     /**
-     * <code>optional float radius = 7;</code>
+     * <code>optional float radius = 8;</code>
      *
      * <pre>
      * 定位精度半径
@@ -139,7 +148,7 @@ public final class LocationProtos {
      */
     boolean hasRadius();
     /**
-     * <code>optional float radius = 7;</code>
+     * <code>optional float radius = 8;</code>
      *
      * <pre>
      * 定位精度半径
@@ -148,7 +157,7 @@ public final class LocationProtos {
     float getRadius();
 
     /**
-     * <code>optional string addrStr = 8;</code>
+     * <code>optional string addrStr = 9;</code>
      *
      * <pre>
      * 位置的文字描述信息
@@ -156,7 +165,7 @@ public final class LocationProtos {
      */
     boolean hasAddrStr();
     /**
-     * <code>optional string addrStr = 8;</code>
+     * <code>optional string addrStr = 9;</code>
      *
      * <pre>
      * 位置的文字描述信息
@@ -164,7 +173,7 @@ public final class LocationProtos {
      */
     java.lang.String getAddrStr();
     /**
-     * <code>optional string addrStr = 8;</code>
+     * <code>optional string addrStr = 9;</code>
      *
      * <pre>
      * 位置的文字描述信息
@@ -227,42 +236,47 @@ public final class LocationProtos {
             }
             case 8: {
               bitField0_ |= 0x00000001;
-              locType_ = input.readInt32();
+              userId_ = input.readInt32();
               break;
             }
-            case 17: {
+            case 16: {
               bitField0_ |= 0x00000002;
-              latitude_ = input.readDouble();
+              locType_ = input.readInt32();
               break;
             }
             case 25: {
               bitField0_ |= 0x00000004;
+              latitude_ = input.readDouble();
+              break;
+            }
+            case 33: {
+              bitField0_ |= 0x00000008;
               longitude_ = input.readDouble();
               break;
             }
-            case 37: {
-              bitField0_ |= 0x00000008;
+            case 45: {
+              bitField0_ |= 0x00000010;
               speed_ = input.readFloat();
               break;
             }
-            case 41: {
-              bitField0_ |= 0x00000010;
+            case 49: {
+              bitField0_ |= 0x00000020;
               altitude_ = input.readDouble();
               break;
             }
-            case 48: {
-              bitField0_ |= 0x00000020;
+            case 56: {
+              bitField0_ |= 0x00000040;
               hasRadius_ = input.readBool();
               break;
             }
-            case 61: {
-              bitField0_ |= 0x00000040;
+            case 69: {
+              bitField0_ |= 0x00000080;
               radius_ = input.readFloat();
               break;
             }
-            case 66: {
+            case 74: {
               com.google.protobuf.ByteString bs = input.readBytes();
-              bitField0_ |= 0x00000080;
+              bitField0_ |= 0x00000100;
               addrStr_ = bs;
               break;
             }
@@ -306,10 +320,25 @@ public final class LocationProtos {
     }
 
     private int bitField0_;
-    public static final int LOCTYPE_FIELD_NUMBER = 1;
+    public static final int USERID_FIELD_NUMBER = 1;
+    private int userId_;
+    /**
+     * <code>required int32 userId = 1;</code>
+     */
+    public boolean hasUserId() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    /**
+     * <code>required int32 userId = 1;</code>
+     */
+    public int getUserId() {
+      return userId_;
+    }
+
+    public static final int LOCTYPE_FIELD_NUMBER = 2;
     private int locType_;
     /**
-     * <code>required int32 locType = 1;</code>
+     * <code>required int32 locType = 2;</code>
      *
      * <pre>
      * 61 ： GPS定位结果
@@ -324,10 +353,10 @@ public final class LocationProtos {
      * </pre>
      */
     public boolean hasLocType() {
-      return ((bitField0_ & 0x00000001) == 0x00000001);
+      return ((bitField0_ & 0x00000002) == 0x00000002);
     }
     /**
-     * <code>required int32 locType = 1;</code>
+     * <code>required int32 locType = 2;</code>
      *
      * <pre>
      * 61 ： GPS定位结果
@@ -345,20 +374,20 @@ public final class LocationProtos {
       return locType_;
     }
 
-    public static final int LATITUDE_FIELD_NUMBER = 2;
+    public static final int LATITUDE_FIELD_NUMBER = 3;
     private double latitude_;
     /**
-     * <code>required double latitude = 2;</code>
+     * <code>required double latitude = 3;</code>
      *
      * <pre>
      * 维度
      * </pre>
      */
     public boolean hasLatitude() {
-      return ((bitField0_ & 0x00000002) == 0x00000002);
+      return ((bitField0_ & 0x00000004) == 0x00000004);
     }
     /**
-     * <code>required double latitude = 2;</code>
+     * <code>required double latitude = 3;</code>
      *
      * <pre>
      * 维度
@@ -368,20 +397,20 @@ public final class LocationProtos {
       return latitude_;
     }
 
-    public static final int LONGITUDE_FIELD_NUMBER = 3;
+    public static final int LONGITUDE_FIELD_NUMBER = 4;
     private double longitude_;
     /**
-     * <code>required double Longitude = 3;</code>
+     * <code>required double Longitude = 4;</code>
      *
      * <pre>
      * 经度
      * </pre>
      */
     public boolean hasLongitude() {
-      return ((bitField0_ & 0x00000004) == 0x00000004);
+      return ((bitField0_ & 0x00000008) == 0x00000008);
     }
     /**
-     * <code>required double Longitude = 3;</code>
+     * <code>required double Longitude = 4;</code>
      *
      * <pre>
      * 经度
@@ -391,20 +420,20 @@ public final class LocationProtos {
       return longitude_;
     }
 
-    public static final int SPEED_FIELD_NUMBER = 4;
+    public static final int SPEED_FIELD_NUMBER = 5;
     private float speed_;
     /**
-     * <code>optional float speed = 4;</code>
+     * <code>optional float speed = 5;</code>
      *
      * <pre>
      * 速度
      * </pre>
      */
     public boolean hasSpeed() {
-      return ((bitField0_ & 0x00000008) == 0x00000008);
+      return ((bitField0_ & 0x00000010) == 0x00000010);
     }
     /**
-     * <code>optional float speed = 4;</code>
+     * <code>optional float speed = 5;</code>
      *
      * <pre>
      * 速度
@@ -414,20 +443,20 @@ public final class LocationProtos {
       return speed_;
     }
 
-    public static final int ALTITUDE_FIELD_NUMBER = 5;
+    public static final int ALTITUDE_FIELD_NUMBER = 6;
     private double altitude_;
     /**
-     * <code>optional double altitude = 5;</code>
+     * <code>optional double altitude = 6;</code>
      *
      * <pre>
      * 海拔
      * </pre>
      */
     public boolean hasAltitude() {
-      return ((bitField0_ & 0x00000010) == 0x00000010);
+      return ((bitField0_ & 0x00000020) == 0x00000020);
     }
     /**
-     * <code>optional double altitude = 5;</code>
+     * <code>optional double altitude = 6;</code>
      *
      * <pre>
      * 海拔
@@ -437,20 +466,20 @@ public final class LocationProtos {
       return altitude_;
     }
 
-    public static final int HASRADIUS_FIELD_NUMBER = 6;
+    public static final int HASRADIUS_FIELD_NUMBER = 7;
     private boolean hasRadius_;
     /**
-     * <code>optional bool hasRadius = 6;</code>
+     * <code>optional bool hasRadius = 7;</code>
      *
      * <pre>
      * 是否有定位精度半径
      * </pre>
      */
     public boolean hasHasRadius() {
-      return ((bitField0_ & 0x00000020) == 0x00000020);
+      return ((bitField0_ & 0x00000040) == 0x00000040);
     }
     /**
-     * <code>optional bool hasRadius = 6;</code>
+     * <code>optional bool hasRadius = 7;</code>
      *
      * <pre>
      * 是否有定位精度半径
@@ -460,20 +489,20 @@ public final class LocationProtos {
       return hasRadius_;
     }
 
-    public static final int RADIUS_FIELD_NUMBER = 7;
+    public static final int RADIUS_FIELD_NUMBER = 8;
     private float radius_;
     /**
-     * <code>optional float radius = 7;</code>
+     * <code>optional float radius = 8;</code>
      *
      * <pre>
      * 定位精度半径
      * </pre>
      */
     public boolean hasRadius() {
-      return ((bitField0_ & 0x00000040) == 0x00000040);
+      return ((bitField0_ & 0x00000080) == 0x00000080);
     }
     /**
-     * <code>optional float radius = 7;</code>
+     * <code>optional float radius = 8;</code>
      *
      * <pre>
      * 定位精度半径
@@ -483,20 +512,20 @@ public final class LocationProtos {
       return radius_;
     }
 
-    public static final int ADDRSTR_FIELD_NUMBER = 8;
+    public static final int ADDRSTR_FIELD_NUMBER = 9;
     private java.lang.Object addrStr_;
     /**
-     * <code>optional string addrStr = 8;</code>
+     * <code>optional string addrStr = 9;</code>
      *
      * <pre>
      * 位置的文字描述信息
      * </pre>
      */
     public boolean hasAddrStr() {
-      return ((bitField0_ & 0x00000080) == 0x00000080);
+      return ((bitField0_ & 0x00000100) == 0x00000100);
     }
     /**
-     * <code>optional string addrStr = 8;</code>
+     * <code>optional string addrStr = 9;</code>
      *
      * <pre>
      * 位置的文字描述信息
@@ -517,7 +546,7 @@ public final class LocationProtos {
       }
     }
     /**
-     * <code>optional string addrStr = 8;</code>
+     * <code>optional string addrStr = 9;</code>
      *
      * <pre>
      * 位置的文字描述信息
@@ -538,6 +567,7 @@ public final class LocationProtos {
     }
 
     private void initFields() {
+      userId_ = 0;
       locType_ = 0;
       latitude_ = 0D;
       longitude_ = 0D;
@@ -553,6 +583,10 @@ public final class LocationProtos {
       if (isInitialized == 1) return true;
       if (isInitialized == 0) return false;
 
+      if (!hasUserId()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
       if (!hasLocType()) {
         memoizedIsInitialized = 0;
         return false;
@@ -573,28 +607,31 @@ public final class LocationProtos {
                         throws java.io.IOException {
       getSerializedSize();
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeInt32(1, locType_);
+        output.writeInt32(1, userId_);
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeDouble(2, latitude_);
+        output.writeInt32(2, locType_);
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeDouble(3, longitude_);
+        output.writeDouble(3, latitude_);
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
-        output.writeFloat(4, speed_);
+        output.writeDouble(4, longitude_);
       }
       if (((bitField0_ & 0x00000010) == 0x00000010)) {
-        output.writeDouble(5, altitude_);
+        output.writeFloat(5, speed_);
       }
       if (((bitField0_ & 0x00000020) == 0x00000020)) {
-        output.writeBool(6, hasRadius_);
+        output.writeDouble(6, altitude_);
       }
       if (((bitField0_ & 0x00000040) == 0x00000040)) {
-        output.writeFloat(7, radius_);
+        output.writeBool(7, hasRadius_);
       }
       if (((bitField0_ & 0x00000080) == 0x00000080)) {
-        output.writeBytes(8, getAddrStrBytes());
+        output.writeFloat(8, radius_);
+      }
+      if (((bitField0_ & 0x00000100) == 0x00000100)) {
+        output.writeBytes(9, getAddrStrBytes());
       }
       getUnknownFields().writeTo(output);
     }
@@ -607,35 +644,39 @@ public final class LocationProtos {
       size = 0;
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(1, locType_);
+          .computeInt32Size(1, userId_);
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeDoubleSize(2, latitude_);
+          .computeInt32Size(2, locType_);
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeDoubleSize(3, longitude_);
+          .computeDoubleSize(3, latitude_);
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(4, speed_);
+          .computeDoubleSize(4, longitude_);
       }
       if (((bitField0_ & 0x00000010) == 0x00000010)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeDoubleSize(5, altitude_);
+          .computeFloatSize(5, speed_);
       }
       if (((bitField0_ & 0x00000020) == 0x00000020)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(6, hasRadius_);
+          .computeDoubleSize(6, altitude_);
       }
       if (((bitField0_ & 0x00000040) == 0x00000040)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(7, radius_);
+          .computeBoolSize(7, hasRadius_);
       }
       if (((bitField0_ & 0x00000080) == 0x00000080)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(8, getAddrStrBytes());
+          .computeFloatSize(8, radius_);
+      }
+      if (((bitField0_ & 0x00000100) == 0x00000100)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(9, getAddrStrBytes());
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -754,22 +795,24 @@ public final class LocationProtos {
 
       public Builder clear() {
         super.clear();
-        locType_ = 0;
+        userId_ = 0;
         bitField0_ = (bitField0_ & ~0x00000001);
-        latitude_ = 0D;
+        locType_ = 0;
         bitField0_ = (bitField0_ & ~0x00000002);
-        longitude_ = 0D;
+        latitude_ = 0D;
         bitField0_ = (bitField0_ & ~0x00000004);
-        speed_ = 0F;
+        longitude_ = 0D;
         bitField0_ = (bitField0_ & ~0x00000008);
-        altitude_ = 0D;
+        speed_ = 0F;
         bitField0_ = (bitField0_ & ~0x00000010);
-        hasRadius_ = false;
+        altitude_ = 0D;
         bitField0_ = (bitField0_ & ~0x00000020);
-        radius_ = 0F;
+        hasRadius_ = false;
         bitField0_ = (bitField0_ & ~0x00000040);
-        addrStr_ = "";
+        radius_ = 0F;
         bitField0_ = (bitField0_ & ~0x00000080);
+        addrStr_ = "";
+        bitField0_ = (bitField0_ & ~0x00000100);
         return this;
       }
 
@@ -801,33 +844,37 @@ public final class LocationProtos {
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
           to_bitField0_ |= 0x00000001;
         }
-        result.locType_ = locType_;
+        result.userId_ = userId_;
         if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
           to_bitField0_ |= 0x00000002;
         }
-        result.latitude_ = latitude_;
+        result.locType_ = locType_;
         if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
           to_bitField0_ |= 0x00000004;
         }
-        result.longitude_ = longitude_;
+        result.latitude_ = latitude_;
         if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
           to_bitField0_ |= 0x00000008;
         }
-        result.speed_ = speed_;
+        result.longitude_ = longitude_;
         if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
           to_bitField0_ |= 0x00000010;
         }
-        result.altitude_ = altitude_;
+        result.speed_ = speed_;
         if (((from_bitField0_ & 0x00000020) == 0x00000020)) {
           to_bitField0_ |= 0x00000020;
         }
-        result.hasRadius_ = hasRadius_;
+        result.altitude_ = altitude_;
         if (((from_bitField0_ & 0x00000040) == 0x00000040)) {
           to_bitField0_ |= 0x00000040;
         }
-        result.radius_ = radius_;
+        result.hasRadius_ = hasRadius_;
         if (((from_bitField0_ & 0x00000080) == 0x00000080)) {
           to_bitField0_ |= 0x00000080;
+        }
+        result.radius_ = radius_;
+        if (((from_bitField0_ & 0x00000100) == 0x00000100)) {
+          to_bitField0_ |= 0x00000100;
         }
         result.addrStr_ = addrStr_;
         result.bitField0_ = to_bitField0_;
@@ -846,6 +893,9 @@ public final class LocationProtos {
 
       public Builder mergeFrom(org.xiaoxiancai.imhere.common.protos.business.LocationProtos.Location other) {
         if (other == org.xiaoxiancai.imhere.common.protos.business.LocationProtos.Location.getDefaultInstance()) return this;
+        if (other.hasUserId()) {
+          setUserId(other.getUserId());
+        }
         if (other.hasLocType()) {
           setLocType(other.getLocType());
         }
@@ -868,7 +918,7 @@ public final class LocationProtos {
           setRadius(other.getRadius());
         }
         if (other.hasAddrStr()) {
-          bitField0_ |= 0x00000080;
+          bitField0_ |= 0x00000100;
           addrStr_ = other.addrStr_;
           onChanged();
         }
@@ -877,6 +927,10 @@ public final class LocationProtos {
       }
 
       public final boolean isInitialized() {
+        if (!hasUserId()) {
+          
+          return false;
+        }
         if (!hasLocType()) {
           
           return false;
@@ -911,9 +965,41 @@ public final class LocationProtos {
       }
       private int bitField0_;
 
+      private int userId_ ;
+      /**
+       * <code>required int32 userId = 1;</code>
+       */
+      public boolean hasUserId() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      /**
+       * <code>required int32 userId = 1;</code>
+       */
+      public int getUserId() {
+        return userId_;
+      }
+      /**
+       * <code>required int32 userId = 1;</code>
+       */
+      public Builder setUserId(int value) {
+        bitField0_ |= 0x00000001;
+        userId_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>required int32 userId = 1;</code>
+       */
+      public Builder clearUserId() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        userId_ = 0;
+        onChanged();
+        return this;
+      }
+
       private int locType_ ;
       /**
-       * <code>required int32 locType = 1;</code>
+       * <code>required int32 locType = 2;</code>
        *
        * <pre>
        * 61 ： GPS定位结果
@@ -928,10 +1014,10 @@ public final class LocationProtos {
        * </pre>
        */
       public boolean hasLocType() {
-        return ((bitField0_ & 0x00000001) == 0x00000001);
+        return ((bitField0_ & 0x00000002) == 0x00000002);
       }
       /**
-       * <code>required int32 locType = 1;</code>
+       * <code>required int32 locType = 2;</code>
        *
        * <pre>
        * 61 ： GPS定位结果
@@ -949,7 +1035,7 @@ public final class LocationProtos {
         return locType_;
       }
       /**
-       * <code>required int32 locType = 1;</code>
+       * <code>required int32 locType = 2;</code>
        *
        * <pre>
        * 61 ： GPS定位结果
@@ -964,13 +1050,13 @@ public final class LocationProtos {
        * </pre>
        */
       public Builder setLocType(int value) {
-        bitField0_ |= 0x00000001;
+        bitField0_ |= 0x00000002;
         locType_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>required int32 locType = 1;</code>
+       * <code>required int32 locType = 2;</code>
        *
        * <pre>
        * 61 ： GPS定位结果
@@ -985,7 +1071,7 @@ public final class LocationProtos {
        * </pre>
        */
       public Builder clearLocType() {
-        bitField0_ = (bitField0_ & ~0x00000001);
+        bitField0_ = (bitField0_ & ~0x00000002);
         locType_ = 0;
         onChanged();
         return this;
@@ -993,17 +1079,17 @@ public final class LocationProtos {
 
       private double latitude_ ;
       /**
-       * <code>required double latitude = 2;</code>
+       * <code>required double latitude = 3;</code>
        *
        * <pre>
        * 维度
        * </pre>
        */
       public boolean hasLatitude() {
-        return ((bitField0_ & 0x00000002) == 0x00000002);
+        return ((bitField0_ & 0x00000004) == 0x00000004);
       }
       /**
-       * <code>required double latitude = 2;</code>
+       * <code>required double latitude = 3;</code>
        *
        * <pre>
        * 维度
@@ -1013,27 +1099,27 @@ public final class LocationProtos {
         return latitude_;
       }
       /**
-       * <code>required double latitude = 2;</code>
+       * <code>required double latitude = 3;</code>
        *
        * <pre>
        * 维度
        * </pre>
        */
       public Builder setLatitude(double value) {
-        bitField0_ |= 0x00000002;
+        bitField0_ |= 0x00000004;
         latitude_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>required double latitude = 2;</code>
+       * <code>required double latitude = 3;</code>
        *
        * <pre>
        * 维度
        * </pre>
        */
       public Builder clearLatitude() {
-        bitField0_ = (bitField0_ & ~0x00000002);
+        bitField0_ = (bitField0_ & ~0x00000004);
         latitude_ = 0D;
         onChanged();
         return this;
@@ -1041,17 +1127,17 @@ public final class LocationProtos {
 
       private double longitude_ ;
       /**
-       * <code>required double Longitude = 3;</code>
+       * <code>required double Longitude = 4;</code>
        *
        * <pre>
        * 经度
        * </pre>
        */
       public boolean hasLongitude() {
-        return ((bitField0_ & 0x00000004) == 0x00000004);
+        return ((bitField0_ & 0x00000008) == 0x00000008);
       }
       /**
-       * <code>required double Longitude = 3;</code>
+       * <code>required double Longitude = 4;</code>
        *
        * <pre>
        * 经度
@@ -1061,27 +1147,27 @@ public final class LocationProtos {
         return longitude_;
       }
       /**
-       * <code>required double Longitude = 3;</code>
+       * <code>required double Longitude = 4;</code>
        *
        * <pre>
        * 经度
        * </pre>
        */
       public Builder setLongitude(double value) {
-        bitField0_ |= 0x00000004;
+        bitField0_ |= 0x00000008;
         longitude_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>required double Longitude = 3;</code>
+       * <code>required double Longitude = 4;</code>
        *
        * <pre>
        * 经度
        * </pre>
        */
       public Builder clearLongitude() {
-        bitField0_ = (bitField0_ & ~0x00000004);
+        bitField0_ = (bitField0_ & ~0x00000008);
         longitude_ = 0D;
         onChanged();
         return this;
@@ -1089,17 +1175,17 @@ public final class LocationProtos {
 
       private float speed_ ;
       /**
-       * <code>optional float speed = 4;</code>
+       * <code>optional float speed = 5;</code>
        *
        * <pre>
        * 速度
        * </pre>
        */
       public boolean hasSpeed() {
-        return ((bitField0_ & 0x00000008) == 0x00000008);
+        return ((bitField0_ & 0x00000010) == 0x00000010);
       }
       /**
-       * <code>optional float speed = 4;</code>
+       * <code>optional float speed = 5;</code>
        *
        * <pre>
        * 速度
@@ -1109,27 +1195,27 @@ public final class LocationProtos {
         return speed_;
       }
       /**
-       * <code>optional float speed = 4;</code>
+       * <code>optional float speed = 5;</code>
        *
        * <pre>
        * 速度
        * </pre>
        */
       public Builder setSpeed(float value) {
-        bitField0_ |= 0x00000008;
+        bitField0_ |= 0x00000010;
         speed_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>optional float speed = 4;</code>
+       * <code>optional float speed = 5;</code>
        *
        * <pre>
        * 速度
        * </pre>
        */
       public Builder clearSpeed() {
-        bitField0_ = (bitField0_ & ~0x00000008);
+        bitField0_ = (bitField0_ & ~0x00000010);
         speed_ = 0F;
         onChanged();
         return this;
@@ -1137,17 +1223,17 @@ public final class LocationProtos {
 
       private double altitude_ ;
       /**
-       * <code>optional double altitude = 5;</code>
+       * <code>optional double altitude = 6;</code>
        *
        * <pre>
        * 海拔
        * </pre>
        */
       public boolean hasAltitude() {
-        return ((bitField0_ & 0x00000010) == 0x00000010);
+        return ((bitField0_ & 0x00000020) == 0x00000020);
       }
       /**
-       * <code>optional double altitude = 5;</code>
+       * <code>optional double altitude = 6;</code>
        *
        * <pre>
        * 海拔
@@ -1157,27 +1243,27 @@ public final class LocationProtos {
         return altitude_;
       }
       /**
-       * <code>optional double altitude = 5;</code>
+       * <code>optional double altitude = 6;</code>
        *
        * <pre>
        * 海拔
        * </pre>
        */
       public Builder setAltitude(double value) {
-        bitField0_ |= 0x00000010;
+        bitField0_ |= 0x00000020;
         altitude_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>optional double altitude = 5;</code>
+       * <code>optional double altitude = 6;</code>
        *
        * <pre>
        * 海拔
        * </pre>
        */
       public Builder clearAltitude() {
-        bitField0_ = (bitField0_ & ~0x00000010);
+        bitField0_ = (bitField0_ & ~0x00000020);
         altitude_ = 0D;
         onChanged();
         return this;
@@ -1185,17 +1271,17 @@ public final class LocationProtos {
 
       private boolean hasRadius_ ;
       /**
-       * <code>optional bool hasRadius = 6;</code>
+       * <code>optional bool hasRadius = 7;</code>
        *
        * <pre>
        * 是否有定位精度半径
        * </pre>
        */
       public boolean hasHasRadius() {
-        return ((bitField0_ & 0x00000020) == 0x00000020);
+        return ((bitField0_ & 0x00000040) == 0x00000040);
       }
       /**
-       * <code>optional bool hasRadius = 6;</code>
+       * <code>optional bool hasRadius = 7;</code>
        *
        * <pre>
        * 是否有定位精度半径
@@ -1205,27 +1291,27 @@ public final class LocationProtos {
         return hasRadius_;
       }
       /**
-       * <code>optional bool hasRadius = 6;</code>
+       * <code>optional bool hasRadius = 7;</code>
        *
        * <pre>
        * 是否有定位精度半径
        * </pre>
        */
       public Builder setHasRadius(boolean value) {
-        bitField0_ |= 0x00000020;
+        bitField0_ |= 0x00000040;
         hasRadius_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>optional bool hasRadius = 6;</code>
+       * <code>optional bool hasRadius = 7;</code>
        *
        * <pre>
        * 是否有定位精度半径
        * </pre>
        */
       public Builder clearHasRadius() {
-        bitField0_ = (bitField0_ & ~0x00000020);
+        bitField0_ = (bitField0_ & ~0x00000040);
         hasRadius_ = false;
         onChanged();
         return this;
@@ -1233,17 +1319,17 @@ public final class LocationProtos {
 
       private float radius_ ;
       /**
-       * <code>optional float radius = 7;</code>
+       * <code>optional float radius = 8;</code>
        *
        * <pre>
        * 定位精度半径
        * </pre>
        */
       public boolean hasRadius() {
-        return ((bitField0_ & 0x00000040) == 0x00000040);
+        return ((bitField0_ & 0x00000080) == 0x00000080);
       }
       /**
-       * <code>optional float radius = 7;</code>
+       * <code>optional float radius = 8;</code>
        *
        * <pre>
        * 定位精度半径
@@ -1253,27 +1339,27 @@ public final class LocationProtos {
         return radius_;
       }
       /**
-       * <code>optional float radius = 7;</code>
+       * <code>optional float radius = 8;</code>
        *
        * <pre>
        * 定位精度半径
        * </pre>
        */
       public Builder setRadius(float value) {
-        bitField0_ |= 0x00000040;
+        bitField0_ |= 0x00000080;
         radius_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>optional float radius = 7;</code>
+       * <code>optional float radius = 8;</code>
        *
        * <pre>
        * 定位精度半径
        * </pre>
        */
       public Builder clearRadius() {
-        bitField0_ = (bitField0_ & ~0x00000040);
+        bitField0_ = (bitField0_ & ~0x00000080);
         radius_ = 0F;
         onChanged();
         return this;
@@ -1281,17 +1367,17 @@ public final class LocationProtos {
 
       private java.lang.Object addrStr_ = "";
       /**
-       * <code>optional string addrStr = 8;</code>
+       * <code>optional string addrStr = 9;</code>
        *
        * <pre>
        * 位置的文字描述信息
        * </pre>
        */
       public boolean hasAddrStr() {
-        return ((bitField0_ & 0x00000080) == 0x00000080);
+        return ((bitField0_ & 0x00000100) == 0x00000100);
       }
       /**
-       * <code>optional string addrStr = 8;</code>
+       * <code>optional string addrStr = 9;</code>
        *
        * <pre>
        * 位置的文字描述信息
@@ -1312,7 +1398,7 @@ public final class LocationProtos {
         }
       }
       /**
-       * <code>optional string addrStr = 8;</code>
+       * <code>optional string addrStr = 9;</code>
        *
        * <pre>
        * 位置的文字描述信息
@@ -1332,7 +1418,7 @@ public final class LocationProtos {
         }
       }
       /**
-       * <code>optional string addrStr = 8;</code>
+       * <code>optional string addrStr = 9;</code>
        *
        * <pre>
        * 位置的文字描述信息
@@ -1343,26 +1429,26 @@ public final class LocationProtos {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000080;
+  bitField0_ |= 0x00000100;
         addrStr_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>optional string addrStr = 8;</code>
+       * <code>optional string addrStr = 9;</code>
        *
        * <pre>
        * 位置的文字描述信息
        * </pre>
        */
       public Builder clearAddrStr() {
-        bitField0_ = (bitField0_ & ~0x00000080);
+        bitField0_ = (bitField0_ & ~0x00000100);
         addrStr_ = getDefaultInstance().getAddrStr();
         onChanged();
         return this;
       }
       /**
-       * <code>optional string addrStr = 8;</code>
+       * <code>optional string addrStr = 9;</code>
        *
        * <pre>
        * 位置的文字描述信息
@@ -1373,7 +1459,7 @@ public final class LocationProtos {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000080;
+  bitField0_ |= 0x00000100;
         addrStr_ = value;
         onChanged();
         return this;
@@ -1405,13 +1491,13 @@ public final class LocationProtos {
   static {
     java.lang.String[] descriptorData = {
       "\n\024LocationProtos.proto\022-org.xiaoxiancai." +
-      "imhere.server.business.protos\"\225\001\n\010Locati" +
-      "on\022\017\n\007locType\030\001 \002(\005\022\020\n\010latitude\030\002 \002(\001\022\021\n" +
-      "\tLongitude\030\003 \002(\001\022\r\n\005speed\030\004 \001(\002\022\020\n\010altit" +
-      "ude\030\005 \001(\001\022\021\n\thasRadius\030\006 \001(\010\022\016\n\006radius\030\007" +
-      " \001(\002\022\017\n\007addrStr\030\010 \001(\tB?\n-org.xiaoxiancai" +
-      ".imhere.common.protos.businessB\016Location" +
-      "Protos"
+      "imhere.server.business.protos\"\245\001\n\010Locati" +
+      "on\022\016\n\006userId\030\001 \002(\005\022\017\n\007locType\030\002 \002(\005\022\020\n\010l" +
+      "atitude\030\003 \002(\001\022\021\n\tLongitude\030\004 \002(\001\022\r\n\005spee" +
+      "d\030\005 \001(\002\022\020\n\010altitude\030\006 \001(\001\022\021\n\thasRadius\030\007" +
+      " \001(\010\022\016\n\006radius\030\010 \001(\002\022\017\n\007addrStr\030\t \001(\tB?\n" +
+      "-org.xiaoxiancai.imhere.common.protos.bu" +
+      "sinessB\016LocationProtos"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -1430,7 +1516,7 @@ public final class LocationProtos {
     internal_static_org_xiaoxiancai_imhere_server_business_protos_Location_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_org_xiaoxiancai_imhere_server_business_protos_Location_descriptor,
-        new java.lang.String[] { "LocType", "Latitude", "Longitude", "Speed", "Altitude", "HasRadius", "Radius", "AddrStr", });
+        new java.lang.String[] { "UserId", "LocType", "Latitude", "Longitude", "Speed", "Altitude", "HasRadius", "Radius", "AddrStr", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)
