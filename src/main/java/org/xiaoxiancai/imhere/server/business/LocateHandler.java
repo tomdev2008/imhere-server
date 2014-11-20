@@ -30,12 +30,17 @@ public class LocateHandler extends AbstractBusinessHandler {
     private LinkServer linkServer;
 
     // TODO
-    private Map<Integer, Location> allLatestLocationMap;
+    private Map<Integer, Location> allLatestLocation;
 
     /**
      * 所有用户当前位置
      */
-    private Map<Integer, Location> allCurrentLocationMap;
+    private Map<Integer, Location> allCurrentLocation;
+    
+    /**
+     * 所有用户位置更新时间
+     */
+    private Map<Integer, Long> allLocationUpdateTime;
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg)
@@ -48,10 +53,17 @@ public class LocateHandler extends AbstractBusinessHandler {
         logger.debug("receive client locate request = {}", request);
 
         Location currentLocation = request.getCurrentLocation();
-        allLatestLocationMap = linkServer.getLatestLocation();
-        allCurrentLocationMap = linkServer.getCurrentLocation();
+        
+        // TODO
+        allLatestLocation = linkServer.getLatestLocation();
+        allCurrentLocation = linkServer.getCurrentLocation();
+        allLocationUpdateTime = linkServer.getLocationUpdateTime();
+       
         int userId = currentLocation.getUserId();
-        allCurrentLocationMap.put(userId, currentLocation);
+        allCurrentLocation.put(userId, currentLocation);
+        allLocationUpdateTime.put(userId, System.currentTimeMillis());
+        
+        logger.debug("all location update time = {}", allLocationUpdateTime);
         UserMapper userMapper = (UserMapper) applicationContext
             .getBean("userMapper");
         String friendNicknames = userMapper.getFriends(userId);
@@ -123,9 +135,9 @@ public class LocateHandler extends AbstractBusinessHandler {
     private Map<Integer, Location> getFriendCurrentLocations(
         Set<Integer> friendIds) {
         Map<Integer, Location> friendCurLocMap = new HashMap<Integer, Location>();
-        if (allCurrentLocationMap != null) {
+        if (allCurrentLocation != null) {
             for (Integer friendId: friendIds) {
-                Location location = allCurrentLocationMap.get(friendId);
+                Location location = allCurrentLocation.get(friendId);
                 if (location != null) {
                     friendCurLocMap.put(friendId, location);
                 }
@@ -144,9 +156,9 @@ public class LocateHandler extends AbstractBusinessHandler {
     private Map<Integer, Location> getFriendLatestLocations(
         Set<Integer> friendIds) {
         Map<Integer, Location> friendLatestLocMap = new HashMap<Integer, Location>();
-        if (allLatestLocationMap != null) {
+        if (allLatestLocation != null) {
             for (Integer friendId: friendIds) {
-                Location location = allLatestLocationMap.get(friendId);
+                Location location = allLatestLocation.get(friendId);
                 if (location != null) {
                     friendLatestLocMap.put(friendId, location);
                 }

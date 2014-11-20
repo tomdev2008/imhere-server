@@ -66,10 +66,13 @@ class LocateTask implements Runnable {
     public void run() {
         LocateClient client = new LocateClient();
         client.setServer("localhost", 18080);
-        LocateRequest request = createLocateRequest();
+        LocateRequest request1 = createLocateRequest1();
+        LocateRequest request2 = createLocateRequest2();
+        LocateRequest request3 = createLocateRequest3();
         try {
-            LocateResponse response = client.locate(request);
-            System.out.println(response.getIsSuccess());
+            LocateResponse response1 = client.locate(request1);
+            LocateResponse response2 = client.locate(request2);
+            LocateResponse response3 = client.locate(request3);
         } catch (InterruptedException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -79,15 +82,35 @@ class LocateTask implements Runnable {
     /**
      * @return
      */
-    private LocateRequest createLocateRequest() {
+    private LocateRequest createLocateRequest1() {
         Location.Builder locBuilder = Location.newBuilder();
-        locBuilder.setUserId(14);
+        locBuilder.setUserId(3);
         locBuilder.setLocType(62);
-        locBuilder.setLatitude(31.7723d);
-        locBuilder.setLongitude(144.7713d);
+        locBuilder.setLatitude(31.3333d);
+        locBuilder.setLongitude(141.3333d);
         LocateRequest.Builder builder = LocateRequest.newBuilder();
         builder.setCurrentLocation(locBuilder.build());
         return builder.build();
+    }
+    private LocateRequest createLocateRequest2() {
+    	Location.Builder locBuilder = Location.newBuilder();
+    	locBuilder.setUserId(4);
+    	locBuilder.setLocType(62);
+    	locBuilder.setLatitude(32.4444d);
+    	locBuilder.setLongitude(142.4444d);
+    	LocateRequest.Builder builder = LocateRequest.newBuilder();
+    	builder.setCurrentLocation(locBuilder.build());
+    	return builder.build();
+    }
+    private LocateRequest createLocateRequest3() {
+    	Location.Builder locBuilder = Location.newBuilder();
+    	locBuilder.setUserId(5);
+    	locBuilder.setLocType(62);
+    	locBuilder.setLatitude(33.5555d);
+    	locBuilder.setLongitude(143.5555d);
+    	LocateRequest.Builder builder = LocateRequest.newBuilder();
+    	builder.setCurrentLocation(locBuilder.build());
+    	return builder.build();
     }
 }
 
