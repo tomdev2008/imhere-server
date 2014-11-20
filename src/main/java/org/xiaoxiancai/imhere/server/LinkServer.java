@@ -1,8 +1,5 @@
 /**
- * @(#)LinkServer.java, 2014-11-20.
- *
- * Copyright 2014 Netease, Inc. All rights reserved.
- * NETEASE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ * 
  */
 package org.xiaoxiancai.imhere.server;
 
