@@ -23,6 +23,6 @@ public class AddFriendHandler extends AbstractBusinessHandler {
 			return;
 		}
 		AddFriendRequest request = (AddFriendRequest) msg;
-		
+		int fromUserId = request.getFromUserId();
 	}
 }
