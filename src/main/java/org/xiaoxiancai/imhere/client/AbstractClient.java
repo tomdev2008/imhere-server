@@ -41,7 +41,7 @@ import org.xiaoxiancai.imhere.common.protos.common.BusinessTypeProtos.BusinessTy
  * 
  * @author xiannenglin
  */
-public abstract class AbstractClient {
+public abstract class AbstractClient implements Client {
 
     /**
      * Logger
@@ -76,7 +76,12 @@ public abstract class AbstractClient {
     /**
      * 命令分发器
      */
-    private CommandDispatcher commandDispatcher = new CommandDispatcher();
+    private CommandDispatcher commandDispatcher;
+
+    /**
+     * 是否已初始化
+     */
+    private boolean isInited;
 
     /**
      * 设置服务器地址
@@ -87,6 +92,15 @@ public abstract class AbstractClient {
     public void setServer(String serverHost, int serverPort) {
         this.serverHost = serverHost;
         this.serverPort = serverPort;
+    }
+
+    /**
+     * 初始化工作
+     */
+    private void init() {
+        commandDispatcher = new CommandDispatcher();
+        commandDispatcher.setClient(this);
+        isInited = true;
     }
 
     /**
@@ -112,6 +126,11 @@ public abstract class AbstractClient {
      */
     protected Channel connect(String serverHost, int serverPort,
         BusinessType businessType) throws InterruptedException {
+
+        if (!isInited) {
+            init();
+        }
+
         if (channelMap.containsKey(businessType)) {
             Channel channel = channelMap.get(businessType);
             if (channel.isActive()) {
