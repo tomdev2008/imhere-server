@@ -17,52 +17,30 @@ import org.slf4j.LoggerFactory;
  * @author linxianneng
  */
 public abstract class AbstractClientHandler extends
-		ChannelInboundHandlerAdapter {
+    ChannelInboundHandlerAdapter {
 
-	/**
-	 * 客户端
-	 */
-	protected AbstractClient client;
+    /**
+     * 客户端
+     */
+    protected AbstractClient client;
 
-	/**
-	 * 操作成功否
-	 * 
-	 * @return
-	 */
-	public abstract boolean isSuccess();
+    /**
+     * Logger
+     */
+    protected Logger logger = LoggerFactory.getLogger(getClass());
 
-	/**
-	 * 操作状态
-	 * 
-	 * @return
-	 */
-	public abstract int getStatus();
+    public AbstractClientHandler() {}
 
-	/**
-	 * 服务端返回的注册信息
-	 * 
-	 * @return
-	 */
-	public abstract String getMessage();
+    public AbstractClientHandler(AbstractClient client) {
+        this.client = client;
+    }
 
-	/**
-	 * Logger
-	 */
-	protected Logger logger = LoggerFactory.getLogger(getClass());
+    public AbstractClient getClient() {
+        return client;
+    }
 
-	public AbstractClientHandler() {
-	}
-
-	public AbstractClientHandler(AbstractClient client) {
-		this.client = client;
-	}
-
-	public AbstractClient getClient() {
-		return client;
-	}
-
-	public void setClient(AbstractClient client) {
-		this.client = client;
-	}
+    public void setClient(AbstractClient client) {
+        this.client = client;
+    }
 
 }

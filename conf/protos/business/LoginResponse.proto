@@ -1,6 +1,7 @@
 package org.xiaoxiancai.imhere.server.business.protos;
 
 import "LocationProtos.proto";
+import "CommandProtos.proto";
 
 option java_package = "org.xiaoxiancai.imhere.common.protos.business";
 option java_outer_classname = "LoginResponseProtos";
@@ -11,7 +12,9 @@ message LoginResponse {
 
 	required int32 status = 2; // 状态码
 
-	optional string message = 3; // 附件信息
+	optional string message = 3; // 附加信息
 	
 	repeated Location friendLocations = 4; // 朋友位置信息
+	
+	repeated Command commands = 5; // 需要执行的命令 
 }

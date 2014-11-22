@@ -1,8 +1,7 @@
-/**
- * @(#)LocateHandler.java, 2014-11-17.
- *
- * Copyright 2014 Netease, Inc. All rights reserved.
- * NETEASE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+/* 
+ **********************************************************************
+ * Copyright (c) 2014, xianneng.lin@gmail.com All Rights Reserved. 
+ **********************************************************************
  */
 package org.xiaoxiancai.imhere.client.locate;
 
@@ -18,15 +17,15 @@ import org.xiaoxiancai.imhere.common.protos.business.LocateResponseProtos.Locate
  */
 public class LocateHandler extends AbstractClientHandler {
 
-	/**
+    /**
      * 定位响应
      */
     private LocateResponse response;
-    
+
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg)
         throws Exception {
-    	if (msg instanceof LocateResponse) {
+        if (msg instanceof LocateResponse) {
             response = (LocateResponse) msg;;
             logger.debug("locate response from server = {}", response);
             synchronized (this) {
@@ -35,26 +34,10 @@ public class LocateHandler extends AbstractClientHandler {
         }
     }
 
-	/**
-	 * @return the response
-	 */
-	public LocateResponse getResponse() {
-		return response;
-	}
-
-
-	@Override
-	public boolean isSuccess() {
-		return response.getIsSuccess();
-	}
-
-	@Override
-	public String getMessage() {
-		return response.getMessage();
-	}
-
-	@Override
-	public int getStatus() {
-		return response.getStatus();
-	}
+    /**
+     * @return the response
+     */
+    public LocateResponse getResponse() {
+        return response;
+    }
 }

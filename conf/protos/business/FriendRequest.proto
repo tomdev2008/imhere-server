@@ -1,0 +1,10 @@
+package org.xiaoxiancai.imhere.server.business.protos;
+
+option java_package = "org.xiaoxiancai.imhere.common.protos.business";
+option java_outer_classname = "FriendResponseProtos";
+
+message FriendResponse {
+  
+	required bool accept = 1; // 是否接受
+
+}

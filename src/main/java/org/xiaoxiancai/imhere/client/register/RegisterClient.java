@@ -23,48 +23,48 @@ import org.xiaoxiancai.imhere.common.protos.common.BusinessTypeProtos.BusinessTy
  */
 public class RegisterClient extends AbstractClient {
 
-	/**
-	 * 注册用户
-	 * 
-	 * @param request
-	 * @throws InterruptedException
-	 */
-	public RegisterResponse register(RegisterRequest request) throws InterruptedException {
-		Channel channel = connect(BusinessType.REGISTER);
-		if (channel != null && channel.isActive()) {
-			logger.debug("send register user to server");
-			ChannelPipeline pipeline = channel.pipeline();
-			logger.debug("register client pipeline before adding handler = {}",
-					pipeline);
-			if (pipeline.get(ClientConstant.DECODER_REGISTER) == null) {
-				pipeline.addLast(
-						ClientConstant.DECODER_REGISTER,
-						new ProtobufDecoder(RegisterResponse
-								.getDefaultInstance()));
-			}
+    /**
+     * 注册用户
+     * 
+     * @param request
+     * @throws InterruptedException
+     */
+    public RegisterResponse register(RegisterRequest request)
+        throws InterruptedException {
+        Channel channel = connect(BusinessType.REGISTER);
+        if (channel != null && channel.isActive()) {
+            logger.debug("send register user to server");
+            ChannelPipeline pipeline = channel.pipeline();
+            logger.debug("register client pipeline before adding handler = {}",
+                pipeline);
+            if (pipeline.get(ClientConstant.DECODER_REGISTER) == null) {
+                pipeline.addLast(ClientConstant.DECODER_REGISTER,
+                    new ProtobufDecoder(RegisterResponse.getDefaultInstance()));
+            }
 
-			if (pipeline.get(ClientConstant.HANDLER_REGISTER) == null) {
-				pipeline.addLast(ClientConstant.HANDLER_REGISTER,
-						new RegisterHandler());
-			}
-			RegisterHandler registerHandler = (RegisterHandler) pipeline
-					.get(ClientConstant.HANDLER_REGISTER);
-			logger.debug("register client pipeline after adding handler = {}",
-					pipeline);
-			synchronized (registerHandler) {
-				channel.writeAndFlush(request).sync();
-				registerHandler.wait();
-			}
-			boolean isSuccess = registerHandler.isSuccess();
-			int status = registerHandler.getStatus();
-			String message = registerHandler.getMessage();
-			logger.info(
-					"register user is success = {}, status = {}, message = {}",
-					isSuccess, status, message);
-			return registerHandler.getResponse();
-		} else {
-			logger.error("channel is null or inactive");
-			return null;
-		}
-	}
+            if (pipeline.get(ClientConstant.HANDLER_REGISTER) == null) {
+                pipeline.addLast(ClientConstant.HANDLER_REGISTER,
+                    new RegisterHandler());
+            }
+            RegisterHandler registerHandler = (RegisterHandler) pipeline
+                .get(ClientConstant.HANDLER_REGISTER);
+            logger.debug("register client pipeline after adding handler = {}",
+                pipeline);
+            synchronized (registerHandler) {
+                channel.writeAndFlush(request).sync();
+                registerHandler.wait();
+            }
+            RegisterResponse response = registerHandler.getResponse();
+            boolean isSuccess = response.getIsSuccess();
+            int status = response.getStatus();
+            String message = response.getMessage();
+            logger.info(
+                "register user is success = {}, status = {}, message = {}",
+                isSuccess, status, message);
+            return response;
+        } else {
+            logger.error("channel is null or inactive");
+            return null;
+        }
+    }
 }

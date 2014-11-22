@@ -5,9 +5,12 @@
  */
 package org.xiaoxiancai.imhere.server.test;
 
+import org.xiaoxiancai.imhere.client.friend.FriendClient;
 import org.xiaoxiancai.imhere.client.locate.LocateClient;
 import org.xiaoxiancai.imhere.client.login.LoginClient;
 import org.xiaoxiancai.imhere.client.register.RegisterClient;
+import org.xiaoxiancai.imhere.common.protos.business.FriendRequestProtos.FriendRequest;
+import org.xiaoxiancai.imhere.common.protos.business.FriendResponseProtos.FriendResponse;
 import org.xiaoxiancai.imhere.common.protos.business.LocateRequestProtos.LocateRequest;
 import org.xiaoxiancai.imhere.common.protos.business.LocateResponseProtos.LocateResponse;
 import org.xiaoxiancai.imhere.common.protos.business.LocationProtos.Location;
@@ -24,11 +27,42 @@ public class ClientTest {
 
     public static void main(String[] args) throws Exception {
         for (int i = 0; i < 1; i++) {
-            //            Thread t = new Thread(new RegisterTask());
-            //			Thread t = new Thread(new LoginTask());
-            Thread t = new Thread(new LocateTask());
+            // Thread t = new Thread(new RegisterTask());
+            // Thread t = new Thread(new LoginTask());
+            // Thread t = new Thread(new LocateTask());
+            Thread t = new Thread(new AddFriendTask());
             t.start();
         }
+    }
+
+}
+
+class AddFriendTask implements Runnable {
+
+    @Override
+    public void run() {
+        FriendClient client = new FriendClient();
+        client.setServer("localhost", 18080);
+        FriendRequest request = createFriendRequest();
+        try {
+            FriendResponse response = client.addFriend(request);
+            System.out.println(response.getAccept());
+        } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * @return
+     */
+    private FriendRequest createFriendRequest() {
+        FriendRequest.Builder builder = FriendRequest.newBuilder();
+        builder.setFromUserId(20);
+        builder.setFromUserMobile("13758781758");
+        builder.setFromUserNickname("nickName-7");
+        builder.setToUserMobile("13758781760");
+        return builder.build();
     }
 
 }
@@ -92,25 +126,27 @@ class LocateTask implements Runnable {
         builder.setCurrentLocation(locBuilder.build());
         return builder.build();
     }
+
     private LocateRequest createLocateRequest2() {
-    	Location.Builder locBuilder = Location.newBuilder();
-    	locBuilder.setUserId(4);
-    	locBuilder.setLocType(62);
-    	locBuilder.setLatitude(32.4444d);
-    	locBuilder.setLongitude(142.4444d);
-    	LocateRequest.Builder builder = LocateRequest.newBuilder();
-    	builder.setCurrentLocation(locBuilder.build());
-    	return builder.build();
+        Location.Builder locBuilder = Location.newBuilder();
+        locBuilder.setUserId(4);
+        locBuilder.setLocType(62);
+        locBuilder.setLatitude(32.4444d);
+        locBuilder.setLongitude(142.4444d);
+        LocateRequest.Builder builder = LocateRequest.newBuilder();
+        builder.setCurrentLocation(locBuilder.build());
+        return builder.build();
     }
+
     private LocateRequest createLocateRequest3() {
-    	Location.Builder locBuilder = Location.newBuilder();
-    	locBuilder.setUserId(5);
-    	locBuilder.setLocType(62);
-    	locBuilder.setLatitude(33.5555d);
-    	locBuilder.setLongitude(143.5555d);
-    	LocateRequest.Builder builder = LocateRequest.newBuilder();
-    	builder.setCurrentLocation(locBuilder.build());
-    	return builder.build();
+        Location.Builder locBuilder = Location.newBuilder();
+        locBuilder.setUserId(5);
+        locBuilder.setLocType(62);
+        locBuilder.setLatitude(33.5555d);
+        locBuilder.setLongitude(143.5555d);
+        LocateRequest.Builder builder = LocateRequest.newBuilder();
+        builder.setCurrentLocation(locBuilder.build());
+        return builder.build();
     }
 }
 

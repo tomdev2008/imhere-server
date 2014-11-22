@@ -35,28 +35,11 @@ public class RegisterHandler extends AbstractClientHandler {
         }
     }
 
-
     /**
-	 * @return the response
-	 */
-	public RegisterResponse getResponse() {
-		return response;
-	}
-
-
-
-	@Override
-    public boolean isSuccess() {
-        return response.getIsSuccess();
+     * @return the response
+     */
+    public RegisterResponse getResponse() {
+        return response;
     }
 
-    @Override
-    public String getMessage() {
-        return response.getMessage();
-    }
-
-	@Override
-	public int getStatus() {
-		return response.getStatus();
-	}
 }

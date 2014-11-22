@@ -10,33 +10,17 @@ import org.xiaoxiancai.imhere.common.protos.business.LoginResponseProtos.LoginRe
 
 /**
  * 登录处理器
- *
+ * 
  * @author xiannenglin
  */
 public class LoginHandler extends AbstractClientHandler {
 
-	private LoginResponse response;
+    private LoginResponse response;
 
-	/**
-	 * @return the response
-	 */
-	public LoginResponse getResponse() {
-		return response;
-	}
-
-	@Override
-	public boolean isSuccess() {
-		return response.getIsSuccess();
-	}
-
-	@Override
-	public int getStatus() {
-		return response.getStatus();
-	}
-
-	@Override
-	public String getMessage() {
-		return response.getMessage();
-	}
-
+    /**
+     * @return the response
+     */
+    public LoginResponse getResponse() {
+        return response;
+    }
 }

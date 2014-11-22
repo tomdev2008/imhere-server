@@ -1,10 +1,12 @@
 package org.xiaoxiancai.imhere.server.business.protos;
 
 option java_package = "org.xiaoxiancai.imhere.common.protos.business";
-option java_outer_classname = "AddFriendResponseProtos";
+option java_outer_classname = "CommandProtos";
 
-message AddFriendResponse {
+enum Command {
   
-	required bool accept = 1; // 是否接受
+	UPDATE_FRIENDLIST = 0;
+	
+	UPDATE_INFOLIST = 1;
 
 }

@@ -43,6 +43,19 @@ public final class RegisterResponseProtos {
      */
     com.google.protobuf.ByteString
         getMessageBytes();
+
+    /**
+     * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.Command commands = 4;</code>
+     */
+    java.util.List<org.xiaoxiancai.imhere.common.protos.business.CommandProtos.Command> getCommandsList();
+    /**
+     * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.Command commands = 4;</code>
+     */
+    int getCommandsCount();
+    /**
+     * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.Command commands = 4;</code>
+     */
+    org.xiaoxiancai.imhere.common.protos.business.CommandProtos.Command getCommands(int index);
   }
   /**
    * Protobuf type {@code org.xiaoxiancai.imhere.server.business.protos.RegisterResponse}
@@ -112,6 +125,39 @@ public final class RegisterResponseProtos {
               message_ = bs;
               break;
             }
+            case 32: {
+              int rawValue = input.readEnum();
+              org.xiaoxiancai.imhere.common.protos.business.CommandProtos.Command value = org.xiaoxiancai.imhere.common.protos.business.CommandProtos.Command.valueOf(rawValue);
+              if (value == null) {
+                unknownFields.mergeVarintField(4, rawValue);
+                } else {
+                if (!((mutable_bitField0_ & 0x00000008) == 0x00000008)) {
+                  commands_ = new java.util.ArrayList<org.xiaoxiancai.imhere.common.protos.business.CommandProtos.Command>();
+                  mutable_bitField0_ |= 0x00000008;
+                }
+                commands_.add(value);
+              }
+              break;
+            }
+            case 34: {
+              int length = input.readRawVarint32();
+              int oldLimit = input.pushLimit(length);
+              while(input.getBytesUntilLimit() > 0) {
+                int rawValue = input.readEnum();
+                org.xiaoxiancai.imhere.common.protos.business.CommandProtos.Command value = org.xiaoxiancai.imhere.common.protos.business.CommandProtos.Command.valueOf(rawValue);
+                if (value == null) {
+                  unknownFields.mergeVarintField(4, rawValue);
+                  } else {
+                  if (!((mutable_bitField0_ & 0x00000008) == 0x00000008)) {
+                    commands_ = new java.util.ArrayList<org.xiaoxiancai.imhere.common.protos.business.CommandProtos.Command>();
+                    mutable_bitField0_ |= 0x00000008;
+                  }
+                  commands_.add(value);
+                }
+              }
+              input.popLimit(oldLimit);
+              break;
+            }
           }
         }
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -120,6 +166,9 @@ public final class RegisterResponseProtos {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e.getMessage()).setUnfinishedMessage(this);
       } finally {
+        if (((mutable_bitField0_ & 0x00000008) == 0x00000008)) {
+          commands_ = java.util.Collections.unmodifiableList(commands_);
+        }
         this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
@@ -224,10 +273,32 @@ public final class RegisterResponseProtos {
       }
     }
 
+    public static final int COMMANDS_FIELD_NUMBER = 4;
+    private java.util.List<org.xiaoxiancai.imhere.common.protos.business.CommandProtos.Command> commands_;
+    /**
+     * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.Command commands = 4;</code>
+     */
+    public java.util.List<org.xiaoxiancai.imhere.common.protos.business.CommandProtos.Command> getCommandsList() {
+      return commands_;
+    }
+    /**
+     * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.Command commands = 4;</code>
+     */
+    public int getCommandsCount() {
+      return commands_.size();
+    }
+    /**
+     * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.Command commands = 4;</code>
+     */
+    public org.xiaoxiancai.imhere.common.protos.business.CommandProtos.Command getCommands(int index) {
+      return commands_.get(index);
+    }
+
     private void initFields() {
       isSuccess_ = false;
       status_ = 0;
       message_ = "";
+      commands_ = java.util.Collections.emptyList();
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -259,6 +330,9 @@ public final class RegisterResponseProtos {
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         output.writeBytes(3, getMessageBytes());
       }
+      for (int i = 0; i < commands_.size(); i++) {
+        output.writeEnum(4, commands_.get(i).getNumber());
+      }
       getUnknownFields().writeTo(output);
     }
 
@@ -279,6 +353,15 @@ public final class RegisterResponseProtos {
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
           .computeBytesSize(3, getMessageBytes());
+      }
+      {
+        int dataSize = 0;
+        for (int i = 0; i < commands_.size(); i++) {
+          dataSize += com.google.protobuf.CodedOutputStream
+            .computeEnumSizeNoTag(commands_.get(i).getNumber());
+        }
+        size += dataSize;
+        size += 1 * commands_.size();
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -403,6 +486,8 @@ public final class RegisterResponseProtos {
         bitField0_ = (bitField0_ & ~0x00000002);
         message_ = "";
         bitField0_ = (bitField0_ & ~0x00000004);
+        commands_ = java.util.Collections.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000008);
         return this;
       }
 
@@ -443,6 +528,11 @@ public final class RegisterResponseProtos {
           to_bitField0_ |= 0x00000004;
         }
         result.message_ = message_;
+        if (((bitField0_ & 0x00000008) == 0x00000008)) {
+          commands_ = java.util.Collections.unmodifiableList(commands_);
+          bitField0_ = (bitField0_ & ~0x00000008);
+        }
+        result.commands_ = commands_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -468,6 +558,16 @@ public final class RegisterResponseProtos {
         if (other.hasMessage()) {
           bitField0_ |= 0x00000004;
           message_ = other.message_;
+          onChanged();
+        }
+        if (!other.commands_.isEmpty()) {
+          if (commands_.isEmpty()) {
+            commands_ = other.commands_;
+            bitField0_ = (bitField0_ & ~0x00000008);
+          } else {
+            ensureCommandsIsMutable();
+            commands_.addAll(other.commands_);
+          }
           onChanged();
         }
         this.mergeUnknownFields(other.getUnknownFields());
@@ -645,6 +745,78 @@ public final class RegisterResponseProtos {
         return this;
       }
 
+      private java.util.List<org.xiaoxiancai.imhere.common.protos.business.CommandProtos.Command> commands_ =
+        java.util.Collections.emptyList();
+      private void ensureCommandsIsMutable() {
+        if (!((bitField0_ & 0x00000008) == 0x00000008)) {
+          commands_ = new java.util.ArrayList<org.xiaoxiancai.imhere.common.protos.business.CommandProtos.Command>(commands_);
+          bitField0_ |= 0x00000008;
+        }
+      }
+      /**
+       * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.Command commands = 4;</code>
+       */
+      public java.util.List<org.xiaoxiancai.imhere.common.protos.business.CommandProtos.Command> getCommandsList() {
+        return java.util.Collections.unmodifiableList(commands_);
+      }
+      /**
+       * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.Command commands = 4;</code>
+       */
+      public int getCommandsCount() {
+        return commands_.size();
+      }
+      /**
+       * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.Command commands = 4;</code>
+       */
+      public org.xiaoxiancai.imhere.common.protos.business.CommandProtos.Command getCommands(int index) {
+        return commands_.get(index);
+      }
+      /**
+       * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.Command commands = 4;</code>
+       */
+      public Builder setCommands(
+          int index, org.xiaoxiancai.imhere.common.protos.business.CommandProtos.Command value) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        ensureCommandsIsMutable();
+        commands_.set(index, value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.Command commands = 4;</code>
+       */
+      public Builder addCommands(org.xiaoxiancai.imhere.common.protos.business.CommandProtos.Command value) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        ensureCommandsIsMutable();
+        commands_.add(value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.Command commands = 4;</code>
+       */
+      public Builder addAllCommands(
+          java.lang.Iterable<? extends org.xiaoxiancai.imhere.common.protos.business.CommandProtos.Command> values) {
+        ensureCommandsIsMutable();
+        com.google.protobuf.AbstractMessageLite.Builder.addAll(
+            values, commands_);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.Command commands = 4;</code>
+       */
+      public Builder clearCommands() {
+        commands_ = java.util.Collections.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000008);
+        onChanged();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:org.xiaoxiancai.imhere.server.business.protos.RegisterResponse)
     }
 
@@ -671,11 +843,13 @@ public final class RegisterResponseProtos {
   static {
     java.lang.String[] descriptorData = {
       "\n\034RegisterResponseProtos.proto\022-org.xiao" +
-      "xiancai.imhere.server.business.protos\"F\n" +
-      "\020RegisterResponse\022\021\n\tisSuccess\030\001 \002(\010\022\016\n\006" +
-      "status\030\002 \002(\005\022\017\n\007message\030\003 \001(\tBG\n-org.xia" +
-      "oxiancai.imhere.common.protos.businessB\026" +
-      "RegisterResponseProtos"
+      "xiancai.imhere.server.business.protos\032\023C" +
+      "ommandProtos.proto\"\220\001\n\020RegisterResponse\022" +
+      "\021\n\tisSuccess\030\001 \002(\010\022\016\n\006status\030\002 \002(\005\022\017\n\007me" +
+      "ssage\030\003 \001(\t\022H\n\010commands\030\004 \003(\01626.org.xiao" +
+      "xiancai.imhere.server.business.protos.Co" +
+      "mmandBG\n-org.xiaoxiancai.imhere.common.p" +
+      "rotos.businessB\026RegisterResponseProtos"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -688,13 +862,15 @@ public final class RegisterResponseProtos {
     com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
+          org.xiaoxiancai.imhere.common.protos.business.CommandProtos.getDescriptor(),
         }, assigner);
     internal_static_org_xiaoxiancai_imhere_server_business_protos_RegisterResponse_descriptor =
       getDescriptor().getMessageTypes().get(0);
     internal_static_org_xiaoxiancai_imhere_server_business_protos_RegisterResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_org_xiaoxiancai_imhere_server_business_protos_RegisterResponse_descriptor,
-        new java.lang.String[] { "IsSuccess", "Status", "Message", });
+        new java.lang.String[] { "IsSuccess", "Status", "Message", "Commands", });
+    org.xiaoxiancai.imhere.common.protos.business.CommandProtos.getDescriptor();
   }
 
   // @@protoc_insertion_point(outer_class_scope)
