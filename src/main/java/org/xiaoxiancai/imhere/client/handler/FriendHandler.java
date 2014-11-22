@@ -3,9 +3,8 @@
  * Copyright (c) 2014, xianneng.lin@gmail.com All Rights Reserved. 
  **********************************************************************
  */
-package org.xiaoxiancai.imhere.client.friend;
+package org.xiaoxiancai.imhere.client.handler;
 
-import org.xiaoxiancai.imhere.client.AbstractClientHandler;
 import org.xiaoxiancai.imhere.common.protos.business.FriendResponseProtos.FriendResponse;
 
 /**

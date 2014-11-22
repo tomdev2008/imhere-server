@@ -4,11 +4,10 @@
  * Copyright 2014 Netease, Inc. All rights reserved.
  * NETEASE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
-package org.xiaoxiancai.imhere.client.register;
+package org.xiaoxiancai.imhere.client.handler;
 
 import io.netty.channel.ChannelHandlerContext;
 
-import org.xiaoxiancai.imhere.client.AbstractClientHandler;
 import org.xiaoxiancai.imhere.common.protos.business.RegisterResponseProtos.RegisterResponse;
 
 /**

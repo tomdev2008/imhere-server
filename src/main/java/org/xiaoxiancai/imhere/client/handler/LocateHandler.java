@@ -3,11 +3,10 @@
  * Copyright (c) 2014, xianneng.lin@gmail.com All Rights Reserved. 
  **********************************************************************
  */
-package org.xiaoxiancai.imhere.client.locate;
+package org.xiaoxiancai.imhere.client.handler;
 
 import io.netty.channel.ChannelHandlerContext;
 
-import org.xiaoxiancai.imhere.client.AbstractClientHandler;
 import org.xiaoxiancai.imhere.common.protos.business.LocateResponseProtos.LocateResponse;
 
 /**

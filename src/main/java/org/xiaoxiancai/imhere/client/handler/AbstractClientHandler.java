@@ -4,12 +4,13 @@
  * Copyright 2014 Netease, Inc. All rights reserved.
  * NETEASE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
-package org.xiaoxiancai.imhere.client;
+package org.xiaoxiancai.imhere.client.handler;
 
 import io.netty.channel.ChannelInboundHandlerAdapter;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.xiaoxiancai.imhere.client.AbstractClient;
 
 /**
  * 客户端抽象处理器

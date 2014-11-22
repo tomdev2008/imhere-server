@@ -5,10 +5,7 @@
  */
 package org.xiaoxiancai.imhere.server.test;
 
-import org.xiaoxiancai.imhere.client.friend.FriendClient;
-import org.xiaoxiancai.imhere.client.locate.LocateClient;
-import org.xiaoxiancai.imhere.client.login.LoginClient;
-import org.xiaoxiancai.imhere.client.register.RegisterClient;
+import org.xiaoxiancai.imhere.client.DefaultClient;
 import org.xiaoxiancai.imhere.common.protos.business.FriendRequestProtos.FriendRequest;
 import org.xiaoxiancai.imhere.common.protos.business.FriendResponseProtos.FriendResponse;
 import org.xiaoxiancai.imhere.common.protos.business.LocateRequestProtos.LocateRequest;
@@ -41,7 +38,7 @@ class AddFriendTask implements Runnable {
 
     @Override
     public void run() {
-        FriendClient client = new FriendClient();
+        DefaultClient client = new DefaultClient();
         client.setServer("localhost", 18080);
         FriendRequest request = createFriendRequest();
         try {
@@ -71,7 +68,7 @@ class LoginTask implements Runnable {
 
     @Override
     public void run() {
-        LoginClient client = new LoginClient();
+        DefaultClient client = new DefaultClient();
         client.setServer("localhost", 18080);
         LoginRequest request = createLoginRequest();
         try {
@@ -98,7 +95,7 @@ class LocateTask implements Runnable {
 
     @Override
     public void run() {
-        LocateClient client = new LocateClient();
+        DefaultClient client = new DefaultClient();
         client.setServer("localhost", 18080);
         LocateRequest request1 = createLocateRequest1();
         LocateRequest request2 = createLocateRequest2();
@@ -154,7 +151,7 @@ class RegisterTask implements Runnable {
 
     @Override
     public void run() {
-        RegisterClient client = new RegisterClient();
+        DefaultClient client = new DefaultClient();
         client.setServer("localhost", 18080);
         for (int i = 1; i < 10; i++) {
             RegisterRequest register = createRegister(i);

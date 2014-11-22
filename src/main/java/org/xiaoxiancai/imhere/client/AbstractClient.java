@@ -29,6 +29,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.xiaoxiancai.imhere.client.handler.ConnectionHandler;
 import org.xiaoxiancai.imhere.common.protos.business.CommandProtos.Command;
 import org.xiaoxiancai.imhere.common.protos.common.BusinessSelectorProtos.BusinessSelector;
 import org.xiaoxiancai.imhere.common.protos.common.BusinessTypeProtos.BusinessType;
@@ -42,12 +43,15 @@ import org.xiaoxiancai.imhere.common.protos.common.BusinessTypeProtos.BusinessTy
  */
 public abstract class AbstractClient {
 
+    /**
+     * Logger
+     */
     protected Logger logger = LoggerFactory.getLogger(getClass());
 
     /**
      * 最长等待时间, 3min
      */
-    private static final int MAX_WAIT_MIN = 3;
+    private static final int MAX_WAIT_MINS = 3;
 
     /**
      * 服务器Host
@@ -68,6 +72,11 @@ public abstract class AbstractClient {
      * 客户端连接处理器
      */
     private ConnectionHandler connectionHandler;
+
+    /**
+     * 命令分发器
+     */
+    private CommandDispatcher commandDispatcher = new CommandDispatcher();
 
     /**
      * 设置服务器地址
@@ -133,7 +142,7 @@ public abstract class AbstractClient {
 
         ChannelFuture connectFuture = bootStrap.connect(serverHost, serverPort);
         Channel channel = connectFuture.channel();
-        if (connectFuture.await(MAX_WAIT_MIN, TimeUnit.MINUTES)) {
+        if (connectFuture.await(MAX_WAIT_MINS, TimeUnit.MINUTES)) {
             boolean connected = connectFuture.isSuccess();
             if (connected) {
                 BusinessSelector.Builder selectorBuilder = BusinessSelector
@@ -160,8 +169,6 @@ public abstract class AbstractClient {
      * @param commands
      */
     protected void executeCommand(List<Command> commands) {
-        for (Command command: commands) {
-            // TODO
-        }
+        commandDispatcher.dispatchCommand(commands);
     }
 }
