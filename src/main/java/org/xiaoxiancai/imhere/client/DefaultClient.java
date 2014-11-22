@@ -11,13 +11,13 @@ import io.netty.channel.Channel;
 import io.netty.channel.ChannelPipeline;
 import io.netty.handler.codec.protobuf.ProtobufDecoder;
 
-import org.xiaoxiancai.imhere.client.handler.FriendHandler;
+import org.xiaoxiancai.imhere.client.handler.AddFriendHandler;
 import org.xiaoxiancai.imhere.client.handler.LocateHandler;
 import org.xiaoxiancai.imhere.client.handler.LoginHandler;
 import org.xiaoxiancai.imhere.client.handler.RegisterHandler;
 import org.xiaoxiancai.imhere.client.utils.ClientConstant;
-import org.xiaoxiancai.imhere.common.protos.business.FriendRequestProtos.FriendRequest;
-import org.xiaoxiancai.imhere.common.protos.business.FriendResponseProtos.FriendResponse;
+import org.xiaoxiancai.imhere.common.protos.business.AddFriendRequestProtos.AddFriendRequest;
+import org.xiaoxiancai.imhere.common.protos.business.AddFriendResponseProtos.AddFriendResponse;
 import org.xiaoxiancai.imhere.common.protos.business.LocateRequestProtos.LocateRequest;
 import org.xiaoxiancai.imhere.common.protos.business.LocateResponseProtos.LocateResponse;
 import org.xiaoxiancai.imhere.common.protos.business.LoginRequestProtos.LoginRequest;
@@ -39,7 +39,8 @@ public class DefaultClient extends AbstractClient {
      * @param request
      * @throws InterruptedException
      */
-    public RegisterResponse register(RegisterRequest request)
+    @Override
+	public RegisterResponse register(RegisterRequest request)
         throws InterruptedException {
         Channel channel = connect(BusinessType.REGISTER);
         if (channel != null && channel.isActive()) {
@@ -85,7 +86,8 @@ public class DefaultClient extends AbstractClient {
      * @return
      * @throws InterruptedException
      */
-    public LoginResponse login(LoginRequest request)
+    @Override
+	public LoginResponse login(LoginRequest request)
         throws InterruptedException {
         Channel channel = connect(BusinessType.LOGIN);
         if (channel != null && channel.isActive()) {
@@ -132,7 +134,8 @@ public class DefaultClient extends AbstractClient {
      * @param request
      * @throws InterruptedException
      */
-    public LocateResponse locate(LocateRequest request)
+    @Override
+	public LocateResponse locate(LocateRequest request)
         throws InterruptedException {
         Channel channel = connect(BusinessType.LOCATE);
         if (channel != null && channel.isActive()) {
@@ -177,9 +180,10 @@ public class DefaultClient extends AbstractClient {
      * @param request
      * @throws InterruptedException
      */
-    public FriendResponse addFriend(FriendRequest request)
+    @Override
+	public AddFriendResponse addFriend(AddFriendRequest request)
         throws InterruptedException {
-        Channel channel = connect(BusinessType.FRIEND);
+        Channel channel = connect(BusinessType.ADD_FRIEND);
         if (channel != null && channel.isActive()) {
             logger.debug("send add friend message to server");
             ChannelPipeline pipeline = channel.pipeline();
@@ -188,13 +192,13 @@ public class DefaultClient extends AbstractClient {
                 pipeline);
             if (pipeline.get(DECODER_ADD_FRIEND) == null) {
                 pipeline.addLast(DECODER_ADD_FRIEND, new ProtobufDecoder(
-                    FriendResponse.getDefaultInstance()));
+                		AddFriendResponse.getDefaultInstance()));
             }
 
             if (pipeline.get(HANDLER_ADD_FRIEND) == null) {
-                pipeline.addLast(HANDLER_ADD_FRIEND, new FriendHandler());
+                pipeline.addLast(HANDLER_ADD_FRIEND, new AddFriendHandler());
             }
-            FriendHandler addFriendHandler = (FriendHandler) pipeline
+            AddFriendHandler addFriendHandler = (AddFriendHandler) pipeline
                 .get(HANDLER_ADD_FRIEND);
             logger.debug("addfriend client pipeline after adding handler = {}",
                 pipeline);
@@ -202,7 +206,7 @@ public class DefaultClient extends AbstractClient {
                 channel.writeAndFlush(request).sync();
                 addFriendHandler.wait();
             }
-            FriendResponse response = addFriendHandler.getResponse();
+            AddFriendResponse response = addFriendHandler.getResponse();
             logger.info("addFriend response = {}", response);
             return response;
         } else {

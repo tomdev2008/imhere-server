@@ -18,7 +18,7 @@
 	 -->
 	 <typeAliases>
 		<typeAlias alias="User" type="org.xiaoxiancai.imhere.server.entity.User"/>
-		<typeAlias alias="FriendMessage" type="org.xiaoxiancai.imhere.server.entity.FriendMessage"/>
+		<typeAlias alias="AddFriendMessage" type="org.xiaoxiancai.imhere.server.entity.AddFriendMessage"/>
 	</typeAliases>
 	<mappers>
 		<!-- <mapper resource="org/mybatis/example/BlogMapper.xml" /> -->

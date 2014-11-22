@@ -1,9 +1,9 @@
 package org.xiaoxiancai.imhere.server.business.protos;
 
 option java_package = "org.xiaoxiancai.imhere.common.protos.business";
-option java_outer_classname = "FriendRequestProtos";
+option java_outer_classname = "AddFriendRequestProtos";
 
-message FriendRequest {
+message AddFriendRequest {
   
 	required int32 fromUserId = 1; // 发起用户Id
 

@@ -5,8 +5,8 @@
  */
 package org.xiaoxiancai.imhere.client;
 
-import org.xiaoxiancai.imhere.common.protos.business.FriendRequestProtos.FriendRequest;
-import org.xiaoxiancai.imhere.common.protos.business.FriendResponseProtos.FriendResponse;
+import org.xiaoxiancai.imhere.common.protos.business.AddFriendRequestProtos.AddFriendRequest;
+import org.xiaoxiancai.imhere.common.protos.business.AddFriendResponseProtos.AddFriendResponse;
 import org.xiaoxiancai.imhere.common.protos.business.LocateRequestProtos.LocateRequest;
 import org.xiaoxiancai.imhere.common.protos.business.LocateResponseProtos.LocateResponse;
 import org.xiaoxiancai.imhere.common.protos.business.LoginRequestProtos.LoginRequest;
@@ -57,6 +57,6 @@ public interface Client {
      * @return
      * @throws Exception
      */
-    public FriendResponse addFriend(FriendRequest request) throws Exception;
+    public AddFriendResponse addFriend(AddFriendRequest request) throws Exception;
 
 }

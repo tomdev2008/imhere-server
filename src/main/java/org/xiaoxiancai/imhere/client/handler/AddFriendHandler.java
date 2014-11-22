@@ -5,16 +5,16 @@
  */
 package org.xiaoxiancai.imhere.client.handler;
 
-import org.xiaoxiancai.imhere.common.protos.business.FriendResponseProtos.FriendResponse;
+import org.xiaoxiancai.imhere.common.protos.business.AddFriendResponseProtos.AddFriendResponse;
 
 /**
  * @author linxianneng
  */
-public class FriendHandler extends AbstractClientHandler {
+public class AddFriendHandler extends AbstractClientHandler {
 
-    private FriendResponse response;
+    private AddFriendResponse response;
 
-    public FriendResponse getResponse() {
+    public AddFriendResponse getResponse() {
         return response;
     }
 

@@ -5,7 +5,7 @@
  */
 package org.xiaoxiancai.imhere.server.inter;
 
-import org.xiaoxiancai.imhere.server.entity.FriendMessage;
+import org.xiaoxiancai.imhere.server.entity.AddFriendMessage;
 import org.xiaoxiancai.imhere.server.entity.User;
 
 /**
@@ -54,7 +54,7 @@ public interface UserMapper extends EntityMapper {
      * 
      * @param addFriendMessage
      */
-    public void addFriend(FriendMessage addFriendMessage);
+    public void addFriend(AddFriendMessage addFriendMessage);
 
     /**
      * 发添加好友消息数
@@ -63,6 +63,6 @@ public interface UserMapper extends EntityMapper {
      * @param toUserMobile
      * @return
      */
-    public int countFriendMessage(FriendMessage addFriendMessage);
+    public int countFriendMessage(AddFriendMessage addFriendMessage);
 
 }

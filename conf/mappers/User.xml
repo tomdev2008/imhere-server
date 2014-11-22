@@ -34,7 +34,7 @@
 	</select>
 	
 	<!-- -->
-	<insert id="addFriend" parameterType="FriendMessage" keyProperty="id" useGeneratedKeys="true">
+	<insert id="addFriend" parameterType="AddFriendMessage" keyProperty="id" useGeneratedKeys="true">
 		insert into `tb_addfriend_msg`(FROM_USER_ID, FROM_USER_MOBILE, FROM_USER_NICKNAME, TO_USER_MOBILE
 			<if test="toUserId != null">, TO_USER_ID</if>
 		) values (#{fromUserId}, #{fromUserMobile}, #{fromUserNickname}, #{toUserMobile}
@@ -43,7 +43,7 @@
 	</insert>
 	
 	<!-- -->
-	<select id="countFriendMessage" parameterType="FriendMessage" resultType="int">
+	<select id="countFriendMessage" parameterType="AddFriendMessage" resultType="int">
 		select count(id) from `tb_addfriend_msg`
 			where from_user_mobile = #{fromUserMobile} and to_user_mobile = #{toUserMobile}
 	</select>

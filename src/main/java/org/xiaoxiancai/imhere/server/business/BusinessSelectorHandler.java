@@ -188,28 +188,18 @@ public class BusinessSelectorHandler extends ChannelInboundHandlerAdapter {
 	 * @return
 	 */
 	private String getBusinessCameName(BusinessType businessType) {
-		String[] names = getBusinessRelatedNames(businessType);
-		return names[1];
-	}
-
-	/**
-	 * 获取业务名 {全小写名(包名), 驼峰式名(类名)}
-	 * 
-	 * @param businessType
-	 * @return
-	 */
-	private String[] getBusinessRelatedNames(BusinessType businessType) {
-		String[] names = new String[2];
 		String businessName = businessType.name().toLowerCase();
-		names[0] = businessName;
-		String businessCamelName = null;
-		if (businessName.length() > 1) {
-			businessCamelName = businessName.substring(0, 1).toUpperCase()
-					+ businessName.substring(1);
-		} else {
-			businessCamelName = businessName.toUpperCase(); // DON'T DO THIS
+
+		String[] nameItems = businessName.split("_");
+		StringBuilder buffer = new StringBuilder();
+		for (String item : nameItems) {
+			if (item.length() > 1) {
+				buffer.append(item.substring(0, 1).toUpperCase()).append(
+						item.substring(1));
+			} else {
+				buffer.append(item.toUpperCase());
+			}
 		}
-		names[1] = businessCamelName;
-		return names;
+		return buffer.toString();
 	}
 }

@@ -10,7 +10,7 @@ package org.xiaoxiancai.imhere.server.entity;
  * 
  * @author linxianneng
  */
-public class FriendMessage extends Entity {
+public class AddFriendMessage extends Entity {
 
     /**
      * 发起者id

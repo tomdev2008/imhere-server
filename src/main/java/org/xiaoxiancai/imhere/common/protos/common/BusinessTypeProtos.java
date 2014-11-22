@@ -50,13 +50,21 @@ public final class BusinessTypeProtos {
      */
     LOGIN(3, 3),
     /**
-     * <code>FRIEND = 4;</code>
+     * <code>ADD_FRIEND = 4;</code>
      *
      * <pre>
      * 添加朋友
      * </pre>
      */
-    FRIEND(4, 4),
+    ADD_FRIEND(4, 4),
+    /**
+     * <code>ACCEPT_FRIEND = 5;</code>
+     *
+     * <pre>
+     * 接受好友
+     * </pre>
+     */
+    ACCEPT_FRIEND(5, 5),
     ;
 
     /**
@@ -92,13 +100,21 @@ public final class BusinessTypeProtos {
      */
     public static final int LOGIN_VALUE = 3;
     /**
-     * <code>FRIEND = 4;</code>
+     * <code>ADD_FRIEND = 4;</code>
      *
      * <pre>
      * 添加朋友
      * </pre>
      */
-    public static final int FRIEND_VALUE = 4;
+    public static final int ADD_FRIEND_VALUE = 4;
+    /**
+     * <code>ACCEPT_FRIEND = 5;</code>
+     *
+     * <pre>
+     * 接受好友
+     * </pre>
+     */
+    public static final int ACCEPT_FRIEND_VALUE = 5;
 
 
     public final int getNumber() { return value; }
@@ -109,7 +125,8 @@ public final class BusinessTypeProtos {
         case 1: return UPDATE;
         case 2: return LOCATE;
         case 3: return LOGIN;
-        case 4: return FRIEND;
+        case 4: return ADD_FRIEND;
+        case 5: return ACCEPT_FRIEND;
         default: return null;
       }
     }
@@ -171,11 +188,11 @@ public final class BusinessTypeProtos {
   static {
     java.lang.String[] descriptorData = {
       "\n\030BusinessTypeProtos.proto\022$org.xiaoxian" +
-      "cai.imhere.common.protos*O\n\014BusinessType" +
+      "cai.imhere.common.protos*f\n\014BusinessType" +
       "\022\014\n\010REGISTER\020\000\022\n\n\006UPDATE\020\001\022\n\n\006LOCATE\020\002\022\t" +
-      "\n\005LOGIN\020\003\022\n\n\006FRIEND\020\004\032\002\020\001BA\n+org.xiaoxia" +
-      "ncai.imhere.common.protos.commonB\022Busine" +
-      "ssTypeProtos"
+      "\n\005LOGIN\020\003\022\016\n\nADD_FRIEND\020\004\022\021\n\rACCEPT_FRIE" +
+      "ND\020\005\032\002\020\001BA\n+org.xiaoxiancai.imhere.commo" +
+      "n.protos.commonB\022BusinessTypeProtos"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {

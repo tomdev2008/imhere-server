@@ -16,5 +16,7 @@ enum BusinessType {
 	
 	LOGIN = 3; // 登录
 	
-	FRIEND = 4; // 添加朋友
+	ADD_FRIEND = 4; // 添加朋友
+	
+	ACCEPT_FRIEND = 5; // 接受好友
 }
