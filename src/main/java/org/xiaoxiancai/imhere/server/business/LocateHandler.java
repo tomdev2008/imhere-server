@@ -66,7 +66,7 @@ public class LocateHandler extends AbstractBusinessHandler {
         logger.debug("all location update time = {}", allLocationUpdateTime);
         UserMapper userMapper = (UserMapper) applicationContext
             .getBean("userMapper");
-        String friendNicknames = userMapper.getFriends(userId);
+        String friendNicknames = userMapper.getAllFriends(userId);
         Set<Integer> friendIds = getFriendIds(friendNicknames);
         Map<Integer, Location> friendCurLocMap = getFriendCurrentLocations(friendIds);
         LocateResponse response = getResponse(true, 1, "locate success",

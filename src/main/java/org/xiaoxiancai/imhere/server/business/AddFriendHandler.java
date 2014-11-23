@@ -76,7 +76,7 @@ public class AddFriendHandler extends AbstractBusinessHandler {
         AddFriendMessage message = new AddFriendMessage();
         message.setFromUserMobile(fromUserMobile);
         message.setToUserMobile(toUserMobile);
-        int count = userMapper.countFriendMessage(message);
+        int count = userMapper.countAddFriendMessage(message);
         return count == 0 ? false : true;
     }
 

@@ -12,7 +12,7 @@ message LocateResponse {
 
 	required int32 status = 2; // 状态码
 
-	optional string message = 3; // 附件信息
+	optional string message = 3; // 附加信息
 	
 	repeated Location friendLocations = 4; // 朋友位置信息
 	

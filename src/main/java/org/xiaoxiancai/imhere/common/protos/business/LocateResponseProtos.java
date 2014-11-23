@@ -50,7 +50,7 @@ public final class LocateResponseProtos {
      * <code>optional string message = 3;</code>
      *
      * <pre>
-     * 附件信息
+     * 附加信息
      * </pre>
      */
     boolean hasMessage();
@@ -58,7 +58,7 @@ public final class LocateResponseProtos {
      * <code>optional string message = 3;</code>
      *
      * <pre>
-     * 附件信息
+     * 附加信息
      * </pre>
      */
     java.lang.String getMessage();
@@ -66,7 +66,7 @@ public final class LocateResponseProtos {
      * <code>optional string message = 3;</code>
      *
      * <pre>
-     * 附件信息
+     * 附加信息
      * </pre>
      */
     com.google.protobuf.ByteString
@@ -336,7 +336,7 @@ public final class LocateResponseProtos {
      * <code>optional string message = 3;</code>
      *
      * <pre>
-     * 附件信息
+     * 附加信息
      * </pre>
      */
     public boolean hasMessage() {
@@ -346,7 +346,7 @@ public final class LocateResponseProtos {
      * <code>optional string message = 3;</code>
      *
      * <pre>
-     * 附件信息
+     * 附加信息
      * </pre>
      */
     public java.lang.String getMessage() {
@@ -367,7 +367,7 @@ public final class LocateResponseProtos {
      * <code>optional string message = 3;</code>
      *
      * <pre>
-     * 附件信息
+     * 附加信息
      * </pre>
      */
     public com.google.protobuf.ByteString
@@ -934,7 +934,7 @@ public final class LocateResponseProtos {
        * <code>optional string message = 3;</code>
        *
        * <pre>
-       * 附件信息
+       * 附加信息
        * </pre>
        */
       public boolean hasMessage() {
@@ -944,7 +944,7 @@ public final class LocateResponseProtos {
        * <code>optional string message = 3;</code>
        *
        * <pre>
-       * 附件信息
+       * 附加信息
        * </pre>
        */
       public java.lang.String getMessage() {
@@ -965,7 +965,7 @@ public final class LocateResponseProtos {
        * <code>optional string message = 3;</code>
        *
        * <pre>
-       * 附件信息
+       * 附加信息
        * </pre>
        */
       public com.google.protobuf.ByteString
@@ -985,7 +985,7 @@ public final class LocateResponseProtos {
        * <code>optional string message = 3;</code>
        *
        * <pre>
-       * 附件信息
+       * 附加信息
        * </pre>
        */
       public Builder setMessage(
@@ -1002,7 +1002,7 @@ public final class LocateResponseProtos {
        * <code>optional string message = 3;</code>
        *
        * <pre>
-       * 附件信息
+       * 附加信息
        * </pre>
        */
       public Builder clearMessage() {
@@ -1015,7 +1015,7 @@ public final class LocateResponseProtos {
        * <code>optional string message = 3;</code>
        *
        * <pre>
-       * 附件信息
+       * 附加信息
        * </pre>
        */
       public Builder setMessageBytes(

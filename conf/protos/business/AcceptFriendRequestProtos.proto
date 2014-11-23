@@ -1,0 +1,11 @@
+package org.xiaoxiancai.imhere.server.business.protos;
+
+option java_package = "org.xiaoxiancai.imhere.common.protos.business";
+option java_outer_classname = "AcceptFriendRequestProtos";
+
+message AcceptFriendRequest {
+  
+	required string fromUserMobile = 1; // 发起用户电话
+	
+	required string toUserMobile = 2; // 被发起用户电话
+}

@@ -45,17 +45,28 @@ public final class RegisterResponseProtos {
         getMessageBytes();
 
     /**
-     * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.Command commands = 4;</code>
+     * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.AddFriendRequest addFriendRequest = 4;</code>
      */
-    java.util.List<org.xiaoxiancai.imhere.common.protos.business.CommandProtos.Command> getCommandsList();
+    java.util.List<org.xiaoxiancai.imhere.common.protos.business.AddFriendRequestProtos.AddFriendRequest> 
+        getAddFriendRequestList();
     /**
-     * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.Command commands = 4;</code>
+     * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.AddFriendRequest addFriendRequest = 4;</code>
      */
-    int getCommandsCount();
+    org.xiaoxiancai.imhere.common.protos.business.AddFriendRequestProtos.AddFriendRequest getAddFriendRequest(int index);
     /**
-     * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.Command commands = 4;</code>
+     * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.AddFriendRequest addFriendRequest = 4;</code>
      */
-    org.xiaoxiancai.imhere.common.protos.business.CommandProtos.Command getCommands(int index);
+    int getAddFriendRequestCount();
+    /**
+     * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.AddFriendRequest addFriendRequest = 4;</code>
+     */
+    java.util.List<? extends org.xiaoxiancai.imhere.common.protos.business.AddFriendRequestProtos.AddFriendRequestOrBuilder> 
+        getAddFriendRequestOrBuilderList();
+    /**
+     * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.AddFriendRequest addFriendRequest = 4;</code>
+     */
+    org.xiaoxiancai.imhere.common.protos.business.AddFriendRequestProtos.AddFriendRequestOrBuilder getAddFriendRequestOrBuilder(
+        int index);
   }
   /**
    * Protobuf type {@code org.xiaoxiancai.imhere.server.business.protos.RegisterResponse}
@@ -125,37 +136,12 @@ public final class RegisterResponseProtos {
               message_ = bs;
               break;
             }
-            case 32: {
-              int rawValue = input.readEnum();
-              org.xiaoxiancai.imhere.common.protos.business.CommandProtos.Command value = org.xiaoxiancai.imhere.common.protos.business.CommandProtos.Command.valueOf(rawValue);
-              if (value == null) {
-                unknownFields.mergeVarintField(4, rawValue);
-                } else {
-                if (!((mutable_bitField0_ & 0x00000008) == 0x00000008)) {
-                  commands_ = new java.util.ArrayList<org.xiaoxiancai.imhere.common.protos.business.CommandProtos.Command>();
-                  mutable_bitField0_ |= 0x00000008;
-                }
-                commands_.add(value);
-              }
-              break;
-            }
             case 34: {
-              int length = input.readRawVarint32();
-              int oldLimit = input.pushLimit(length);
-              while(input.getBytesUntilLimit() > 0) {
-                int rawValue = input.readEnum();
-                org.xiaoxiancai.imhere.common.protos.business.CommandProtos.Command value = org.xiaoxiancai.imhere.common.protos.business.CommandProtos.Command.valueOf(rawValue);
-                if (value == null) {
-                  unknownFields.mergeVarintField(4, rawValue);
-                  } else {
-                  if (!((mutable_bitField0_ & 0x00000008) == 0x00000008)) {
-                    commands_ = new java.util.ArrayList<org.xiaoxiancai.imhere.common.protos.business.CommandProtos.Command>();
-                    mutable_bitField0_ |= 0x00000008;
-                  }
-                  commands_.add(value);
-                }
+              if (!((mutable_bitField0_ & 0x00000008) == 0x00000008)) {
+                addFriendRequest_ = new java.util.ArrayList<org.xiaoxiancai.imhere.common.protos.business.AddFriendRequestProtos.AddFriendRequest>();
+                mutable_bitField0_ |= 0x00000008;
               }
-              input.popLimit(oldLimit);
+              addFriendRequest_.add(input.readMessage(org.xiaoxiancai.imhere.common.protos.business.AddFriendRequestProtos.AddFriendRequest.PARSER, extensionRegistry));
               break;
             }
           }
@@ -167,7 +153,7 @@ public final class RegisterResponseProtos {
             e.getMessage()).setUnfinishedMessage(this);
       } finally {
         if (((mutable_bitField0_ & 0x00000008) == 0x00000008)) {
-          commands_ = java.util.Collections.unmodifiableList(commands_);
+          addFriendRequest_ = java.util.Collections.unmodifiableList(addFriendRequest_);
         }
         this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
@@ -273,32 +259,46 @@ public final class RegisterResponseProtos {
       }
     }
 
-    public static final int COMMANDS_FIELD_NUMBER = 4;
-    private java.util.List<org.xiaoxiancai.imhere.common.protos.business.CommandProtos.Command> commands_;
+    public static final int ADDFRIENDREQUEST_FIELD_NUMBER = 4;
+    private java.util.List<org.xiaoxiancai.imhere.common.protos.business.AddFriendRequestProtos.AddFriendRequest> addFriendRequest_;
     /**
-     * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.Command commands = 4;</code>
+     * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.AddFriendRequest addFriendRequest = 4;</code>
      */
-    public java.util.List<org.xiaoxiancai.imhere.common.protos.business.CommandProtos.Command> getCommandsList() {
-      return commands_;
+    public java.util.List<org.xiaoxiancai.imhere.common.protos.business.AddFriendRequestProtos.AddFriendRequest> getAddFriendRequestList() {
+      return addFriendRequest_;
     }
     /**
-     * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.Command commands = 4;</code>
+     * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.AddFriendRequest addFriendRequest = 4;</code>
      */
-    public int getCommandsCount() {
-      return commands_.size();
+    public java.util.List<? extends org.xiaoxiancai.imhere.common.protos.business.AddFriendRequestProtos.AddFriendRequestOrBuilder> 
+        getAddFriendRequestOrBuilderList() {
+      return addFriendRequest_;
     }
     /**
-     * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.Command commands = 4;</code>
+     * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.AddFriendRequest addFriendRequest = 4;</code>
      */
-    public org.xiaoxiancai.imhere.common.protos.business.CommandProtos.Command getCommands(int index) {
-      return commands_.get(index);
+    public int getAddFriendRequestCount() {
+      return addFriendRequest_.size();
+    }
+    /**
+     * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.AddFriendRequest addFriendRequest = 4;</code>
+     */
+    public org.xiaoxiancai.imhere.common.protos.business.AddFriendRequestProtos.AddFriendRequest getAddFriendRequest(int index) {
+      return addFriendRequest_.get(index);
+    }
+    /**
+     * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.AddFriendRequest addFriendRequest = 4;</code>
+     */
+    public org.xiaoxiancai.imhere.common.protos.business.AddFriendRequestProtos.AddFriendRequestOrBuilder getAddFriendRequestOrBuilder(
+        int index) {
+      return addFriendRequest_.get(index);
     }
 
     private void initFields() {
       isSuccess_ = false;
       status_ = 0;
       message_ = "";
-      commands_ = java.util.Collections.emptyList();
+      addFriendRequest_ = java.util.Collections.emptyList();
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -313,6 +313,12 @@ public final class RegisterResponseProtos {
       if (!hasStatus()) {
         memoizedIsInitialized = 0;
         return false;
+      }
+      for (int i = 0; i < getAddFriendRequestCount(); i++) {
+        if (!getAddFriendRequest(i).isInitialized()) {
+          memoizedIsInitialized = 0;
+          return false;
+        }
       }
       memoizedIsInitialized = 1;
       return true;
@@ -330,8 +336,8 @@ public final class RegisterResponseProtos {
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         output.writeBytes(3, getMessageBytes());
       }
-      for (int i = 0; i < commands_.size(); i++) {
-        output.writeEnum(4, commands_.get(i).getNumber());
+      for (int i = 0; i < addFriendRequest_.size(); i++) {
+        output.writeMessage(4, addFriendRequest_.get(i));
       }
       getUnknownFields().writeTo(output);
     }
@@ -354,14 +360,9 @@ public final class RegisterResponseProtos {
         size += com.google.protobuf.CodedOutputStream
           .computeBytesSize(3, getMessageBytes());
       }
-      {
-        int dataSize = 0;
-        for (int i = 0; i < commands_.size(); i++) {
-          dataSize += com.google.protobuf.CodedOutputStream
-            .computeEnumSizeNoTag(commands_.get(i).getNumber());
-        }
-        size += dataSize;
-        size += 1 * commands_.size();
+      for (int i = 0; i < addFriendRequest_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(4, addFriendRequest_.get(i));
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -472,6 +473,7 @@ public final class RegisterResponseProtos {
       }
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+          getAddFriendRequestFieldBuilder();
         }
       }
       private static Builder create() {
@@ -486,8 +488,12 @@ public final class RegisterResponseProtos {
         bitField0_ = (bitField0_ & ~0x00000002);
         message_ = "";
         bitField0_ = (bitField0_ & ~0x00000004);
-        commands_ = java.util.Collections.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000008);
+        if (addFriendRequestBuilder_ == null) {
+          addFriendRequest_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000008);
+        } else {
+          addFriendRequestBuilder_.clear();
+        }
         return this;
       }
 
@@ -528,11 +534,15 @@ public final class RegisterResponseProtos {
           to_bitField0_ |= 0x00000004;
         }
         result.message_ = message_;
-        if (((bitField0_ & 0x00000008) == 0x00000008)) {
-          commands_ = java.util.Collections.unmodifiableList(commands_);
-          bitField0_ = (bitField0_ & ~0x00000008);
+        if (addFriendRequestBuilder_ == null) {
+          if (((bitField0_ & 0x00000008) == 0x00000008)) {
+            addFriendRequest_ = java.util.Collections.unmodifiableList(addFriendRequest_);
+            bitField0_ = (bitField0_ & ~0x00000008);
+          }
+          result.addFriendRequest_ = addFriendRequest_;
+        } else {
+          result.addFriendRequest_ = addFriendRequestBuilder_.build();
         }
-        result.commands_ = commands_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -560,15 +570,31 @@ public final class RegisterResponseProtos {
           message_ = other.message_;
           onChanged();
         }
-        if (!other.commands_.isEmpty()) {
-          if (commands_.isEmpty()) {
-            commands_ = other.commands_;
-            bitField0_ = (bitField0_ & ~0x00000008);
-          } else {
-            ensureCommandsIsMutable();
-            commands_.addAll(other.commands_);
+        if (addFriendRequestBuilder_ == null) {
+          if (!other.addFriendRequest_.isEmpty()) {
+            if (addFriendRequest_.isEmpty()) {
+              addFriendRequest_ = other.addFriendRequest_;
+              bitField0_ = (bitField0_ & ~0x00000008);
+            } else {
+              ensureAddFriendRequestIsMutable();
+              addFriendRequest_.addAll(other.addFriendRequest_);
+            }
+            onChanged();
           }
-          onChanged();
+        } else {
+          if (!other.addFriendRequest_.isEmpty()) {
+            if (addFriendRequestBuilder_.isEmpty()) {
+              addFriendRequestBuilder_.dispose();
+              addFriendRequestBuilder_ = null;
+              addFriendRequest_ = other.addFriendRequest_;
+              bitField0_ = (bitField0_ & ~0x00000008);
+              addFriendRequestBuilder_ = 
+                com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders ?
+                   getAddFriendRequestFieldBuilder() : null;
+            } else {
+              addFriendRequestBuilder_.addAllMessages(other.addFriendRequest_);
+            }
+          }
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -582,6 +608,12 @@ public final class RegisterResponseProtos {
         if (!hasStatus()) {
           
           return false;
+        }
+        for (int i = 0; i < getAddFriendRequestCount(); i++) {
+          if (!getAddFriendRequest(i).isInitialized()) {
+            
+            return false;
+          }
         }
         return true;
       }
@@ -745,76 +777,244 @@ public final class RegisterResponseProtos {
         return this;
       }
 
-      private java.util.List<org.xiaoxiancai.imhere.common.protos.business.CommandProtos.Command> commands_ =
+      private java.util.List<org.xiaoxiancai.imhere.common.protos.business.AddFriendRequestProtos.AddFriendRequest> addFriendRequest_ =
         java.util.Collections.emptyList();
-      private void ensureCommandsIsMutable() {
+      private void ensureAddFriendRequestIsMutable() {
         if (!((bitField0_ & 0x00000008) == 0x00000008)) {
-          commands_ = new java.util.ArrayList<org.xiaoxiancai.imhere.common.protos.business.CommandProtos.Command>(commands_);
+          addFriendRequest_ = new java.util.ArrayList<org.xiaoxiancai.imhere.common.protos.business.AddFriendRequestProtos.AddFriendRequest>(addFriendRequest_);
           bitField0_ |= 0x00000008;
+         }
+      }
+
+      private com.google.protobuf.RepeatedFieldBuilder<
+          org.xiaoxiancai.imhere.common.protos.business.AddFriendRequestProtos.AddFriendRequest, org.xiaoxiancai.imhere.common.protos.business.AddFriendRequestProtos.AddFriendRequest.Builder, org.xiaoxiancai.imhere.common.protos.business.AddFriendRequestProtos.AddFriendRequestOrBuilder> addFriendRequestBuilder_;
+
+      /**
+       * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.AddFriendRequest addFriendRequest = 4;</code>
+       */
+      public java.util.List<org.xiaoxiancai.imhere.common.protos.business.AddFriendRequestProtos.AddFriendRequest> getAddFriendRequestList() {
+        if (addFriendRequestBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(addFriendRequest_);
+        } else {
+          return addFriendRequestBuilder_.getMessageList();
         }
       }
       /**
-       * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.Command commands = 4;</code>
+       * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.AddFriendRequest addFriendRequest = 4;</code>
        */
-      public java.util.List<org.xiaoxiancai.imhere.common.protos.business.CommandProtos.Command> getCommandsList() {
-        return java.util.Collections.unmodifiableList(commands_);
-      }
-      /**
-       * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.Command commands = 4;</code>
-       */
-      public int getCommandsCount() {
-        return commands_.size();
-      }
-      /**
-       * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.Command commands = 4;</code>
-       */
-      public org.xiaoxiancai.imhere.common.protos.business.CommandProtos.Command getCommands(int index) {
-        return commands_.get(index);
-      }
-      /**
-       * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.Command commands = 4;</code>
-       */
-      public Builder setCommands(
-          int index, org.xiaoxiancai.imhere.common.protos.business.CommandProtos.Command value) {
-        if (value == null) {
-          throw new NullPointerException();
+      public int getAddFriendRequestCount() {
+        if (addFriendRequestBuilder_ == null) {
+          return addFriendRequest_.size();
+        } else {
+          return addFriendRequestBuilder_.getCount();
         }
-        ensureCommandsIsMutable();
-        commands_.set(index, value);
-        onChanged();
-        return this;
       }
       /**
-       * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.Command commands = 4;</code>
+       * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.AddFriendRequest addFriendRequest = 4;</code>
        */
-      public Builder addCommands(org.xiaoxiancai.imhere.common.protos.business.CommandProtos.Command value) {
-        if (value == null) {
-          throw new NullPointerException();
+      public org.xiaoxiancai.imhere.common.protos.business.AddFriendRequestProtos.AddFriendRequest getAddFriendRequest(int index) {
+        if (addFriendRequestBuilder_ == null) {
+          return addFriendRequest_.get(index);
+        } else {
+          return addFriendRequestBuilder_.getMessage(index);
         }
-        ensureCommandsIsMutable();
-        commands_.add(value);
-        onChanged();
+      }
+      /**
+       * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.AddFriendRequest addFriendRequest = 4;</code>
+       */
+      public Builder setAddFriendRequest(
+          int index, org.xiaoxiancai.imhere.common.protos.business.AddFriendRequestProtos.AddFriendRequest value) {
+        if (addFriendRequestBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureAddFriendRequestIsMutable();
+          addFriendRequest_.set(index, value);
+          onChanged();
+        } else {
+          addFriendRequestBuilder_.setMessage(index, value);
+        }
         return this;
       }
       /**
-       * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.Command commands = 4;</code>
+       * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.AddFriendRequest addFriendRequest = 4;</code>
        */
-      public Builder addAllCommands(
-          java.lang.Iterable<? extends org.xiaoxiancai.imhere.common.protos.business.CommandProtos.Command> values) {
-        ensureCommandsIsMutable();
-        com.google.protobuf.AbstractMessageLite.Builder.addAll(
-            values, commands_);
-        onChanged();
+      public Builder setAddFriendRequest(
+          int index, org.xiaoxiancai.imhere.common.protos.business.AddFriendRequestProtos.AddFriendRequest.Builder builderForValue) {
+        if (addFriendRequestBuilder_ == null) {
+          ensureAddFriendRequestIsMutable();
+          addFriendRequest_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          addFriendRequestBuilder_.setMessage(index, builderForValue.build());
+        }
         return this;
       }
       /**
-       * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.Command commands = 4;</code>
+       * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.AddFriendRequest addFriendRequest = 4;</code>
        */
-      public Builder clearCommands() {
-        commands_ = java.util.Collections.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000008);
-        onChanged();
+      public Builder addAddFriendRequest(org.xiaoxiancai.imhere.common.protos.business.AddFriendRequestProtos.AddFriendRequest value) {
+        if (addFriendRequestBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureAddFriendRequestIsMutable();
+          addFriendRequest_.add(value);
+          onChanged();
+        } else {
+          addFriendRequestBuilder_.addMessage(value);
+        }
         return this;
+      }
+      /**
+       * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.AddFriendRequest addFriendRequest = 4;</code>
+       */
+      public Builder addAddFriendRequest(
+          int index, org.xiaoxiancai.imhere.common.protos.business.AddFriendRequestProtos.AddFriendRequest value) {
+        if (addFriendRequestBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureAddFriendRequestIsMutable();
+          addFriendRequest_.add(index, value);
+          onChanged();
+        } else {
+          addFriendRequestBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.AddFriendRequest addFriendRequest = 4;</code>
+       */
+      public Builder addAddFriendRequest(
+          org.xiaoxiancai.imhere.common.protos.business.AddFriendRequestProtos.AddFriendRequest.Builder builderForValue) {
+        if (addFriendRequestBuilder_ == null) {
+          ensureAddFriendRequestIsMutable();
+          addFriendRequest_.add(builderForValue.build());
+          onChanged();
+        } else {
+          addFriendRequestBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.AddFriendRequest addFriendRequest = 4;</code>
+       */
+      public Builder addAddFriendRequest(
+          int index, org.xiaoxiancai.imhere.common.protos.business.AddFriendRequestProtos.AddFriendRequest.Builder builderForValue) {
+        if (addFriendRequestBuilder_ == null) {
+          ensureAddFriendRequestIsMutable();
+          addFriendRequest_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          addFriendRequestBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.AddFriendRequest addFriendRequest = 4;</code>
+       */
+      public Builder addAllAddFriendRequest(
+          java.lang.Iterable<? extends org.xiaoxiancai.imhere.common.protos.business.AddFriendRequestProtos.AddFriendRequest> values) {
+        if (addFriendRequestBuilder_ == null) {
+          ensureAddFriendRequestIsMutable();
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
+              values, addFriendRequest_);
+          onChanged();
+        } else {
+          addFriendRequestBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.AddFriendRequest addFriendRequest = 4;</code>
+       */
+      public Builder clearAddFriendRequest() {
+        if (addFriendRequestBuilder_ == null) {
+          addFriendRequest_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000008);
+          onChanged();
+        } else {
+          addFriendRequestBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.AddFriendRequest addFriendRequest = 4;</code>
+       */
+      public Builder removeAddFriendRequest(int index) {
+        if (addFriendRequestBuilder_ == null) {
+          ensureAddFriendRequestIsMutable();
+          addFriendRequest_.remove(index);
+          onChanged();
+        } else {
+          addFriendRequestBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.AddFriendRequest addFriendRequest = 4;</code>
+       */
+      public org.xiaoxiancai.imhere.common.protos.business.AddFriendRequestProtos.AddFriendRequest.Builder getAddFriendRequestBuilder(
+          int index) {
+        return getAddFriendRequestFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.AddFriendRequest addFriendRequest = 4;</code>
+       */
+      public org.xiaoxiancai.imhere.common.protos.business.AddFriendRequestProtos.AddFriendRequestOrBuilder getAddFriendRequestOrBuilder(
+          int index) {
+        if (addFriendRequestBuilder_ == null) {
+          return addFriendRequest_.get(index);  } else {
+          return addFriendRequestBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.AddFriendRequest addFriendRequest = 4;</code>
+       */
+      public java.util.List<? extends org.xiaoxiancai.imhere.common.protos.business.AddFriendRequestProtos.AddFriendRequestOrBuilder> 
+           getAddFriendRequestOrBuilderList() {
+        if (addFriendRequestBuilder_ != null) {
+          return addFriendRequestBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(addFriendRequest_);
+        }
+      }
+      /**
+       * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.AddFriendRequest addFriendRequest = 4;</code>
+       */
+      public org.xiaoxiancai.imhere.common.protos.business.AddFriendRequestProtos.AddFriendRequest.Builder addAddFriendRequestBuilder() {
+        return getAddFriendRequestFieldBuilder().addBuilder(
+            org.xiaoxiancai.imhere.common.protos.business.AddFriendRequestProtos.AddFriendRequest.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.AddFriendRequest addFriendRequest = 4;</code>
+       */
+      public org.xiaoxiancai.imhere.common.protos.business.AddFriendRequestProtos.AddFriendRequest.Builder addAddFriendRequestBuilder(
+          int index) {
+        return getAddFriendRequestFieldBuilder().addBuilder(
+            index, org.xiaoxiancai.imhere.common.protos.business.AddFriendRequestProtos.AddFriendRequest.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .org.xiaoxiancai.imhere.server.business.protos.AddFriendRequest addFriendRequest = 4;</code>
+       */
+      public java.util.List<org.xiaoxiancai.imhere.common.protos.business.AddFriendRequestProtos.AddFriendRequest.Builder> 
+           getAddFriendRequestBuilderList() {
+        return getAddFriendRequestFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilder<
+          org.xiaoxiancai.imhere.common.protos.business.AddFriendRequestProtos.AddFriendRequest, org.xiaoxiancai.imhere.common.protos.business.AddFriendRequestProtos.AddFriendRequest.Builder, org.xiaoxiancai.imhere.common.protos.business.AddFriendRequestProtos.AddFriendRequestOrBuilder> 
+          getAddFriendRequestFieldBuilder() {
+        if (addFriendRequestBuilder_ == null) {
+          addFriendRequestBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
+              org.xiaoxiancai.imhere.common.protos.business.AddFriendRequestProtos.AddFriendRequest, org.xiaoxiancai.imhere.common.protos.business.AddFriendRequestProtos.AddFriendRequest.Builder, org.xiaoxiancai.imhere.common.protos.business.AddFriendRequestProtos.AddFriendRequestOrBuilder>(
+                  addFriendRequest_,
+                  ((bitField0_ & 0x00000008) == 0x00000008),
+                  getParentForChildren(),
+                  isClean());
+          addFriendRequest_ = null;
+        }
+        return addFriendRequestBuilder_;
       }
 
       // @@protoc_insertion_point(builder_scope:org.xiaoxiancai.imhere.server.business.protos.RegisterResponse)
@@ -843,13 +1043,14 @@ public final class RegisterResponseProtos {
   static {
     java.lang.String[] descriptorData = {
       "\n\034RegisterResponseProtos.proto\022-org.xiao" +
-      "xiancai.imhere.server.business.protos\032\023C" +
-      "ommandProtos.proto\"\220\001\n\020RegisterResponse\022" +
-      "\021\n\tisSuccess\030\001 \002(\010\022\016\n\006status\030\002 \002(\005\022\017\n\007me" +
-      "ssage\030\003 \001(\t\022H\n\010commands\030\004 \003(\01626.org.xiao" +
-      "xiancai.imhere.server.business.protos.Co" +
-      "mmandBG\n-org.xiaoxiancai.imhere.common.p" +
-      "rotos.businessB\026RegisterResponseProtos"
+      "xiancai.imhere.server.business.protos\032\034A" +
+      "ddFriendRequestProtos.proto\"\241\001\n\020Register" +
+      "Response\022\021\n\tisSuccess\030\001 \002(\010\022\016\n\006status\030\002 " +
+      "\002(\005\022\017\n\007message\030\003 \001(\t\022Y\n\020addFriendRequest" +
+      "\030\004 \003(\0132?.org.xiaoxiancai.imhere.server.b" +
+      "usiness.protos.AddFriendRequestBG\n-org.x" +
+      "iaoxiancai.imhere.common.protos.business" +
+      "B\026RegisterResponseProtos"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -862,15 +1063,15 @@ public final class RegisterResponseProtos {
     com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
-          org.xiaoxiancai.imhere.common.protos.business.CommandProtos.getDescriptor(),
+          org.xiaoxiancai.imhere.common.protos.business.AddFriendRequestProtos.getDescriptor(),
         }, assigner);
     internal_static_org_xiaoxiancai_imhere_server_business_protos_RegisterResponse_descriptor =
       getDescriptor().getMessageTypes().get(0);
     internal_static_org_xiaoxiancai_imhere_server_business_protos_RegisterResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_org_xiaoxiancai_imhere_server_business_protos_RegisterResponse_descriptor,
-        new java.lang.String[] { "IsSuccess", "Status", "Message", "Commands", });
-    org.xiaoxiancai.imhere.common.protos.business.CommandProtos.getDescriptor();
+        new java.lang.String[] { "IsSuccess", "Status", "Message", "AddFriendRequest", });
+    org.xiaoxiancai.imhere.common.protos.business.AddFriendRequestProtos.getDescriptor();
   }
 
   // @@protoc_insertion_point(outer_class_scope)

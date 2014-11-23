@@ -29,11 +29,11 @@
 	</insert>
 	
 	<!-- 查找好友昵称 -->
-	<select id="getFriends" parameterType="int" resultType="string">
+	<select id="getAllFriends" parameterType="int" resultType="string">
 		select friends from `tb_friendship` where USER_ID = #{userId}
 	</select>
 	
-	<!-- -->
+	<!-- 保存添加朋友消息 -->
 	<insert id="addFriend" parameterType="AddFriendMessage" keyProperty="id" useGeneratedKeys="true">
 		insert into `tb_addfriend_msg`(FROM_USER_ID, FROM_USER_MOBILE, FROM_USER_NICKNAME, TO_USER_MOBILE
 			<if test="toUserId != null">, TO_USER_ID</if>
@@ -42,9 +42,21 @@
 		)
 	</insert>
 	
-	<!-- -->
-	<select id="countFriendMessage" parameterType="AddFriendMessage" resultType="int">
+	<!-- 计数添加朋友消息 -->
+	<select id="countAddFriendMessage" parameterType="AddFriendMessage" resultType="int">
 		select count(id) from `tb_addfriend_msg`
 			where from_user_mobile = #{fromUserMobile} and to_user_mobile = #{toUserMobile}
+	</select>
+	
+	<resultMap type="org.xiaoxiancai.imhere.server.entity.AddFriendMessage" id="addFriendMessageResultMap">
+		<result property="fromUserId" column="FROM_USER_ID" javaType="int" jdbcType="INTEGER" />
+		<result property="fromUserMobile" column="FROM_USER_MOBILE" javaType="string" jdbcType="VARCHAR" />
+		<result property="fromUserNickname" column="FROM_USER_NICKNAME" javaType="string" jdbcType="VARCHAR" />
+		<result property="toUserId" column="TO_USER_ID" javaType="int" jdbcType="INTEGER" />
+		<result property="toUserMobile" column="TO_USER_MOBILE" javaType="string" jdbcType="VARCHAR" />
+	</resultMap>
+	<select id="getAddFriendMessage" parameterType="string" resultMap="addFriendMessageResultMap">
+	    select * from `tb_addfriend_msg`
+	    	where to_user_mobile = #{toUserMobile}
 	</select>
 </mapper>

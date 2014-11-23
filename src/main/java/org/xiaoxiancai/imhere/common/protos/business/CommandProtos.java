@@ -10,6 +10,10 @@ public final class CommandProtos {
   }
   /**
    * Protobuf enum {@code org.xiaoxiancai.imhere.server.business.protos.Command}
+   *
+   * <pre>
+   * TODO 未用
+   * </pre>
    */
   public enum Command
       implements com.google.protobuf.ProtocolMessageEnum {
