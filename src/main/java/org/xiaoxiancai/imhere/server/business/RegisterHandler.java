@@ -8,8 +8,10 @@ package org.xiaoxiancai.imhere.server.business;
 import io.netty.channel.ChannelHandlerContext;
 
 import java.security.MessageDigest;
+import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
+import org.xiaoxiancai.imhere.common.protos.business.AddFriendRequestProtos.AddFriendRequest;
 import org.xiaoxiancai.imhere.common.protos.business.RegisterRequestProtos.RegisterRequest;
 import org.xiaoxiancai.imhere.common.protos.business.RegisterResponseProtos.RegisterResponse;
 import org.xiaoxiancai.imhere.server.entity.User;
@@ -39,13 +41,16 @@ public class RegisterHandler extends AbstractBusinessHandler {
         String mobile = request.getMobile();
         if (!isMobileRegistered(userMapper, mobile)) {
             userMapper.registerUser(createUser(request));
+            List<AddFriendRequest> addFriendRequestList = DBHelper
+                .getAddFriendRequestFromDB(mobile, userMapper);
             RegisterResponse successResponse = getResponse(true, 1,
-                "register success");
+                "register success", addFriendRequestList);
             ctx.channel().writeAndFlush(successResponse);
+            // DBHelper.removeAddFriendRequestFromDB(mobile, userMapper);
             logger.debug("register user success, mobile = {}", mobile);
         } else {
             RegisterResponse successResponse = getResponse(false, -1,
-                "already registered");
+                "already registered", null);
             ctx.channel().writeAndFlush(successResponse);
             logger.debug("register user fail, mobile {} already registered",
                 mobile);
@@ -76,14 +81,18 @@ public class RegisterHandler extends AbstractBusinessHandler {
      * @param isSuccess
      * @param status
      * @param message
+     * @param addFriendRequestList
      * @return
      */
     private RegisterResponse getResponse(boolean isSuccess, int status,
-        String message) {
+        String message, List<AddFriendRequest> addFriendRequestList) {
         RegisterResponse.Builder builder = RegisterResponse.newBuilder();
         builder.setIsSuccess(isSuccess);
         builder.setStatus(status);
         builder.setMessage(message);
+        if (addFriendRequestList != null) {
+            builder.addAllAddFriendRequest(addFriendRequestList);
+        }
         return builder.build();
     }
 
@@ -91,7 +100,7 @@ public class RegisterHandler extends AbstractBusinessHandler {
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause)
         throws Exception {
         super.exceptionCaught(ctx, cause);
-        RegisterResponse response = getResponse(false, -1, "server error");
+        RegisterResponse response = getResponse(false, -1, "server error", null);
         ctx.channel().writeAndFlush(response);
         logger.error("register user fail, server error");
     }

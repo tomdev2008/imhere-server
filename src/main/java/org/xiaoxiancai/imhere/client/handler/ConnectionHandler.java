@@ -36,7 +36,7 @@ public class ConnectionHandler extends AbstractClientHandler {
             connectSuccess = true;
             synchronized (this) {
                 logger.debug("begin to notify waiters");
-                this.notify();
+                this.notifyAll();
             }
             ChannelPipeline pipeline = ctx.pipeline();
             logger.debug("client pipeline before connection = {}", pipeline);

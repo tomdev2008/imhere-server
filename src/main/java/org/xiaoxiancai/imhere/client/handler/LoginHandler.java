@@ -5,6 +5,8 @@
  */
 package org.xiaoxiancai.imhere.client.handler;
 
+import io.netty.channel.ChannelHandlerContext;
+
 import org.xiaoxiancai.imhere.common.protos.business.LoginResponseProtos.LoginResponse;
 
 /**
@@ -14,7 +16,23 @@ import org.xiaoxiancai.imhere.common.protos.business.LoginResponseProtos.LoginRe
  */
 public class LoginHandler extends AbstractClientHandler {
 
+    /**
+     * 登录响应
+     */
     private LoginResponse response;
+
+    @Override
+    public void channelRead(ChannelHandlerContext ctx, Object msg)
+        throws Exception {
+        if (!(msg instanceof LoginResponse)) {
+            return;
+        }
+        response = (LoginResponse) msg;
+        logger.debug("login response from server = {}", response);
+        synchronized (this) {
+            this.notifyAll();
+        }
+    }
 
     /**
      * @return the response

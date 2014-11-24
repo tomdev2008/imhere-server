@@ -59,4 +59,9 @@
 	    select * from `tb_addfriend_msg`
 	    	where to_user_mobile = #{toUserMobile}
 	</select>
+	
+	<delete id="removeAddFriendMessage" parameterType="string">
+		delete from `tb_addfriend_msg`
+			where to_user_mobile = #{toUserMobile}
+	</delete>
 </mapper>
