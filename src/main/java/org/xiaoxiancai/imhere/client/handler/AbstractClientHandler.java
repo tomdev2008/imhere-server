@@ -1,8 +1,7 @@
-/**
- * @(#)AbstractClientHandler.java, 2014-11-4.
- *
- * Copyright 2014 Netease, Inc. All rights reserved.
- * NETEASE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+/* 
+ **********************************************************************
+ * Copyright (c) 2014, xianneng.lin@gmail.com All Rights Reserved. 
+ **********************************************************************
  */
 package org.xiaoxiancai.imhere.client.handler;
 
