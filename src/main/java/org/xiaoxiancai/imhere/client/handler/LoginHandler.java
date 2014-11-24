@@ -28,10 +28,10 @@ public class LoginHandler extends AbstractClientHandler {
             return;
         }
         response = (LoginResponse) msg;
-        logger.debug("login response from server = {}", response);
         synchronized (this) {
             this.notifyAll();
         }
+        logger.debug("login response from server = {}", response);
     }
 
     /**

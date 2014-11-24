@@ -29,10 +29,10 @@ public class RegisterHandler extends AbstractClientHandler {
             return;
         }
         response = (RegisterResponse) msg;;
-        logger.debug("register user response from server = {}", response);
         synchronized (this) {
             this.notifyAll();
         }
+        logger.debug("register user response from server = {}", response);
     }
 
     /**

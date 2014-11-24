@@ -5,10 +5,11 @@
  */
 package org.xiaoxiancai.imhere.client.handler;
 
+import static org.xiaoxiancai.imhere.client.utils.ClientConstant.DECODER_CONNECTION;
+import static org.xiaoxiancai.imhere.client.utils.ClientConstant.HANDLER_CONNECTION;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelPipeline;
 
-import org.xiaoxiancai.imhere.client.utils.ClientConstant;
 import org.xiaoxiancai.imhere.common.protos.common.BusinessSelectorProtos.BusinessSelector;
 
 /**
@@ -35,14 +36,18 @@ public class ConnectionHandler extends AbstractClientHandler {
             logger.debug("connect to server success");
             connectSuccess = true;
             synchronized (this) {
-                logger.debug("begin to notify waiters");
                 this.notifyAll();
             }
             ChannelPipeline pipeline = ctx.pipeline();
             logger.debug("client pipeline before connection = {}", pipeline);
-            pipeline.remove(ClientConstant.DECODER_CONNECTION);
-            pipeline.remove(ClientConstant.HANDLER_CONNECTION);
+            pipeline.remove(DECODER_CONNECTION);
+            pipeline.remove(HANDLER_CONNECTION);
             logger.debug("client pipeline after connection = {}", pipeline);
         }
     }
+
+    public boolean isConnectSuccess() {
+        return connectSuccess;
+    }
+
 }
