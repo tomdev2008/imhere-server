@@ -46,7 +46,6 @@ public class RegisterHandler extends AbstractBusinessHandler {
             RegisterResponse successResponse = getResponse(true, 1,
                 "register success", addFriendRequestList);
             ctx.channel().writeAndFlush(successResponse);
-            // DBHelper.removeAddFriendRequestFromDB(mobile, userMapper);
             logger.debug("register user success, mobile = {}", mobile);
         } else {
             RegisterResponse successResponse = getResponse(false, -1,

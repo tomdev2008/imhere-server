@@ -25,27 +25,22 @@ public class DBHelper {
     /**
      * 从数据库中获取添加好友消息
      * 
-     * @param mobile
+     * @param toUserMobile
      * @param userMapper
      * @return
      */
     public static List<AddFriendRequest> getAddFriendRequestFromDB(
-        String mobile, UserMapper userMapper) {
+        String toUserMobile, UserMapper userMapper) {
         List<AddFriendMessage> messages = userMapper
-            .getAddFriendMessage(mobile);
+            .getAddFriendMessage(toUserMobile);
         if (messages != null && !messages.isEmpty()) {
             List<AddFriendRequest> requestList = new ArrayList<AddFriendRequest>();
             for (AddFriendMessage message: messages) {
                 AddFriendRequest.Builder builder = AddFriendRequest
                     .newBuilder();
                 builder.setFromUserId(message.getFromUserId());
-                builder.setFromUserMobile(message.getFromUserMobile());
                 builder.setFromUserNickname(message.getFromUserNickname());
                 builder.setToUserMobile(message.getToUserMobile());
-                int toUserId;
-                if ((toUserId = message.getToUserId()) != 0) {
-                    builder.setToUserId(toUserId);
-                }
                 requestList.add(builder.build());
             }
             return requestList;
@@ -57,11 +52,12 @@ public class DBHelper {
     /**
      * 从数据库中移除添加好友消息
      * 
-     * @param mobile
+     * @param fromUserId
+     * @param toUserId
      * @param userMapper
      */
-    public static void removeAddFriendRequestFromDB(String mobile,
-        UserMapper userMapper) {
-        userMapper.removeAddFriendMessage(mobile);
+    public static void removeAddFriendRequestFromDB(int fromUserId,
+        int toUserId, UserMapper userMapper) {
+        userMapper.removeAddFriendMessage(fromUserId, toUserId);
     }
 }

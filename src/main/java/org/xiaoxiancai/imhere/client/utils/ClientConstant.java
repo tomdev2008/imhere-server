@@ -66,4 +66,14 @@ public class ClientConstant {
      * 处理器:添加好友
      */
     public static final String HANDLER_ADD_FRIEND = "add-friend-handler";
+
+    /**
+     * 解码器:接受好友
+     */
+    public static final String DECODER_ACCEPT_FRIEND = "accept-friend-decoder";
+    
+    /**
+     * 处理器:接受好友
+     */
+    public static final String HANDLER_ACCEPT_FRIEND = "accept-friend-handler";
 }

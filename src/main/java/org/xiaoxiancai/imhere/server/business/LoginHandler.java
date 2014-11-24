@@ -46,7 +46,6 @@ public class LoginHandler extends AbstractBusinessHandler {
             LoginResponse successResponse = getResponse(true, 1,
                 "login success", addFriendRequestList);
             ctx.channel().writeAndFlush(successResponse);
-            // DBHelper.removeAddFriendRequestFromDB(mobile, userMapper);
         } else {
             logger.debug("user login failed, mobile = {}", mobile);
             LoginResponse failResponse = getResponse(false, -1, "login fail",

@@ -13,56 +13,55 @@ public final class AcceptFriendRequestProtos {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>required string fromUserMobile = 1;</code>
+     * <code>required int32 fromUserId = 1;</code>
      *
      * <pre>
-     * 发起用户电话
+     * 发起用户id
      * </pre>
      */
-    boolean hasFromUserMobile();
+    boolean hasFromUserId();
     /**
-     * <code>required string fromUserMobile = 1;</code>
+     * <code>required int32 fromUserId = 1;</code>
      *
      * <pre>
-     * 发起用户电话
+     * 发起用户id
      * </pre>
      */
-    java.lang.String getFromUserMobile();
-    /**
-     * <code>required string fromUserMobile = 1;</code>
-     *
-     * <pre>
-     * 发起用户电话
-     * </pre>
-     */
-    com.google.protobuf.ByteString
-        getFromUserMobileBytes();
+    int getFromUserId();
 
     /**
-     * <code>required string toUserMobile = 2;</code>
+     * <code>required int32 toUserId = 2;</code>
      *
      * <pre>
-     * 被发起用户电话
+     * 被发起用户id
      * </pre>
      */
-    boolean hasToUserMobile();
+    boolean hasToUserId();
     /**
-     * <code>required string toUserMobile = 2;</code>
+     * <code>required int32 toUserId = 2;</code>
      *
      * <pre>
-     * 被发起用户电话
+     * 被发起用户id
      * </pre>
      */
-    java.lang.String getToUserMobile();
+    int getToUserId();
+
     /**
-     * <code>required string toUserMobile = 2;</code>
+     * <code>required bool accept = 3;</code>
      *
      * <pre>
-     * 被发起用户电话
+     * 接受与否
      * </pre>
      */
-    com.google.protobuf.ByteString
-        getToUserMobileBytes();
+    boolean hasAccept();
+    /**
+     * <code>required bool accept = 3;</code>
+     *
+     * <pre>
+     * 接受与否
+     * </pre>
+     */
+    boolean getAccept();
   }
   /**
    * Protobuf type {@code org.xiaoxiancai.imhere.server.business.protos.AcceptFriendRequest}
@@ -116,16 +115,19 @@ public final class AcceptFriendRequestProtos {
               }
               break;
             }
-            case 10: {
-              com.google.protobuf.ByteString bs = input.readBytes();
+            case 8: {
               bitField0_ |= 0x00000001;
-              fromUserMobile_ = bs;
+              fromUserId_ = input.readInt32();
               break;
             }
-            case 18: {
-              com.google.protobuf.ByteString bs = input.readBytes();
+            case 16: {
               bitField0_ |= 0x00000002;
-              toUserMobile_ = bs;
+              toUserId_ = input.readInt32();
+              break;
+            }
+            case 24: {
+              bitField0_ |= 0x00000004;
+              accept_ = input.readBool();
               break;
             }
           }
@@ -168,117 +170,79 @@ public final class AcceptFriendRequestProtos {
     }
 
     private int bitField0_;
-    public static final int FROMUSERMOBILE_FIELD_NUMBER = 1;
-    private java.lang.Object fromUserMobile_;
+    public static final int FROMUSERID_FIELD_NUMBER = 1;
+    private int fromUserId_;
     /**
-     * <code>required string fromUserMobile = 1;</code>
+     * <code>required int32 fromUserId = 1;</code>
      *
      * <pre>
-     * 发起用户电话
+     * 发起用户id
      * </pre>
      */
-    public boolean hasFromUserMobile() {
+    public boolean hasFromUserId() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
     /**
-     * <code>required string fromUserMobile = 1;</code>
+     * <code>required int32 fromUserId = 1;</code>
      *
      * <pre>
-     * 发起用户电话
+     * 发起用户id
      * </pre>
      */
-    public java.lang.String getFromUserMobile() {
-      java.lang.Object ref = fromUserMobile_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        if (bs.isValidUtf8()) {
-          fromUserMobile_ = s;
-        }
-        return s;
-      }
-    }
-    /**
-     * <code>required string fromUserMobile = 1;</code>
-     *
-     * <pre>
-     * 发起用户电话
-     * </pre>
-     */
-    public com.google.protobuf.ByteString
-        getFromUserMobileBytes() {
-      java.lang.Object ref = fromUserMobile_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        fromUserMobile_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
+    public int getFromUserId() {
+      return fromUserId_;
     }
 
-    public static final int TOUSERMOBILE_FIELD_NUMBER = 2;
-    private java.lang.Object toUserMobile_;
+    public static final int TOUSERID_FIELD_NUMBER = 2;
+    private int toUserId_;
     /**
-     * <code>required string toUserMobile = 2;</code>
+     * <code>required int32 toUserId = 2;</code>
      *
      * <pre>
-     * 被发起用户电话
+     * 被发起用户id
      * </pre>
      */
-    public boolean hasToUserMobile() {
+    public boolean hasToUserId() {
       return ((bitField0_ & 0x00000002) == 0x00000002);
     }
     /**
-     * <code>required string toUserMobile = 2;</code>
+     * <code>required int32 toUserId = 2;</code>
      *
      * <pre>
-     * 被发起用户电话
+     * 被发起用户id
      * </pre>
      */
-    public java.lang.String getToUserMobile() {
-      java.lang.Object ref = toUserMobile_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        if (bs.isValidUtf8()) {
-          toUserMobile_ = s;
-        }
-        return s;
-      }
+    public int getToUserId() {
+      return toUserId_;
+    }
+
+    public static final int ACCEPT_FIELD_NUMBER = 3;
+    private boolean accept_;
+    /**
+     * <code>required bool accept = 3;</code>
+     *
+     * <pre>
+     * 接受与否
+     * </pre>
+     */
+    public boolean hasAccept() {
+      return ((bitField0_ & 0x00000004) == 0x00000004);
     }
     /**
-     * <code>required string toUserMobile = 2;</code>
+     * <code>required bool accept = 3;</code>
      *
      * <pre>
-     * 被发起用户电话
+     * 接受与否
      * </pre>
      */
-    public com.google.protobuf.ByteString
-        getToUserMobileBytes() {
-      java.lang.Object ref = toUserMobile_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        toUserMobile_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
+    public boolean getAccept() {
+      return accept_;
     }
 
     private void initFields() {
-      fromUserMobile_ = "";
-      toUserMobile_ = "";
+      fromUserId_ = 0;
+      toUserId_ = 0;
+      accept_ = false;
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -286,11 +250,15 @@ public final class AcceptFriendRequestProtos {
       if (isInitialized == 1) return true;
       if (isInitialized == 0) return false;
 
-      if (!hasFromUserMobile()) {
+      if (!hasFromUserId()) {
         memoizedIsInitialized = 0;
         return false;
       }
-      if (!hasToUserMobile()) {
+      if (!hasToUserId()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+      if (!hasAccept()) {
         memoizedIsInitialized = 0;
         return false;
       }
@@ -302,10 +270,13 @@ public final class AcceptFriendRequestProtos {
                         throws java.io.IOException {
       getSerializedSize();
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeBytes(1, getFromUserMobileBytes());
+        output.writeInt32(1, fromUserId_);
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeBytes(2, getToUserMobileBytes());
+        output.writeInt32(2, toUserId_);
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        output.writeBool(3, accept_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -318,11 +289,15 @@ public final class AcceptFriendRequestProtos {
       size = 0;
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(1, getFromUserMobileBytes());
+          .computeInt32Size(1, fromUserId_);
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(2, getToUserMobileBytes());
+          .computeInt32Size(2, toUserId_);
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(3, accept_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -441,10 +416,12 @@ public final class AcceptFriendRequestProtos {
 
       public Builder clear() {
         super.clear();
-        fromUserMobile_ = "";
+        fromUserId_ = 0;
         bitField0_ = (bitField0_ & ~0x00000001);
-        toUserMobile_ = "";
+        toUserId_ = 0;
         bitField0_ = (bitField0_ & ~0x00000002);
+        accept_ = false;
+        bitField0_ = (bitField0_ & ~0x00000004);
         return this;
       }
 
@@ -476,11 +453,15 @@ public final class AcceptFriendRequestProtos {
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
           to_bitField0_ |= 0x00000001;
         }
-        result.fromUserMobile_ = fromUserMobile_;
+        result.fromUserId_ = fromUserId_;
         if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
           to_bitField0_ |= 0x00000002;
         }
-        result.toUserMobile_ = toUserMobile_;
+        result.toUserId_ = toUserId_;
+        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
+          to_bitField0_ |= 0x00000004;
+        }
+        result.accept_ = accept_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -497,26 +478,29 @@ public final class AcceptFriendRequestProtos {
 
       public Builder mergeFrom(org.xiaoxiancai.imhere.common.protos.business.AcceptFriendRequestProtos.AcceptFriendRequest other) {
         if (other == org.xiaoxiancai.imhere.common.protos.business.AcceptFriendRequestProtos.AcceptFriendRequest.getDefaultInstance()) return this;
-        if (other.hasFromUserMobile()) {
-          bitField0_ |= 0x00000001;
-          fromUserMobile_ = other.fromUserMobile_;
-          onChanged();
+        if (other.hasFromUserId()) {
+          setFromUserId(other.getFromUserId());
         }
-        if (other.hasToUserMobile()) {
-          bitField0_ |= 0x00000002;
-          toUserMobile_ = other.toUserMobile_;
-          onChanged();
+        if (other.hasToUserId()) {
+          setToUserId(other.getToUserId());
+        }
+        if (other.hasAccept()) {
+          setAccept(other.getAccept());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
       }
 
       public final boolean isInitialized() {
-        if (!hasFromUserMobile()) {
+        if (!hasFromUserId()) {
           
           return false;
         }
-        if (!hasToUserMobile()) {
+        if (!hasToUserId()) {
+          
+          return false;
+        }
+        if (!hasAccept()) {
           
           return false;
         }
@@ -542,202 +526,146 @@ public final class AcceptFriendRequestProtos {
       }
       private int bitField0_;
 
-      private java.lang.Object fromUserMobile_ = "";
+      private int fromUserId_ ;
       /**
-       * <code>required string fromUserMobile = 1;</code>
+       * <code>required int32 fromUserId = 1;</code>
        *
        * <pre>
-       * 发起用户电话
+       * 发起用户id
        * </pre>
        */
-      public boolean hasFromUserMobile() {
+      public boolean hasFromUserId() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
       /**
-       * <code>required string fromUserMobile = 1;</code>
+       * <code>required int32 fromUserId = 1;</code>
        *
        * <pre>
-       * 发起用户电话
+       * 发起用户id
        * </pre>
        */
-      public java.lang.String getFromUserMobile() {
-        java.lang.Object ref = fromUserMobile_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          if (bs.isValidUtf8()) {
-            fromUserMobile_ = s;
-          }
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
+      public int getFromUserId() {
+        return fromUserId_;
       }
       /**
-       * <code>required string fromUserMobile = 1;</code>
+       * <code>required int32 fromUserId = 1;</code>
        *
        * <pre>
-       * 发起用户电话
+       * 发起用户id
        * </pre>
        */
-      public com.google.protobuf.ByteString
-          getFromUserMobileBytes() {
-        java.lang.Object ref = fromUserMobile_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          fromUserMobile_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>required string fromUserMobile = 1;</code>
-       *
-       * <pre>
-       * 发起用户电话
-       * </pre>
-       */
-      public Builder setFromUserMobile(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000001;
-        fromUserMobile_ = value;
+      public Builder setFromUserId(int value) {
+        bitField0_ |= 0x00000001;
+        fromUserId_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>required string fromUserMobile = 1;</code>
+       * <code>required int32 fromUserId = 1;</code>
        *
        * <pre>
-       * 发起用户电话
+       * 发起用户id
        * </pre>
        */
-      public Builder clearFromUserMobile() {
+      public Builder clearFromUserId() {
         bitField0_ = (bitField0_ & ~0x00000001);
-        fromUserMobile_ = getDefaultInstance().getFromUserMobile();
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>required string fromUserMobile = 1;</code>
-       *
-       * <pre>
-       * 发起用户电话
-       * </pre>
-       */
-      public Builder setFromUserMobileBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000001;
-        fromUserMobile_ = value;
+        fromUserId_ = 0;
         onChanged();
         return this;
       }
 
-      private java.lang.Object toUserMobile_ = "";
+      private int toUserId_ ;
       /**
-       * <code>required string toUserMobile = 2;</code>
+       * <code>required int32 toUserId = 2;</code>
        *
        * <pre>
-       * 被发起用户电话
+       * 被发起用户id
        * </pre>
        */
-      public boolean hasToUserMobile() {
+      public boolean hasToUserId() {
         return ((bitField0_ & 0x00000002) == 0x00000002);
       }
       /**
-       * <code>required string toUserMobile = 2;</code>
+       * <code>required int32 toUserId = 2;</code>
        *
        * <pre>
-       * 被发起用户电话
+       * 被发起用户id
        * </pre>
        */
-      public java.lang.String getToUserMobile() {
-        java.lang.Object ref = toUserMobile_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          if (bs.isValidUtf8()) {
-            toUserMobile_ = s;
-          }
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
+      public int getToUserId() {
+        return toUserId_;
       }
       /**
-       * <code>required string toUserMobile = 2;</code>
+       * <code>required int32 toUserId = 2;</code>
        *
        * <pre>
-       * 被发起用户电话
+       * 被发起用户id
        * </pre>
        */
-      public com.google.protobuf.ByteString
-          getToUserMobileBytes() {
-        java.lang.Object ref = toUserMobile_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          toUserMobile_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>required string toUserMobile = 2;</code>
-       *
-       * <pre>
-       * 被发起用户电话
-       * </pre>
-       */
-      public Builder setToUserMobile(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000002;
-        toUserMobile_ = value;
+      public Builder setToUserId(int value) {
+        bitField0_ |= 0x00000002;
+        toUserId_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>required string toUserMobile = 2;</code>
+       * <code>required int32 toUserId = 2;</code>
        *
        * <pre>
-       * 被发起用户电话
+       * 被发起用户id
        * </pre>
        */
-      public Builder clearToUserMobile() {
+      public Builder clearToUserId() {
         bitField0_ = (bitField0_ & ~0x00000002);
-        toUserMobile_ = getDefaultInstance().getToUserMobile();
+        toUserId_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private boolean accept_ ;
+      /**
+       * <code>required bool accept = 3;</code>
+       *
+       * <pre>
+       * 接受与否
+       * </pre>
+       */
+      public boolean hasAccept() {
+        return ((bitField0_ & 0x00000004) == 0x00000004);
+      }
+      /**
+       * <code>required bool accept = 3;</code>
+       *
+       * <pre>
+       * 接受与否
+       * </pre>
+       */
+      public boolean getAccept() {
+        return accept_;
+      }
+      /**
+       * <code>required bool accept = 3;</code>
+       *
+       * <pre>
+       * 接受与否
+       * </pre>
+       */
+      public Builder setAccept(boolean value) {
+        bitField0_ |= 0x00000004;
+        accept_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>required string toUserMobile = 2;</code>
+       * <code>required bool accept = 3;</code>
        *
        * <pre>
-       * 被发起用户电话
+       * 接受与否
        * </pre>
        */
-      public Builder setToUserMobileBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000002;
-        toUserMobile_ = value;
+      public Builder clearAccept() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        accept_ = false;
         onChanged();
         return this;
       }
@@ -769,10 +697,10 @@ public final class AcceptFriendRequestProtos {
     java.lang.String[] descriptorData = {
       "\n\037AcceptFriendRequestProtos.proto\022-org.x" +
       "iaoxiancai.imhere.server.business.protos" +
-      "\"C\n\023AcceptFriendRequest\022\026\n\016fromUserMobil" +
-      "e\030\001 \002(\t\022\024\n\014toUserMobile\030\002 \002(\tBJ\n-org.xia" +
-      "oxiancai.imhere.common.protos.businessB\031" +
-      "AcceptFriendRequestProtos"
+      "\"K\n\023AcceptFriendRequest\022\022\n\nfromUserId\030\001 " +
+      "\002(\005\022\020\n\010toUserId\030\002 \002(\005\022\016\n\006accept\030\003 \002(\010BJ\n" +
+      "-org.xiaoxiancai.imhere.common.protos.bu" +
+      "sinessB\031AcceptFriendRequestProtos"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -791,7 +719,7 @@ public final class AcceptFriendRequestProtos {
     internal_static_org_xiaoxiancai_imhere_server_business_protos_AcceptFriendRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_org_xiaoxiancai_imhere_server_business_protos_AcceptFriendRequest_descriptor,
-        new java.lang.String[] { "FromUserMobile", "ToUserMobile", });
+        new java.lang.String[] { "FromUserId", "ToUserId", "Accept", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

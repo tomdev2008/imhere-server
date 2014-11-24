@@ -66,7 +66,9 @@ public class LocateHandler extends AbstractBusinessHandler {
         logger.debug("all location update time = {}", allLocationUpdateTime);
         UserMapper userMapper = (UserMapper) applicationContext
             .getBean("userMapper");
-        String friendNicknames = userMapper.getAllFriends(userId);
+        
+        // TODO 修改了数据库结构, 代码需重构
+        String friendNicknames = userMapper.getAllFriendsById(userId);
         Set<Integer> friendIds = getFriendIds(friendNicknames);
         Map<Integer, Location> friendCurLocMap = getFriendCurrentLocations(friendIds);
         LocateResponse response = getResponse(true, 1, "locate success",

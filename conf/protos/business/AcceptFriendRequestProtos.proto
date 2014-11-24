@@ -5,7 +5,9 @@ option java_outer_classname = "AcceptFriendRequestProtos";
 
 message AcceptFriendRequest {
   
-	required string fromUserMobile = 1; // 发起用户电话
+	required int32 fromUserId = 1; // 发起用户id
 	
-	required string toUserMobile = 2; // 被发起用户电话
+	required int32 toUserId = 2; // 被发起用户id
+	
+	required bool accept = 3; // 接受与否
 }

@@ -18,55 +18,36 @@ public class AddFriendMessage extends Entity {
     private int fromUserId;
 
     /**
-     * 发起者电话
-     */
-    private String fromUserMobile;
-
-    /**
      * 发起者昵称
      */
     private String fromUserNickname;
-
-    /**
-     * 被发起者id
-     */
-    private int toUserId;
 
     /**
      * 被发起者电话
      */
     private String toUserMobile;
 
-    public int getFromUserId() {
-        return fromUserId;
-    }
-
-    public void setFromUserId(int fromUserId) {
-        this.fromUserId = fromUserId;
-    }
-
-    public String getFromUserMobile() {
-        return fromUserMobile;
-    }
-
-    public void setFromUserMobile(String fromUserMobile) {
-        this.fromUserMobile = fromUserMobile;
-    }
 
     public String getFromUserNickname() {
         return fromUserNickname;
     }
 
-    public void setFromUserNickname(String fromUserNickname) {
+    /**
+	 * @return the fromUserId
+	 */
+	public int getFromUserId() {
+		return fromUserId;
+	}
+
+	/**
+	 * @param fromUserId the fromUserId to set
+	 */
+	public void setFromUserId(int fromUserId) {
+		this.fromUserId = fromUserId;
+	}
+
+	public void setFromUserNickname(String fromUserNickname) {
         this.fromUserNickname = fromUserNickname;
-    }
-
-    public int getToUserId() {
-        return toUserId;
-    }
-
-    public void setToUserId(int toUserId) {
-        this.toUserId = toUserId;
     }
 
     public String getToUserMobile() {

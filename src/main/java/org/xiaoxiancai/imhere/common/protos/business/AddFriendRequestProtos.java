@@ -16,7 +16,7 @@ public final class AddFriendRequestProtos {
      * <code>required int32 fromUserId = 1;</code>
      *
      * <pre>
-     * 发起用户Id
+     * 发起用户id
      * </pre>
      */
     boolean hasFromUserId();
@@ -24,39 +24,13 @@ public final class AddFriendRequestProtos {
      * <code>required int32 fromUserId = 1;</code>
      *
      * <pre>
-     * 发起用户Id
+     * 发起用户id
      * </pre>
      */
     int getFromUserId();
 
     /**
-     * <code>required string fromUserMobile = 2;</code>
-     *
-     * <pre>
-     * 发起用户电话
-     * </pre>
-     */
-    boolean hasFromUserMobile();
-    /**
-     * <code>required string fromUserMobile = 2;</code>
-     *
-     * <pre>
-     * 发起用户电话
-     * </pre>
-     */
-    java.lang.String getFromUserMobile();
-    /**
-     * <code>required string fromUserMobile = 2;</code>
-     *
-     * <pre>
-     * 发起用户电话
-     * </pre>
-     */
-    com.google.protobuf.ByteString
-        getFromUserMobileBytes();
-
-    /**
-     * <code>required string fromUserNickname = 3;</code>
+     * <code>required string fromUserNickname = 2;</code>
      *
      * <pre>
      * 发起用户昵称
@@ -64,7 +38,7 @@ public final class AddFriendRequestProtos {
      */
     boolean hasFromUserNickname();
     /**
-     * <code>required string fromUserNickname = 3;</code>
+     * <code>required string fromUserNickname = 2;</code>
      *
      * <pre>
      * 发起用户昵称
@@ -72,7 +46,7 @@ public final class AddFriendRequestProtos {
      */
     java.lang.String getFromUserNickname();
     /**
-     * <code>required string fromUserNickname = 3;</code>
+     * <code>required string fromUserNickname = 2;</code>
      *
      * <pre>
      * 发起用户昵称
@@ -82,24 +56,7 @@ public final class AddFriendRequestProtos {
         getFromUserNicknameBytes();
 
     /**
-     * <code>optional int32 toUserId = 4;</code>
-     *
-     * <pre>
-     * 被发起用户Id
-     * </pre>
-     */
-    boolean hasToUserId();
-    /**
-     * <code>optional int32 toUserId = 4;</code>
-     *
-     * <pre>
-     * 被发起用户Id
-     * </pre>
-     */
-    int getToUserId();
-
-    /**
-     * <code>required string toUserMobile = 5;</code>
+     * <code>required string toUserMobile = 3;</code>
      *
      * <pre>
      * 被发起用户电话
@@ -107,7 +64,7 @@ public final class AddFriendRequestProtos {
      */
     boolean hasToUserMobile();
     /**
-     * <code>required string toUserMobile = 5;</code>
+     * <code>required string toUserMobile = 3;</code>
      *
      * <pre>
      * 被发起用户电话
@@ -115,7 +72,7 @@ public final class AddFriendRequestProtos {
      */
     java.lang.String getToUserMobile();
     /**
-     * <code>required string toUserMobile = 5;</code>
+     * <code>required string toUserMobile = 3;</code>
      *
      * <pre>
      * 被发起用户电话
@@ -184,23 +141,12 @@ public final class AddFriendRequestProtos {
             case 18: {
               com.google.protobuf.ByteString bs = input.readBytes();
               bitField0_ |= 0x00000002;
-              fromUserMobile_ = bs;
+              fromUserNickname_ = bs;
               break;
             }
             case 26: {
               com.google.protobuf.ByteString bs = input.readBytes();
               bitField0_ |= 0x00000004;
-              fromUserNickname_ = bs;
-              break;
-            }
-            case 32: {
-              bitField0_ |= 0x00000008;
-              toUserId_ = input.readInt32();
-              break;
-            }
-            case 42: {
-              com.google.protobuf.ByteString bs = input.readBytes();
-              bitField0_ |= 0x00000010;
               toUserMobile_ = bs;
               break;
             }
@@ -250,7 +196,7 @@ public final class AddFriendRequestProtos {
      * <code>required int32 fromUserId = 1;</code>
      *
      * <pre>
-     * 发起用户Id
+     * 发起用户id
      * </pre>
      */
     public boolean hasFromUserId() {
@@ -260,81 +206,27 @@ public final class AddFriendRequestProtos {
      * <code>required int32 fromUserId = 1;</code>
      *
      * <pre>
-     * 发起用户Id
+     * 发起用户id
      * </pre>
      */
     public int getFromUserId() {
       return fromUserId_;
     }
 
-    public static final int FROMUSERMOBILE_FIELD_NUMBER = 2;
-    private java.lang.Object fromUserMobile_;
-    /**
-     * <code>required string fromUserMobile = 2;</code>
-     *
-     * <pre>
-     * 发起用户电话
-     * </pre>
-     */
-    public boolean hasFromUserMobile() {
-      return ((bitField0_ & 0x00000002) == 0x00000002);
-    }
-    /**
-     * <code>required string fromUserMobile = 2;</code>
-     *
-     * <pre>
-     * 发起用户电话
-     * </pre>
-     */
-    public java.lang.String getFromUserMobile() {
-      java.lang.Object ref = fromUserMobile_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        if (bs.isValidUtf8()) {
-          fromUserMobile_ = s;
-        }
-        return s;
-      }
-    }
-    /**
-     * <code>required string fromUserMobile = 2;</code>
-     *
-     * <pre>
-     * 发起用户电话
-     * </pre>
-     */
-    public com.google.protobuf.ByteString
-        getFromUserMobileBytes() {
-      java.lang.Object ref = fromUserMobile_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        fromUserMobile_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    public static final int FROMUSERNICKNAME_FIELD_NUMBER = 3;
+    public static final int FROMUSERNICKNAME_FIELD_NUMBER = 2;
     private java.lang.Object fromUserNickname_;
     /**
-     * <code>required string fromUserNickname = 3;</code>
+     * <code>required string fromUserNickname = 2;</code>
      *
      * <pre>
      * 发起用户昵称
      * </pre>
      */
     public boolean hasFromUserNickname() {
-      return ((bitField0_ & 0x00000004) == 0x00000004);
+      return ((bitField0_ & 0x00000002) == 0x00000002);
     }
     /**
-     * <code>required string fromUserNickname = 3;</code>
+     * <code>required string fromUserNickname = 2;</code>
      *
      * <pre>
      * 发起用户昵称
@@ -355,7 +247,7 @@ public final class AddFriendRequestProtos {
       }
     }
     /**
-     * <code>required string fromUserNickname = 3;</code>
+     * <code>required string fromUserNickname = 2;</code>
      *
      * <pre>
      * 发起用户昵称
@@ -375,43 +267,20 @@ public final class AddFriendRequestProtos {
       }
     }
 
-    public static final int TOUSERID_FIELD_NUMBER = 4;
-    private int toUserId_;
-    /**
-     * <code>optional int32 toUserId = 4;</code>
-     *
-     * <pre>
-     * 被发起用户Id
-     * </pre>
-     */
-    public boolean hasToUserId() {
-      return ((bitField0_ & 0x00000008) == 0x00000008);
-    }
-    /**
-     * <code>optional int32 toUserId = 4;</code>
-     *
-     * <pre>
-     * 被发起用户Id
-     * </pre>
-     */
-    public int getToUserId() {
-      return toUserId_;
-    }
-
-    public static final int TOUSERMOBILE_FIELD_NUMBER = 5;
+    public static final int TOUSERMOBILE_FIELD_NUMBER = 3;
     private java.lang.Object toUserMobile_;
     /**
-     * <code>required string toUserMobile = 5;</code>
+     * <code>required string toUserMobile = 3;</code>
      *
      * <pre>
      * 被发起用户电话
      * </pre>
      */
     public boolean hasToUserMobile() {
-      return ((bitField0_ & 0x00000010) == 0x00000010);
+      return ((bitField0_ & 0x00000004) == 0x00000004);
     }
     /**
-     * <code>required string toUserMobile = 5;</code>
+     * <code>required string toUserMobile = 3;</code>
      *
      * <pre>
      * 被发起用户电话
@@ -432,7 +301,7 @@ public final class AddFriendRequestProtos {
       }
     }
     /**
-     * <code>required string toUserMobile = 5;</code>
+     * <code>required string toUserMobile = 3;</code>
      *
      * <pre>
      * 被发起用户电话
@@ -454,9 +323,7 @@ public final class AddFriendRequestProtos {
 
     private void initFields() {
       fromUserId_ = 0;
-      fromUserMobile_ = "";
       fromUserNickname_ = "";
-      toUserId_ = 0;
       toUserMobile_ = "";
     }
     private byte memoizedIsInitialized = -1;
@@ -466,10 +333,6 @@ public final class AddFriendRequestProtos {
       if (isInitialized == 0) return false;
 
       if (!hasFromUserId()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasFromUserMobile()) {
         memoizedIsInitialized = 0;
         return false;
       }
@@ -492,16 +355,10 @@ public final class AddFriendRequestProtos {
         output.writeInt32(1, fromUserId_);
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeBytes(2, getFromUserMobileBytes());
+        output.writeBytes(2, getFromUserNicknameBytes());
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeBytes(3, getFromUserNicknameBytes());
-      }
-      if (((bitField0_ & 0x00000008) == 0x00000008)) {
-        output.writeInt32(4, toUserId_);
-      }
-      if (((bitField0_ & 0x00000010) == 0x00000010)) {
-        output.writeBytes(5, getToUserMobileBytes());
+        output.writeBytes(3, getToUserMobileBytes());
       }
       getUnknownFields().writeTo(output);
     }
@@ -518,19 +375,11 @@ public final class AddFriendRequestProtos {
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(2, getFromUserMobileBytes());
+          .computeBytesSize(2, getFromUserNicknameBytes());
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(3, getFromUserNicknameBytes());
-      }
-      if (((bitField0_ & 0x00000008) == 0x00000008)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(4, toUserId_);
-      }
-      if (((bitField0_ & 0x00000010) == 0x00000010)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(5, getToUserMobileBytes());
+          .computeBytesSize(3, getToUserMobileBytes());
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -651,14 +500,10 @@ public final class AddFriendRequestProtos {
         super.clear();
         fromUserId_ = 0;
         bitField0_ = (bitField0_ & ~0x00000001);
-        fromUserMobile_ = "";
-        bitField0_ = (bitField0_ & ~0x00000002);
         fromUserNickname_ = "";
-        bitField0_ = (bitField0_ & ~0x00000004);
-        toUserId_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000008);
+        bitField0_ = (bitField0_ & ~0x00000002);
         toUserMobile_ = "";
-        bitField0_ = (bitField0_ & ~0x00000010);
+        bitField0_ = (bitField0_ & ~0x00000004);
         return this;
       }
 
@@ -694,17 +539,9 @@ public final class AddFriendRequestProtos {
         if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
           to_bitField0_ |= 0x00000002;
         }
-        result.fromUserMobile_ = fromUserMobile_;
+        result.fromUserNickname_ = fromUserNickname_;
         if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
           to_bitField0_ |= 0x00000004;
-        }
-        result.fromUserNickname_ = fromUserNickname_;
-        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
-          to_bitField0_ |= 0x00000008;
-        }
-        result.toUserId_ = toUserId_;
-        if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
-          to_bitField0_ |= 0x00000010;
         }
         result.toUserMobile_ = toUserMobile_;
         result.bitField0_ = to_bitField0_;
@@ -726,21 +563,13 @@ public final class AddFriendRequestProtos {
         if (other.hasFromUserId()) {
           setFromUserId(other.getFromUserId());
         }
-        if (other.hasFromUserMobile()) {
-          bitField0_ |= 0x00000002;
-          fromUserMobile_ = other.fromUserMobile_;
-          onChanged();
-        }
         if (other.hasFromUserNickname()) {
-          bitField0_ |= 0x00000004;
+          bitField0_ |= 0x00000002;
           fromUserNickname_ = other.fromUserNickname_;
           onChanged();
         }
-        if (other.hasToUserId()) {
-          setToUserId(other.getToUserId());
-        }
         if (other.hasToUserMobile()) {
-          bitField0_ |= 0x00000010;
+          bitField0_ |= 0x00000004;
           toUserMobile_ = other.toUserMobile_;
           onChanged();
         }
@@ -750,10 +579,6 @@ public final class AddFriendRequestProtos {
 
       public final boolean isInitialized() {
         if (!hasFromUserId()) {
-          
-          return false;
-        }
-        if (!hasFromUserMobile()) {
           
           return false;
         }
@@ -792,7 +617,7 @@ public final class AddFriendRequestProtos {
        * <code>required int32 fromUserId = 1;</code>
        *
        * <pre>
-       * 发起用户Id
+       * 发起用户id
        * </pre>
        */
       public boolean hasFromUserId() {
@@ -802,7 +627,7 @@ public final class AddFriendRequestProtos {
        * <code>required int32 fromUserId = 1;</code>
        *
        * <pre>
-       * 发起用户Id
+       * 发起用户id
        * </pre>
        */
       public int getFromUserId() {
@@ -812,7 +637,7 @@ public final class AddFriendRequestProtos {
        * <code>required int32 fromUserId = 1;</code>
        *
        * <pre>
-       * 发起用户Id
+       * 发起用户id
        * </pre>
        */
       public Builder setFromUserId(int value) {
@@ -825,7 +650,7 @@ public final class AddFriendRequestProtos {
        * <code>required int32 fromUserId = 1;</code>
        *
        * <pre>
-       * 发起用户Id
+       * 发起用户id
        * </pre>
        */
       public Builder clearFromUserId() {
@@ -835,119 +660,19 @@ public final class AddFriendRequestProtos {
         return this;
       }
 
-      private java.lang.Object fromUserMobile_ = "";
-      /**
-       * <code>required string fromUserMobile = 2;</code>
-       *
-       * <pre>
-       * 发起用户电话
-       * </pre>
-       */
-      public boolean hasFromUserMobile() {
-        return ((bitField0_ & 0x00000002) == 0x00000002);
-      }
-      /**
-       * <code>required string fromUserMobile = 2;</code>
-       *
-       * <pre>
-       * 发起用户电话
-       * </pre>
-       */
-      public java.lang.String getFromUserMobile() {
-        java.lang.Object ref = fromUserMobile_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          if (bs.isValidUtf8()) {
-            fromUserMobile_ = s;
-          }
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <code>required string fromUserMobile = 2;</code>
-       *
-       * <pre>
-       * 发起用户电话
-       * </pre>
-       */
-      public com.google.protobuf.ByteString
-          getFromUserMobileBytes() {
-        java.lang.Object ref = fromUserMobile_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          fromUserMobile_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>required string fromUserMobile = 2;</code>
-       *
-       * <pre>
-       * 发起用户电话
-       * </pre>
-       */
-      public Builder setFromUserMobile(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000002;
-        fromUserMobile_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>required string fromUserMobile = 2;</code>
-       *
-       * <pre>
-       * 发起用户电话
-       * </pre>
-       */
-      public Builder clearFromUserMobile() {
-        bitField0_ = (bitField0_ & ~0x00000002);
-        fromUserMobile_ = getDefaultInstance().getFromUserMobile();
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>required string fromUserMobile = 2;</code>
-       *
-       * <pre>
-       * 发起用户电话
-       * </pre>
-       */
-      public Builder setFromUserMobileBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000002;
-        fromUserMobile_ = value;
-        onChanged();
-        return this;
-      }
-
       private java.lang.Object fromUserNickname_ = "";
       /**
-       * <code>required string fromUserNickname = 3;</code>
+       * <code>required string fromUserNickname = 2;</code>
        *
        * <pre>
        * 发起用户昵称
        * </pre>
        */
       public boolean hasFromUserNickname() {
-        return ((bitField0_ & 0x00000004) == 0x00000004);
+        return ((bitField0_ & 0x00000002) == 0x00000002);
       }
       /**
-       * <code>required string fromUserNickname = 3;</code>
+       * <code>required string fromUserNickname = 2;</code>
        *
        * <pre>
        * 发起用户昵称
@@ -968,7 +693,7 @@ public final class AddFriendRequestProtos {
         }
       }
       /**
-       * <code>required string fromUserNickname = 3;</code>
+       * <code>required string fromUserNickname = 2;</code>
        *
        * <pre>
        * 发起用户昵称
@@ -988,7 +713,7 @@ public final class AddFriendRequestProtos {
         }
       }
       /**
-       * <code>required string fromUserNickname = 3;</code>
+       * <code>required string fromUserNickname = 2;</code>
        *
        * <pre>
        * 发起用户昵称
@@ -999,26 +724,26 @@ public final class AddFriendRequestProtos {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000004;
+  bitField0_ |= 0x00000002;
         fromUserNickname_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>required string fromUserNickname = 3;</code>
+       * <code>required string fromUserNickname = 2;</code>
        *
        * <pre>
        * 发起用户昵称
        * </pre>
        */
       public Builder clearFromUserNickname() {
-        bitField0_ = (bitField0_ & ~0x00000004);
+        bitField0_ = (bitField0_ & ~0x00000002);
         fromUserNickname_ = getDefaultInstance().getFromUserNickname();
         onChanged();
         return this;
       }
       /**
-       * <code>required string fromUserNickname = 3;</code>
+       * <code>required string fromUserNickname = 2;</code>
        *
        * <pre>
        * 发起用户昵称
@@ -1029,73 +754,25 @@ public final class AddFriendRequestProtos {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000004;
+  bitField0_ |= 0x00000002;
         fromUserNickname_ = value;
-        onChanged();
-        return this;
-      }
-
-      private int toUserId_ ;
-      /**
-       * <code>optional int32 toUserId = 4;</code>
-       *
-       * <pre>
-       * 被发起用户Id
-       * </pre>
-       */
-      public boolean hasToUserId() {
-        return ((bitField0_ & 0x00000008) == 0x00000008);
-      }
-      /**
-       * <code>optional int32 toUserId = 4;</code>
-       *
-       * <pre>
-       * 被发起用户Id
-       * </pre>
-       */
-      public int getToUserId() {
-        return toUserId_;
-      }
-      /**
-       * <code>optional int32 toUserId = 4;</code>
-       *
-       * <pre>
-       * 被发起用户Id
-       * </pre>
-       */
-      public Builder setToUserId(int value) {
-        bitField0_ |= 0x00000008;
-        toUserId_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional int32 toUserId = 4;</code>
-       *
-       * <pre>
-       * 被发起用户Id
-       * </pre>
-       */
-      public Builder clearToUserId() {
-        bitField0_ = (bitField0_ & ~0x00000008);
-        toUserId_ = 0;
         onChanged();
         return this;
       }
 
       private java.lang.Object toUserMobile_ = "";
       /**
-       * <code>required string toUserMobile = 5;</code>
+       * <code>required string toUserMobile = 3;</code>
        *
        * <pre>
        * 被发起用户电话
        * </pre>
        */
       public boolean hasToUserMobile() {
-        return ((bitField0_ & 0x00000010) == 0x00000010);
+        return ((bitField0_ & 0x00000004) == 0x00000004);
       }
       /**
-       * <code>required string toUserMobile = 5;</code>
+       * <code>required string toUserMobile = 3;</code>
        *
        * <pre>
        * 被发起用户电话
@@ -1116,7 +793,7 @@ public final class AddFriendRequestProtos {
         }
       }
       /**
-       * <code>required string toUserMobile = 5;</code>
+       * <code>required string toUserMobile = 3;</code>
        *
        * <pre>
        * 被发起用户电话
@@ -1136,7 +813,7 @@ public final class AddFriendRequestProtos {
         }
       }
       /**
-       * <code>required string toUserMobile = 5;</code>
+       * <code>required string toUserMobile = 3;</code>
        *
        * <pre>
        * 被发起用户电话
@@ -1147,26 +824,26 @@ public final class AddFriendRequestProtos {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000010;
+  bitField0_ |= 0x00000004;
         toUserMobile_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>required string toUserMobile = 5;</code>
+       * <code>required string toUserMobile = 3;</code>
        *
        * <pre>
        * 被发起用户电话
        * </pre>
        */
       public Builder clearToUserMobile() {
-        bitField0_ = (bitField0_ & ~0x00000010);
+        bitField0_ = (bitField0_ & ~0x00000004);
         toUserMobile_ = getDefaultInstance().getToUserMobile();
         onChanged();
         return this;
       }
       /**
-       * <code>required string toUserMobile = 5;</code>
+       * <code>required string toUserMobile = 3;</code>
        *
        * <pre>
        * 被发起用户电话
@@ -1177,7 +854,7 @@ public final class AddFriendRequestProtos {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000010;
+  bitField0_ |= 0x00000004;
         toUserMobile_ = value;
         onChanged();
         return this;
@@ -1209,13 +886,11 @@ public final class AddFriendRequestProtos {
   static {
     java.lang.String[] descriptorData = {
       "\n\034AddFriendRequestProtos.proto\022-org.xiao" +
-      "xiancai.imhere.server.business.protos\"\200\001" +
-      "\n\020AddFriendRequest\022\022\n\nfromUserId\030\001 \002(\005\022\026" +
-      "\n\016fromUserMobile\030\002 \002(\t\022\030\n\020fromUserNickna" +
-      "me\030\003 \002(\t\022\020\n\010toUserId\030\004 \001(\005\022\024\n\014toUserMobi" +
-      "le\030\005 \002(\tBG\n-org.xiaoxiancai.imhere.commo" +
-      "n.protos.businessB\026AddFriendRequestProto" +
-      "s"
+      "xiancai.imhere.server.business.protos\"V\n" +
+      "\020AddFriendRequest\022\022\n\nfromUserId\030\001 \002(\005\022\030\n" +
+      "\020fromUserNickname\030\002 \002(\t\022\024\n\014toUserMobile\030" +
+      "\003 \002(\tBG\n-org.xiaoxiancai.imhere.common.p" +
+      "rotos.businessB\026AddFriendRequestProtos"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -1234,7 +909,7 @@ public final class AddFriendRequestProtos {
     internal_static_org_xiaoxiancai_imhere_server_business_protos_AddFriendRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_org_xiaoxiancai_imhere_server_business_protos_AddFriendRequest_descriptor,
-        new java.lang.String[] { "FromUserId", "FromUserMobile", "FromUserNickname", "ToUserId", "ToUserMobile", });
+        new java.lang.String[] { "FromUserId", "FromUserNickname", "ToUserMobile", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

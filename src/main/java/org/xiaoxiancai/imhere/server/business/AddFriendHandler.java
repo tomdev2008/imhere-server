@@ -7,11 +7,7 @@ package org.xiaoxiancai.imhere.server.business;
 
 import io.netty.channel.ChannelHandlerContext;
 
-import java.util.Map;
-
 import org.xiaoxiancai.imhere.common.protos.business.AddFriendRequestProtos.AddFriendRequest;
-import org.xiaoxiancai.imhere.common.protos.business.LocationProtos.Location;
-import org.xiaoxiancai.imhere.server.LinkServer;
 import org.xiaoxiancai.imhere.server.entity.AddFriendMessage;
 import org.xiaoxiancai.imhere.server.inter.UserMapper;
 
@@ -33,32 +29,15 @@ public class AddFriendHandler extends AbstractBusinessHandler {
         UserMapper userMapper = (UserMapper) applicationContext
             .getBean("userMapper");
 
-        String fromUserMobile = request.getFromUserMobile();
+        int fromUserId = request.getFromUserId();
         String toUserMobile = request.getToUserMobile();
 
-        int toUserId = request.getToUserId();
-        if (toUserId != 0) {
-            LinkServer linkServer = (LinkServer) applicationContext
-                .getBean("linkServer");
-            Map<Integer, Location> currentLocationMap = linkServer
-                .getCurrentLocation();
-
-            // 被添加好友在线, 及时通知
-            if (currentLocationMap.containsKey(toUserId)) {
-                // TODO
-            }
-        }
-
-        // 添加自己
-        if (fromUserMobile.equals(toUserMobile)) {
-            return;
-        }
-        if (!hasSentFriendMessage(fromUserMobile, toUserMobile, userMapper)) {
+        if (!hasSentFriendMessage(fromUserId, toUserMobile, userMapper)) {
             AddFriendMessage message = getAddFriendMessage(request);
             userMapper.addFriend(message);
             logger.debug(
-                "save add friend msg, fromUserMobile = {}, toUserMobile = {}",
-                fromUserMobile, toUserMobile);
+                "save add friend msg, fromUserId = {}, toUserMobile = {}",
+                fromUserId, toUserMobile);
         }
 
     }
@@ -66,15 +45,15 @@ public class AddFriendHandler extends AbstractBusinessHandler {
     /**
      * 是否已发添加请求
      * 
-     * @param fromUserMobile
+     * @param fromUserId
      * @param toUserMobile
      * @param userMapper
      * @return
      */
-    private boolean hasSentFriendMessage(String fromUserMobile,
+    private boolean hasSentFriendMessage(int fromUserId,
         String toUserMobile, UserMapper userMapper) {
         AddFriendMessage message = new AddFriendMessage();
-        message.setFromUserMobile(fromUserMobile);
+        message.setFromUserId(fromUserId);
         message.setToUserMobile(toUserMobile);
         int count = userMapper.countAddFriendMessage(message);
         return count == 0 ? false : true;
@@ -89,13 +68,8 @@ public class AddFriendHandler extends AbstractBusinessHandler {
     private AddFriendMessage getAddFriendMessage(AddFriendRequest request) {
         AddFriendMessage msg = new AddFriendMessage();
         msg.setFromUserId(request.getFromUserId());
-        msg.setFromUserMobile(request.getFromUserMobile());
         msg.setFromUserNickname(request.getFromUserNickname());
         msg.setToUserMobile(request.getToUserMobile());
-        int toUserId;
-        if ((toUserId = request.getToUserId()) != 0) {
-            msg.setToUserId(toUserId);
-        }
         return msg;
     }
 }

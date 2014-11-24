@@ -40,7 +40,17 @@ public class User extends Entity {
 	 */
 	private String signature;
 
+	/**
+	 * 所属组
+	 */
 	private List<UserGroup> groups = new ArrayList<UserGroup>();
+
+	/**
+	 * 朋友
+	 * <p>
+	 * id1:nickname1;id2:nickname2...idN:nicknameN
+	 */
+	private String friends;
 
 	public String getMobile() {
 		return mobile;
@@ -88,6 +98,20 @@ public class User extends Entity {
 
 	public void setGroups(List<UserGroup> groups) {
 		this.groups = groups;
+	}
+
+	/**
+	 * @return the friends
+	 */
+	public String getFriends() {
+		return friends;
+	}
+
+	/**
+	 * @param friends the friends to set
+	 */
+	public void setFriends(String friends) {
+		this.friends = friends;
 	}
 
 }
