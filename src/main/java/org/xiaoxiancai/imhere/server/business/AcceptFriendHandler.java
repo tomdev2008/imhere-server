@@ -21,67 +21,85 @@ import org.xiaoxiancai.imhere.server.inter.UserMapper;
  */
 public class AcceptFriendHandler extends AbstractBusinessHandler {
 
-    private AcceptFriendResponse response;
+	@Override
+	public void channelRead(ChannelHandlerContext ctx, Object msg)
+			throws Exception {
+		if (!(msg instanceof AcceptFriendRequest)) {
+			return;
+		}
+		AcceptFriendRequest request = (AcceptFriendRequest) msg;
+		int fromUserId = request.getFromUserId();
+		int toUserId = request.getToUserId();
+		boolean accept = request.getAccept();
+		logger.debug("accept friend from = {}, to = {}, accept = {}",
+				fromUserId, toUserId, accept);
+		UserMapper userMapper = (UserMapper) applicationContext
+				.getBean("userMapper");
+		AddFriendMessageMapper friendMapper = (AddFriendMessageMapper) applicationContext
+				.getBean("addFriendMessageMapper");
+		User toUser = (User) userMapper.getById(toUserId);
+		if (accept) {
+			String fromUserFriendIds = userMapper.getFriendsById(fromUserId);
+			String toUserFriendIds = toUser.getFriends();
+			if (StringUtils.isBlank(fromUserFriendIds)) {
+				fromUserFriendIds = String.valueOf(toUserId);
+			} else {
+				fromUserFriendIds = fromUserFriendIds + ";" + toUserId;
+			}
+			if (StringUtils.isBlank(toUserFriendIds)) {
+				toUserFriendIds = String.valueOf(fromUserId);
+			} else {
+				toUserFriendIds = toUserFriendIds + ";" + fromUserId;
+			}
 
-    @Override
-    public void channelRead(ChannelHandlerContext ctx, Object msg)
-        throws Exception {
-        if (!(msg instanceof AcceptFriendRequest)) {
-            return;
-        }
-        AcceptFriendRequest request = (AcceptFriendRequest) msg;
-        int fromUserId = request.getFromUserId();
-        int toUserId = request.getToUserId();
-        boolean accept = request.getAccept();
-        logger.debug("accept friend from = {}, to = {}, accept = {}",
-            fromUserId, toUserId, accept);
-        UserMapper userMapper = (UserMapper) applicationContext
-            .getBean("userMapper");
-        AddFriendMessageMapper friendMapper = (AddFriendMessageMapper) applicationContext
-            .getBean("addFriendMessageMapper");
+			// 更新好友关系
+			userMapper
+					.updateUser(getUserToUpdate(fromUserId, fromUserFriendIds));
+			userMapper.updateUser(getUserToUpdate(toUserId, toUserFriendIds));
+			AcceptFriendResponse response = createResponse(true, 1,
+					"accept friend");
+			ctx.channel().writeAndFlush(response);
+		} else {
+			AcceptFriendResponse response = createResponse(false, -1,
+					"reject friend");
+			ctx.channel().writeAndFlush(response);
+		}
 
-        User toUser = (User) userMapper.getById(toUserId);
-        if (accept) {
-            String fromUserFriendIds = userMapper.getFriendsById(fromUserId);
-            String toUserFriendIds = toUser.getFriends();
-            if (StringUtils.isBlank(fromUserFriendIds)) {
-                fromUserFriendIds = String.valueOf(toUserId);
-            } else {
-                fromUserFriendIds = fromUserFriendIds + ";" + toUserId;
-            }
-            if (StringUtils.isBlank(toUserFriendIds)) {
-                toUserFriendIds = String.valueOf(fromUserId);
-            } else {
-                toUserFriendIds = toUserFriendIds + ";" + fromUserId;
-            }
+		// 删除添加好友消息
+		friendMapper.removeAddFriendMessage(fromUserId, toUser.getMobile());
 
-            // 更新好友关系
-            userMapper
-                .updateUser(getUserToUpdate(fromUserId, fromUserFriendIds));
-            userMapper.updateUser(getUserToUpdate(toUserId, toUserFriendIds));
+	}
 
-        }
+	/**
+	 * 生成响应
+	 * 
+	 * @param isSuccess
+	 * @param status
+	 * @param message
+	 * @return
+	 */
+	private AcceptFriendResponse createResponse(boolean isSuccess, int status,
+			String message) {
+		AcceptFriendResponse.Builder builder = AcceptFriendResponse
+				.newBuilder();
+		builder.setIsSuccess(isSuccess);
+		builder.setStatus(status);
+		builder.setMessage(message);
+		return builder.build();
+	}
 
-        // 删除添加好友消息
-        friendMapper.removeAddFriendMessage(fromUserId, toUser.getMobile());
-    }
-
-    /**
-     * 获得待更新用户
-     * 
-     * @param userId
-     * @param friendIds
-     * @return
-     */
-    private User getUserToUpdate(int userId, String friendIds) {
-        User user = new User();
-        user.setId(userId);
-        user.setFriends(friendIds);
-        return user;
-    }
-
-    public AcceptFriendResponse getResponse() {
-        return response;
-    }
+	/**
+	 * 获得待更新用户
+	 * 
+	 * @param userId
+	 * @param friendIds
+	 * @return
+	 */
+	private User getUserToUpdate(int userId, String friendIds) {
+		User user = new User();
+		user.setId(userId);
+		user.setFriends(friendIds);
+		return user;
+	}
 
 }

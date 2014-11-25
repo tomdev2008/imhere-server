@@ -19,6 +19,7 @@ import io.netty.channel.Channel;
 import io.netty.channel.ChannelPipeline;
 import io.netty.handler.codec.protobuf.ProtobufDecoder;
 
+import org.xiaoxiancai.imhere.client.handler.AcceptFriendHandler;
 import org.xiaoxiancai.imhere.client.handler.AddFriendHandler;
 import org.xiaoxiancai.imhere.client.handler.LocateHandler;
 import org.xiaoxiancai.imhere.client.handler.LoginHandler;
@@ -34,7 +35,6 @@ import org.xiaoxiancai.imhere.common.protos.business.LoginResponseProtos.LoginRe
 import org.xiaoxiancai.imhere.common.protos.business.RegisterRequestProtos.RegisterRequest;
 import org.xiaoxiancai.imhere.common.protos.business.RegisterResponseProtos.RegisterResponse;
 import org.xiaoxiancai.imhere.common.protos.common.BusinessTypeProtos.BusinessType;
-import org.xiaoxiancai.imhere.server.business.AcceptFriendHandler;
 
 /**
  * 默认客户端实现
@@ -258,7 +258,7 @@ public class DefaultClient extends AbstractClient {
 				acceptFriendHandler.wait();
 			}
 			AcceptFriendResponse response = acceptFriendHandler.getResponse();
-			logger.info("addFriend response = {}", response);
+			logger.info("accept friend response = {}", response);
 			return response;
 		} else {
 			logger.error("channel is null or inactive");
