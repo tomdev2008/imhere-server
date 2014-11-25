@@ -14,7 +14,7 @@
 	
 	<fileSets>
 		<fileSet>
-			<directory>src/main/java/org/xiaoxiancai/imhere</directory>
+			<directory>target/classes/org/xiaoxiancai/imhere</directory>
 			<outputDirectory>/</outputDirectory>
 			<includes>
 			    <include>client/**/*</include>
@@ -23,15 +23,14 @@
 		</fileSet>
 	</fileSets>
 
+	<!-- 
 	<dependencySets>
 		<dependencySet>
 			<useProjectArtifact>true</useProjectArtifact>
-			<outputDirectory>/lib</outputDirectory>
-			<!-- 注意这个要true, 不然maven就直接把jar包整个放进目标jar中 --> 
-			<unpack>true</unpack>
+			<outputDirectory>lib</outputDirectory>
 			<scope>runtime</scope>
 		</dependencySet>
-	</dependencySets>
+	</dependencySets> -->
 	
 </assembly>
 
