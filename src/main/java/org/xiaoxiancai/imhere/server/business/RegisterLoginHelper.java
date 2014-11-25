@@ -1,7 +1,8 @@
-/* 
- **********************************************************************
- * Copyright (c) 2014, xianneng.lin@gmail.com All Rights Reserved. 
- **********************************************************************
+/**
+ * @(#)RegisterLoginHelper.java, 2014-11-25.
+ *
+ * Copyright 2014 Netease, Inc. All rights reserved.
+ * NETEASE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 package org.xiaoxiancai.imhere.server.business;
 
@@ -10,28 +11,18 @@ import java.util.List;
 
 import org.xiaoxiancai.imhere.common.protos.business.AddFriendRequestProtos.AddFriendRequest;
 import org.xiaoxiancai.imhere.server.entity.AddFriendMessage;
-import org.xiaoxiancai.imhere.server.inter.UserMapper;
+import org.xiaoxiancai.imhere.server.inter.AddFriendMessageMapper;
 
 /**
- * 数据库操作帮助类
- * 
  * @author linxianneng
  */
-public class DBHelper {
-    private DBHelper() {
+public class RegisterLoginHelper {
 
-    }
+    private RegisterLoginHelper() {}
 
-    /**
-     * 从数据库中获取添加好友消息
-     * 
-     * @param toUserMobile
-     * @param userMapper
-     * @return
-     */
     public static List<AddFriendRequest> getAddFriendRequestFromDB(
-        String toUserMobile, UserMapper userMapper) {
-        List<AddFriendMessage> messages = userMapper
+        String toUserMobile, AddFriendMessageMapper mapper) {
+        List<AddFriendMessage> messages = mapper
             .getAddFriendMessage(toUserMobile);
         if (messages != null && !messages.isEmpty()) {
             List<AddFriendRequest> requestList = new ArrayList<AddFriendRequest>();
@@ -47,17 +38,5 @@ public class DBHelper {
         } else {
             return null;
         }
-    }
-
-    /**
-     * 从数据库中移除添加好友消息
-     * 
-     * @param fromUserId
-     * @param toUserId
-     * @param userMapper
-     */
-    public static void removeAddFriendRequestFromDB(int fromUserId,
-        int toUserId, UserMapper userMapper) {
-        userMapper.removeAddFriendMessage(fromUserId, toUserId);
     }
 }

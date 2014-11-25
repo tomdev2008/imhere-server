@@ -9,7 +9,7 @@ import io.netty.channel.ChannelHandlerContext;
 
 import org.xiaoxiancai.imhere.common.protos.business.AddFriendRequestProtos.AddFriendRequest;
 import org.xiaoxiancai.imhere.server.entity.AddFriendMessage;
-import org.xiaoxiancai.imhere.server.inter.UserMapper;
+import org.xiaoxiancai.imhere.server.inter.AddFriendMessageMapper;
 
 /**
  * 添加朋友处理器
@@ -26,15 +26,15 @@ public class AddFriendHandler extends AbstractBusinessHandler {
         }
 
         AddFriendRequest request = (AddFriendRequest) msg;
-        UserMapper userMapper = (UserMapper) applicationContext
-            .getBean("userMapper");
+        AddFriendMessageMapper friendMapper = (AddFriendMessageMapper) applicationContext
+            .getBean("addFriendMessageMapper");
 
         int fromUserId = request.getFromUserId();
         String toUserMobile = request.getToUserMobile();
 
-        if (!hasSentFriendMessage(fromUserId, toUserMobile, userMapper)) {
+        if (!hasSentFriendMessage(fromUserId, toUserMobile, friendMapper)) {
             AddFriendMessage message = getAddFriendMessage(request);
-            userMapper.addFriend(message);
+            friendMapper.saveAddFriendMessage(message);
             logger.debug(
                 "save add friend msg, fromUserId = {}, toUserMobile = {}",
                 fromUserId, toUserMobile);
@@ -47,15 +47,15 @@ public class AddFriendHandler extends AbstractBusinessHandler {
      * 
      * @param fromUserId
      * @param toUserMobile
-     * @param userMapper
+     * @param mapper
      * @return
      */
-    private boolean hasSentFriendMessage(int fromUserId,
-        String toUserMobile, UserMapper userMapper) {
+    private boolean hasSentFriendMessage(int fromUserId, String toUserMobile,
+        AddFriendMessageMapper mapper) {
         AddFriendMessage message = new AddFriendMessage();
         message.setFromUserId(fromUserId);
         message.setToUserMobile(toUserMobile);
-        int count = userMapper.countAddFriendMessage(message);
+        int count = mapper.countAddFriendMessage(message);
         return count == 0 ? false : true;
     }
 

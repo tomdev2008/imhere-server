@@ -14,6 +14,7 @@ import org.xiaoxiancai.imhere.common.protos.business.AddFriendRequestProtos.AddF
 import org.xiaoxiancai.imhere.common.protos.business.LoginRequestProtos.LoginRequest;
 import org.xiaoxiancai.imhere.common.protos.business.LoginResponseProtos.LoginResponse;
 import org.xiaoxiancai.imhere.server.entity.User;
+import org.xiaoxiancai.imhere.server.inter.AddFriendMessageMapper;
 import org.xiaoxiancai.imhere.server.inter.UserMapper;
 
 import sun.misc.BASE64Encoder;
@@ -37,11 +38,13 @@ public class LoginHandler extends AbstractBusinessHandler {
         logger.debug("receive client login request, mobile = {}", mobile);
         UserMapper userMapper = (UserMapper) applicationContext
             .getBean("userMapper");
+        AddFriendMessageMapper friendMapper = (AddFriendMessageMapper) applicationContext
+            .getBean("addFriendMessageMapper");
 
         if (checkPassword(mobile, password, userMapper)) {
             logger.debug("user login success, mobile = {}", mobile);
-            List<AddFriendRequest> addFriendRequestList = DBHelper
-                .getAddFriendRequestFromDB(mobile, userMapper);
+            List<AddFriendRequest> addFriendRequestList = RegisterLoginHelper
+                .getAddFriendRequestFromDB(mobile, friendMapper);
 
             LoginResponse successResponse = getResponse(true, 1,
                 "login success", addFriendRequestList);

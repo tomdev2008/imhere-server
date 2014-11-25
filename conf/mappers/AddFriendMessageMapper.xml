@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="org.xiaoxiancai.imhere.server.inter.AddFriendMessageMapper">
+
+	<!-- 保存添加朋友消息 -->
+	<insert id="saveAddFriendMessage" parameterType="AddFriendMessage" keyProperty="id" useGeneratedKeys="true">
+		insert into `TB_ADDFRIEND_MSG`(FROM_USER_ID, FROM_USER_NICKNAME, TO_USER_MOBILE)
+			 values (#{fromUserId}, #{fromUserNickname}, #{toUserMobile})
+	</insert>
+	
+	<!-- 计数添加朋友消息 -->
+	<select id="countAddFriendMessage" parameterType="AddFriendMessage" resultType="int">
+		select count(ID) from `TB_ADDFRIEND_MSG`
+			where FROM_USER_ID = #{fromUserId} and TO_USER_MOBILE = #{toUserMobile}
+	</select>
+	
+	<!-- AddFriendMessageResultMap -->
+	<resultMap type="org.xiaoxiancai.imhere.server.entity.AddFriendMessage" id="addFriendMessageResultMap">
+		<result property="fromUserId" column="FROM_USER_ID" javaType="int" jdbcType="INTEGER" />
+		<result property="fromUserNickname" column="FROM_USER_NICKNAME" javaType="string" jdbcType="VARCHAR" />
+		<result property="toUserMobile" column="TO_USER_MOBILE" javaType="string" jdbcType="VARCHAR" />
+	</resultMap>
+	
+	<!-- 查询添加朋友消息 -->
+	<select id="getAddFriendMessage" parameterType="string" resultMap="addFriendMessageResultMap">
+	    select * from `TB_ADDFRIEND_MSG`
+	    	where TO_USER_MOBILE = #{toUserMobile}
+	</select>
+	
+	<!-- 删除添加朋友消息 -->
+	<delete id="removeAddFriendMessage" parameterType="map">
+		delete from `TB_ADDFRIEND_MSG`
+			where FROM_USER_ID = ${param1} and TO_USER_MOBILE = ${param2}
+	</delete>
+</mapper>

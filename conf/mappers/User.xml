@@ -4,14 +4,21 @@
 
 <mapper namespace="org.xiaoxiancai.imhere.server.inter.UserMapper">
 	
+	<!-- UserResultMap -->
 	<resultMap type="org.xiaoxiancai.imhere.server.entity.User" id="userResultMap">
 		<id property="id" column="ID" javaType="int" jdbcType="INTEGER" />
 		<result property="mobile" column="MOBILE" javaType="string" jdbcType="VARCHAR" />
-		<result property="nickName" column="NICKNAME" javaType="string" jdbcType="VARCHAR" />
+		<result property="nickname" column="NICKNAME" javaType="string" jdbcType="VARCHAR" />
 		<result property="email" column="EMAIL" javaType="string" jdbcType="VARCHAR" />
 		<result property="signature" column="SIGNATURE" javaType="string" jdbcType="VARCHAR" />
 	</resultMap>	
 
+	<!-- 通过id查询用户 -->
+	<select id="getById" parameterType="int" resultMap="userResultMap">
+		select * from `TB_USER` where ID = #{id}
+	</select>
+	
+	<!-- 通过mobile查询用户 -->
 	<select id="getUserByMobile" parameterType="string" resultMap="userResultMap">
         select * from `TB_USER` where mobile = #{mobile}
     </select>
@@ -22,41 +29,36 @@
 		insert into `TB_USER`(MOBILE, PASSWORD, NICKNAME
 			<if test="email != null">, EMAIL</if>
 			<if test="signature != null">, SIGNATURE</if>
-		) values (#{mobile}, #{password}, #{nickName}
+		) values (#{mobile}, #{password}, #{nickname}
 			<if test="email != null">, #{email}</if>
 			<if test="signature != null">, #{signature}</if>
 		)
 	</insert>
 	
-	<!-- 通过id查找好友昵称 -->
-	<select id="getAllFriendsById" parameterType="int" resultType="string">
-		select FRIENDS from `TB_USER` where ID = #{id}
+	<!-- 通过id查找好友 -->
+	<select id="getFriendsById" parameterType="int" resultType="string">
+		select FRIENDS from `TB_USER` where ID = #{userId}
+	</select>
+
+	<!-- 通过mobile查找好友 -->
+	<select id="getFriendsByMobile" parameterType="string" resultType="string">
+		select FRIENDS from `TB_USER` where MOBILE = #{mobile}
 	</select>
 	
-	<!-- 保存添加朋友消息 -->
-	<insert id="addFriend" parameterType="AddFriendMessage" keyProperty="id" useGeneratedKeys="true">
-		insert into `TB_ADDFRIEND_MSG`(FROM_USER_ID, FROM_USER_NICKNAME, TO_USER_MOBILE)
-			 values (#{fromUserId}, #{fromUserNickname}, #{toUserMobile})
-	</insert>
-	
-	<!-- 计数添加朋友消息 -->
-	<select id="countAddFriendMessage" parameterType="AddFriendMessage" resultType="int">
-		select count(ID) from `TB_ADDFRIEND_MSG`
-			where FROM_USER_ID = #{fromUserId} and TO_USER_MOBILE = #{toUserMobile}
+	<!-- 通过id查找昵称 -->
+	<select id="getNicknameById" parameterType="int" resultType="string">
+		select NICKNAME from `TB_USER` where ID = #{userId}
 	</select>
 	
-	<resultMap type="org.xiaoxiancai.imhere.server.entity.AddFriendMessage" id="addFriendMessageResultMap">
-		<result property="fromUserId" column="FROM_USER_ID" javaType="int" jdbcType="INTEGER" />
-		<result property="fromUserNickname" column="FROM_USER_NICKNAME" javaType="string" jdbcType="VARCHAR" />
-		<result property="toUserMobile" column="TO_USER_MOBILE" javaType="string" jdbcType="VARCHAR" />
-	</resultMap>
-	<select id="getAddFriendMessage" parameterType="string" resultMap="addFriendMessageResultMap">
-	    select * from `TB_ADDFRIEND_MSG`
-	    	where TO_USER_MOBILE = #{toUserMobile}
-	</select>
-	
-	<delete id="removeAddFriendMessage" parameterType="map">
-		delete from `TB_ADDFRIEND_MSG`
-			where FROM_USER_ID = ${param1} and TO_USER_MOBILE = ${param2}
-	</delete>
+	<!-- 更新用户信息 -->
+	<update id="updateUser" parameterType="User">
+		update `TB_USER` 
+			<set> 
+				<if test="nickname != null">NICKNAME = #{nickname},</if>
+				<if test="email != null">EMAIL = #{email},</if>
+				<if test="signature != null">SIGNATURE = #{signature},</if>
+				<if test="friends != null">FRIENDS = #{friends}</if>
+			</set>
+		where ID = #{id}
+	</update>
 </mapper>

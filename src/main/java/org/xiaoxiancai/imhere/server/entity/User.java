@@ -28,7 +28,7 @@ public class User extends Entity {
 	/**
 	 * 昵称-required
 	 */
-	private String nickName;
+	private String nickname;
 
 	/**
 	 * 邮箱-optional
@@ -76,12 +76,12 @@ public class User extends Entity {
 		this.email = email;
 	}
 
-	public String getNickName() {
-		return nickName;
+	public String getNickname() {
+		return nickname;
 	}
 
-	public void setNickName(String nickName) {
-		this.nickName = nickName;
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
 	}
 
 	public String getSignature() {

@@ -36,7 +36,7 @@ public class LocateHandler extends AbstractBusinessHandler {
      * 所有用户当前位置
      */
     private Map<Integer, Location> allCurrentLocation;
-    
+
     /**
      * 所有用户位置更新时间
      */
@@ -53,22 +53,22 @@ public class LocateHandler extends AbstractBusinessHandler {
         logger.debug("receive client locate request = {}", request);
 
         Location currentLocation = request.getCurrentLocation();
-        
+
         // TODO
         allLatestLocation = linkServer.getLatestLocation();
         allCurrentLocation = linkServer.getCurrentLocation();
         allLocationUpdateTime = linkServer.getLocationUpdateTime();
-       
+
         int userId = currentLocation.getUserId();
         allCurrentLocation.put(userId, currentLocation);
         allLocationUpdateTime.put(userId, System.currentTimeMillis());
-        
+
         logger.debug("all location update time = {}", allLocationUpdateTime);
         UserMapper userMapper = (UserMapper) applicationContext
             .getBean("userMapper");
-        
+
         // TODO 修改了数据库结构, 代码需重构
-        String friendNicknames = userMapper.getAllFriendsById(userId);
+        String friendNicknames = userMapper.getFriendsById(userId);
         Set<Integer> friendIds = getFriendIds(friendNicknames);
         Map<Integer, Location> friendCurLocMap = getFriendCurrentLocations(friendIds);
         LocateResponse response = getResponse(true, 1, "locate success",

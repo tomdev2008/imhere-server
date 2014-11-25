@@ -15,6 +15,7 @@ import org.xiaoxiancai.imhere.common.protos.business.AddFriendRequestProtos.AddF
 import org.xiaoxiancai.imhere.common.protos.business.RegisterRequestProtos.RegisterRequest;
 import org.xiaoxiancai.imhere.common.protos.business.RegisterResponseProtos.RegisterResponse;
 import org.xiaoxiancai.imhere.server.entity.User;
+import org.xiaoxiancai.imhere.server.inter.AddFriendMessageMapper;
 import org.xiaoxiancai.imhere.server.inter.UserMapper;
 
 import sun.misc.BASE64Encoder;
@@ -35,14 +36,16 @@ public class RegisterHandler extends AbstractBusinessHandler {
         logger.debug("register user start");
         UserMapper userMapper = (UserMapper) applicationContext
             .getBean("userMapper");
+        AddFriendMessageMapper friendMapper = (AddFriendMessageMapper) applicationContext
+            .getBean("addFriendMessageMapper");
         RegisterRequest request = (RegisterRequest) msg;
 
         // 先查询数据库是否存在相同mobile的记录
         String mobile = request.getMobile();
         if (!isMobileRegistered(userMapper, mobile)) {
             userMapper.registerUser(createUser(request));
-            List<AddFriendRequest> addFriendRequestList = DBHelper
-                .getAddFriendRequestFromDB(mobile, userMapper);
+            List<AddFriendRequest> addFriendRequestList = RegisterLoginHelper
+                .getAddFriendRequestFromDB(mobile, friendMapper);
             RegisterResponse successResponse = getResponse(true, 1,
                 "register success", addFriendRequestList);
             ctx.channel().writeAndFlush(successResponse);
@@ -108,7 +111,7 @@ public class RegisterHandler extends AbstractBusinessHandler {
         User user = new User();
         user.setMobile(request.getMobile());
         user.setPassword(getEncryptedPassword(request.getPassword()));
-        user.setNickName(request.getNickName());
+        user.setNickname(request.getNickName());
         String email = request.getEmail();
         if (!StringUtils.isBlank(email)) {
             user.setEmail(email);
