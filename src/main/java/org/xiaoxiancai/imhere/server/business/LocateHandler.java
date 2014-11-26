@@ -70,22 +70,22 @@ public class LocateHandler extends AbstractBusinessHandler {
         logger.debug("all location update time = {}", allLocationUpdateTime);
         UserMapper userMapper = (UserMapper) applicationContext
             .getBean("userMapper");
-        
+
         String friendIdsStr = userMapper.getFriendsById(userId);
         Map<Integer, Location> friendCurLocMap = null;
         if (StringUtils.isBlank(friendIdsStr)) {
-			logger.debug("user {} has no friends", userId);
-		} else {
-			String[] friendIds = friendIdsStr.split(";");
-			Set<Integer> friendIdSet = new HashSet<Integer>();
-			for (String friendId : friendIds) {
-				friendIdSet.add(Integer.valueOf(friendId));
-			}
-			logger.debug("user {} has {} friends", userId, friendIdSet.size());
-			friendCurLocMap = getFriendCurrentLocations(friendIdSet);
-		}
+            logger.debug("user {} has no friends", userId);
+        } else {
+            String[] friendIds = friendIdsStr.split(";");
+            Set<Integer> friendIdSet = new HashSet<Integer>();
+            for (String friendId: friendIds) {
+                friendIdSet.add(Integer.valueOf(friendId));
+            }
+            logger.debug("user {} has {} friends", userId, friendIdSet.size());
+            friendCurLocMap = getFriendCurrentLocations(friendIdSet);
+        }
         LocateResponse response = createResponse(true, 1, "locate success",
-        		friendCurLocMap);
+            friendCurLocMap);
         ctx.channel().writeAndFlush(response);
         logger.debug("locate response send to client, response = {}", response);
     }
@@ -106,8 +106,8 @@ public class LocateHandler extends AbstractBusinessHandler {
         response.setStatus(status);
         response.setMessage(message);
         if (friendLocMap != null) {
-        	response.addAllFriendLocations(friendLocMap.values());
-		}
+            response.addAllFriendLocations(friendLocMap.values());
+        }
         return response.build();
 
     }
@@ -140,10 +140,10 @@ public class LocateHandler extends AbstractBusinessHandler {
      */
     @SuppressWarnings("unused")
     private Map<Integer, Location> getFriendLatestLocations(
-        String[] friendIds) {
+        Set<Integer> friendIds) {
         Map<Integer, Location> friendLatestLocMap = new HashMap<Integer, Location>();
         if (allLatestLocation != null) {
-            for (String friendId: friendIds) {
+            for (Integer friendId: friendIds) {
                 Location location = allLatestLocation.get(friendId);
                 if (location != null) {
                     friendLatestLocMap.put(Integer.valueOf(friendId), location);

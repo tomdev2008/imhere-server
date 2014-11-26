@@ -49,9 +49,9 @@ public abstract class AbstractClient implements Client {
     protected Logger logger = LoggerFactory.getLogger(getClass());
 
     /**
-     * 最长等待时间, 3min
+     * 超时时间(ms), 1min
      */
-    private static final int MAX_WAIT_MINS = 3;
+    protected static final int TIMEOUT_IN_MILLIS = 60 * 1000;
 
     /**
      * 服务器Host
@@ -161,7 +161,7 @@ public abstract class AbstractClient implements Client {
 
         ChannelFuture connectFuture = bootStrap.connect(serverHost, serverPort);
         Channel channel = connectFuture.channel();
-        if (connectFuture.await(MAX_WAIT_MINS, TimeUnit.MINUTES)) {
+        if (connectFuture.await(TIMEOUT_IN_MILLIS, TimeUnit.MILLISECONDS)) {
             boolean connected = connectFuture.isSuccess();
             if (connected) {
                 BusinessSelector.Builder selectorBuilder = BusinessSelector
@@ -171,7 +171,7 @@ public abstract class AbstractClient implements Client {
 
                 synchronized (connectionHandler) {
                     channel.writeAndFlush(selectorBuilder.build()).sync();
-                    connectionHandler.wait();
+                    connectionHandler.wait(TIMEOUT_IN_MILLIS);
                 }
                 channelMap.put(businessType, channel);
             }

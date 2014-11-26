@@ -21,22 +21,22 @@ public class LocateHandler extends AbstractClientHandler {
      */
     private LocateResponse response;
 
-    @Override
-    public void channelRead(ChannelHandlerContext ctx, Object msg)
-        throws Exception {
-        if (msg instanceof LocateResponse) {
-            response = (LocateResponse) msg;;
-            logger.debug("locate response from server = {}", response);
-            synchronized (this) {
-                this.notify();
-            }
-        }
-    }
-
     /**
      * @return the response
      */
     public LocateResponse getResponse() {
         return response;
+    }
+
+    @Override
+    public void channelRead(ChannelHandlerContext ctx, Object msg)
+        throws Exception {
+        if (msg instanceof LocateResponse) {
+            synchronized (this) {
+                response = (LocateResponse) msg;;
+                this.notifyAll();
+            }
+            logger.debug("locate response from server = {}", response);
+        }
     }
 }

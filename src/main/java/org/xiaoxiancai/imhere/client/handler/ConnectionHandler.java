@@ -24,6 +24,13 @@ public class ConnectionHandler extends AbstractClientHandler {
      */
     private boolean connectSuccess;
 
+    /**
+     * @return
+     */
+    public boolean isConnectSuccess() {
+        return connectSuccess;
+    }
+
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg)
         throws Exception {
@@ -34,8 +41,8 @@ public class ConnectionHandler extends AbstractClientHandler {
         BusinessSelector selector = (BusinessSelector) msg;
         if (selector.getIsSuccess()) {
             logger.debug("connect to server success");
-            connectSuccess = true;
             synchronized (this) {
+                connectSuccess = true;
                 this.notifyAll();
             }
             ChannelPipeline pipeline = ctx.pipeline();
@@ -45,9 +52,4 @@ public class ConnectionHandler extends AbstractClientHandler {
             logger.debug("client pipeline after connection = {}", pipeline);
         }
     }
-
-    public boolean isConnectSuccess() {
-        return connectSuccess;
-    }
-
 }

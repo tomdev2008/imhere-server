@@ -21,23 +21,23 @@ public class LoginHandler extends AbstractClientHandler {
      */
     private LoginResponse response;
 
+    /**
+     * @return the response
+     */
+    public LoginResponse getResponse() {
+        return response;
+    }
+
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg)
         throws Exception {
         if (!(msg instanceof LoginResponse)) {
             return;
         }
-        response = (LoginResponse) msg;
         synchronized (this) {
+            response = (LoginResponse) msg;
             this.notifyAll();
         }
         logger.debug("login response from server = {}", response);
-    }
-
-    /**
-     * @return the response
-     */
-    public LoginResponse getResponse() {
-        return response;
     }
 }

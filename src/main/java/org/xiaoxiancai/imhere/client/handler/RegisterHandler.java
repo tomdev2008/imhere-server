@@ -21,19 +21,6 @@ public class RegisterHandler extends AbstractClientHandler {
      */
     private RegisterResponse response;
 
-    @Override
-    public void channelRead(ChannelHandlerContext ctx, Object msg)
-        throws Exception {
-        if (!(msg instanceof RegisterResponse)) {
-            return;
-        }
-        response = (RegisterResponse) msg;;
-        synchronized (this) {
-            this.notifyAll();
-        }
-        logger.debug("register user response from server = {}", response);
-    }
-
     /**
      * @return the response
      */
@@ -41,4 +28,16 @@ public class RegisterHandler extends AbstractClientHandler {
         return response;
     }
 
+    @Override
+    public void channelRead(ChannelHandlerContext ctx, Object msg)
+        throws Exception {
+        if (!(msg instanceof RegisterResponse)) {
+            return;
+        }
+        synchronized (this) {
+            response = (RegisterResponse) msg;;
+            this.notifyAll();
+        }
+        logger.debug("register user response from server = {}", response);
+    }
 }

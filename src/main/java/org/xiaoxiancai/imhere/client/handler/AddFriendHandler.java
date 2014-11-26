@@ -14,23 +14,10 @@ import org.xiaoxiancai.imhere.common.protos.business.AddFriendResponseProtos.Add
  */
 public class AddFriendHandler extends AbstractClientHandler {
 
-	/**
-	 * 添加好友响应
-	 */
+    /**
+     * 添加好友响应
+     */
     private AddFriendResponse response;
-
-    @Override
-    public void channelRead(ChannelHandlerContext ctx, Object msg)
-    		throws Exception {
-    	if (!(msg instanceof AddFriendResponse)) {
-    		return;
-    	}
-    	response = (AddFriendResponse) msg;
-    	synchronized (this) {
-    		this.notifyAll();
-    	}
-    	logger.debug("add friend response from server = {}", response);
-    }
 
     /**
      * @return
@@ -39,4 +26,16 @@ public class AddFriendHandler extends AbstractClientHandler {
         return response;
     }
 
+    @Override
+    public void channelRead(ChannelHandlerContext ctx, Object msg)
+        throws Exception {
+        if (!(msg instanceof AddFriendResponse)) {
+            return;
+        }
+        synchronized (this) {
+            response = (AddFriendResponse) msg;
+            this.notifyAll();
+        }
+        logger.debug("add friend response from server = {}", response);
+    }
 }
