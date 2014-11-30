@@ -1,7 +1,6 @@
 package org.xiaoxiancai.imhere.server.business.protos;
 
 import "LocationProtos.proto";
-import "CommandProtos.proto";
 
 option java_package = "org.xiaoxiancai.imhere.common.protos.business";
 option java_outer_classname = "LocateResponseProtos";
