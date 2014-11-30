@@ -5,6 +5,7 @@
  */
 package org.xiaoxiancai.imhere.server.test;
 
+import org.xiaoxiancai.imhere.client.ClientFactory;
 import org.xiaoxiancai.imhere.client.DefaultClient;
 import org.xiaoxiancai.imhere.common.protos.business.AcceptFriendRequestProtos.AcceptFriendRequest;
 import org.xiaoxiancai.imhere.common.protos.business.AcceptFriendResponseProtos.AcceptFriendResponse;
@@ -47,8 +48,7 @@ class AcceptFriendTask implements Runnable {
 
 	@Override
 	public void run() {
-		DefaultClient client = new DefaultClient();
-		client.setServer("localhost", 18080);
+		DefaultClient client = ClientFactory.getDefaultClient("localhost", 18080);
 		AcceptFriendRequest request = createAcceptFriendRequest();
 		try {
 			AcceptFriendResponse response = client.acceptFriend(request);
@@ -75,8 +75,7 @@ class AddFriendTask implements Runnable {
 
 	@Override
 	public void run() {
-		DefaultClient client = new DefaultClient();
-		client.setServer("localhost", 18080);
+		DefaultClient client = ClientFactory.getDefaultClient("localhost", 18080);
 		AddFriendRequest request = createAddFriendRequest();
 		try {
 			AddFriendResponse response = client.addFriend(request);
@@ -103,8 +102,7 @@ class LoginTask implements Runnable {
 
 	@Override
 	public void run() {
-		DefaultClient client = new DefaultClient();
-		client.setServer("localhost", 18080);
+		DefaultClient client = ClientFactory.getDefaultClient("localhost", 18080);
 		LoginRequest request = createLoginRequest();
 		try {
 			LoginResponse response = client.login(request);
@@ -130,14 +128,20 @@ class LocateTask implements Runnable {
 
 	@Override
 	public void run() {
-		DefaultClient client = new DefaultClient();
-		client.setServer("192.168.2.110", 18080);
+		DefaultClient client = ClientFactory.getDefaultClient("localhost", 18080);
 		LocateRequest request1 = createLocateRequest1();
 		LocateRequest request2 = createLocateRequest2();
 		LocateRequest request3 = createLocateRequest3();
 		try {
 			LocateResponse response1 = client.locate(request1);
-//			LocateResponse response2 = client.locate(request2);
+			try {
+				Thread.sleep(5000L);
+				System.out.println("wakeup");
+			} catch (InterruptedException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			LocateResponse response2 = client.locate(request2);
 //			LocateResponse response3 = client.locate(request3);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
@@ -186,8 +190,7 @@ class RegisterTask implements Runnable {
 
 	@Override
 	public void run() {
-		DefaultClient client = new DefaultClient();
-		client.setServer("localhost", 18080);
+		DefaultClient client = ClientFactory.getDefaultClient("localhost", 18080);
 		for (int i = 1; i < 5; i++) {
 			RegisterRequest register = createRegister(i);
 			try {

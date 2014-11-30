@@ -54,7 +54,7 @@ public abstract class AbstractClient implements Client {
     /**
      * 服务器Host
      */
-    private String serverHost;
+    protected String serverHost;
 
     /**
      * Channel Map
@@ -64,19 +64,24 @@ public abstract class AbstractClient implements Client {
     /**
      * 服务器端口
      */
-    private int serverPort;
+    protected int serverPort;
 
     /**
      * 客户端连接处理器
      */
     private ConnectionHandler connectionHandler;
 
+    
     /**
-     * 是否已初始化
-     */
-    private boolean isInited;
+	 * @param serverHost
+	 * @param serverPort
+	 */
+	protected AbstractClient(String serverHost, int serverPort) {
+		this.serverHost = serverHost;
+		this.serverPort = serverPort;
+	}
 
-    /**
+	/**
      * 设置服务器地址
      * 
      * @param serverHost
@@ -85,12 +90,6 @@ public abstract class AbstractClient implements Client {
     public void setServer(String serverHost, int serverPort) {
         this.serverHost = serverHost;
         this.serverPort = serverPort;
-    }
-
-    /**
-     * 初始化工作
-     */
-    private void init() {
     }
 
     /**
@@ -116,11 +115,6 @@ public abstract class AbstractClient implements Client {
      */
     protected Channel connect(String serverHost, int serverPort,
         BusinessType businessType) throws InterruptedException {
-
-        if (!isInited) {
-            init();
-        }
-
         if (channelMap.containsKey(businessType)) {
             Channel channel = channelMap.get(businessType);
             if (channel.isActive()) {

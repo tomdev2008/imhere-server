@@ -37,13 +37,21 @@ import org.xiaoxiancai.imhere.common.protos.business.RegisterResponseProtos.Regi
 import org.xiaoxiancai.imhere.common.protos.common.BusinessTypeProtos.BusinessType;
 
 /**
- * 默认客户端实现
+ * 默认客户端实现(单例)
  * 
  * @author linxianneng
  */
 public class DefaultClient extends AbstractClient {
 
-    /**
+	/**
+	 * @param serverHost
+	 * @param serverPort
+	 */
+	protected DefaultClient(String serverHost, int serverPort) {
+		super(serverHost, serverPort);
+	}
+
+	/**
      * 注册用户
      * 
      * @param request
