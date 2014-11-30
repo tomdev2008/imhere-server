@@ -16,6 +16,4 @@ message LocateResponse {
 	
 	repeated Location friendLocations = 4; // 朋友位置信息
 	
-	repeated Command commands = 5;
-	
 }

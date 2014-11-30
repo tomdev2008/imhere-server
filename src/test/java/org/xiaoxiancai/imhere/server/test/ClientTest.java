@@ -131,7 +131,7 @@ class LocateTask implements Runnable {
 	@Override
 	public void run() {
 		DefaultClient client = new DefaultClient();
-		client.setServer("localhost", 18080);
+		client.setServer("192.168.2.110", 18080);
 		LocateRequest request1 = createLocateRequest1();
 		LocateRequest request2 = createLocateRequest2();
 		LocateRequest request3 = createLocateRequest3();

@@ -14,11 +14,11 @@
 	
 	<fileSets>
 		<fileSet>
-			<directory>target/classes/org/xiaoxiancai/imhere</directory>
+			<directory>target/classes</directory>
 			<outputDirectory>/</outputDirectory>
 			<includes>
-			    <include>client/**/*</include>
-			    <include>common/**/*</include>
+			    <include>org/xiaoxiancai/imhere/client/**/*</include>
+			    <include>org/xiaoxiancai/imhere/common/**/*</include>
 			</includes>
 		</fileSet>
 	</fileSets>

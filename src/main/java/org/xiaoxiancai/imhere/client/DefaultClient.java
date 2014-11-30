@@ -185,7 +185,6 @@ public class DefaultClient extends AbstractClient {
             String message = response.getMessage();
             logger.info("locate success = {}, status = {}, message = {}",
                 isSuccess, status, message);
-            executeCommand(response.getCommandsList());
             return response;
         } else {
             logger.error("channel is null or inactive");

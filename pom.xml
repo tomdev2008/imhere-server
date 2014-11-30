@@ -128,7 +128,7 @@
 				<artifactId>maven-assembly-plugin</artifactId>
 				<version>2.2.1</version>
 				<configuration>
-					<finalName>ImHere-Client</finalName>
+					<finalName>imHere-client</finalName>
 					<!-- not append assembly id in release file name -->
 					<appendAssemblyId>false</appendAssemblyId>
 					<descriptors>

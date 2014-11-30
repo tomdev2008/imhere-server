@@ -23,14 +23,12 @@ import io.netty.handler.codec.protobuf.ProtobufDecoder;
 import io.netty.handler.codec.protobuf.ProtobufEncoder;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.xiaoxiancai.imhere.client.handler.ConnectionHandler;
-import org.xiaoxiancai.imhere.common.protos.business.CommandProtos.Command;
 import org.xiaoxiancai.imhere.common.protos.common.BusinessSelectorProtos.BusinessSelector;
 import org.xiaoxiancai.imhere.common.protos.common.BusinessTypeProtos.BusinessType;
 
@@ -74,11 +72,6 @@ public abstract class AbstractClient implements Client {
     private ConnectionHandler connectionHandler;
 
     /**
-     * 命令分发器
-     */
-    private CommandDispatcher commandDispatcher;
-
-    /**
      * 是否已初始化
      */
     private boolean isInited;
@@ -98,9 +91,6 @@ public abstract class AbstractClient implements Client {
      * 初始化工作
      */
     private void init() {
-        commandDispatcher = new CommandDispatcher();
-        commandDispatcher.setClient(this);
-        isInited = true;
     }
 
     /**
@@ -180,14 +170,5 @@ public abstract class AbstractClient implements Client {
         } else {
             return null;
         }
-    }
-
-    /**
-     * 执行命令
-     * 
-     * @param commands
-     */
-    protected void executeCommand(List<Command> commands) {
-        commandDispatcher.dispatchCommand(commands);
     }
 }
