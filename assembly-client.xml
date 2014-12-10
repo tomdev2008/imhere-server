@@ -1,0 +1,36 @@
+<assembly
+	xmlns="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.2"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.2 http://maven.apache.org/xsd/assembly-1.1.2.xsd">
+	
+	<id>package-client</id>
+	
+	<formats>
+		<format>jar</format>
+	</formats>
+	
+	<!-- 默认是ture的，一定要是false，不然最后jar包里最上层会多一层文件夹嵌套 --> 
+	<includeBaseDirectory>false</includeBaseDirectory>
+	
+	<fileSets>
+		<fileSet>
+			<directory>target/classes</directory>
+			<outputDirectory>/</outputDirectory>
+			<includes>
+			    <include>org/xiaoxiancai/imhere/client/**/*</include>
+			    <include>org/xiaoxiancai/imhere/common/**/*</include>
+			</includes>
+		</fileSet>
+	</fileSets>
+
+	<!-- 
+	<dependencySets>
+		<dependencySet>
+			<useProjectArtifact>true</useProjectArtifact>
+			<outputDirectory>lib</outputDirectory>
+			<scope>runtime</scope>
+		</dependencySet>
+	</dependencySets> -->
+	
+</assembly>
+

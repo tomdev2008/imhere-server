@@ -71,23 +71,11 @@ public abstract class AbstractClient implements Client {
      */
     private ConnectionHandler connectionHandler;
 
-    
     /**
-	 * @param serverHost
-	 * @param serverPort
-	 */
-	protected AbstractClient(String serverHost, int serverPort) {
-		this.serverHost = serverHost;
-		this.serverPort = serverPort;
-	}
-
-	/**
-     * 设置服务器地址
-     * 
      * @param serverHost
      * @param serverPort
      */
-    public void setServer(String serverHost, int serverPort) {
+    protected AbstractClient(String serverHost, int serverPort) {
         this.serverHost = serverHost;
         this.serverPort = serverPort;
     }

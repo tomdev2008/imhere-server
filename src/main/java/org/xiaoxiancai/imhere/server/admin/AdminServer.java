@@ -33,7 +33,7 @@ public class AdminServer extends AbstractServer {
     /**
      * 管理端口
      */
-    private final static int ADMIN_PORT = 18082;
+    private final static int ADMIN_PORT = 18081;
 
     /**
      * 管理命令最大长度

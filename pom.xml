@@ -121,27 +121,65 @@
 			<version>2.6</version>
 		</dependency>
 	</dependencies>
+	
+	<!--
+	<modules>
+		<module>server</module>
+		<module>client</module>
+	</modules> -->
 	<build>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-assembly-plugin</artifactId>
 				<version>2.2.1</version>
-				<configuration>
-					<finalName>imHere-client</finalName>
-					<!-- not append assembly id in release file name -->
-					<appendAssemblyId>false</appendAssemblyId>
-					<descriptors>
-						<descriptor>assembly.xml</descriptor>
-					</descriptors>
-				</configuration>
 				<executions>
 					<execution>
-						<id>make-assembly</id>
+						<id>client</id>
 						<phase>package</phase>
 						<goals>
 							<goal>single</goal>
 						</goals>
+						<configuration>
+							<finalName>imhere-client</finalName>
+							<appendAssemblyId>false</appendAssemblyId>
+							<descriptors>
+								<descriptor>assembly-client.xml</descriptor>
+							</descriptors>
+						</configuration>
+					</execution>
+					<execution>
+						<id>server</id>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+						<configuration>
+							<finalName>imhere-server</finalName>
+							<appendAssemblyId>false</appendAssemblyId>
+							<descriptors>
+								<descriptor>assembly-server.xml</descriptor>
+							</descriptors>
+						</configuration>
+					</execution>
+					<execution>
+						<id>test</id>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+						<configuration>
+							<finalName>imhere-test</finalName>
+							<appendAssemblyId>false</appendAssemblyId>
+							<descriptors>
+								<descriptor>assembly-test.xml</descriptor>
+							</descriptors>
+							<archive>  
+								<manifest>
+									<mainClass>org.xiaoxiancai.imhere.server.test.ClientTest</mainClass>
+								</manifest>
+							</archive>
+						</configuration>
 					</execution>
 				</executions>
 			</plugin>
@@ -158,7 +196,7 @@
 					</includes>
 				</configuration>
 			</plugin> -->
-			<!-- 
+			
 			<plugin>
 				<artifactId>maven-dependency-plugin</artifactId>
 				<version>2.9</version>
@@ -178,6 +216,7 @@
 					</execution>  
 				</executions> 
 			</plugin>
+
 			<plugin>
 				<artifactId>maven-resources-plugin</artifactId>
 				<version>2.7</version>
@@ -190,21 +229,30 @@
 						</goals>  
 						<configuration>  
 							<encoding>UTF-8</encoding>  
-							<outputDirectory>target/conf 把配置文件拷到和jar包同一个路径下 </outputDirectory> 
+							<outputDirectory>target/conf</outputDirectory><!--把配置文件拷到和jar包同一个路径下--> 
 							<resources>  
 								<resource>  
-									<directory>src/main/resources/</directory>  
+									<directory>src/main/resources/</directory>
 									<includes>  
-										<include>config.xml</include>  
-										<include>log4j.xml</include>  
+										<include>log4j2.xml</include>
 									</includes>  
 									<filtering>true</filtering>  
 								</resource>  
+								<resource>
+									<directory>conf</directory>
+									<includes>
+										<include>imhere-server.properties</include>
+										<include>mappers/*.xml</include>
+										<include>mybatis/*.xml</include>
+										<include>spring/*.xml</include>
+									</includes>
+								</resource>
 							</resources>  
 						</configuration>  
 					</execution>  
 				</executions> 
 			</plugin>
+			<!-- 
 			<plugin>
 				<artifactId>maven-jar-plugin</artifactId>
 				<version>2.5</version>

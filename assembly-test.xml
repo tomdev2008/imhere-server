@@ -3,7 +3,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.2 http://maven.apache.org/xsd/assembly-1.1.2.xsd">
 	
-	<id>package</id>
+	<id>package-test</id>
 	
 	<formats>
 		<format>jar</format>
@@ -14,11 +14,10 @@
 	
 	<fileSets>
 		<fileSet>
-			<directory>target/classes</directory>
+			<directory>target/test-classes</directory>
 			<outputDirectory>/</outputDirectory>
 			<includes>
-			    <include>org/xiaoxiancai/imhere/client/**/*</include>
-			    <include>org/xiaoxiancai/imhere/common/**/*</include>
+			    <include>org/xiaoxiancai/imhere/server/test/*</include>
 			</includes>
 		</fileSet>
 	</fileSets>
