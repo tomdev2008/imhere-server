@@ -72,6 +72,21 @@ public abstract class AbstractClient implements Client {
     private ConnectionHandler connectionHandler;
 
     /**
+     * 客户端bootstrap
+     */
+    private Bootstrap bootStrap;
+
+    /**
+     * worker group
+     */
+    private EventLoopGroup workerGroup;
+
+    /**
+     * 是否已初始化
+     */
+    private volatile boolean isInited;
+
+    /**
      * @param serverHost
      * @param serverPort
      */
@@ -103,6 +118,9 @@ public abstract class AbstractClient implements Client {
      */
     protected Channel connect(String serverHost, int serverPort,
         BusinessType businessType) throws InterruptedException {
+        if (!isInited) {
+            init();
+        }
         if (channelMap.containsKey(businessType)) {
             Channel channel = channelMap.get(businessType);
             if (channel.isActive()) {
@@ -113,24 +131,6 @@ public abstract class AbstractClient implements Client {
         }
         logger.debug("create new channel for business = {}",
             businessType.name());
-        connectionHandler = new ConnectionHandler();
-        EventLoopGroup workerGroup = new NioEventLoopGroup();
-        Bootstrap bootStrap = new Bootstrap();
-        bootStrap.group(workerGroup);
-        bootStrap.channel(NioSocketChannel.class);
-        bootStrap.option(ChannelOption.SO_KEEPALIVE, true);
-        bootStrap.option(ChannelOption.TCP_NODELAY, true);
-        bootStrap.handler(new ChannelInitializer<SocketChannel>() {
-            @Override
-            public void initChannel(SocketChannel ch) throws Exception {
-                ChannelPipeline pipeline = ch.pipeline();
-                pipeline.addLast(ENCODER, new ProtobufEncoder());
-                pipeline.addLast(DECODER_CONNECTION, new ProtobufDecoder(
-                    BusinessSelector.getDefaultInstance()));
-                pipeline.addLast(HANDLER_CONNECTION, connectionHandler);
-            }
-        });
-
         ChannelFuture connectFuture = bootStrap.connect(serverHost, serverPort);
         Channel channel = connectFuture.channel();
         if (connectFuture.await(TIMEOUT_IN_MILLIS, TimeUnit.MILLISECONDS)) {
@@ -151,6 +151,41 @@ public abstract class AbstractClient implements Client {
             return channel;
         } else {
             return null;
+        }
+    }
+
+    /**
+     * 初始化
+     */
+    private void init() {
+        connectionHandler = new ConnectionHandler();
+        bootStrap = new Bootstrap();
+        workerGroup = new NioEventLoopGroup();
+        bootStrap.group(workerGroup);
+        bootStrap.channel(NioSocketChannel.class);
+        bootStrap.option(ChannelOption.SO_KEEPALIVE, true);
+        bootStrap.option(ChannelOption.TCP_NODELAY, true);
+        bootStrap.handler(new ChannelInitializer<SocketChannel>() {
+            @Override
+            public void initChannel(SocketChannel ch) throws Exception {
+                ChannelPipeline pipeline = ch.pipeline();
+                pipeline.addLast(ENCODER, new ProtobufEncoder());
+                pipeline.addLast(DECODER_CONNECTION, new ProtobufDecoder(
+                    BusinessSelector.getDefaultInstance()));
+                pipeline.addLast(HANDLER_CONNECTION, connectionHandler);
+            }
+        });
+        isInited = true;
+    }
+
+    /**
+     * 关闭
+     * 
+     * @throws InterruptedException
+     */
+    public void shutdown() throws InterruptedException {
+        if (workerGroup != null) {
+            workerGroup.shutdownGracefully().sync();
         }
     }
 }
