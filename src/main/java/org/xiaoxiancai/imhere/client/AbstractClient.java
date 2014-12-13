@@ -30,6 +30,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.xiaoxiancai.imhere.client.handler.ConnectionHandler;
 import org.xiaoxiancai.imhere.common.protos.common.BusinessSelectorProtos.BusinessSelector;
+import org.xiaoxiancai.imhere.common.protos.common.BusinessTypeProtos;
 import org.xiaoxiancai.imhere.common.protos.common.BusinessTypeProtos.BusinessType;
 
 /**
@@ -67,9 +68,9 @@ public abstract class AbstractClient implements Client {
     protected int serverPort;
 
     /**
-     * 客户端连接处理器
+     * ConnectionHandler Map
      */
-    private ConnectionHandler connectionHandler;
+    private Map<BusinessType, ConnectionHandler> connectionHandlerMap = new HashMap<BusinessTypeProtos.BusinessType, ConnectionHandler>();
 
     /**
      * 客户端bootstrap
@@ -118,9 +119,7 @@ public abstract class AbstractClient implements Client {
      */
     protected Channel connect(String serverHost, int serverPort,
         BusinessType businessType) throws InterruptedException {
-        if (!isInited) {
-            init();
-        }
+        prepare(businessType);
         if (channelMap.containsKey(businessType)) {
             Channel channel = channelMap.get(businessType);
             if (channel.isActive()) {
@@ -140,7 +139,8 @@ public abstract class AbstractClient implements Client {
                     .newBuilder();
                 selectorBuilder.setBusinessType(businessType);
                 selectorBuilder.setIsSuccess(false);
-
+                ConnectionHandler connectionHandler = connectionHandlerMap
+                    .get(businessType);
                 synchronized (connectionHandler) {
                     channel.writeAndFlush(selectorBuilder.build()).sync();
                     connectionHandler.wait(TIMEOUT_IN_MILLIS);
@@ -155,27 +155,42 @@ public abstract class AbstractClient implements Client {
     }
 
     /**
-     * 初始化
+     * 准备
+     * 
+     * @param businessType
      */
-    private void init() {
-        connectionHandler = new ConnectionHandler();
-        bootStrap = new Bootstrap();
-        workerGroup = new NioEventLoopGroup();
-        bootStrap.group(workerGroup);
-        bootStrap.channel(NioSocketChannel.class);
-        bootStrap.option(ChannelOption.SO_KEEPALIVE, true);
-        bootStrap.option(ChannelOption.TCP_NODELAY, true);
-        bootStrap.handler(new ChannelInitializer<SocketChannel>() {
-            @Override
-            public void initChannel(SocketChannel ch) throws Exception {
-                ChannelPipeline pipeline = ch.pipeline();
-                pipeline.addLast(ENCODER, new ProtobufEncoder());
-                pipeline.addLast(DECODER_CONNECTION, new ProtobufDecoder(
-                    BusinessSelector.getDefaultInstance()));
-                pipeline.addLast(HANDLER_CONNECTION, connectionHandler);
-            }
-        });
-        isInited = true;
+    private void prepare(BusinessType businessType) {
+        if (!isInited) {
+            bootStrap = new Bootstrap();
+            workerGroup = new NioEventLoopGroup();
+            bootStrap.group(workerGroup);
+            bootStrap.channel(NioSocketChannel.class);
+            bootStrap.option(ChannelOption.SO_KEEPALIVE, true);
+            bootStrap.option(ChannelOption.TCP_NODELAY, true);
+            isInited = true;
+        }
+        if (!connectionHandlerMap.containsKey(businessType)) {
+            final ConnectionHandler connectionHandler = new ConnectionHandler();
+            bootStrap.handler(new ChannelInitializer<SocketChannel>() {
+                @Override
+                public void initChannel(SocketChannel ch) throws Exception {
+                    ChannelPipeline pipeline = ch.pipeline();
+                    pipeline.addLast(ENCODER, new ProtobufEncoder());
+                    pipeline.addLast(DECODER_CONNECTION, new ProtobufDecoder(
+                        BusinessSelector.getDefaultInstance()));
+                    pipeline.addLast(HANDLER_CONNECTION, connectionHandler);
+                }
+            });
+            connectionHandlerMap.put(businessType, connectionHandler);
+        }
+    }
+
+    /**
+     * 清理
+     */
+    public void releaseResource() {
+        channelMap.clear();
+        connectionHandlerMap.clear();
     }
 
     /**
@@ -186,6 +201,7 @@ public abstract class AbstractClient implements Client {
     public void shutdown() throws InterruptedException {
         if (workerGroup != null) {
             workerGroup.shutdownGracefully().sync();
+            isInited = false;
         }
     }
 }

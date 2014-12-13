@@ -26,38 +26,29 @@ import org.xiaoxiancai.imhere.common.protos.business.RegisterResponseProtos.Regi
  */
 public class ClientTest {
 
+    private DefaultClient client = null;
+
     public static void main(String[] args) throws Exception {
-        Thread registerThread = new Thread(new RegisterTask());
-        registerThread.start();
-
-        Thread loginThread = new Thread(new LoginTask());
-        loginThread.start();
-
-        Thread addFriendThread = new Thread(new AddFriendTask());
-        addFriendThread.start();
-
-        Thread locateThread = new Thread(new LocateTask());
-        locateThread.start();
-
-        Thread acceptFriendThread = new Thread(new AcceptFriendTask());
-        acceptFriendThread.start();
+        ClientTest tester = new ClientTest();
+        tester.client = ClientFactory.getDefaultClient("localhost", 18080);
+        //        tester.testRegister();
+        //        tester.testLogin();
+        //        tester.testAddFriend();
+        tester.testAcceptFriend();
+        //        tester.testLocate();
     }
 
-}
-
-class AcceptFriendTask implements Runnable {
-
-    @Override
-    public void run() {
-        DefaultClient client = ClientFactory.getDefaultClient("localhost",
-            18080);
-        AcceptFriendRequest request1 = createAcceptFriendRequest(25, 28, true);
-        AcceptFriendRequest request2 = createAcceptFriendRequest(25, 27, false);
+    /**
+     * 测试:注册
+     */
+    public void testRegister() {
         try {
-            AcceptFriendResponse response1 = client.acceptFriend(request1);
-            System.out.println("accept friend response1 = " + response1);
-            AcceptFriendResponse response2 = client.acceptFriend(request2);
-            System.out.println("accept friend response2 = " + response2);
+            for (int i = 1; i < 5; i++) {
+                RegisterRequest register = createRegister(i);
+                RegisterResponse response = client.register(register);
+                System.out.println("register response = " + response);
+            }
+            client.shutdown();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -66,23 +57,43 @@ class AcceptFriendTask implements Runnable {
     /**
      * @return
      */
-    private AcceptFriendRequest createAcceptFriendRequest(int fromUserId,
-        int toUserId, boolean accept) {
-        AcceptFriendRequest.Builder builder = AcceptFriendRequest.newBuilder();
-        builder.setFromUserId(fromUserId);
-        builder.setToUserId(toUserId);
-        builder.setAccept(accept);
+    private RegisterRequest createRegister(int index) {
+        RegisterRequest.Builder request = RegisterRequest.newBuilder();
+        request.setMobile("1565811100" + index);
+        request.setNickName("nickName-" + index);
+        request.setPassword("pswd-" + index);
+        request.setEmail("email-" + index + "@gmail.com");
+        request.setSignature("signature-" + index);
+        return request.build();
+    }
+
+    /**
+     * 测试:登录
+     */
+    public void testLogin() {
+        LoginRequest request = createLoginRequest();
+        try {
+            LoginResponse response = client.login(request);
+            System.out.println("login response = " + response);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * @return
+     */
+    private LoginRequest createLoginRequest() {
+        LoginRequest.Builder builder = LoginRequest.newBuilder();
+        builder.setMobile("15658111002");
+        builder.setPassword("pswd-2");
         return builder.build();
     }
 
-}
-
-class AddFriendTask implements Runnable {
-
-    @Override
-    public void run() {
-        DefaultClient client = ClientFactory.getDefaultClient("localhost",
-            18080);
+    /**
+     * 测试:添加好友
+     */
+    public void testAddFriend() {
         AddFriendRequest request1 = createAddFriendRequest(25, "nickName-1",
             "15658111004");
         AddFriendRequest request2 = createAddFriendRequest(25, "nickName-1",
@@ -109,18 +120,17 @@ class AddFriendTask implements Runnable {
         return builder.build();
     }
 
-}
-
-class LoginTask implements Runnable {
-
-    @Override
-    public void run() {
-        DefaultClient client = ClientFactory.getDefaultClient("localhost",
-            18080);
-        LoginRequest request = createLoginRequest();
+    /**
+     * 测试:接受好友
+     */
+    public void testAcceptFriend() {
+        AcceptFriendRequest request1 = createAcceptFriendRequest(25, 28, true);
+        AcceptFriendRequest request2 = createAcceptFriendRequest(25, 27, false);
         try {
-            LoginResponse response = client.login(request);
-            System.out.println("login response = " + response);
+            AcceptFriendResponse response1 = client.acceptFriend(request1);
+            System.out.println("accept friend response1 = " + response1);
+            AcceptFriendResponse response2 = client.acceptFriend(request2);
+            System.out.println("accept friend response2 = " + response2);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -129,20 +139,19 @@ class LoginTask implements Runnable {
     /**
      * @return
      */
-    private LoginRequest createLoginRequest() {
-        LoginRequest.Builder builder = LoginRequest.newBuilder();
-        builder.setMobile("15658111002");
-        builder.setPassword("pswd-2");
+    private AcceptFriendRequest createAcceptFriendRequest(int fromUserId,
+        int toUserId, boolean accept) {
+        AcceptFriendRequest.Builder builder = AcceptFriendRequest.newBuilder();
+        builder.setFromUserId(fromUserId);
+        builder.setToUserId(toUserId);
+        builder.setAccept(accept);
         return builder.build();
     }
-}
 
-class LocateTask implements Runnable {
-
-    @Override
-    public void run() {
-        DefaultClient client = ClientFactory.getDefaultClient("localhost",
-            18080);
+    /**
+     * 测试:定位
+     */
+    public void testLocate() {
         LocateRequest request1 = createLocateRequest1();
         LocateRequest request2 = createLocateRequest2();
         LocateRequest request3 = createLocateRequest3();
@@ -182,6 +191,9 @@ class LocateTask implements Runnable {
         return builder.build();
     }
 
+    /**
+     * @return
+     */
     private LocateRequest createLocateRequest2() {
         Location.Builder locBuilder = Location.newBuilder();
         locBuilder.setUserId(4);
@@ -193,6 +205,9 @@ class LocateTask implements Runnable {
         return builder.build();
     }
 
+    /**
+     * @return
+     */
     private LocateRequest createLocateRequest3() {
         Location.Builder locBuilder = Location.newBuilder();
         locBuilder.setUserId(5);
@@ -203,36 +218,4 @@ class LocateTask implements Runnable {
         builder.setCurrentLocation(locBuilder.build());
         return builder.build();
     }
-}
-
-class RegisterTask implements Runnable {
-
-    @Override
-    public void run() {
-        DefaultClient client = ClientFactory.getDefaultClient("localhost",
-            18080);
-        for (int i = 1; i < 5; i++) {
-            RegisterRequest register = createRegister(i);
-            try {
-                RegisterResponse response = client.register(register);
-                System.out.println("register response = " + response);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
-    /**
-     * @return
-     */
-    private RegisterRequest createRegister(int index) {
-        RegisterRequest.Builder request = RegisterRequest.newBuilder();
-        request.setMobile("1565811100" + index);
-        request.setNickName("nickName-" + index);
-        request.setPassword("pswd-" + index);
-        request.setEmail("email-" + index + "@gmail.com");
-        request.setSignature("signature-" + index);
-        return request.build();
-    }
-
 }
