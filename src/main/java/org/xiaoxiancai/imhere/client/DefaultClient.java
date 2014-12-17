@@ -47,7 +47,7 @@ public class DefaultClient extends AbstractClient {
      * @param serverHost
      * @param serverPort
      */
-    protected DefaultClient(String serverHost, int serverPort) {
+    public DefaultClient(String serverHost, int serverPort) {
         super(serverHost, serverPort);
     }
 
@@ -62,10 +62,7 @@ public class DefaultClient extends AbstractClient {
         throws InterruptedException {
         Channel channel = connect(BusinessType.REGISTER);
         if (channel != null && channel.isActive()) {
-            logger.debug("send register user to server");
             ChannelPipeline pipeline = channel.pipeline();
-            logger.debug("register client pipeline before adding handler = {}",
-                pipeline);
             if (pipeline.get(DECODER_REGISTER) == null) {
                 pipeline.addLast(DECODER_REGISTER, new ProtobufDecoder(
                     RegisterResponse.getDefaultInstance()));
@@ -76,26 +73,16 @@ public class DefaultClient extends AbstractClient {
             }
             RegisterHandler registerHandler = (RegisterHandler) pipeline
                 .get(HANDLER_REGISTER);
-            logger.debug("register client pipeline after adding handler = {}",
-                pipeline);
             synchronized (registerHandler) {
                 channel.writeAndFlush(request).sync();
                 registerHandler.wait(TIMEOUT_IN_MILLIS);
             }
             RegisterResponse response = registerHandler.getResponse();
             if (response == null) {
-                logger.error("register user timeout");
                 return null;
             }
-            boolean isSuccess = response.getIsSuccess();
-            int status = response.getStatus();
-            String message = response.getMessage();
-            logger.info(
-                "register user is success = {}, status = {}, message = {}",
-                isSuccess, status, message);
             return response;
         } else {
-            logger.error("channel is null or inactive");
             return null;
         }
     }
@@ -112,10 +99,7 @@ public class DefaultClient extends AbstractClient {
         throws InterruptedException {
         Channel channel = connect(BusinessType.LOGIN);
         if (channel != null && channel.isActive()) {
-            logger.debug("send login request to server");
             ChannelPipeline pipeline = channel.pipeline();
-            logger.debug("login client pipeline before adding handler = {}",
-                pipeline);
             if (pipeline.get(DECODER_LOGIN) == null) {
                 pipeline.addLast(DECODER_LOGIN, new ProtobufDecoder(
                     LoginResponse.getDefaultInstance()));
@@ -126,26 +110,16 @@ public class DefaultClient extends AbstractClient {
             }
             LoginHandler loginHandler = (LoginHandler) pipeline
                 .get(HANDLER_LOGIN);
-            logger.debug("login client pipeline after adding handler = {}",
-                pipeline);
             synchronized (loginHandler) {
                 channel.writeAndFlush(request).sync();
                 loginHandler.wait(TIMEOUT_IN_MILLIS);
             }
             LoginResponse response = loginHandler.getResponse();
             if (response == null) {
-                logger.error("user login timeout");
                 return null;
             }
-            boolean isSuccess = response.getIsSuccess();
-            int status = response.getStatus();
-            String message = response.getMessage();
-            logger.info("login success = {}, status = {}, message = {}",
-                isSuccess, status, message);
-
             return response;
         } else {
-            logger.error("channel is null or inactive");
             return null;
         }
     }
@@ -163,10 +137,7 @@ public class DefaultClient extends AbstractClient {
         throws InterruptedException {
         Channel channel = connect(BusinessType.LOCATE);
         if (channel != null && channel.isActive()) {
-            logger.debug("send location to server");
             ChannelPipeline pipeline = channel.pipeline();
-            logger.debug("locate client pipeline before adding handler = {}",
-                pipeline);
             if (pipeline.get(DECODER_LOCATE) == null) {
                 pipeline.addLast(DECODER_LOCATE, new ProtobufDecoder(
                     LocateResponse.getDefaultInstance()));
@@ -177,25 +148,16 @@ public class DefaultClient extends AbstractClient {
             }
             LocateHandler locateHandler = (LocateHandler) pipeline
                 .get(HANDLER_LOCATE);
-            logger.debug("locate client pipeline after adding handler = {}",
-                pipeline);
             synchronized (locateHandler) {
                 channel.writeAndFlush(request).sync();
                 locateHandler.wait(TIMEOUT_IN_MILLIS);
             }
             LocateResponse response = locateHandler.getResponse();
             if (response == null) {
-                logger.error("user locate timeout");
                 return null;
             }
-            boolean isSuccess = response.getIsSuccess();
-            int status = response.getStatus();
-            String message = response.getMessage();
-            logger.info("locate success = {}, status = {}, message = {}",
-                isSuccess, status, message);
             return response;
         } else {
-            logger.error("channel is null or inactive");
             return null;
         }
     }
@@ -211,11 +173,11 @@ public class DefaultClient extends AbstractClient {
         throws InterruptedException {
         Channel channel = connect(BusinessType.ADD_FRIEND);
         if (channel != null && channel.isActive()) {
-            logger.debug("send add friend message to server");
+//            logger.debug("send add friend message to server");
             ChannelPipeline pipeline = channel.pipeline();
-            logger.debug(
-                "add friend client pipeline before adding handler = {}",
-                pipeline);
+//            logger.debug(
+//                "add friend client pipeline before adding handler = {}",
+//                pipeline);
             if (pipeline.get(DECODER_ADD_FRIEND) == null) {
                 pipeline.addLast(DECODER_ADD_FRIEND, new ProtobufDecoder(
                     AddFriendResponse.getDefaultInstance()));
@@ -226,22 +188,22 @@ public class DefaultClient extends AbstractClient {
             }
             AddFriendHandler addFriendHandler = (AddFriendHandler) pipeline
                 .get(HANDLER_ADD_FRIEND);
-            logger.debug(
-                "add friend client pipeline after adding handler = {}",
-                pipeline);
+//            logger.debug(
+//                "add friend client pipeline after adding handler = {}",
+//                pipeline);
             synchronized (addFriendHandler) {
                 channel.writeAndFlush(request).sync();
                 addFriendHandler.wait(TIMEOUT_IN_MILLIS);
             }
             AddFriendResponse response = addFriendHandler.getResponse();
             if (response == null) {
-                logger.error("add friend timeout");
+//                logger.error("add friend timeout");
                 return null;
             }
-            logger.info("add friend response = {}", response);
+//            logger.info("add friend response = {}", response);
             return response;
         } else {
-            logger.error("channel is null or inactive");
+//            logger.error("channel is null or inactive");
             return null;
         }
     }
@@ -253,15 +215,16 @@ public class DefaultClient extends AbstractClient {
      * @return
      * @throws InterruptedException
      */
-    public AcceptFriendResponse acceptFriend(AcceptFriendRequest request)
+    @Override
+	public AcceptFriendResponse acceptFriend(AcceptFriendRequest request)
         throws InterruptedException {
         Channel channel = connect(BusinessType.ACCEPT_FRIEND);
         if (channel != null && channel.isActive()) {
-            logger.debug("send accept friend message to server");
+//            logger.debug("send accept friend message to server");
             ChannelPipeline pipeline = channel.pipeline();
-            logger.debug(
-                "accept friend client pipeline before adding handler = {}",
-                pipeline);
+//            logger.debug(
+//                "accept friend client pipeline before adding handler = {}",
+//                pipeline);
             if (pipeline.get(DECODER_ACCEPT_FRIEND) == null) {
                 pipeline.addLast(DECODER_ACCEPT_FRIEND, new ProtobufDecoder(
                     AcceptFriendResponse.getDefaultInstance()));
@@ -273,22 +236,16 @@ public class DefaultClient extends AbstractClient {
             }
             AcceptFriendHandler acceptFriendHandler = (AcceptFriendHandler) pipeline
                 .get(HANDLER_ACCEPT_FRIEND);
-            logger.debug(
-                "accpet friend client pipeline after adding handler = {}",
-                pipeline);
             synchronized (acceptFriendHandler) {
                 channel.writeAndFlush(request).sync();
                 acceptFriendHandler.wait(TIMEOUT_IN_MILLIS);
             }
             AcceptFriendResponse response = acceptFriendHandler.getResponse();
             if (response == null) {
-                logger.error("accept friend timeout");
                 return null;
             }
-            logger.info("accept friend response = {}", response);
             return response;
         } else {
-            logger.error("channel is null or inactive");
             return null;
         }
     }

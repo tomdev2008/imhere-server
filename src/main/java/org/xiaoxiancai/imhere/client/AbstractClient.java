@@ -26,8 +26,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.xiaoxiancai.imhere.client.handler.ConnectionHandler;
 import org.xiaoxiancai.imhere.common.protos.common.BusinessSelectorProtos.BusinessSelector;
 import org.xiaoxiancai.imhere.common.protos.common.BusinessTypeProtos;
@@ -41,11 +39,6 @@ import org.xiaoxiancai.imhere.common.protos.common.BusinessTypeProtos.BusinessTy
  * @author xiannenglin
  */
 public abstract class AbstractClient implements Client {
-
-    /**
-     * Logger
-     */
-    protected Logger logger = LoggerFactory.getLogger(getClass());
 
     /**
      * 超时时间(ms), 1min
@@ -128,8 +121,6 @@ public abstract class AbstractClient implements Client {
                 channelMap.remove(businessType);
             }
         }
-        logger.debug("create new channel for business = {}",
-            businessType.name());
         ChannelFuture connectFuture = bootStrap.connect(serverHost, serverPort);
         Channel channel = connectFuture.channel();
         if (connectFuture.await(TIMEOUT_IN_MILLIS, TimeUnit.MILLISECONDS)) {

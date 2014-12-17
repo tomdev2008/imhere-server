@@ -10,12 +10,24 @@ import java.util.Map;
 
 /**
  * 客户端工厂类
+ * <p>
+ * 单例
  *
  * @author xiannenglin
  */
 public class ClientFactory {
 
 	private ClientFactory() {
+	}
+
+	private static class FactoryHolder {
+
+		private static ClientFactory instance = new ClientFactory();
+
+	}
+
+	public static ClientFactory getInstance() {
+		return FactoryHolder.instance;
 	}
 
 	/**
@@ -36,7 +48,7 @@ public class ClientFactory {
 	 * @return
 	 * @throws Exception
 	 */
-	public static DefaultClient getDefaultClient(String serverHost,
+	public DefaultClient getDefaultClient(String serverHost,
 			int serverPort) {
 		if (clientMap.containsKey(DEFAULT_CLIENT_NAME)) {
 			return (DefaultClient) clientMap.get(DEFAULT_CLIENT_NAME);

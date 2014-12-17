@@ -26,22 +26,21 @@ import org.xiaoxiancai.imhere.common.protos.business.RegisterResponseProtos.Regi
  */
 public class ClientTest {
 
-    private DefaultClient client = null;
-
     public static void main(String[] args) throws Exception {
         ClientTest tester = new ClientTest();
-        tester.client = ClientFactory.getDefaultClient("localhost", 18080);
-        //        tester.testRegister();
-        //        tester.testLogin();
-        //        tester.testAddFriend();
-        tester.testAcceptFriend();
+        ClientFactory factory = ClientFactory.getInstance();
+        DefaultClient client = factory.getDefaultClient("localhost", 18080);
+        //        tester.testRegister(client);
+        //        tester.testLogin(client);
+        //        tester.testAddFriend(client);
+        tester.testAcceptFriend(client);
         //        tester.testLocate();
     }
 
     /**
      * 测试:注册
      */
-    public void testRegister() {
+    public void testRegister(DefaultClient client) {
         try {
             for (int i = 1; i < 5; i++) {
                 RegisterRequest register = createRegister(i);
@@ -70,7 +69,7 @@ public class ClientTest {
     /**
      * 测试:登录
      */
-    public void testLogin() {
+    public void testLogin(DefaultClient client) {
         LoginRequest request = createLoginRequest();
         try {
             LoginResponse response = client.login(request);
@@ -93,7 +92,7 @@ public class ClientTest {
     /**
      * 测试:添加好友
      */
-    public void testAddFriend() {
+    public void testAddFriend(DefaultClient client) {
         AddFriendRequest request1 = createAddFriendRequest(25, "nickName-1",
             "15658111004");
         AddFriendRequest request2 = createAddFriendRequest(25, "nickName-1",
@@ -123,7 +122,7 @@ public class ClientTest {
     /**
      * 测试:接受好友
      */
-    public void testAcceptFriend() {
+    public void testAcceptFriend(DefaultClient client) {
         AcceptFriendRequest request1 = createAcceptFriendRequest(25, 28, true);
         AcceptFriendRequest request2 = createAcceptFriendRequest(25, 27, false);
         try {
@@ -151,7 +150,7 @@ public class ClientTest {
     /**
      * 测试:定位
      */
-    public void testLocate() {
+    public void testLocate(DefaultClient client) {
         LocateRequest request1 = createLocateRequest1();
         LocateRequest request2 = createLocateRequest2();
         LocateRequest request3 = createLocateRequest3();
