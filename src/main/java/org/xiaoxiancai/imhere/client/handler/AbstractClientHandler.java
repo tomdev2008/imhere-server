@@ -7,8 +7,6 @@ package org.xiaoxiancai.imhere.client.handler;
 
 import io.netty.channel.ChannelInboundHandlerAdapter;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.xiaoxiancai.imhere.client.AbstractClient;
 
 /**
@@ -23,11 +21,6 @@ public abstract class AbstractClientHandler extends
      * 客户端
      */
     protected AbstractClient client;
-
-    /**
-     * Logger
-     */
-    protected Logger logger = LoggerFactory.getLogger(getClass());
 
     public AbstractClientHandler() {}
 

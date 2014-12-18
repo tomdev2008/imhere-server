@@ -37,19 +37,15 @@ public class ConnectionHandler extends AbstractClientHandler {
         if (!(msg instanceof BusinessSelector)) {
             return;
         }
-        logger.debug("receive connect response from server");
         BusinessSelector selector = (BusinessSelector) msg;
         if (selector.getIsSuccess()) {
-            logger.debug("connect to server success");
             synchronized (this) {
                 connectSuccess = true;
                 this.notifyAll();
             }
             ChannelPipeline pipeline = ctx.pipeline();
-            logger.debug("client pipeline before connection = {}", pipeline);
             pipeline.remove(DECODER_CONNECTION);
             pipeline.remove(HANDLER_CONNECTION);
-            logger.debug("client pipeline after connection = {}", pipeline);
         }
     }
 }

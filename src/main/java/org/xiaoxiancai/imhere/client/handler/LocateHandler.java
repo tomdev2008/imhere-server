@@ -36,7 +36,6 @@ public class LocateHandler extends AbstractClientHandler {
                 response = (LocateResponse) msg;;
                 this.notifyAll();
             }
-            logger.debug("locate response from server = {}", response);
         }
     }
 }

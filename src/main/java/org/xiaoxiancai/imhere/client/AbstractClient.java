@@ -16,9 +16,9 @@ import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelOption;
 import io.netty.channel.ChannelPipeline;
 import io.netty.channel.EventLoopGroup;
-import io.netty.channel.nio.NioEventLoopGroup;
+import io.netty.channel.oio.OioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
-import io.netty.channel.socket.nio.NioSocketChannel;
+import io.netty.channel.socket.oio.OioSocketChannel;
 import io.netty.handler.codec.protobuf.ProtobufDecoder;
 import io.netty.handler.codec.protobuf.ProtobufEncoder;
 
@@ -153,9 +153,9 @@ public abstract class AbstractClient implements Client {
     private void prepare(BusinessType businessType) {
         if (!isInited) {
             bootStrap = new Bootstrap();
-            workerGroup = new NioEventLoopGroup();
+            workerGroup = new OioEventLoopGroup();
             bootStrap.group(workerGroup);
-            bootStrap.channel(NioSocketChannel.class);
+            bootStrap.channel(OioSocketChannel.class);
             bootStrap.option(ChannelOption.SO_KEEPALIVE, true);
             bootStrap.option(ChannelOption.TCP_NODELAY, true);
             isInited = true;

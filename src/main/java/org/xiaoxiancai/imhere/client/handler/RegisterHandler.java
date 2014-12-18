@@ -38,6 +38,5 @@ public class RegisterHandler extends AbstractClientHandler {
             response = (RegisterResponse) msg;;
             this.notifyAll();
         }
-        logger.debug("register user response from server = {}", response);
     }
 }

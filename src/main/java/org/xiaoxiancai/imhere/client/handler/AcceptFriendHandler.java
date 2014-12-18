@@ -38,6 +38,5 @@ public class AcceptFriendHandler extends AbstractClientHandler {
             response = (AcceptFriendResponse) msg;
             this.notifyAll();
         }
-        logger.debug("accept friend response from server = {}", response);
     }
 }

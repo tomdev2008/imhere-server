@@ -38,6 +38,5 @@ public class LoginHandler extends AbstractClientHandler {
             response = (LoginResponse) msg;
             this.notifyAll();
         }
-        logger.debug("login response from server = {}", response);
     }
 }

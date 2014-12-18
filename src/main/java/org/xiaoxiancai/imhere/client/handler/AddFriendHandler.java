@@ -36,6 +36,5 @@ public class AddFriendHandler extends AbstractClientHandler {
             response = (AddFriendResponse) msg;
             this.notifyAll();
         }
-        logger.debug("add friend response from server = {}", response);
     }
 }
