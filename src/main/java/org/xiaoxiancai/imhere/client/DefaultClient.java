@@ -173,11 +173,7 @@ public class DefaultClient extends AbstractClient {
         throws InterruptedException {
         Channel channel = connect(BusinessType.ADD_FRIEND);
         if (channel != null && channel.isActive()) {
-//            logger.debug("send add friend message to server");
             ChannelPipeline pipeline = channel.pipeline();
-//            logger.debug(
-//                "add friend client pipeline before adding handler = {}",
-//                pipeline);
             if (pipeline.get(DECODER_ADD_FRIEND) == null) {
                 pipeline.addLast(DECODER_ADD_FRIEND, new ProtobufDecoder(
                     AddFriendResponse.getDefaultInstance()));
@@ -188,22 +184,16 @@ public class DefaultClient extends AbstractClient {
             }
             AddFriendHandler addFriendHandler = (AddFriendHandler) pipeline
                 .get(HANDLER_ADD_FRIEND);
-//            logger.debug(
-//                "add friend client pipeline after adding handler = {}",
-//                pipeline);
             synchronized (addFriendHandler) {
                 channel.writeAndFlush(request).sync();
                 addFriendHandler.wait(TIMEOUT_IN_MILLIS);
             }
             AddFriendResponse response = addFriendHandler.getResponse();
             if (response == null) {
-//                logger.error("add friend timeout");
                 return null;
             }
-//            logger.info("add friend response = {}", response);
             return response;
         } else {
-//            logger.error("channel is null or inactive");
             return null;
         }
     }
@@ -216,15 +206,11 @@ public class DefaultClient extends AbstractClient {
      * @throws InterruptedException
      */
     @Override
-	public AcceptFriendResponse acceptFriend(AcceptFriendRequest request)
+    public AcceptFriendResponse acceptFriend(AcceptFriendRequest request)
         throws InterruptedException {
         Channel channel = connect(BusinessType.ACCEPT_FRIEND);
         if (channel != null && channel.isActive()) {
-//            logger.debug("send accept friend message to server");
             ChannelPipeline pipeline = channel.pipeline();
-//            logger.debug(
-//                "accept friend client pipeline before adding handler = {}",
-//                pipeline);
             if (pipeline.get(DECODER_ACCEPT_FRIEND) == null) {
                 pipeline.addLast(DECODER_ACCEPT_FRIEND, new ProtobufDecoder(
                     AcceptFriendResponse.getDefaultInstance()));
