@@ -5,6 +5,17 @@
  */
 package org.xiaoxiancai.imhere.server;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.Reader;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Properties;
+import java.util.Set;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
@@ -23,6 +34,16 @@ public abstract class AbstractServer implements Server {
     protected Logger logger = LoggerFactory.getLogger(getClass());
 
     /**
+     * 服务配置文件
+     */
+    private static final String CONFIG_FILE = "conf/imhere-server.properties";
+
+    /**
+     * 服务器参数
+     */
+    protected static Map<String, String> serverSettings = new HashMap<String, String>();
+
+    /**
      * 服务器状态
      */
     protected ServerStatus status;
@@ -35,8 +56,23 @@ public abstract class AbstractServer implements Server {
     static {
         applicationContext = new ClassPathXmlApplicationContext(
             "classpath*:spring/applicationContext.xml");
+        try {
+            Properties properties = new Properties();
+            Reader reader = new BufferedReader(new FileReader(new File(
+                CONFIG_FILE)));
+            properties.load(reader);
+            Set<Entry<Object, Object>> proSet = properties.entrySet();
+            for (Entry<Object, Object> entry: proSet) {
+                String key = (String) entry.getKey();
+                String value = (String) entry.getValue();
+                serverSettings.put(key, value);
+            }
+        } catch (IOException e) {
+            System.exit(-1);
+        }
     }
 
+    @Override
     public void start() throws Exception {
         status = ServerStatus.INITING;
         doInit();
@@ -47,6 +83,7 @@ public abstract class AbstractServer implements Server {
         status = ServerStatus.RUNNING;
     }
 
+    @Override
     public void stop() throws Exception {
         status = ServerStatus.STOPPING;
         doStop();

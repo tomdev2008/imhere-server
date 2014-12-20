@@ -19,6 +19,7 @@ import io.netty.handler.codec.LineBasedFrameDecoder;
 import io.netty.handler.codec.string.StringDecoder;
 import io.netty.util.CharsetUtil;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.xiaoxiancai.imhere.server.business.AdminHandler;
 
@@ -33,12 +34,14 @@ public class AdminServer extends AbstractServer {
     /**
      * 管理端口
      */
-    private final static int ADMIN_PORT = 18081;
+    @Value("${admin.server.port}")
+    private int serverPort;
 
     /**
      * 管理命令最大长度
      */
-    private final static int MAX_COMMAND_LENGTH = 1024;
+    @Value("${admin.server.max.cmd.length}")
+    private String maxCmdLength;
 
     @Override
     public void doInit() throws Exception {
@@ -56,6 +59,17 @@ public class AdminServer extends AbstractServer {
      */
     private EventLoopGroup workerGroup;
 
+    /**
+     * 更新服务配置
+     * 
+     * @param key
+     * @param value
+     */
+    public synchronized void updateSettings(String key, String value) {
+        String oldValue = serverSettings.put(key, value);
+        logger.info("update settings {} = {} to {}", key, oldValue, value);
+    }
+
     @Override
     public void doStart() throws Exception {
         logger.info("admin server starting...");
@@ -66,8 +80,8 @@ public class AdminServer extends AbstractServer {
             @Override
             protected void initChannel(SocketChannel ch) throws Exception {
                 ChannelPipeline pipeline = ch.pipeline();
-                pipeline.addLast(new LineBasedFrameDecoder(MAX_COMMAND_LENGTH,
-                    true, true));
+                pipeline.addLast(new LineBasedFrameDecoder(Integer
+                    .valueOf(maxCmdLength), true, true));
                 pipeline.addLast(new StringDecoder(CharsetUtil.UTF_8));
                 pipeline.addLast(applicationContext.getBean("adminHandler",
                     AdminHandler.class));
@@ -76,8 +90,7 @@ public class AdminServer extends AbstractServer {
         bootstrap.group(bossGroup, workerGroup)
             .channel(NioServerSocketChannel.class).childHandler(initializer)
             .childOption(ChannelOption.SO_KEEPALIVE, true);
-
-        ChannelFuture channelFuture = bootstrap.bind(ADMIN_PORT).sync();
+        ChannelFuture channelFuture = bootstrap.bind(serverPort).sync();
         ChannelFuture closeFuture = channelFuture.channel().closeFuture();
         closeFuture.addListener(ChannelFutureListener.CLOSE);
         logger.info("admin server start success");

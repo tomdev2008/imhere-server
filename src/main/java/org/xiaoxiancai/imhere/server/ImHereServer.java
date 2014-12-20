@@ -21,16 +21,7 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.codec.protobuf.ProtobufDecoder;
 import io.netty.handler.codec.protobuf.ProtobufEncoder;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.Reader;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Properties;
-import java.util.Set;
-
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.xiaoxiancai.imhere.common.protos.common.BusinessSelectorProtos.BusinessSelector;
 import org.xiaoxiancai.imhere.server.business.BusinessSelectorHandler;
@@ -44,19 +35,10 @@ import org.xiaoxiancai.imhere.server.business.BusinessSelectorHandler;
 public class ImHereServer extends AbstractServer {
 
     /**
-     * 服务器参数
-     */
-    private Map<String, String> settings = new HashMap<String, String>();
-
-    /**
      * 服务端口
      */
-    private final static int SERVER_PORT = 18080;
-
-    /**
-     * 服务配置文件
-     */
-    private static final String CONFIG_FILE = "conf/imhere-server.properties";
+    @Value("${imhere.server.port}")
+    private int serverPort;
 
     /**
      * boss event loop group
@@ -68,30 +50,9 @@ public class ImHereServer extends AbstractServer {
      */
     private EventLoopGroup workerGroup;
 
-    /**
-     * 更新服务配置
-     * 
-     * @param key
-     * @param value
-     */
-    public synchronized void updateSettings(String key, String value) {
-        String oldValue = settings.put(key, value);
-        logger.info("update settings {} = {} to {}", key, oldValue, value);
-    }
-
     @Override
     protected void doInit() throws Exception {
         logger.info("imhere server initing...");
-        Properties properties = new Properties();
-        Reader reader = new BufferedReader(
-            new FileReader(new File(CONFIG_FILE)));
-        properties.load(reader);
-        Set<Entry<Object, Object>> proSet = properties.entrySet();
-        for (Entry<Object, Object> entry: proSet) {
-            String key = (String) entry.getKey();
-            String value = (String) entry.getValue();
-            settings.put(key, value);
-        }
         logger.info("imhere server inited");
     }
 
@@ -117,8 +78,7 @@ public class ImHereServer extends AbstractServer {
             .channel(NioServerSocketChannel.class).childHandler(initializer)
             .option(ChannelOption.SO_BACKLOG, 1000000)
             .childOption(ChannelOption.SO_KEEPALIVE, true);
-
-        ChannelFuture channelFuture = bootstrap.bind(SERVER_PORT).sync();
+        ChannelFuture channelFuture = bootstrap.bind(serverPort).sync();
         ChannelFuture closeFuture = channelFuture.channel().closeFuture();
         closeFuture.addListener(ChannelFutureListener.CLOSE);
         logger.info("imhere server start success");
