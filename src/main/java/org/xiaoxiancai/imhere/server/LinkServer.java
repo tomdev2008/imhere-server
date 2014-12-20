@@ -55,11 +55,13 @@ public class LinkServer extends AbstractServer {
 
     @Override
     protected void doInit() throws Exception {
-        logger.info("link server init");
+        logger.info("link server initing...");
+        logger.info("link server inited");
     }
 
     @Override
     protected void doStart() throws Exception {
+        logger.info("link server starting...");
         ScheduledExecutorService scheduledExecutorService = Executors
             .newScheduledThreadPool(1);
         scheduledExecutorService.scheduleAtFixedRate(new ExpireOnlineTask(),
@@ -70,7 +72,8 @@ public class LinkServer extends AbstractServer {
 
     @Override
     protected void doStop() throws Exception {
-        logger.info("link server stop");
+        logger.info("link server stopping...");
+        logger.info("link server stopped");
     }
 
     public Map<Integer, Location> getLatestLocation() {

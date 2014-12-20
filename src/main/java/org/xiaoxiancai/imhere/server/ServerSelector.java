@@ -5,8 +5,6 @@
  */
 package org.xiaoxiancai.imhere.server;
 
-import org.xiaoxiancai.imhere.server.admin.AdminServer;
-
 /**
  * 服务选择器
  * 
@@ -47,8 +45,9 @@ public class ServerSelector extends AbstractServer {
     private void startImHereServer() throws Exception {
         ImHereServer imHereServer = applicationContext.getBean("imHereServer",
             ImHereServer.class);
-        imHereServer.doInit();
-        imHereServer.doStart();
+        ImHereServer.ShutdownCleaner cleaner = imHereServer.new ShutdownCleaner();
+        Runtime.getRuntime().addShutdownHook(cleaner);
+        imHereServer.start();
     }
 
     /**
@@ -59,8 +58,9 @@ public class ServerSelector extends AbstractServer {
     private void startAdminServer() throws Exception {
         AdminServer adminServer = applicationContext.getBean("adminServer",
             AdminServer.class);
-        adminServer.doInit();
-        adminServer.doStart();
+        AdminServer.ShutdownCleaner cleaner = adminServer.new ShutdownCleaner();
+        Runtime.getRuntime().addShutdownHook(cleaner);
+        adminServer.start();
     }
 
     /**
@@ -71,8 +71,7 @@ public class ServerSelector extends AbstractServer {
     private void startLinkServer() throws Exception {
         LinkServer linkServer = applicationContext.getBean("linkServer",
             LinkServer.class);
-        linkServer.doInit();
-        linkServer.doStart();
+        linkServer.start();
     }
 
     @Override

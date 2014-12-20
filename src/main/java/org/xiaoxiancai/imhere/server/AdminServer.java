@@ -3,7 +3,7 @@
  * Copyright (c) 2014, xianneng.lin@gmail.com All Rights Reserved. 
  **********************************************************************
  */
-package org.xiaoxiancai.imhere.server.admin;
+package org.xiaoxiancai.imhere.server;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
@@ -20,7 +20,7 @@ import io.netty.handler.codec.string.StringDecoder;
 import io.netty.util.CharsetUtil;
 
 import org.springframework.stereotype.Component;
-import org.xiaoxiancai.imhere.server.AbstractServer;
+import org.xiaoxiancai.imhere.server.business.AdminHandler;
 
 /**
  * 管理服务
@@ -42,13 +42,25 @@ public class AdminServer extends AbstractServer {
 
     @Override
     public void doInit() throws Exception {
-        // TODO
+        logger.info("admin server initing...");
+        logger.info("admin server inited");
     }
+
+    /**
+     * boss event loop group
+     */
+    private EventLoopGroup bossGroup;
+
+    /**
+     * worker event loop group
+     */
+    private EventLoopGroup workerGroup;
 
     @Override
     public void doStart() throws Exception {
-        EventLoopGroup bossGroup = new NioEventLoopGroup();
-        EventLoopGroup workerGroup = new NioEventLoopGroup();
+        logger.info("admin server starting...");
+        bossGroup = new NioEventLoopGroup();
+        workerGroup = new NioEventLoopGroup();
         ServerBootstrap bootstrap = new ServerBootstrap();
         ChannelInitializer<SocketChannel> initializer = new ChannelInitializer<SocketChannel>() {
             @Override
@@ -73,7 +85,32 @@ public class AdminServer extends AbstractServer {
 
     @Override
     public void doStop() throws Exception {
-        // TODO
+        logger.info("admin server stopping...");
+        if (bossGroup != null) {
+            bossGroup.shutdownGracefully();
+        }
+        if (workerGroup != null) {
+            workerGroup.shutdownGracefully();
+        }
+        logger.info("admin server stopped");
     }
 
+    /**
+     * 清理器
+     * 
+     * @author linxianneng
+     */
+    class ShutdownCleaner extends Thread {
+        @Override
+        public void run() {
+            logger.info("admin server status = {}", AdminServer.this.status);
+            if (AdminServer.this.status != ServerStatus.STOPED) {
+                try {
+                    AdminServer.this.doStop();
+                } catch (Exception e) {
+                    logger.error("shutdown admin server error, e = {}", e);
+                }
+            }
+        }
+    }
 }

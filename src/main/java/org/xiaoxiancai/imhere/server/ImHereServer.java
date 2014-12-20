@@ -59,6 +59,16 @@ public class ImHereServer extends AbstractServer {
     private static final String CONFIG_FILE = "conf/imhere-server.properties";
 
     /**
+     * boss event loop group
+     */
+    private EventLoopGroup bossGroup;
+
+    /**
+     * worker event loop group
+     */
+    private EventLoopGroup workerGroup;
+
+    /**
      * 更新服务配置
      * 
      * @param key
@@ -71,7 +81,7 @@ public class ImHereServer extends AbstractServer {
 
     @Override
     protected void doInit() throws Exception {
-        logger.info("load properties start");
+        logger.info("imhere server initing...");
         Properties properties = new Properties();
         Reader reader = new BufferedReader(
             new FileReader(new File(CONFIG_FILE)));
@@ -82,13 +92,14 @@ public class ImHereServer extends AbstractServer {
             String value = (String) entry.getValue();
             settings.put(key, value);
         }
-        logger.info("load properties success, properties = {}", properties);
+        logger.info("imhere server inited");
     }
 
     @Override
     protected void doStart() throws Exception {
-        EventLoopGroup bossGroup = new NioEventLoopGroup(1);
-        EventLoopGroup workerGroup = new NioEventLoopGroup();
+        logger.info("imhere server starting...");
+        bossGroup = new NioEventLoopGroup(1);
+        workerGroup = new NioEventLoopGroup();
         ServerBootstrap bootstrap = new ServerBootstrap();
         ChannelInitializer<SocketChannel> initializer = new ChannelInitializer<SocketChannel>() {
             @Override
@@ -115,6 +126,32 @@ public class ImHereServer extends AbstractServer {
 
     @Override
     protected void doStop() throws Exception {
-        // TODO
+        logger.info("imhere server stopping...");
+        if (bossGroup != null) {
+            bossGroup.shutdownGracefully();
+        }
+        if (workerGroup != null) {
+            workerGroup.shutdownGracefully();
+        }
+        logger.info("imhere server stopped");
+    }
+
+    /**
+     * 清理器
+     * 
+     * @author linxianneng
+     */
+    class ShutdownCleaner extends Thread {
+        @Override
+        public void run() {
+            logger.info("imhere server status = {}", ImHereServer.this.status);
+            if (ImHereServer.this.status != ServerStatus.STOPED) {
+                try {
+                    ImHereServer.this.doStop();
+                } catch (Exception e) {
+                    logger.error("shutdown imhere server error, e = {}", e);
+                }
+            }
+        }
     }
 }

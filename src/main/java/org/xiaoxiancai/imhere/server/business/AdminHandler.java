@@ -3,7 +3,7 @@
  * Copyright (c) 2014, xianneng.lin@gmail.com All Rights Reserved. 
  **********************************************************************
  */
-package org.xiaoxiancai.imhere.server.admin;
+package org.xiaoxiancai.imhere.server.business;
 
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;

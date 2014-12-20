@@ -23,6 +23,11 @@ public abstract class AbstractServer implements Server {
     protected Logger logger = LoggerFactory.getLogger(getClass());
 
     /**
+     * 服务器状态
+     */
+    protected ServerStatus status;
+
+    /**
      * Spring BeanFactory
      */
     protected static ApplicationContext applicationContext;
@@ -33,12 +38,19 @@ public abstract class AbstractServer implements Server {
     }
 
     public void start() throws Exception {
+        status = ServerStatus.INITING;
         doInit();
+        status = ServerStatus.INITED;
+        status = ServerStatus.STARTING;
         doStart();
+        status = ServerStatus.STARTED;
+        status = ServerStatus.RUNNING;
     }
 
     public void stop() throws Exception {
+        status = ServerStatus.STOPPING;
         doStop();
+        status = ServerStatus.STOPED;
     }
 
     /**
