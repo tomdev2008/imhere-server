@@ -29,11 +29,12 @@ public class ClientTest {
     public static void main(String[] args) throws Exception {
         ClientTest tester = new ClientTest();
         ClientFactory factory = ClientFactory.getInstance();
-        DefaultClient client = factory.getDefaultClient("localhost", 18080);
-        //		 tester.testRegister(client);
+        DefaultClient client = factory
+            .getDefaultClient("120.24.222.133", 18080);
+        // tester.testRegister(client);
         // tester.testLogin(client);
         // tester.testAddFriend(client);
-        // tester.testAcceptFriend(client);
+        //        tester.testAcceptFriend(client);
         tester.testLocate(client);
     }
 
@@ -42,7 +43,7 @@ public class ClientTest {
      */
     public void testRegister(DefaultClient client) {
         try {
-            for (int i = 1; i < 5; i++) {
+            for (int i = 5; i < 10; i++) {
                 RegisterRequest register = createRegister(i);
                 RegisterResponse response = client.register(register);
                 System.out.println("register response = " + response);

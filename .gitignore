@@ -4,3 +4,4 @@
 /.settings
 #.classpath
 .project
+conf/imhere-server.properties

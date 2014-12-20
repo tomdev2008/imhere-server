@@ -116,7 +116,6 @@ public class AdminServer extends AbstractServer {
     class ShutdownCleaner extends Thread {
         @Override
         public void run() {
-            logger.info("admin server status = {}", AdminServer.this.status);
             if (AdminServer.this.status != ServerStatus.STOPED) {
                 try {
                     AdminServer.this.doStop();

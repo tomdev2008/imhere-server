@@ -104,7 +104,6 @@ public class ImHereServer extends AbstractServer {
     class ShutdownCleaner extends Thread {
         @Override
         public void run() {
-            logger.info("imhere server status = {}", ImHereServer.this.status);
             if (ImHereServer.this.status != ServerStatus.STOPED) {
                 try {
                     ImHereServer.this.doStop();
